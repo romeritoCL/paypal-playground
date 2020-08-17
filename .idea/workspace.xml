@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fddbd2ea-eb8f-4ebe-9a41-95309bc96458" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/docker/nginx/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker/nginx/nginx.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker/php-fpm/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker/php-fpm/php-ini-overrides.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1gEMdAvaKojoO2JALQbHHOJcnUu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fddbd2ea-eb8f-4ebe-9a41-95309bc96458" name="Default Changelist" comment="" />
+      <created>1597675383092</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1597675383092</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="579" y="347" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1597676939953">
+      <screen x="0" y="23" width="1792" height="1030" />
+    </state>
+    <state x="579" y="347" key="#com.intellij.fileTypes.FileTypeChooser/-1920.63.1920.1057/0.23.1792.1030/1792.63.1920.1057@0.23.1792.1030" timestamp="1597676939953" />
+    <state x="620" y="234" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1597676252513">
+      <screen x="0" y="23" width="1792" height="1030" />
+    </state>
+    <state x="620" y="234" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/-1920.63.1920.1057/0.23.1792.1030/1792.63.1920.1057@0.23.1792.1030" timestamp="1597676252513" />
+    <state x="561" y="251" width="670" height="676" key="search.everywhere.popup" timestamp="1597675745805">
+      <screen x="0" y="23" width="1792" height="1030" />
+    </state>
+    <state x="561" y="251" width="670" height="676" key="search.everywhere.popup/-1920.63.1920.1057/0.23.1792.1030/1792.63.1920.1057@0.23.1792.1030" timestamp="1597675745805" />
+  </component>
+</project>

@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  paypal-playground-webserver:
+    container_name: paypal-playground-webserver
+    build:
+      dockerfile: ./docker/nginx/Dockerfile
+      context: .
+    working_dir: /var/www
+    ports:
+    - 8085:80
+    volumes:
+      - ./:/var/www
+    extra_hosts:
+      - "paypal.devoralive.docker:127.0.0.1"
+
+  paypal-playground-php-fpm:
+    container_name: paypal-playground-php-fpm
+    build:
+      dockerfile: ./docker/php-fpm/Dockerfile
+      context: .
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+
+  paypal-playground-db:
+    image: mysql:5.7
+    container_name: paypal-playground-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=paypal-playground
+      - MYSQL_DATABASE=paypal-playground
+      - MYSQL_USER=paypal-playground
+      - MYSQL_PASSWORD=paypal-playground
