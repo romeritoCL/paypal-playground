@@ -2,40 +2,38 @@
 {% block title %}PayPal PlayGround{% endblock %}
 {% block body %}
     <div class="jumbotron">
-        <h1>Instructions</h1>
+        <h1>Your Account</h1>
         <ul class="list">
-            <li>We have some information from you!</li>
+            <li>We have you logged in. Welcome!</li>
         </ul>
         <h6>Progress</h6>
         <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+            <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
         </div>
     </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col text-center">
-                <p><strong>PayPal's AccessToken worked! now we have information finally</strong></p>
+                <p><strong>Welcome back:</strong></p>
             </div>
         </div>
         <div class="row">
             <div class="col text-center">
                 <div class="alert alert-info" role="alert">
-                    <p>Name</p>
-                    <p>{{ name }}</p>
+                    <p>Name: {{ name }}</p>
+                    <p>Email: {{ email }}</p>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                {{ dump(userInfo) }}
+                <h6> Menu options:</h6>
             </div>
         </div>
         <div class="row">
-            <div class="col text-center">
-                <form action="/get-user-info" method="post">
-                    <input type="hidden" id="refresh_token" name="refresh_token" value="{{ refresh_token }}">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Impressive! Let's end with some more info from Transactions API</button>
-                </form>
+            <div class="col">
+                <button type="button" class="btn btn-success" onclick="window.location.reload();">Refresh</button>
+                <button type="button" class="btn btn-info" onclick="location.href = '{{ path('logout') }}';">Log Out</button>
             </div>
         </div>
     </div>

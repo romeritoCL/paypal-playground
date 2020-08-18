@@ -2,33 +2,20 @@
 
 namespace App\Service;
 
-use PayPal\Api\OpenIdTokeninfo;
-use PayPal\Api\OpenIdUserinfo;
-use PayPal\Auth\OAuthTokenCredential;
-use PayPal\Rest\ApiContext;
 use Psr\Log\LoggerInterface;
-use Exception;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
- * Class PaypalService
+ * Class SessionService
  * @package App\Service
  */
-class PaypalService
+class SessionService
 {
     /**
-     * @var string
+     * @var Session
      */
-    private $clientId;
-
-    /**
-     * @var string
-     */
-    private $clientSecret;
-
-    /**
-     * @var ApiContext
-     */
-    private $apiContext;
+    public $session;
 
     /**
      * @var LoggerInterface
@@ -36,86 +23,51 @@ class PaypalService
     private $logger;
 
     /**
-     * PaypalService constructor.
-     * @param string $clientId
-     * @param string $clientSecret
+     * SessionService constructor.
+     * @param SessionInterface $session
      * @param LoggerInterface $logger
      */
-    public function __construct(string $clientId, string $clientSecret, LoggerInterface $logger)
+    public function __construct(SessionInterface  $session, LoggerInterface $logger)
     {
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
+        $this->session = $session;
         $this->logger = $logger;
-        $apiContext = new ApiContext(new OAuthTokenCredential($this->clientId, $this->clientSecret));
-        $apiContext->setConfig(['mode' => 'sandbox']);
-        $this->apiContext = $apiContext;
     }
 
     /**
-     * @param $authCode
-     * @return OpenIdTokeninfo|null
+     * @param string $email
+     * @param string $refreshToken
      */
-    public function getAccessCodeFromAuthCode($authCode) : ?OpenIdTokeninfo
+    public function login(string $email, string $refreshToken): void
     {
-        try {
-            $accessToken = OpenIdTokeninfo::createFromAuthorizationCode(
-                ['code' => $authCode],
-                $this->clientId,
-                $this->clientSecret,
-                $this->apiContext
-            );
-        } catch (Exception $e) {
-            $this->logger->error('Error on PayPal::getAccessCodeFromAuthCode = ' . $e->getMessage());
-            return null;
-        }
-        return $accessToken;
+        $this->session->start();
+        $this->session->set('email', $email);
+        $this->session->set('refresh-token', $refreshToken);
     }
 
     /**
      * @param string $refreshToken
-     * @return OpenIdTokeninfo|null
      */
-    public function refreshToken(string $refreshToken) : ?OpenIdTokeninfo
+    public function refresh(string $refreshToken): void
     {
-        try {
-            $tokenInfo = new OpenIdTokeninfo();
-            $tokenInfo = $tokenInfo->createFromRefreshToken(['refresh_token' => $refreshToken], $this->apiContext);
-        } catch (Exception $e) {
-            $this->logger->error('Error on PayPal::refreshToken = ' . $e->getMessage());
-            return null;
-        }
-        return $tokenInfo;
+        $this->session->set('refresh-token', $refreshToken);
     }
 
     /**
-     * @param OpenIdTokeninfo $tokenInfo
-     * @return OpenIdUserinfo|null
+     * @return string|null
      */
-    public function getUserInfo(OpenIdTokeninfo $tokenInfo) : ?OpenIdUserinfo
+    public function getRefreshToken(): ?string
     {
-        try {
-            $params = ['access_token' => $tokenInfo->getAccessToken()];
-            $userInfo = OpenIdUserinfo::getUserinfo($params, $this->apiContext);
-        } catch (Exception $e) {
-            $this->logger->error('Error on PayPal::getUserInfo = ' . $e->getMessage());
-            return null;
-        }
-        return $userInfo;
+        return $this->session->get('refresh-token');
     }
 
     /**
-     * @param string $refreshToken
-     * @return OpenIdUserinfo|null
+     * @return bool
      */
-    public function getUserInfoFromRefreshToken(string $refreshToken) : ?OpenIdUserinfo
+    public function isActive(): bool
     {
-        try {
-            $tokenInfo = $this->refreshToken($refreshToken);
-            $userInfo = $this->getUserInfo($tokenInfo);
-        } catch (Exception $e) {
-            $this->logger->error('Error on PayPal::getUserInfoFromRefreshToken = ' . $e->getMessage());
-            return null;
+        if ($this->session->get('refresh-token') != null) {
+            return true;
         }
-        return $userInfo;
+        return false;
     }
 }

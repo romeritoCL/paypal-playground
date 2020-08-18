@@ -5,20 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11f49736-090a-4741-8929-02c0863838d6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Service/PaypalService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/default/access.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/default/login.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/default/user-info.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/SessionService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/default/my-account.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/default/user-info.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/user-info.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +153,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates/default" />
+      <recent name="$PROJECT_DIR$/src/Service" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -195,9 +188,10 @@
       <screen x="0" y="23" width="1792" height="1030" />
     </state>
     <state x="360" y="200" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.23.1920.1057/0.23.1792.1030/1792.23.1920.1057@0.23.1792.1030" timestamp="1597757732140" />
-    <state x="681" y="254" key="#com.intellij.ide.util.MemberChooser" timestamp="1597762003565">
-      <screen x="0" y="23" width="1792" height="1097" />
+    <state x="681" y="240" key="#com.intellij.ide.util.MemberChooser" timestamp="1597785727765">
+      <screen x="0" y="23" width="1792" height="1030" />
     </state>
+    <state x="681" y="240" key="#com.intellij.ide.util.MemberChooser/-1920.23.1920.1057/0.23.1792.1030/1792.23.1920.1057@0.23.1792.1030" timestamp="1597785727765" />
     <state x="681" y="254" key="#com.intellij.ide.util.MemberChooser/-1920.23.1920.990/0.23.1792.1097/1792.23.1920.1057@0.23.1792.1097" timestamp="1597762003565" />
     <state x="634" y="300" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597763468382">
       <screen x="0" y="23" width="1792" height="1097" />
