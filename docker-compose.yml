@@ -7,7 +7,7 @@ services:
       context: .
     working_dir: /var/www
     ports:
-    - 8085:80
+    - 8086:80
     volumes:
       - ./:/var/www
     extra_hosts:
