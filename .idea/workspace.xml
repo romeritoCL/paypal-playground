@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="11f49736-090a-4741-8929-02c0863838d6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Service/PaypalService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/default/access.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/default/login.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/default/user-info.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.test" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/nginx/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/docker/nginx/nginx.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/php-fpm/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/php-fpm/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,6 +141,8 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-idn" />
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/bin/.phpunit" />
+      <path value="$PROJECT_DIR$/vendor/paypal/rest-api-sdk-php" />
     </include_path>
   </component>
   <component name="ProjectId" id="1gGkTEO6ym1boXPkrKYNDcslPNf" />
@@ -145,9 +154,14 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/default" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/default" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -177,13 +191,42 @@
       <screen x="0" y="23" width="1792" height="1030" />
     </state>
     <state x="483" y="200" key="#PHP_CodeSniffer/-1920.23.1920.1057/0.23.1792.1030/1792.23.1920.1057@0.23.1792.1030" timestamp="1597748913212" />
-    <state x="360" y="200" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597748766904">
+    <state x="360" y="200" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597757732140">
       <screen x="0" y="23" width="1792" height="1030" />
     </state>
-    <state x="360" y="200" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.23.1920.1057/0.23.1792.1030/1792.23.1920.1057@0.23.1792.1030" timestamp="1597748766904" />
-    <state x="397" y="177" key="SettingsEditor" timestamp="1597748930588">
+    <state x="360" y="200" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.23.1920.1057/0.23.1792.1030/1792.23.1920.1057@0.23.1792.1030" timestamp="1597757732140" />
+    <state x="681" y="254" key="#com.intellij.ide.util.MemberChooser" timestamp="1597762003565">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="681" y="254" key="#com.intellij.ide.util.MemberChooser/-1920.23.1920.990/0.23.1792.1097/1792.23.1920.1057@0.23.1792.1097" timestamp="1597762003565" />
+    <state x="634" y="300" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597763468382">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="634" y="300" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1920.23.1920.990/0.23.1792.1097/1792.23.1920.1057@0.23.1792.1097" timestamp="1597763468382" />
+    <state x="464" y="113" key="CommitChangelistDialog2" timestamp="1597760704373">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="464" y="113" key="CommitChangelistDialog2/-1920.23.1920.990/0.23.1792.1097/1792.23.1920.1057@0.23.1792.1097" timestamp="1597760704373" />
+    <state x="583" y="271" key="NewPhpClassDialog" timestamp="1597760634598">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="583" y="271" key="NewPhpClassDialog/-1920.23.1920.990/0.23.1792.1097/1792.23.1920.1057@0.23.1792.1097" timestamp="1597760634598" />
+    <state x="397" y="177" key="SettingsEditor" timestamp="1597757232043">
       <screen x="0" y="23" width="1792" height="1030" />
     </state>
-    <state x="397" y="177" key="SettingsEditor/-1920.23.1920.1057/0.23.1792.1030/1792.23.1920.1057@0.23.1792.1030" timestamp="1597748930588" />
+    <state x="397" y="177" key="SettingsEditor/-1920.23.1920.1057/0.23.1792.1030/1792.23.1920.1057@0.23.1792.1030" timestamp="1597757232043" />
+    <state x="100" y="123" width="1592" height="830" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1597761118304">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="100" y="123" width="1592" height="830" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1920.23.1920.990/0.23.1792.1097/1792.23.1920.1057@0.23.1792.1097" timestamp="1597761118304" />
+    <state x="594" y="170" width="604" height="735" key="find.popup" timestamp="1597761796677">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="594" y="170" width="604" height="735" key="find.popup/-1920.23.1920.990/0.23.1792.1097/1792.23.1920.1057@0.23.1792.1097" timestamp="1597761796677" />
+    <state x="561" y="237" width="670" height="635" key="search.everywhere.popup" timestamp="1597763668492">
+      <screen x="0" y="23" width="1792" height="1030" />
+    </state>
+    <state x="561" y="237" width="670" height="635" key="search.everywhere.popup/-1920.23.1920.1057/0.23.1792.1030/1792.23.1920.1057@0.23.1792.1030" timestamp="1597763668492" />
+    <state x="561" y="251" width="670" height="676" key="search.everywhere.popup/-1920.23.1920.990/0.23.1792.1097/1792.23.1920.1057@0.23.1792.1097" timestamp="1597760005538" />
   </component>
 </project>

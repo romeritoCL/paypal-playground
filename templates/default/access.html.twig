@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block title %}PayPal PlayGround{% endblock %}
+{% block body %}
+    <div class="jumbotron">
+        <h1>Instructions</h1>
+        <ul class="list">
+            <li>We have contacted PayPal's Token Service</li>
+        </ul>
+        <h6>Progress</h6>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col text-center">
+                <p><strong>We have called PayPal Token Service and we have obtained and Access Token</strong></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <div class="alert alert-info" role="alert">
+                    <p>Auth Code</p>
+                    <p>{{ auth_code }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <div class="alert alert-success" role="alert">
+                    <p>Access Code</p>
+                    <p>{{ access_code }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <p>
+                    <strong>
+                        The system will exchange the AuthCode with the PayPal's Token Service to get back an AccessToken.
+                        This Access token will be stored and used to call UserInfo API.
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{ dump(accessTokenObject) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <form action="/get-user-info" method="post">
+                    <input type="hidden" id="refresh_token" name="refresh_token" value="{{ refresh_token }}">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">WOW!! Let's get your user info</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

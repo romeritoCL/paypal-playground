@@ -1,32 +1,36 @@
 {% extends 'base.html.twig' %}
-{% block title %}Question/Answer App{% endblock %}
+{% block title %}PayPal PlayGround{% endblock %}
 {% block body %}
-    <div class="row">
-        <div class="col-10 offset-1">
-            <div class="card mb-3">
-                <div class="card-body bg-light">
-                    <div class="row">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col-6 text-center">
-                                    0
-                                    <br>
-                                    <small>answers</small>
-                                </div>
-                                <div class="col-6 text-center">
-                                    0
-                                    <br>
-                                    <small>views</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-10">
-                            <h5 class="card-title"><a href="#">[Question Title Placeholder]</a></h5>
-                            <p class="card-text text-muted small">asked by [User Placeholder] [Post Time Placeholder]</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="jumbotron">
+        <h1>Instructions</h1>
+        <ul class="list">
+            <li>Login with PayPal</li>
+            <li>You will see a dashboard</li>
+            <li>we will display your name, email and last 5 transactions</li>
+        </ul>
     </div>
+    <div class="row">
+        <div class="col text-center">
+            <p>Remember this is sandbox environment</p>
+            <span id='cwppButton'></span>
+        </div>
+        <script src='https://www.paypalobjects.com/js/external/connect/api.js'></script>
+    </div>
+    <script>
+        paypal.use( ['login'], function (login) {
+            login.render ({
+                "appid":"{{ pp_client_id }}",
+                "authend":"sandbox",
+                "scopes":"email profile address openid",
+                "containerid":"cwppButton",
+                "responseType":"code id_Token",
+                "locale":"en-us",
+                "buttonType":"CWP",
+                "buttonShape":"pill",
+                "buttonSize":"lg",
+                "fullPage":"true",
+                "returnurl":"http://paypal.devoralive.docker:8086"
+            });
+        });
+    </script>
 {% endblock %}

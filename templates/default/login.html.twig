@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block title %}PayPal PlayGround{% endblock %}
+{% block body %}
+    <div class="jumbotron">
+        <h1>Instructions</h1>
+        <ul class="list">
+            <li>Get AccessToken from PayPal</li>
+        </ul>
+        <h6>Progress</h6>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col text-center">
+                <p><strong>Now using you PayPal authorization code to request access.</strong></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <div class="alert alert-info" role="alert">
+                    <p>{{ auth_code }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <p>
+                    <strong>
+                        The system will exchange the AuthCode with the PayPal's Token Service to get back an AccessToken.
+                        This Access token will be stored and used to call UserInfo API.
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <form action="/redeem-auth-code" method="post">
+                    <input type="hidden" id="auth_code" name="auth_code" value="{{ auth_code }}">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Go on, call PayPal's API</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
