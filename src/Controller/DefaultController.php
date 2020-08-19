@@ -38,9 +38,12 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/", name="index")
+     * @route("/", name="index")
+     *
+     * @param SessionService $sessionService
+     * @return RedirectResponse|Response
      */
-    public function index()
+    public function index(SessionService $sessionService)
     {
         if ($this->sessionService->isActive()) {
             return $this->redirectToRoute('myAccount');
@@ -53,7 +56,7 @@ class DefaultController extends AbstractController
             ]);
         }
         return $this->render('default/index.html.twig', [
-            'pp_client_id' => $this->getParameter('client_id'),
+            'pp_client_id' => $sessionService->session->get('client-id') ?? $this->getParameter('client_id'),
         ]);
     }
 
@@ -135,6 +138,20 @@ class DefaultController extends AbstractController
     public function logout()
     {
         $this->sessionService->session->clear();
+        return $this->redirectToRoute('index');
+    }
+
+    /**
+     * @Route("/credentials-update", name="credentials-update")
+     */
+    public function credentialUpdate()
+    {
+        $request = Request::createFromGlobals();
+        $clientId = $request->request->get('client_id', null);
+        $clientSecret = $request->request->get('client_secret', null);
+        if ($clientId && $clientSecret) {
+            $this->sessionService->updateCredentials($clientId, $clientSecret);
+        }
         return $this->redirectToRoute('index');
     }
 }

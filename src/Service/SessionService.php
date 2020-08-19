@@ -70,4 +70,16 @@ class SessionService
         }
         return false;
     }
+
+    /**
+     * @param string $clientId
+     * @param string $clientSecret
+     */
+    public function updateCredentials(string $clientId, string $clientSecret): void
+    {
+        $this->session->clear();
+        $this->session->start();
+        $this->session->set('client-id', $clientId);
+        $this->session->set('client-secret', $clientSecret);
+    }
 }

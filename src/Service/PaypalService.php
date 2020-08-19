@@ -40,11 +40,18 @@ class PaypalService
      * @param string $clientId
      * @param string $clientSecret
      * @param LoggerInterface $logger
+     * @param SessionService $sessionService
      */
-    public function __construct(string $clientId, string $clientSecret, LoggerInterface $logger)
-    {
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
+    public function __construct(
+        string $clientId,
+        string $clientSecret,
+        LoggerInterface $logger,
+        SessionService $sessionService
+    ) {
+        $sesionClientId = $sessionService->session->get('client-id');
+        $sesionClientSecret = $sessionService->session->get('client-secret');
+        $this->clientId = $sesionClientId ?? $clientId;
+        $this->clientSecret = $sesionClientSecret ?? $clientSecret;
         $this->logger = $logger;
         $apiContext = new ApiContext(new OAuthTokenCredential($this->clientId, $this->clientSecret));
         $apiContext->setConfig(['mode' => 'sandbox']);
