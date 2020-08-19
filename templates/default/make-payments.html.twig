@@ -2,45 +2,43 @@
 {% block title %}PayPal PlayGround{% endblock %}
 {% block body %}
     <div class="col text-center pb-4">
-        <h4>So, let's try and pay something</h4>
+        <h4>Let's try and pay something</h4>
         <p>
             On the left side, create your dream product, then update the payment buttons
         </p>
     </div>
     <div class="row">
         <div class="col">
+            <p><strong>
+                So, what are we buying today
+            </strong></p>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">Name</span>
+                    <span class="input-group-text" id="name-text">Name</span>
                 </div>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="Default Product">
+                <input type="text" class="form-control text-right" id="name" value="Default Product">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">€</span>
+                    <span class="input-group-text" id="pricing-text">Price</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest euro)" value="10">
+                <input type="number" class="form-control text-right" id="price" value="10">
                 <div class="input-group-append">
-                    <span class="input-group-text">.00</span>
+                    <span class="input-group-text">.00 €</span>
                 </div>
-            </div>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Description</span>
-                </div>
-                <textarea class="form-control" aria-label="Description" content="This is a default product"></textarea>
             </div>
         </div>
         <div class="col">
             <script src="https://www.paypal.com/sdk/js?client-id={{ pp_client_id }}"></script>
             <div id="paypal-button-container"></div>
             <script>
+                let price = document.getElementById("price").value;
                 paypal.Buttons({
                     createOrder: function(data, actions) {
                         return actions.order.create({
                             purchase_units: [{
                                 amount: {
-                                    value: '0.01'
+                                    value: price
                                 }
                             }]
                         });
