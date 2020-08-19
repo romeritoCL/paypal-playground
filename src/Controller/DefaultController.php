@@ -38,12 +38,11 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @route("/", name="index")
+     * @Route("/", name="index")
      *
-     * @param SessionService $sessionService
      * @return RedirectResponse|Response
      */
-    public function index(SessionService $sessionService)
+    public function index()
     {
         if ($this->sessionService->isActive()) {
             return $this->redirectToRoute('myAccount');
@@ -56,16 +55,15 @@ class DefaultController extends AbstractController
             ]);
         }
         return $this->render('default/index.html.twig', [
-            'pp_client_id' => $sessionService->session->get('client-id') ?? $this->getParameter('client_id'),
+            'pp_client_id' => $this->sessionService->session->get('client-id') ?? $this->getParameter('client_id'),
         ]);
     }
 
     /**
      * @Route("/redeem-auth-code", name="redeemAuthCode")
-     * @param PaypalService $paypalService
      * @return RedirectResponse|Response
      */
-    public function redeemAuthCode(PaypalService $paypalService)
+    public function redeemAuthCode()
     {
         if ($this->sessionService->isActive()) {
             return $this->redirectToRoute('myAccount');
@@ -73,7 +71,7 @@ class DefaultController extends AbstractController
         $request = Request::createFromGlobals();
         $code = $request->request->get('auth_code', null);
         if ($code) {
-            $openIdTokeninfo = $paypalService->getAccessCodeFromAuthCode($code);
+            $openIdTokeninfo = $this->paypalService->getAccessCodeFromAuthCode($code);
             if ($openIdTokeninfo) {
                 return $this->render('default/access.html.twig', [
                     'auth_code' => $code,
@@ -113,6 +111,8 @@ class DefaultController extends AbstractController
 
     /**
      * @Route("/my-account", name="myAccount")
+     *
+     * @return Response | RedirectResponse
      */
     public function myAccount()
     {
@@ -130,6 +130,7 @@ class DefaultController extends AbstractController
                 ]);
             }
         }
+        return $this->redirectToRoute('index');
     }
 
     /**
@@ -143,6 +144,8 @@ class DefaultController extends AbstractController
 
     /**
      * @Route("/credentials-update", name="credentials-update")
+     *
+     * @return Response | RedirectResponse
      */
     public function credentialUpdate()
     {
@@ -151,6 +154,29 @@ class DefaultController extends AbstractController
         $clientSecret = $request->request->get('client_secret', null);
         if ($clientId && $clientSecret) {
             $this->sessionService->updateCredentials($clientId, $clientSecret);
+        }
+        return $this->redirectToRoute('index');
+    }
+
+    /**
+     * @Route("/make-payments", name="make-payments")
+     *
+     * @return Response | RedirectResponse
+     */
+    public function makePayments()
+    {
+        if (!$this->sessionService->isActive()) {
+            return $this->redirectToRoute('index');
+        }
+        $refreshToken = $this->sessionService->getRefreshToken();
+        if ($refreshToken) {
+            $payment = $this->paypalService->getUserInfoFromRefreshToken($refreshToken);
+            if ($payment) {
+                return $this->render('default/make-payments.html.twig', [
+                    'pp_client_id' =>
+                        $this->sessionService->session->get('client-id') ?? $this->getParameter('client_id'),
+                ]);
+            }
         }
         return $this->redirectToRoute('index');
     }

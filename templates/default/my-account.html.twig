@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-authenticated.html.twig' %}
 {% block title %}PayPal PlayGround{% endblock %}
 {% block body %}
     <div class="jumbotron">
@@ -27,17 +27,6 @@
                 <div class="alert alert-info" role="alert">
                     <p><strong>Email: </strong>{{ email }}</p>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <h6> Menu options:</h6>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button type="button" class="btn btn-success" onclick="window.location.reload();">Refresh</button>
-                <button type="button" class="btn btn-secondary" onclick="location.href = '{{ path('logout') }}';">Log Out</button>
             </div>
         </div>
     </div>
