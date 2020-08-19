@@ -16,39 +16,51 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="name-text">Name</span>
                 </div>
-                <input type="text" class="form-control text-right" id="name" value="Default Product">
+                <input type="text" aria-label="Name" class="form-control text-right" id="name" value="Default Product">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="pricing-text">Price</span>
                 </div>
-                <input type="number" class="form-control text-right" id="price" value="10">
+                <input type="number" aria-label="Price" class="form-control text-right" id="price" value="10">
                 <div class="input-group-append">
                     <span class="input-group-text">.00 €</span>
                 </div>
             </div>
+            <p id="current-payment-sentence"></p>
+            <button type="button" class="btn btn-success" onclick="reloadPaymentButtons();">Reload Payment Buttons</button>
         </div>
         <div class="col">
             <script src="https://www.paypal.com/sdk/js?client-id={{ pp_client_id }}"></script>
             <div id="paypal-button-container"></div>
             <script>
-                let price = document.getElementById("price").value;
-                paypal.Buttons({
-                    createOrder: function(data, actions) {
-                        return actions.order.create({
-                            purchase_units: [{
-                                amount: {
-                                    value: price
-                                }
-                            }]
-                        });
-                    },
-                    onApprove: function(data, actions) {
-                        return actions.order.capture().then(function(details) {
-                            alert('Transaction completed by ' + details.payer.name.given_name);
-                        });
-                    }
-                }).render('#paypal-button-container');
+                function reloadPaymentButtons()
+                {
+                    document.getElementById('current-payment-sentence').innerHTML =
+                        "You are now buying and incredible <strong>" + document.getElementById("name").value +
+                        "</strong> for the amazing price of <strong>" + document.getElementById("price").value +
+                        "€</strong>."
+
+                    let price = document.getElementById("price").value;
+                    document.getElementById('paypal-button-container').innerHTML = "";
+                    paypal.Buttons({
+                        createOrder: function(data, actions) {
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: price
+                                    }
+                                }]
+                            });
+                        },
+                        onApprove: function(data, actions) {
+                            return actions.order.capture().then(function(details) {
+                                alert('Transaction completed by ' + details.payer.name.given_name);
+                            });
+                        }
+                    }).render('#paypal-button-container');
+                }
+                reloadPaymentButtons();
             </script>
         </div>
     </div>
