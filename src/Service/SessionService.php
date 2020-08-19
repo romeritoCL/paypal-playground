@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use PayPal\Api\OpenIdUserinfo;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -34,13 +35,20 @@ class SessionService
     }
 
     /**
-     * @param string $email
+     * @param OpenIdUserinfo $userinfo
      * @param string $refreshToken
      */
-    public function login(string $email, string $refreshToken): void
+    public function login(OpenIdUserinfo $userinfo, string $refreshToken): void
     {
         $this->session->start();
-        $this->session->set('email', $email);
+        $this->session->set('email', $userinfo->getEmail());
+        $this->session->set('name', $userinfo->getName());
+        $this->session->set('userId', $userinfo->getUserId());
+        $this->session->set('address_street', $userinfo->getAddress()->getStreetAddress());
+        $this->session->set('address_locality', $userinfo->getAddress()->getLocality());
+        $this->session->set('address_region', $userinfo->getAddress()->getRegion());
+        $this->session->set('address_post_code', $userinfo->getAddress()->getPostalCode());
+        $this->session->set('address_country', $userinfo->getAddress()->getCountry());
         $this->session->set('refresh-token', $refreshToken);
     }
 

@@ -98,7 +98,7 @@ class DefaultController extends AbstractController
         if ($refreshToken) {
             $userInfo = $this->paypalService->getUserInfoFromRefreshToken($refreshToken);
             if ($userInfo) {
-                $this->sessionService->login($userInfo->email, $refreshToken);
+                $this->sessionService->login($userInfo, $refreshToken);
                 return $this->render('default/user-info.html.twig', [
                     'refresh_token' => $refreshToken,
                     'name' => $userInfo->getName(),
