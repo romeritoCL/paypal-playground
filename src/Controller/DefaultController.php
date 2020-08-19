@@ -120,13 +120,15 @@ class DefaultController extends AbstractController
             return $this->redirectToRoute('index');
         }
         $refreshToken = $this->sessionService->getRefreshToken();
+        $myTransactions = $this->paypalService->getUserTransactionsFromRefreshToken($refreshToken);
         if ($refreshToken) {
             $userInfo = $this->paypalService->getUserInfoFromRefreshToken($refreshToken);
             if ($userInfo) {
                 return $this->render('default/my-account.html.twig', [
                     'name' => $userInfo->getName(),
                     'email' => $userInfo->getEmail(),
-                    'userInfo' => $userInfo
+                    'userInfo' => $userInfo,
+                    'transactions' => $myTransactions,
                 ]);
             }
         }
