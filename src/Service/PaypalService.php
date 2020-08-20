@@ -2,8 +2,13 @@
 
 namespace App\Service;
 
+use PayPal\Api\Currency;
 use PayPal\Api\OpenIdTokeninfo;
 use PayPal\Api\OpenIdUserinfo;
+use PayPal\Api\Payout;
+use PayPal\Api\PayoutBatch;
+use PayPal\Api\PayoutItem;
+use PayPal\Api\PayoutSenderBatchHeader;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 use Psr\Log\LoggerInterface;
@@ -154,5 +159,50 @@ class PaypalService
             return null;
         }
         return json_decode($userTransactions);
+    }
+
+    /**
+     * @param string $subject
+     * @param string $note
+     * @param string $receiverEmail
+     * @param string $itemId
+     * @param float $amount
+     * @param string $currency
+     * @return PayoutBatch|null
+     */
+    public function createPayout(
+        string $subject,
+        string $note,
+        string $receiverEmail,
+        string $itemId,
+        float $amount,
+        string $currency
+    ): ?PayoutBatch {
+        $payouts = new Payout();
+        $senderBatchHeader = new PayoutSenderBatchHeader();
+        $senderBatchHeader
+            ->setSenderBatchId(uniqid())
+            ->setEmailSubject($subject);
+        $senderItem = new PayoutItem();
+        $senderItem->setRecipientType('Email')
+            ->setNote($note)
+            ->setReceiver($receiverEmail)
+            ->setSenderItemId($itemId)
+            ->setAmount(new Currency(json_encode((object)[
+                'value' => $amount,
+                'currency' => $currency,
+            ])));
+
+        $payouts->setSenderBatchHeader($senderBatchHeader)
+            ->addItem($senderItem);
+
+        try {
+            $payouts = $payouts->createSynchronous($this->apiContext);
+        } catch (Exception $e) {
+            $this->logger->error('Error on PayPal::createPayout = ' . $e->getMessage());
+            return null;
+        }
+
+        return $payouts;
     }
 }

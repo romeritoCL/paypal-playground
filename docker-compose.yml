@@ -21,12 +21,3 @@ services:
     working_dir: /var/www
     volumes:
       - ./:/var/www
-
-  paypal-playground-db:
-    image: mysql:5.7
-    container_name: paypal-playground-db
-    environment:
-      - MYSQL_ROOT_PASSWORD=paypal-playground
-      - MYSQL_DATABASE=paypal-playground
-      - MYSQL_USER=paypal-playground
-      - MYSQL_PASSWORD=paypal-playground
