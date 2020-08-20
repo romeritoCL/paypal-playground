@@ -199,8 +199,9 @@ class DefaultController extends AbstractController
         if (!$this->sessionService->isActive()) {
             return $this->redirectToRoute('index');
         }
+        //TODO
         //$payout = $this->paypalService->createPayout();
-        return $this->render('result.html.twig', [
+        return $this->render('default/result.html.twig', [
             'result' => [],
         ]);
     }
