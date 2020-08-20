@@ -1,152 +1,75 @@
 {% extends 'base-authenticated.html.twig' %}
 {% block title %}PayPal PlayGround{% endblock %}
 {% block body %}
-    <div class="col text-center pb-4">
-        <h4>Let's try and pay something</h4>
-        <p>
-            On the left side, create your dream product, then update the payment buttons
-        </p>
-    </div>
-    <div class="row">
-        <div class="col">
-            <p><strong>
-                So, what are we buying today
-            </strong></p>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="name-text">Name</span>
-                </div>
-                <input type="text" aria-label="Name" class="form-control text-right" id="name" value="Make me proud! TEE (XXL)">
+<script>
+    function sendPayment()
+    {
+        document.getElementById("send-money-button").disabled = true;
+
+        $.post('{{ path('receive-payments-result') }}',
+            {
+                name: "Donald Duck",
+                city: "Duckburg"
+            },
+            function(data, status){
+                document.getElementById('result-col').innerHTML = data
+            });
+        setTimeout(function(){document.getElementById("send-money-button").disabled = false;},2000);
+    }
+</script>
+<div class="col text-center pb-4">
+    <h4>Let's try and Get some money</h4>
+    <p>
+        On the left side, your payout, then hit send and wait for the response
+    </p>
+</div>
+<div class="row">
+    <div class="col">
+        <p><strong>
+            So, what are we paying out today
+        </strong></p>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="subject-text">Subject</span>
             </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="pricing-text">Price</span>
-                </div>
-                <input type="number" aria-label="Price" class="form-control text-right" id="price" value="18">
-                <div class="input-group-append">
-                    <span class="input-group-text">.00 €</span>
-                </div>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="shipping-text">Shipping</span>
-                </div>
-                <input type="number" aria-label="Price" class="form-control text-right" id="shipping" value="5">
-                <div class="input-group-append">
-                    <span class="input-group-text">.00 €</span>
-                </div>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">SKU</span>
-                </div>
-                <input type="text" aria-label="Name" class="form-control text-right" id="sku" value="TEE-MMP-XXL">
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Description</span>
-                </div>
-                <input type="text" aria-label="Name" class="form-control text-right" id="item_description"
-                       value="A tee that will make you proud and good looking, in an XXL size">
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Purchase</span>
-                </div>
-                <input type="text" aria-label="Name" class="form-control text-right" id="purchase_description"
-                       value="Tee sale: Make me proud! (XXL) SPECIAL OFFER">
-            </div>
-            <p id="current-payment-sentence"></p>
-            <button type="button" class="btn btn-success" onclick="reloadPaymentButtons();">Reload Payment Buttons</button>
+            <input type="text" aria-label="Name" class="form-control text-right" id="subject" value="Monthly Salary, don't spend it all">
         </div>
-        <div class="col">
-            <script src="https://www.paypal.com/sdk/js?client-id={{ pp_client_id }}&currency=EUR&buyer-country=GB&locale=en_GB"></script>
-            <div id="paypal-button-container"></div>
-            <script>
-                function reloadPaymentButtons()
-                {
-                    let price = document.getElementById("price").value;
-                    let shipping = document.getElementById("shipping").value;
-                    let name = document.getElementById("name").value;
-                    let sku = document.getElementById("sku").value;
-                    let item_description = document.getElementById("item_description").value;
-                    let purchase_description = document.getElementById("purchase_description").value;
-                    document.getElementById('current-payment-sentence').innerHTML =
-                        "You are now buying and incredible <strong>" + name +
-                        "</strong> for the amazing price of <strong>" + (+price + +shipping) +
-                        "€</strong>."
-                    {% set split_name = app.session.get('name') | split(' ', 2) %}
-                    document.getElementById('paypal-button-container').innerHTML = "";
-                    paypal.Buttons({
-                        createOrder: function(data, actions) {
-                            return actions.order.create({
-                                intent: 'capture',
-                                payer: {
-                                    name: {
-                                        given_name: "{{ split_name[0] }}",
-                                        surname: "{{ split_name[1] }}"
-                                    },
-                                    email_address: "{{ app.session.get('email') }}",
-                                    address: {
-                                        address_line_1: "{{ app.session.get('address_street') }}",
-                                        country_code: "{{ app.session.get('address_country') }}",
-                                        admin_area_1: "{{ app.session.get('address_region') }}",
-                                        admin_area_2: "{{ app.session.get('address_locality') }}",
-                                        postal_code: "{{ app.session.get('address_post_code') }}"
-                                    }
-                                },
-                                purchase_units: [{
-                                    reference_id: 'REF-PPDEV-12345',
-                                    amount: {
-                                        currency_code: 'EUR',
-                                        value: (+price + +shipping),
-                                        breakdown: {
-                                            item_total: {
-                                                value: price,
-                                                currency_code: 'EUR'
-                                            },
-                                            shipping: {
-                                                value: (+shipping * 2),
-                                                currency_code: 'EUR'
-                                            },
-                                            shipping_discount: {
-                                                value: shipping,
-                                                currency_code: 'EUR'
-                                            }
-                                        }
-                                    },
-                                    description: purchase_description,
-                                    items: [{
-                                        name: name,
-                                        unit_amount: { currency_code: 'EUR', value: price},
-                                        quantity: 1,
-                                        sku: sku,
-                                        description: item_description
-                                    }],
-                                }],
-                                application_context: {
-                                    brand_name: "PayPal's PlayGround Shop",
-                                    locale: "no-NO",
-                                    user_action: "PAY_NOW"
-                                }
-                            });
-                        },
-                        onApprove: function(data, actions) {
-                            return actions.order.capture().then(function(details) {
-                                console.log(details);
-                                alert('Transaction completed by ' + details.payer.name.given_name);
-                            });
-                        },
-                        style: {
-                            layout: 'vertical',
-                            color: 'gold',
-                            shape: 'pill',
-                            label: 'pay'
-                        },
-                    }).render('#paypal-button-container');
-                }
-                reloadPaymentButtons();
-            </script>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="note-text">Note</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" id="note" value="Hey, you just got paid!">
         </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="email-text">Receiver</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" id="email" value="{{ app.session.get('email') }}">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="item-id-text">Id</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" id="item-id" value="PAYO-20312">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="currency-text">Currency</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" id="currency" value="EUR">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="amount-text">Amount</span>
+            </div>
+            <input type="number" aria-label="Price" class="form-control text-right" id="amount" value="180">
+            <div class="input-group-append">
+                <span class="input-group-text">.00 €</span>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success"  id="send-money-button" onclick="sendPayment();">Send the money!</button>
     </div>
+    <div class="col" id="result-col">
+    </div>
+</div>
 {% endblock %}

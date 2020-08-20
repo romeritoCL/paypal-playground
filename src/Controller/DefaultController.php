@@ -186,16 +186,22 @@ class DefaultController extends AbstractController
         if (!$this->sessionService->isActive()) {
             return $this->redirectToRoute('index');
         }
-        $refreshToken = $this->sessionService->getRefreshToken();
-        if ($refreshToken) {
-            $payment = $this->paypalService->getUserInfoFromRefreshToken($refreshToken);
-            if ($payment) {
-                return $this->render('default/receive-payments.html.twig', [
-                    'pp_client_id' =>
-                        $this->sessionService->session->get('client-id') ?? $this->getParameter('client_id'),
-                ]);
-            }
+        return $this->render('default/receive-payments.html.twig', []);
+    }
+
+    /**
+     * @Route("/receive-payments-result", name="receive-payments-result")
+     *
+     * @return Response | RedirectResponse
+     */
+    public function receivePaymentsResult()
+    {
+        if (!$this->sessionService->isActive()) {
+            return $this->redirectToRoute('index');
         }
-        return $this->redirectToRoute('index');
+        //$payout = $this->paypalService->createPayout();
+        return $this->render('result.html.twig', [
+            'result' => [],
+        ]);
     }
 }
