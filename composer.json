@@ -1,6 +1,13 @@
-{
+{    "name": "romeritoCL/paypal-playground",
+    "description": "PayPal's APIs + BT Playground. Test out all our features and see how to code them with PHP and Symfony 5",
+    "license": "MIT",
     "type": "project",
-    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Cesar Romero",
+            "email": "romero.latorre@gmail.com"
+        }
+    ],
     "require": {
         "php": "^7.2.5",
         "ext-ctype": "*",
