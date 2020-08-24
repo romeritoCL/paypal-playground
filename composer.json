@@ -1,4 +1,4 @@
-{    "name": "romeritoCL/paypal-playground",
+{    "name": "romeritocl/paypal-playground",
     "description": "PayPal's APIs + BT Playground. Test out all our features and see how to code them with PHP and Symfony 5",
     "license": "MIT",
     "type": "project",
