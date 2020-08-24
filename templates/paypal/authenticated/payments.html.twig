@@ -1,6 +1,5 @@
-{% extends 'base-authenticated.html.twig' %}
-{% block title %}PayPal PlayGround{% endblock %}
-{% block body %}
+{% extends 'paypal/authenticated/base.html.twig' %}
+{% block content %}
     <div class="col text-center pb-4">
         <h4>Let's try and pay something</h4>
         <p>
@@ -60,7 +59,7 @@
             <button type="button" class="btn btn-success" onclick="reloadPaymentButtons();">Reload Payment Buttons</button>
         </div>
         <div class="col">
-            <script src="https://www.paypal.com/sdk/js?client-id={{ pp_client_id }}&currency=EUR&buyer-country=GB&locale=en_GB"></script>
+            <script src="https://www.paypal.com/sdk/js?client-id={{ PAYPAL_SDK_CLIENT_ID }}&currency=EUR&buyer-country=GB&locale=en_GB"></script>
             <div id="paypal-button-container"></div>
             <script>
                 function reloadPaymentButtons()
@@ -132,11 +131,11 @@
                             });
                         },
                         onApprove: function(data) {
-                            let url = '{{ path("capture-payment", {'paymentId': 'payment_id_status'}) }}';
+                            let url = '{{ path("payments-capture", {'paymentId': 'payment_id_status'}) }}';
                             url = url.replace("payment_id_status", data.orderID);
-                            $.get(
+                            jQuery.get(
                                 url,
-                                function(data, status){
+                                function(data){
                                     document.getElementById('result-col').innerHTML = data
                                 });
                         },

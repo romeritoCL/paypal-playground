@@ -1,6 +1,5 @@
-{% extends 'base.html.twig' %}
-{% block title %}PayPal PlayGround{% endblock %}
-{% block body %}
+{% extends 'paypal/anonymous/base.html.twig' %}
+{% block content %}
     <div class="jumbotron">
         <h1>Instructions</h1>
         <ul class="list">
@@ -21,7 +20,7 @@
             <div class="col text-center">
                 <div class="alert alert-info" role="alert">
                     <p>Auth Code</p>
-                    <p>{{ auth_code }}</p>
+                    <p>{{ auth_token }}</p>
                 </div>
             </div>
         </div>
@@ -29,7 +28,7 @@
             <div class="col text-center">
                 <div class="alert alert-success" role="alert">
                     <p>Access Code</p>
-                    <p>{{ access_code }}</p>
+                    <p>{{ access_token }}</p>
                 </div>
             </div>
         </div>
@@ -50,7 +49,7 @@
         </div>
         <div class="row">
             <div class="col text-center">
-                <form action="/get-user-info" method="post">
+                <form action="{{ path('anonymous-user-info') }}" method="post">
                     <input type="hidden" id="refresh_token" name="refresh_token" value="{{ refresh_token }}">
                     <button type="submit" class="btn btn-primary btn-lg btn-block">WOW!! Let's get your user info</button>
                 </form>

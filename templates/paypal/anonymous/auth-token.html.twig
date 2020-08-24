@@ -1,6 +1,5 @@
-{% extends 'base.html.twig' %}
-{% block title %}PayPal PlayGround{% endblock %}
-{% block body %}
+{% extends 'paypal/anonymous/base.html.twig' %}
+{% block content %}
     <div class="jumbotron">
         <h1>Instructions</h1>
         <ul class="list">
@@ -14,13 +13,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col text-center">
-                <p><strong>Now using you PayPal authorization code to request access.</strong></p>
+                <p><strong>Now using you PayPal Auth_Code to request Access_Token.</strong></p>
             </div>
         </div>
         <div class="row">
             <div class="col text-center">
                 <div class="alert alert-info" role="alert">
-                    <p>{{ auth_code }}</p>
+                    <p>{{ auth_token }}</p>
                 </div>
             </div>
         </div>
@@ -36,8 +35,8 @@
         </div>
         <div class="row">
             <div class="col text-center">
-                <form action="/redeem-auth-code" method="post">
-                    <input type="hidden" id="auth_code" name="auth_code" value="{{ auth_code }}">
+                <form action="{{ path('anonymous-auth-token') }}" method="post">
+                    <input type="hidden" id="auth_token" name="auth_token" value="{{ auth_token }}">
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Go on, call PayPal's API</button>
                 </form>
             </div>

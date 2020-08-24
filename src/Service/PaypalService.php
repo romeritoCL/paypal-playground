@@ -15,7 +15,6 @@ use PayPal\Rest\ApiContext;
 use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\SandboxEnvironment;
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
-use PayPalHttp\HttpClient;
 use PayPalHttp\HttpResponse;
 use Psr\Log\LoggerInterface;
 use Exception;
@@ -59,10 +58,10 @@ class PaypalService
         LoggerInterface $logger,
         SessionService $sessionService
     ) {
-        $sesionClientId = $sessionService->session->get('client-id');
-        $sesionClientSecret = $sessionService->session->get('client-secret');
-        $this->clientId = $sesionClientId ?? $clientId;
-        $this->clientSecret = $sesionClientSecret ?? $clientSecret;
+        $sessionClientId = $sessionService->session->get('PAYPAL_SDK_CLIENT_ID');
+        $sessionClientSecret = $sessionService->session->get('PAYPAL_SDK_CLIENT_SECRET');
+        $this->clientId = $sessionClientId ?? $clientId;
+        $this->clientSecret = $sessionClientSecret ?? $clientSecret;
         $this->logger = $logger;
         $apiContext = new ApiContext(new OAuthTokenCredential($this->clientId, $this->clientSecret));
         $apiContext->setConfig(['mode' => 'sandbox']);
@@ -70,26 +69,39 @@ class PaypalService
     }
 
     /**
-     * @param $authCode
+     * @return PayPalHttpClient
+     */
+    public function getHttpClient(): PayPalHttpClient
+    {
+        $sandboxEnvironment = new SandboxEnvironment($this->clientId, $this->clientSecret);
+        return new PayPalHttpClient($sandboxEnvironment);
+    }
+
+    /**
+     * getAccessTokenFromAuthToken
+     *
+     * @param $authToken
      * @return OpenIdTokeninfo|null
      */
-    public function getAccessCodeFromAuthCode($authCode) : ?OpenIdTokeninfo
+    public function getAccessTokenFromAuthToken($authToken) : ?OpenIdTokeninfo
     {
         try {
             $accessToken = OpenIdTokeninfo::createFromAuthorizationCode(
-                ['code' => $authCode],
+                ['code' => $authToken],
                 $this->clientId,
                 $this->clientSecret,
                 $this->apiContext
             );
         } catch (Exception $e) {
-            $this->logger->error('Error on PayPal::getAccessCodeFromAuthCode = ' . $e->getMessage());
+            $this->logger->error('Error on PayPal::getAccessTokenFromAuthToken = ' . $e->getMessage());
             return null;
         }
         return $accessToken;
     }
 
     /**
+     * refreshToken
+     *
      * @param string $refreshToken
      * @return OpenIdTokeninfo|null
      */
@@ -246,14 +258,5 @@ class PaypalService
         }
 
         return $response;
-    }
-
-    /**
-     * @return PayPalHttpClient
-     */
-    public function getHttpClient(): PayPalHttpClient
-    {
-        $sandboxEnvironment = new SandboxEnvironment($this->clientId, $this->clientSecret);
-        return new PayPalHttpClient($sandboxEnvironment);
     }
 }

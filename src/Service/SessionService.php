@@ -87,7 +87,7 @@ class SessionService
     {
         $this->session->clear();
         $this->session->start();
-        $this->session->set('client-id', $clientId);
-        $this->session->set('client-secret', $clientSecret);
+        $this->session->set('PAYPAL_SDK_CLIENT_ID', $clientId);
+        $this->session->set('PAYPAL_SDK_CLIENT_SECRET', $clientSecret);
     }
 }
