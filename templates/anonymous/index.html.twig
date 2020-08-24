@@ -1,6 +1,5 @@
-{% extends 'base.html.twig' %}
-{% block title %}PayPal PlayGround{% endblock %}
-{% block body %}
+{% extends 'anonymous/base.html.twig' %}
+{% block content %}
     <div class="jumbotron">
         <h1>Instructions</h1>
         <ul class="list">
@@ -19,7 +18,7 @@
     <script>
         paypal.use( ['login'], function (login) {
             login.render ({
-                "appid":"{{ pp_client_id }}",
+                "appid":"{{ PAYPAL_SDK_CLIENT_ID }}",
                 "authend":"sandbox",
                 "scopes":"email profile address openid",
                 "containerid":"cwppButton",

@@ -1,6 +1,5 @@
-{% extends 'base-authenticated.html.twig' %}
-{% block title %}PayPal PlayGround{% endblock %}
-{% block body %}
+{% extends 'authenticated/base.html.twig' %}
+{% block content %}
     <div class="col text-center pb-4">
         <h4>Let's try and pay something</h4>
         <p>
@@ -132,11 +131,11 @@
                             });
                         },
                         onApprove: function(data) {
-                            let url = '{{ path("capture-payment", {'paymentId': 'payment_id_status'}) }}';
+                            let url = '{{ path("payments-capture", {'paymentId': 'payment_id_status'}) }}';
                             url = url.replace("payment_id_status", data.orderID);
                             $.get(
                                 url,
-                                function(data, status){
+                                function(data){
                                     document.getElementById('result-col').innerHTML = data
                                 });
                         },

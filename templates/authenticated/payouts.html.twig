@@ -1,6 +1,5 @@
-{% extends 'base-authenticated.html.twig' %}
-{% block title %}PayPal PlayGround{% endblock %}
-{% block body %}
+{% extends 'authenticated/base.html.twig' %}
+{% block content %}
 <script>
     function sendPayment()
     {
@@ -14,9 +13,9 @@
             'amount'       : $('#amount').val(),
         };
         $.post(
-            '{{ path('receive-payments-result') }}',
+            '{{ path('payouts-create') }}',
             payment_details,
-            function(data, status){
+            function(data){
                 document.getElementById('result-col').innerHTML = data
             });
         setTimeout(function(){document.getElementById("send-money-button").disabled = false;},2000);
@@ -25,7 +24,7 @@
     function refreshStatus()
     {
         document.getElementById("refresh-status").disabled = true;
-        let url = '{{ path("receive-payments-status", {'statusId': 'payout_batch_status'}) }}';
+        let url = '{{ path("payouts-refresh", {'statusId': 'payout_batch_status'}) }}';
         try {
             url = url.replace("payout_batch_status", document.getElementById("payouts-result-id").value);
         } catch (err) {
@@ -36,7 +35,7 @@
         $.post(
             url,
             null,
-            function(data, status){
+            function(data){
                 document.getElementById('result-col').innerHTML = data
             });
         setTimeout(function(){document.getElementById("refresh-status").disabled = false;},2000);
