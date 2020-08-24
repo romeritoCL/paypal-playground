@@ -131,11 +131,14 @@
                                 }
                             });
                         },
-                        onApprove: function(data, actions) {
-                            return actions.order.capture().then(function(details) {
-                                console.log(details);
-                                alert('Transaction completed by ' + details.payer.name.given_name);
-                            });
+                        onApprove: function(data) {
+                            let url = '{{ path("capture-payment", {'paymentId': 'payment_id_status'}) }}';
+                            url = url.replace("payment_id_status", data.orderID);
+                            $.get(
+                                url,
+                                function(data, status){
+                                    document.getElementById('result-col').innerHTML = data
+                                });
                         },
                         style: {
                             layout: 'vertical',
@@ -147,6 +150,8 @@
                 }
                 reloadPaymentButtons();
             </script>
+            <div id="result-col"></div>
         </div>
     </div>
 {% endblock %}
+

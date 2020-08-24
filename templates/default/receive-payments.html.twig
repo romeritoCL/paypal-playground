@@ -5,16 +5,41 @@
     function sendPayment()
     {
         document.getElementById("send-money-button").disabled = true;
-
-        $.post('{{ path('receive-payments-result') }}',
-            {
-                name: "Donald Duck",
-                city: "Duckburg"
-            },
+        let payment_details = {
+            'subject'       : $('#subject').val(),
+            'note'       : $('#note').val(),
+            'email'       : $('#email').val(),
+            'item-id'       : $('#item-id').val(),
+            'currency'       : $('#currency').val(),
+            'amount'       : $('#amount').val(),
+        };
+        $.post(
+            '{{ path('receive-payments-result') }}',
+            payment_details,
             function(data, status){
                 document.getElementById('result-col').innerHTML = data
             });
         setTimeout(function(){document.getElementById("send-money-button").disabled = false;},2000);
+    }
+
+    function refreshStatus()
+    {
+        document.getElementById("refresh-status").disabled = true;
+        let url = '{{ path("receive-payments-status", {'statusId': 'payout_batch_status'}) }}';
+        try {
+            url = url.replace("payout_batch_status", document.getElementById("payouts-result-id").value);
+        } catch (err) {
+            alert('Please create payout first')
+            setTimeout(function(){document.getElementById("refresh-status").disabled = false;},2000);
+            return;
+        }
+        $.post(
+            url,
+            null,
+            function(data, status){
+                document.getElementById('result-col').innerHTML = data
+            });
+        setTimeout(function(){document.getElementById("refresh-status").disabled = false;},2000);
     }
 </script>
 <div class="col text-center pb-4">
@@ -68,6 +93,7 @@
             </div>
         </div>
         <button type="button" class="btn btn-success"  id="send-money-button" onclick="sendPayment();">Send the money!</button>
+        <button type="button" class="btn btn-info"  id="refresh-status" onclick="refreshStatus();">Refresh Status</button>
     </div>
     <div class="col" id="result-col">
     </div>

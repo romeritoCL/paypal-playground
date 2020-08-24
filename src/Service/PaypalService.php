@@ -5,12 +5,18 @@ namespace App\Service;
 use PayPal\Api\Currency;
 use PayPal\Api\OpenIdTokeninfo;
 use PayPal\Api\OpenIdUserinfo;
+use PayPal\Api\Payment;
 use PayPal\Api\Payout;
 use PayPal\Api\PayoutBatch;
 use PayPal\Api\PayoutItem;
 use PayPal\Api\PayoutSenderBatchHeader;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
+use PayPalCheckoutSdk\Core\PayPalHttpClient;
+use PayPalCheckoutSdk\Core\SandboxEnvironment;
+use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
+use PayPalHttp\HttpClient;
+use PayPalHttp\HttpResponse;
 use Psr\Log\LoggerInterface;
 use Exception;
 
@@ -178,7 +184,7 @@ class PaypalService
         float $amount,
         string $currency
     ): ?PayoutBatch {
-        $payouts = new Payout();
+        $payout = new Payout();
         $senderBatchHeader = new PayoutSenderBatchHeader();
         $senderBatchHeader
             ->setSenderBatchId(uniqid())
@@ -193,16 +199,61 @@ class PaypalService
                 'currency' => $currency,
             ])));
 
-        $payouts->setSenderBatchHeader($senderBatchHeader)
+        $payout->setSenderBatchHeader($senderBatchHeader)
             ->addItem($senderItem);
 
         try {
-            $payouts = $payouts->createSynchronous($this->apiContext);
+            $payouts = $payout->create(null, $this->apiContext);
         } catch (Exception $e) {
             $this->logger->error('Error on PayPal::createPayout = ' . $e->getMessage());
             return null;
         }
 
         return $payouts;
+    }
+
+    /**
+     * @param string $payoutId
+     * @return PayoutBatch|null
+     */
+    public function getPayout(string $payoutId): ?PayoutBatch
+    {
+        $payout = new Payout();
+        try {
+            $payout = $payout->get($payoutId, $this->apiContext);
+        } catch (Exception $e) {
+            $this->logger->error('Error on PayPal::getPayout = ' . $e->getMessage());
+            return null;
+        }
+
+        return $payout;
+    }
+
+    /**
+     * @param string $orderId
+     * @return Payment|null
+     */
+    public function capturePayment(string $orderId): ?HttpResponse
+    {
+        try {
+            $request = new OrdersCaptureRequest($orderId);
+            $request->headers["prefer"] = "return=representation";
+            $client = $this->getHttpClient();
+            $response = $client->execute($request);
+        } catch (Exception $e) {
+            $this->logger->error('Error on PayPal::capturePayment = ' . $e->getMessage());
+            return null;
+        }
+
+        return $response;
+    }
+
+    /**
+     * @return PayPalHttpClient
+     */
+    public function getHttpClient(): PayPalHttpClient
+    {
+        $sandboxEnvironment = new SandboxEnvironment($this->clientId, $this->clientSecret);
+        return new PayPalHttpClient($sandboxEnvironment);
     }
 }

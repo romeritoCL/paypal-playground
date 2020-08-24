@@ -177,6 +177,23 @@ class DefaultController extends AbstractController
     }
 
     /**
+     * @Route("/capture-payment/{paymentId}", name="capture-payment")
+     * @param string $paymentId
+     * @return Response | RedirectResponse
+     */
+    public function capturePayment($paymentId)
+    {
+        if (!$this->sessionService->isActive()) {
+            return $this->redirectToRoute('index');
+        }
+        $capture = $this->paypalService->capturePayment($paymentId);
+        return $this->render('default/result.html.twig', [
+            'result' => $capture,
+            'result_id' => 'payment-id'
+        ]);
+    }
+
+    /**
      * @Route("/receive-payments", name="receive-payments")
      *
      * @return Response | RedirectResponse
@@ -186,7 +203,7 @@ class DefaultController extends AbstractController
         if (!$this->sessionService->isActive()) {
             return $this->redirectToRoute('index');
         }
-        return $this->render('default/receive-payments.html.twig', []);
+        return $this->render('default/receive-payments.html.twig');
     }
 
     /**
@@ -199,10 +216,34 @@ class DefaultController extends AbstractController
         if (!$this->sessionService->isActive()) {
             return $this->redirectToRoute('index');
         }
-        //TODO
-        //$payout = $this->paypalService->createPayout();
+        $request = Request::createFromGlobals();
+        $subject = $request->request->get('subject', null);
+        $note = $request->request->get('note', null);
+        $email = $request->request->get('email', null);
+        $itemId = $request->request->get('item-id', null);
+        $currency = $request->request->get('currency', null);
+        $amount = $request->request->get('amount', null);
+        $payout = $this->paypalService->createPayout($subject, $note, $email, $itemId, $amount, $currency);
         return $this->render('default/result.html.twig', [
-            'result' => [],
+            'result' => $payout,
+            'result_id' => $payout->getBatchHeader()->getPayoutBatchId()
+        ]);
+    }
+
+    /**
+     * @Route("/receive-payments-status/{statusId}", name="receive-payments-status")
+     * @param string $statusId
+     * @return Response | RedirectResponse
+     */
+    public function receivePaymentsStatus($statusId)
+    {
+        if (!$this->sessionService->isActive()) {
+            return $this->redirectToRoute('index');
+        }
+        $payout = $this->paypalService->getPayout($statusId);
+        return $this->render('default/result.html.twig', [
+            'result' => $payout,
+            'result_id' => $payout->getBatchHeader()->getPayoutBatchId()
         ]);
     }
 }
