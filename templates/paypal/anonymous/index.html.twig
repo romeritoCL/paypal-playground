@@ -1,17 +1,18 @@
-{% extends 'anonymous/base.html.twig' %}
+{% extends 'paypal/anonymous/base.html.twig' %}
 {% block content %}
     <div class="jumbotron">
         <h1>Instructions</h1>
         <ul class="list">
             <li>Login with PayPal</li>
-            <li>You will see a dashboard</li>
-            <li>we will display your name, email and last 5 transactions</li>
+            <li>You will see a the process of authentication</li>
+            <li>We will display your name, email, last transactions</li>
+            <li>You will be able to do Payments and Payouts</li>
         </ul>
     </div>
     <div class="row">
         <div class="col text-center">
             <p>Remember this is sandbox environment</p>
-            <span id='cwppButton'></span>
+            <span id='paypal-button'></span>
         </div>
     </div>
     <script src="https://www.paypalobjects.com/js/external/connect/api.js" crossorigin="anonymous"></script>
@@ -21,14 +22,14 @@
                 "appid":"{{ PAYPAL_SDK_CLIENT_ID }}",
                 "authend":"sandbox",
                 "scopes":"email profile address openid",
-                "containerid":"cwppButton",
+                "containerid":"paypal-button",
                 "responseType":"code id_Token",
                 "locale":"en-us",
                 "buttonType":"CWP",
                 "buttonShape":"pill",
                 "buttonSize":"lg",
                 "fullPage":"true",
-                "returnurl":"http://paypal.devoralive.docker:8086"
+                "returnurl":"{{ absolute_url(path('index')) }}"
             });
         });
     </script>

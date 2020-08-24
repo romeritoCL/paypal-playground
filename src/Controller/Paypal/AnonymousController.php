@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Paypal;
 
 use App\Service\PaypalService;
 use App\Service\SessionService;
@@ -12,7 +12,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Class AnonymousController
- * @package App\Controller
+ * @package App\Controller\Paypal
+ *
+ * @Route("/paypal")
  */
 class AnonymousController extends AbstractController
 {
@@ -38,23 +40,14 @@ class AnonymousController extends AbstractController
     }
 
     /**
-     * @Route("/favicon.ico", name="favicon")
-     *
-     * @return RedirectResponse
-     */
-    public function favicon()
-    {
-        return $this->redirect('https://www.paypalobjects.com/webstatic/icon/favicon.ico');
-    }
-
-    /**
-     * @Route("/", name="index")
+     * @Route("/", name="paypal-index")
      *
      * @return RedirectResponse|Response
      */
     public function index()
     {
-        return $this->redirectToRoute('anonymous-home');
+        $request = Request::createFromGlobals();
+        return $this->redirectToRoute('anonymous-home', $request->query->all());
     }
 
     /**
@@ -68,16 +61,16 @@ class AnonymousController extends AbstractController
             return $this->redirectToRoute('account');
         }
         $request = Request::createFromGlobals();
-        $authToken = $request->get('auth_token');
+        $authToken = $request->get('code');
         if ($authToken) {
-            return $this->render('anonymous/auth-token.html.twig', [
+            return $this->render('paypal/anonymous/auth-token.html.twig', [
                 'auth_token' => $authToken,
             ]);
         }
-        return $this->render('anonymous/index.html.twig', [
+        return $this->render('paypal/anonymous/index.html.twig', [
             'PAYPAL_SDK_CLIENT_ID' =>
-                $this->sessionService->session->get('PAYPAL_SDK_CLIENT_SECRET') ??
-                $this->getParameter('PAYPAL_SDK_CLIENT_SECRET'),
+                $this->sessionService->session->get('PAYPAL_SDK_CLIENT_ID') ??
+                $this->getParameter('PAYPAL_SDK_CLIENT_ID'),
         ]);
     }
 
@@ -93,9 +86,9 @@ class AnonymousController extends AbstractController
         $request = Request::createFromGlobals();
         $authToken = $request->request->get('auth_token', null);
         if ($authToken) {
-            $openIdTokeninfo = $this->paypalService->getAccessCodeFromAuthCode($authToken);
+            $openIdTokeninfo = $this->paypalService->getAccessTokenFromAuthToken($authToken);
             if ($openIdTokeninfo) {
-                return $this->render('anonymous/access-token.html.twig', [
+                return $this->render('paypal/anonymous/access-token.html.twig', [
                     'auth_token' => $authToken,
                     'access_token' => $openIdTokeninfo->getAccessToken(),
                     'refresh_token' => $openIdTokeninfo->getRefreshToken(),
@@ -121,7 +114,7 @@ class AnonymousController extends AbstractController
             $userInfo = $this->paypalService->getUserInfoFromRefreshToken($refreshToken);
             if ($userInfo) {
                 $this->sessionService->login($userInfo, $refreshToken);
-                return $this->render('anonymous/user-info.html.twig', [
+                return $this->render('paypal/anonymous/user-info.html.twig', [
                     'refresh_token' => $refreshToken,
                     'name' => $userInfo->getName(),
                     'userInfo' => $userInfo

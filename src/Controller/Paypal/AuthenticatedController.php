@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Paypal;
 
 use App\Service\PaypalService;
 use App\Service\SessionService;
@@ -12,7 +12,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Class AuthenticatedController
- * @package App\Controller
+ * @package App\Controller\Paypal
+ *
+ * @Route("/paypal")
  */
 class AuthenticatedController extends AbstractController
 {
@@ -52,7 +54,7 @@ class AuthenticatedController extends AbstractController
         if ($refreshToken) {
             $userInfo = $this->paypalService->getUserInfoFromRefreshToken($refreshToken);
             if ($userInfo) {
-                return $this->render('authenticated/account.html.twig', [
+                return $this->render('paypal/authenticated/account.html.twig', [
                     'name' => $userInfo->getName(),
                     'email' => $userInfo->getEmail(),
                     'userInfo' => $userInfo,
@@ -73,9 +75,10 @@ class AuthenticatedController extends AbstractController
         if (!$this->sessionService->isActive()) {
             return $this->redirectToRoute('index');
         }
-        return $this->render('authenticated/payments.html.twig', [
-            'pp_client_id' =>
-                $this->sessionService->session->get('client-id') ?? $this->getParameter('client_id'),
+        return $this->render('paypal/authenticated/payments.html.twig', [
+            'PAYPAL_SDK_CLIENT_ID' =>
+                $this->sessionService->session->get('PAYPAL_SDK_CLIENT_ID') ??
+                $this->getParameter('PAYPAL_SDK_CLIENT_ID'),
         ]);
     }
 
@@ -90,7 +93,7 @@ class AuthenticatedController extends AbstractController
             return $this->redirectToRoute('index');
         }
         $capture = $this->paypalService->capturePayment($paymentId);
-        return $this->render('authenticated/result.html.twig', [
+        return $this->render('paypal/authenticated/result.html.twig', [
             'result' => $capture,
             'result_id' => 'payment-id'
         ]);
@@ -106,7 +109,7 @@ class AuthenticatedController extends AbstractController
         if (!$this->sessionService->isActive()) {
             return $this->redirectToRoute('index');
         }
-        return $this->render('authenticated/payouts.html.twig');
+        return $this->render('paypal/authenticated/payouts.html.twig');
     }
 
     /**
@@ -127,7 +130,7 @@ class AuthenticatedController extends AbstractController
         $currency = $request->request->get('currency', null);
         $amount = $request->request->get('amount', null);
         $payout = $this->paypalService->createPayout($subject, $note, $email, $itemId, $amount, $currency);
-        return $this->render('authenticated/result.html.twig', [
+        return $this->render('paypal/authenticated/result.html.twig', [
             'result' => $payout,
             'result_id' => $payout->getBatchHeader()->getPayoutBatchId()
         ]);
@@ -144,7 +147,7 @@ class AuthenticatedController extends AbstractController
             return $this->redirectToRoute('index');
         }
         $payout = $this->paypalService->getPayout($statusId);
-        return $this->render('authenticated/result.html.twig', [
+        return $this->render('paypal/authenticated/result.html.twig', [
             'result' => $payout,
             'result_id' => $payout->getBatchHeader()->getPayoutBatchId()
         ]);

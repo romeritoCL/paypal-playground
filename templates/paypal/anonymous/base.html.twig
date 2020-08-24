@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'paypal/base.html.twig' %}
 {% block body %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
@@ -7,7 +7,7 @@
                 <a class="navbar-brand" href="/">PayPal PlayGround</a>
             </div>
             <div class="col">
-                {% include "modals/sandbox-credentials.html.twig" %}
+                {% include "paypal/modals/sandbox-credentials.html.twig" %}
             </div>
         </div>
     </div>

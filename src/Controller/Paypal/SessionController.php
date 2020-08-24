@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Paypal;
 
 use App\Service\SessionService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,7 +11,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Class SessionController
- * @package App\Controller
+ * @package App\Controller\Paypal
+ *
+ * @Route("/paypal")
  */
 class SessionController extends AbstractController
 {
