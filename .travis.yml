@@ -5,13 +5,16 @@ php:
 
 install:
 
-  - composer install --prefer-source --no-interaction --dev
-  - yarn install
-  - yarn encore dev
+  - composer install --prefer-source --no-interaction --no-dev
+  - npm config set registry http://npm.paypal.com/ --global
+  - yarn install --production
+  - yarn encore prod
 
 cache:
   directories:
     - $HOME/.composer/cache/files
+    - $HOME/.cache/yarn
+    - node_modules
 
 script:
-  - phpunit
+  - ./bin/phpunit
