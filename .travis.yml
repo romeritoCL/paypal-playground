@@ -3,11 +3,11 @@ php:
   - 7.3
 
 before_install:
-  - nvm install 14.3
+  - nvm install v12.18.1
 
 install:
   - composer install --prefer-source --no-interaction --no-dev
-  - yarn install --no-lockfile --production
+  - yarn install --no-lockfile
   - yarn encore prod
 
 cache:
