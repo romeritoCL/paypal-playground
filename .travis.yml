@@ -16,7 +16,7 @@ install:
   - yarn install --no-lockfile
   - yarn encore prod
   - docker-compose up -d
-  - docker-compose exec paypal-playground-php-fpm composer install --prefer-source --no-interaction
+  - docker-compose exec paypal-playground composer install --prefer-source --no-interaction
 
 cache:
   directories:
@@ -25,8 +25,8 @@ cache:
     - node_modules
 
 script:
-  - docker-compose exec paypal-playground-php-fpm bin/phpunit
-  - docker-compose exec paypal-playground-php-fpm composer install --no-dev
+  - docker-compose exec paypal-playground bin/phpunit
+  - docker-compose exec paypal-playground composer install --no-dev
   - docker tag paypal-playground_paypal-playground paypal_playground:$BUILD
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push paypal_playground:$BUILD
