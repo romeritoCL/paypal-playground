@@ -27,6 +27,6 @@ cache:
 script:
   - docker-compose exec paypal-playground bin/phpunit
   - docker-compose exec paypal-playground composer install --no-dev
-  - docker tag paypal-playground_paypal-playground paypal_playground:$BUILD
+  - docker tag paypal-playground_paypal-playground paypal-playground:$BUILD
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push paypal_playground:$BUILD
+  - docker push paypal-playground:$BUILD
