@@ -30,6 +30,6 @@ script:
   - docker-compose up -d
 
 after_success:
-  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker tag paypal-playground_paypal-playground $DOCKER_USER/paypal-playground:$BUILD
-  - docker push $DOCKER_USER/paypal-playground:$BUILD
+  - docker push $DOCKER_USER/paypal-playground
