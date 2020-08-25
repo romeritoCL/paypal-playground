@@ -8,6 +8,9 @@ RUN apk --no-cache add php7 php7-fpm php7-opcache php7-mysqli php7-json php7-ope
     php7-mbstring php7-gd php7-iconv nginx supervisor curl && \
     rm /etc/nginx/conf.d/default.conf
 
+# Add composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 # Configure nginx
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 
@@ -42,8 +45,3 @@ CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Configure a healthcheck to validate that everything is up&running
 HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping
-
-FROM trafex/alpine-nginx-php7:latest
-
-# Install composer from the official image
-COPY --from=composer /usr/bin/composer /usr/bin/composer
