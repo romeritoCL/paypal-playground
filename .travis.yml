@@ -4,7 +4,7 @@ php:
   - 7.3
 
 install:
-
+  - npm install -g n && n stable
   - composer install --prefer-source --no-interaction --no-dev
   - yarn install --no-lockfile --production
   - yarn encore prod
