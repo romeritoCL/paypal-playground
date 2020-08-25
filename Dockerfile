@@ -42,8 +42,3 @@ CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Configure a healthcheck to validate that everything is up&running
 HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping
-
-FROM trafex/alpine-nginx-php7:latest
-
-# Install composer from the official image
-COPY --from=composer /usr/bin/composer /usr/local/bin/composer
