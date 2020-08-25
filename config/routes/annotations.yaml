@@ -1,7 +1,6 @@
 controllers:
     resource: ../../src/Controller/
     type: annotation
-    schemes: ['%http_protocol%']
 kernel:
     resource: ../../src/Kernel.php
     type: annotation
