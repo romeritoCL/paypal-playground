@@ -31,5 +31,5 @@ script:
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker tag paypal-playground_paypal-playground $DOCKER_USER/paypal-playground:$BUILD
-  - docker push $DOCKER_USER/paypal-playground
+  - docker tag paypal-playground_paypal-playground paypal-playground:$BUILD
+  - docker push paypal-playground:$BUILD
