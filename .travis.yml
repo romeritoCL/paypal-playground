@@ -27,7 +27,7 @@ cache:
 script:
   - bin/phpunit
   - composer instal --no-dev
-  - docker-compose up -d
+  - docker build . -t $DOCKER_USERNAME/paypal-playground:$BUILD
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
