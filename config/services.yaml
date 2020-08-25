@@ -6,7 +6,6 @@
 parameters:
     PAYPAL_SDK_CLIENT_ID: '%env(PAYPAL_SDK_CLIENT_ID)%'
     PAYPAL_SDK_CLIENT_SECRET: '%env(PAYPAL_SDK_CLIENT_SECRET)%'
-    http_protocol: '%env(HTTP_PROTOCOL)%'
 services:
     # default configuration for services in *this* file
     _defaults:
