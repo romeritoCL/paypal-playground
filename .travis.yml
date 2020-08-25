@@ -1,14 +1,16 @@
 language: php
 php:
   - 7.3
-
+services:
+  - docker
 before_install:
   - nvm install stable && nvm use stable
 
 install:
-  - composer install --prefer-source --no-interaction
   - yarn install --no-lockfile
   - yarn encore prod
+  - docker-compose up -d
+  - docker-compose exec paypal-playground-php-fpm composer install --prefer-source --no-interaction
 
 cache:
   directories:
@@ -17,4 +19,4 @@ cache:
     - node_modules
 
 script:
-  - ./bin/phpunit
+  - docker-compose exec paypal-playground-php-fpm bin/phpunit
