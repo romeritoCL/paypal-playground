@@ -7,7 +7,7 @@ install:
 
   - composer install --prefer-source --no-interaction --no-dev
   - npm config set registry http://npm.paypal.com/ --global
-  - yarn install --no-lockfile --production
+  - rm yarn.lock && yarn install --production
   - yarn encore prod
 
 cache:
