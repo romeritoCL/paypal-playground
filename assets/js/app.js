@@ -7,7 +7,8 @@
 
 import '../css/app.css';
 
-global.$ = global.jQuery = $;
-
+require('jquery');
 require('bootstrap');
 require("bootstrap/dist/css/bootstrap.css");
+
+global.$ = global.jQuery = $;

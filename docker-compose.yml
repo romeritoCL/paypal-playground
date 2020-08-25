@@ -1,23 +1,14 @@
 version: "3.7"
 services:
-  paypal-playground-webserver:
-    container_name: paypal-playground-webserver
+  paypal-playground:
+    container_name: paypal-playground
     build:
-      dockerfile: ./docker/nginx/Dockerfile
+      dockerfile: Dockerfile
       context: .
-    working_dir: /var/www
+    working_dir: /var/www/html
     ports:
-    - 8086:80
+    - 8086:8080
     volumes:
-      - ./:/var/www
+      - ./:/var/www/html
     extra_hosts:
       - "paypal.devoralive.docker:127.0.0.1"
-
-  paypal-playground-php-fpm:
-    container_name: paypal-playground-php-fpm
-    build:
-      dockerfile: ./docker/php-fpm/Dockerfile
-      context: .
-    working_dir: /var/www
-    volumes:
-      - ./:/var/www

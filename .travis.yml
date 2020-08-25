@@ -4,7 +4,14 @@ php:
   - 7.3
 services:
   - docker
-
+jobs:
+  include:
+    - if: branch = master
+      env:
+        - BUILD="latest"
+    - if: NOT (branch = master)
+      env:
+        - BUILD="dev"
 install:
   - yarn install --no-lockfile
   - yarn encore prod
@@ -19,3 +26,7 @@ cache:
 
 script:
   - docker-compose exec paypal-playground-php-fpm bin/phpunit
+  - docker-compose exec paypal-playground-php-fpm composer install --no-dev
+  - docker tag paypal-playground_paypal-playground paypal_playground:$BUILD
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push paypal_playground:$BUILD
