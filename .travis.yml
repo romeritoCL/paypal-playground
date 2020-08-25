@@ -3,10 +3,10 @@ php:
   - 7.3
 
 before_install:
-  - nvm install v14.3
+  - nvm install stable && nvm use stable
 
 install:
-  - composer install --prefer-source --no-interaction --no-dev
+  - composer install --prefer-source --no-interaction
   - yarn install --no-lockfile
   - yarn encore prod
 
