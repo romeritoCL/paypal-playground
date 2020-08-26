@@ -26,7 +26,6 @@ cache:
 
 script:
   - bin/phpunit
-  - composer instal --no-dev
   - docker build . -t $DOCKER_USERNAME/paypal-playground:$BUILD
 
 after_success:
