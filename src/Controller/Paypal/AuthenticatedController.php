@@ -50,9 +50,13 @@ class AuthenticatedController extends AbstractController
             return $this->redirectToRoute('index');
         }
         $refreshToken = $this->sessionService->getRefreshToken();
-        $myTransactions = $this->paypalService->getUserTransactionsFromRefreshToken($refreshToken);
+        $myTransactions = $this->paypalService
+            ->getReportingService()
+            ->getUserTransactionsFromRefreshToken($refreshToken);
         if ($refreshToken) {
-            $userInfo = $this->paypalService->getUserInfoFromRefreshToken($refreshToken);
+            $userInfo = $this->paypalService
+                ->getIdentityService()
+                ->getUserInfoFromRefreshToken($refreshToken);
             if ($userInfo) {
                 return $this->render('paypal/authenticated/account.html.twig', [
                     'name' => $userInfo->getName(),
@@ -92,7 +96,7 @@ class AuthenticatedController extends AbstractController
         if (!$this->sessionService->isActive()) {
             return $this->redirectToRoute('index');
         }
-        $capture = $this->paypalService->capturePayment($paymentId);
+        $capture = $this->paypalService->getPaymentService()->capturePayment($paymentId);
         return $this->render('paypal/authenticated/result.html.twig', [
             'result' => $capture,
             'result_id' => 'payment-id'
@@ -129,7 +133,9 @@ class AuthenticatedController extends AbstractController
         $itemId = $request->request->get('item-id', null);
         $currency = $request->request->get('currency', null);
         $amount = $request->request->get('amount', null);
-        $payout = $this->paypalService->createPayout($subject, $note, $email, $itemId, $amount, $currency);
+        $payout = $this->paypalService
+            ->getPayoutService()
+            ->createPayout($subject, $note, $email, $itemId, $amount, $currency);
         return $this->render('paypal/authenticated/result.html.twig', [
             'result' => $payout,
             'result_id' => $payout->getBatchHeader()->getPayoutBatchId()
@@ -146,7 +152,7 @@ class AuthenticatedController extends AbstractController
         if (!$this->sessionService->isActive()) {
             return $this->redirectToRoute('index');
         }
-        $payout = $this->paypalService->getPayout($statusId);
+        $payout = $this->paypalService->getPayoutService()->getPayout($statusId);
         return $this->render('paypal/authenticated/result.html.twig', [
             'result' => $payout,
             'result_id' => $payout->getBatchHeader()->getPayoutBatchId()
