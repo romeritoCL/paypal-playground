@@ -1,0 +1,59 @@
+{% extends 'paypal/authenticated/base.html.twig' %}
+{% block content %}
+<div class="col text-center pb-4">
+    <h4>Let's try and Create an invoice</h4>
+    <p>
+        On the left side, your payout, then hit send and wait for the response
+    </p>
+</div>
+<div class="row">
+    <div class="col">
+        <p><strong>
+            So, what are we paying out today
+        </strong></p>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="subject-text">Subject</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" id="subject" value="Monthly Salary, don't spend it all">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="note-text">Note</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" id="note" value="Hey, you just got paid!">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="email-text">Receiver</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" id="email" value="{{ app.session.get('email') }}">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="item-id-text">Id</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" id="item-id" value="PAYO-20312">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="currency-text">Currency</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" id="currency" value="EUR">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="amount-text">Amount</span>
+            </div>
+            <input type="number" aria-label="Price" class="form-control text-right" id="amount" value="180">
+            <div class="input-group-append">
+                <span class="input-group-text">.00 €</span>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success"  id="send-money-button" onclick="sendPayment();">Send the money!</button>
+        <button type="button" class="btn btn-info"  id="refresh-status" onclick="refreshStatus();">Refresh Status</button>
+    </div>
+    <div class="col" id="result-col">
+    </div>
+</div>
+{% endblock %}

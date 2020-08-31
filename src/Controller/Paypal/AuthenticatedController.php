@@ -158,4 +158,17 @@ class AuthenticatedController extends AbstractController
             'result_id' => $payout->getBatchHeader()->getPayoutBatchId()
         ]);
     }
+
+    /**
+     * @Route("/logged-in/invoices", name="invoices")
+     *
+     * @return Response | RedirectResponse
+     */
+    public function invoices()
+    {
+        if (!$this->sessionService->isActive()) {
+            return $this->redirectToRoute('index');
+        }
+        return $this->render('paypal/authenticated/invoices.html.twig');
+    }
 }

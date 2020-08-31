@@ -157,6 +157,16 @@ class InvoiceService extends AbstractPaypalService
 
     /**
      * @param Invoice $invoice
+     * @return string
+     */
+    public function getInvoiceQRHTML(Invoice $invoice): string
+    {
+        $image = Invoice::qrCode($invoice->getId(), ['height' => '300', 'width' => '300'], $this->apiContext);
+        return '<img src="data:image/png;base64,'. $image->getImage() . '" alt="Invoice QR Code" />';
+    }
+
+    /**
+     * @param Invoice $invoice
      * @return Invoice|null
      */
     public function sendInvoice(Invoice $invoice): ?Invoice
