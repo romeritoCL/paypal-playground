@@ -76,11 +76,13 @@ class IdentityService extends AbstractPaypalService
     {
         try {
             $tokenInfo = $this->refreshToken($refreshToken);
-            $userInfo = $this->getUserInfo($tokenInfo);
+            if ($tokenInfo) {
+                $userInfo = $this->getUserInfo($tokenInfo);
+            }
         } catch (Exception $e) {
             $this->logger->error('Error on PayPal::getUserInfoFromRefreshToken = ' . $e->getMessage());
             return null;
         }
-        return $userInfo;
+        return $userInfo ?? null;
     }
 }

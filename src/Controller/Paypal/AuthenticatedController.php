@@ -55,7 +55,7 @@ class AuthenticatedController extends AbstractController
         $myTransactions = $this->paypalService
             ->getReportingService()
             ->getUserTransactionsFromRefreshToken($refreshToken);
-        if ($refreshToken) {
+        if ($refreshToken !== null) {
             $userInfo = $this->paypalService
                 ->getIdentityService()
                 ->getUserInfoFromRefreshToken($refreshToken);
