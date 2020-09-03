@@ -4,7 +4,9 @@ namespace App\Controller\Paypal;
 
 use App\Service\PaypalService;
 use App\Service\SessionService;
+use PayPal\Api\Invoice;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -91,7 +93,7 @@ class AuthenticatedController extends AbstractController
      * @param string $paymentId
      * @return Response | RedirectResponse
      */
-    public function paymentsCapture($paymentId)
+    public function paymentsCapture(string $paymentId)
     {
         if (!$this->sessionService->isActive()) {
             return $this->redirectToRoute('index');
@@ -147,7 +149,7 @@ class AuthenticatedController extends AbstractController
      * @param string $statusId
      * @return Response | RedirectResponse
      */
-    public function payoutsRefresh($statusId)
+    public function payoutsRefresh(string $statusId)
     {
         if (!$this->sessionService->isActive()) {
             return $this->redirectToRoute('index');
@@ -170,5 +172,49 @@ class AuthenticatedController extends AbstractController
             return $this->redirectToRoute('index');
         }
         return $this->render('paypal/authenticated/invoices.html.twig');
+    }
+
+    /**
+     * @Route("/logged-in/invoices/create", name="invoices-create")
+     *
+     * @return Response | RedirectResponse
+     */
+    public function invoicesCreate()
+    {
+        if (!$this->sessionService->isActive()) {
+            return $this->redirectToRoute('index');
+        }
+        $request = Request::createFromGlobals();
+        $inputForm = $request->request->all();
+        $invoice = $this->paypalService->getInvoiceService()
+            ->createInvoice($inputForm);
+        if ($invoice instanceof Invoice) {
+            $invoiceQR = $this->paypalService->getInvoiceService()
+                ->getInvoiceQRHTML($invoice);
+        }
+        if (isset($invoiceQR)) {
+            return $this->render('paypal/authenticated/result.html.twig', [
+                'result' => $invoiceQR,
+                'result_id' => $invoice->getId()
+            ]);
+        }
+        return new JsonResponse('Error creating the Invoice, please check the logs');
+    }
+
+    /**
+     * @Route("/logged-in/invoices/{invoiceId}", name="invoices-refresh")
+     * @param string $invoiceId
+     * @return Response | RedirectResponse
+     */
+    public function invoicesRefresh(string $invoiceId)
+    {
+        if (!$this->sessionService->isActive()) {
+            return $this->redirectToRoute('index');
+        }
+        $invoice = $this->paypalService->getInvoiceService()->getInvoice($invoiceId);
+        return $this->render('paypal/authenticated/result.html.twig', [
+            'result' => $invoice,
+            'result_id' => $invoice->getId()
+        ]);
     }
 }

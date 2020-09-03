@@ -4,14 +4,12 @@ namespace App\Service\Paypal;
 
 use Exception;
 use PayPal\Api\BillingInfo;
-use PayPal\Api\Cost;
 use PayPal\Api\Currency;
 use PayPal\Api\Invoice;
 use PayPal\Api\InvoiceAddress;
 use PayPal\Api\InvoiceItem;
 use PayPal\Api\MerchantInfo;
 use PayPal\Api\PaymentTerm;
-use PayPal\Api\Phone;
 use PayPal\Api\ShippingInfo;
 use PayPal\Api\Tax;
 
@@ -22,111 +20,54 @@ use PayPal\Api\Tax;
 class InvoiceService extends AbstractPaypalService
 {
     /**
+     * @param array $invoiceForm
      * @return Invoice|null
      */
-    public function createInvoice(): ?Invoice
+    public function createInvoice(array $invoiceForm): ?Invoice
     {
         $invoice = new Invoice();
         $invoice
             ->setMerchantInfo(new MerchantInfo())
             ->setBillingInfo([(new BillingInfo())])
-            ->setNote("Medical Invoice 16 Jul, 2013 PST")
+            ->setNote($invoiceForm['note'])
             ->setPaymentTerm(new PaymentTerm())
             ->setShippingInfo(new ShippingInfo());
 
         $invoice->getMerchantInfo()
-            ->setEmail("jaypatel512-facilitator@hotmail.com")
-            ->setFirstName("Dennis")
-            ->setLastName("Doctor")
-            ->setbusinessName("Medical Professionals, LLC")
-            ->setPhone(new Phone())
+            ->setEmail($invoiceForm['merchant_email'])
+            ->setbusinessName($invoiceForm['merchant_business_name'])
             ->setAddress(new InvoiceAddress());
-
-        $invoice->getMerchantInfo()->getPhone()
-            ->setCountryCode("001")
-            ->setNationalNumber("5032141716");
 
         $invoice->getMerchantInfo()->getAddress()
-            ->setLine1("1234 Main St.")
-            ->setCity("Portland")
-            ->setState("OR")
-            ->setPostalCode("97217")
-            ->setCountryCode("US");
+            ->setLine1($invoiceForm['merchant_address'])
+            ->setCity($invoiceForm['merchant_city'])
+            ->setState($invoiceForm['merchant_state'])
+            ->setPostalCode($invoiceForm['merchant_zip_code'])
+            ->setCountryCode($invoiceForm['merchant_country_code']);
 
         $billing = $invoice->getBillingInfo();
-        $billing[0]
-            ->setEmail("example@example.com");
-
-        $billing[0]->setBusinessName("Jay Inc")
-            ->setAdditionalInfo("This is the billing Info")
-            ->setAddress(new InvoiceAddress());
-
-        $billing[0]->getAddress()
-            ->setLine1("1234 Main St.")
-            ->setCity("Portland")
-            ->setState("OR")
-            ->setPostalCode("97217")
-            ->setCountryCode("US");
+        $billing[0]->setLanguage('en-EN');
 
         $items = [];
         $items[0] = new InvoiceItem();
         $items[0]
-            ->setName("Sutures")
-            ->setQuantity(100)
+            ->setName($invoiceForm['item_name'])
+            ->setDescription($invoiceForm['item_description'])
+            ->setQuantity(1)
             ->setUnitPrice(new Currency());
-
         $items[0]->getUnitPrice()
-            ->setCurrency("USD")
-            ->setValue(5);
+            ->setCurrency('EUR')
+            ->setValue($invoiceForm['item_amount']);
 
         $tax = new Tax();
-        $tax->setPercent(1)->setName("Local Tax on Sutures");
+        $tax->setPercent($invoiceForm['item_tax_percent'])
+            ->setName($invoiceForm['item_tax_name']);
         $items[0]->setTax($tax);
-
-        $items[1] = new InvoiceItem();
-        $item1discount = new Cost();
-        $item1discount->setPercent("3");
-        $items[1]
-            ->setName("Injection")
-            ->setQuantity(5)
-            ->setDiscount($item1discount)
-            ->setUnitPrice(new Currency());
-
-        $items[1]->getUnitPrice()
-            ->setCurrency("USD")
-            ->setValue(5);
-
-        $tax2 = new Tax();
-        $tax2->setPercent(3)->setName("Local Tax on Injection");
-        $items[1]->setTax($tax2);
-
         $invoice->setItems($items);
 
-        $cost = new Cost();
-        $cost->setPercent("2");
-        $invoice->setDiscount($cost);
-
         $invoice->getPaymentTerm()
-            ->setTermType("NET_45");
-
-        $invoice->getShippingInfo()
-            ->setFirstName("Sally")
-            ->setLastName("Patient")
-            ->setBusinessName("Not applicable")
-            ->setPhone(new Phone())
-            ->setAddress(new InvoiceAddress());
-
-        $invoice->getShippingInfo()->getPhone()
-            ->setCountryCode("001")
-            ->setNationalNumber("5039871234");
-
-        $invoice->getShippingInfo()->getAddress()
-            ->setLine1("1234 Main St.")
-            ->setCity("Portland")
-            ->setState("OR")
-            ->setPostalCode("97217")
-            ->setCountryCode("US");
-
+            ->setTermType("NET_10");
+        $invoice->setTaxInclusive(true);
         $invoice->setLogoUrl('https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.svg');
 
         try {
@@ -161,7 +102,7 @@ class InvoiceService extends AbstractPaypalService
      */
     public function getInvoiceQRHTML(Invoice $invoice): string
     {
-        $image = Invoice::qrCode($invoice->getId(), ['height' => '300', 'width' => '300'], $this->apiContext);
+        $image = Invoice::qrCode($invoice->getId(), ['height' => '400', 'width' => '400'], $this->apiContext);
         return '<img src="data:image/png;base64,'. $image->getImage() . '" alt="Invoice QR Code" />';
     }
 
