@@ -46,8 +46,8 @@ class InvoiceService extends AbstractPaypalService
             ->setCountryCode($invoiceForm['merchant_country_code']);
 
         $billing = $invoice->getBillingInfo();
-        $billing[0]->setLanguage('en-EN');
-
+        $billing[0]->setLanguage('en_US')
+            ->setEmail(null);
         $items = [];
         $items[0] = new InvoiceItem();
         $items[0]

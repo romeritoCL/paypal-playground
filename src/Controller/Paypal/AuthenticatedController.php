@@ -100,6 +100,7 @@ class AuthenticatedController extends AbstractController
         }
         $capture = $this->paypalService->getPaymentService()->capturePayment($paymentId);
         return $this->render('paypal/authenticated/result.html.twig', [
+            'raw_result' => false,
             'result' => $capture,
             'result_id' => 'payment-id'
         ]);
@@ -139,6 +140,7 @@ class AuthenticatedController extends AbstractController
             ->getPayoutService()
             ->createPayout($subject, $note, $email, $itemId, $amount, $currency);
         return $this->render('paypal/authenticated/result.html.twig', [
+            'raw_result' => false,
             'result' => $payout,
             'result_id' => $payout->getBatchHeader()->getPayoutBatchId()
         ]);
@@ -156,6 +158,7 @@ class AuthenticatedController extends AbstractController
         }
         $payout = $this->paypalService->getPayoutService()->getPayout($statusId);
         return $this->render('paypal/authenticated/result.html.twig', [
+            'raw_result' => false,
             'result' => $payout,
             'result_id' => $payout->getBatchHeader()->getPayoutBatchId()
         ]);
@@ -189,11 +192,13 @@ class AuthenticatedController extends AbstractController
         $invoice = $this->paypalService->getInvoiceService()
             ->createInvoice($inputForm);
         if ($invoice instanceof Invoice) {
+            $this->paypalService->getInvoiceService()->sendInvoice($invoice);
             $invoiceQR = $this->paypalService->getInvoiceService()
                 ->getInvoiceQRHTML($invoice);
         }
         if (isset($invoiceQR)) {
             return $this->render('paypal/authenticated/result.html.twig', [
+                'raw_result' => true,
                 'result' => $invoiceQR,
                 'result_id' => $invoice->getId()
             ]);
@@ -213,6 +218,7 @@ class AuthenticatedController extends AbstractController
         }
         $invoice = $this->paypalService->getInvoiceService()->getInvoice($invoiceId);
         return $this->render('paypal/authenticated/result.html.twig', [
+            'raw_result' => false,
             'result' => $invoice,
             'result_id' => $invoice->getId()
         ]);
