@@ -42,7 +42,7 @@ class PayoutService extends AbstractPaypalService
             ->setNote($note)
             ->setReceiver($receiverEmail)
             ->setSenderItemId($itemId)
-            ->setAmount(new Currency(json_encode((object)[
+            ->setAmount(new Currency(json_encode((object) [
                 'value' => $amount,
                 'currency' => $currency,
             ])));
