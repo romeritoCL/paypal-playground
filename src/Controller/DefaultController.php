@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 class DefaultController extends AbstractController
 {
+    public const PAYPAL_FAVICON_URL = 'https://www.paypalobjects.com/webstatic/icon/favicon.ico';
     /**
      * @Route("/favicon.ico", name="favicon")
      *
@@ -21,7 +22,7 @@ class DefaultController extends AbstractController
      */
     public function favicon()
     {
-        return $this->redirect('https://www.paypalobjects.com/webstatic/icon/favicon.ico');
+        return $this->redirect(self::PAYPAL_FAVICON_URL);
     }
 
     /**

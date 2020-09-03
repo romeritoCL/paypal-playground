@@ -26,7 +26,7 @@
         document.getElementById("refresh-status").disabled = true;
         let url = '{{ path("payouts-refresh", {'statusId': 'payout_batch_status'}) }}';
         try {
-            url = url.replace("payout_batch_status", document.getElementById("payouts-result-id").value);
+            url = url.replace("payout_batch_status", document.getElementById("template-result-id").value);
         } catch (err) {
             alert('Please create payout first')
             setTimeout(function(){document.getElementById("refresh-status").disabled = false;},2000);

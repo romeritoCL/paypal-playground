@@ -86,7 +86,7 @@ class AnonymousController extends AbstractController
         $request = Request::createFromGlobals();
         $authToken = $request->request->get('auth_token', null);
         if ($authToken) {
-            $openIdTokeninfo = $this->paypalService->getAccessTokenFromAuthToken($authToken);
+            $openIdTokeninfo = $this->paypalService->getIdentityService()->getAccessTokenFromAuthToken($authToken);
             if ($openIdTokeninfo) {
                 return $this->render('paypal/anonymous/access-token.html.twig', [
                     'auth_token' => $authToken,
@@ -111,7 +111,7 @@ class AnonymousController extends AbstractController
         $request = Request::createFromGlobals();
         $refreshToken = $request->request->get('refresh_token', null);
         if ($refreshToken) {
-            $userInfo = $this->paypalService->getUserInfoFromRefreshToken($refreshToken);
+            $userInfo = $this->paypalService->getIdentityService()->getUserInfoFromRefreshToken($refreshToken);
             if ($userInfo) {
                 $this->sessionService->login($userInfo, $refreshToken);
                 return $this->render('paypal/anonymous/user-info.html.twig', [

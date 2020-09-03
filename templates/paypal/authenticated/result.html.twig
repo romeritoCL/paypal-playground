@@ -1,2 +1,6 @@
+{% if raw_result == true %}
+{{ result|raw }}
+{% else %}
 {{ dump(result) }}
-<input type="hidden" id="payouts-result-id" value="{{ result_id }}">
+{% endif %}
+<input type="hidden" id="template-result-id" value="{{ result_id }}">

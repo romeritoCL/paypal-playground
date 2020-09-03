@@ -1,0 +1,154 @@
+{% extends 'paypal/authenticated/base.html.twig' %}
+{% block content %}
+<div class="col text-center pb-4">
+    <h4>Let's try and Create an invoice with QR</h4>
+    <p>
+        On the left side, your invoice settings, then hit send and wait for the QR code.
+    </p>
+</div>
+<div class="row">
+        <div class="col">
+            <form id="invoice_form">
+                <p><strong>
+                    So, what are we invoicing today
+                </strong></p>
+                <div class="input-group mb-3">
+                    <div class="input-group-lg">
+                    <button type="button" class="btn btn-success"  id="send-invoice-button" onclick="sendPayment();">Get the QR!</button>
+                    <button type="button" class="btn btn-info"  id="refresh-status" onclick="refreshStatus();">Get the invoice</button>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Note</span>
+                    </div>
+                    <input type="text" aria-label="note" class="form-control text-right" id="note" name="note" value="Pay me a 100$ on Vodka">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Business Name</span>
+                    </div>
+                    <input type="text" aria-label="Name" class="form-control text-right" id="merchant_business_name" name="merchant_business_name" value="Alcohol Shop TakeAWAY">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Item Name</span>
+                    </div>
+                    <input type="text" aria-label="note" class="form-control text-right" id="item_name" name="item_name" value="Bottle of Vodka">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Item Description</span>
+                    </div>
+                    <input type="text" aria-label="note" class="form-control text-right" id="item_description" name="item_description" value="Marverlous Vodka bottle worth at least 100$">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Item Amount</span>
+                    </div>
+                    <input type="number" aria-label="Price" class="form-control text-right" id="item_amount" name="item_amount" value="100">
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00 €</span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Tax Name</span>
+                    </div>
+                    <input type="text" aria-label="note" class="form-control text-right" id="item_tax_name" name="item_tax_name" value="VAT">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Tax %</span>
+                    </div>
+                    <input type="text" aria-label="note" class="form-control text-right" id="item_tax_percent" name="item_tax_percent" value="21">
+                </div>
+                <p><strong>
+                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseMerchantInformation" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Display Merchant Information
+                        </a>
+                </strong></p>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Merchant Email</span>
+                    </div>
+                    <input type="text" aria-label="Name" class="form-control text-right" id="merchant_email" name="merchant_email" value="{{ app.session.get('email') }}">
+                </div>
+                <div class="collapse" id="collapseMerchantInformation">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Merchant Address</span>
+                        </div>
+                        <input type="text" aria-label="Name" class="form-control text-right" id="merchant_address" name="merchant_address" value="{{ app.session.get('address_street') }}">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Merchant City</span>
+                        </div>
+                        <input type="text" aria-label="Name" class="form-control text-right" id="merchant_city" name="merchant_city" value="{{ app.session.get('address_locality') }}">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Merchant State</span>
+                        </div>
+                        <input type="text" aria-label="Name" class="form-control text-right" id="merchant_state" name="merchant_state" value="{{ app.session.get('address_region') }}">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Merchant Zip Code</span>
+                        </div>
+                        <input type="text" aria-label="Name" class="form-control text-right" id="merchant_zip_code" name="merchant_zip_code" value="{{ app.session.get('address_post_code') }}">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Merchant Country Code</span>
+                        </div>
+                        <input type="text" aria-label="Name" class="form-control text-right" id="merchant_country_code" name="merchant_country_code" value="{{ app.session.get('address_country') }}">
+                    </div>
+                </div>
+            </form>
+        </div>
+    <div class="col" id="result-col">
+        <div class="row">
+            <p><strong>Results will appear here</strong></p>
+        </div>
+        <div class="row text-center" id="qr-code-result"></div>
+        <div class="row" id="invoice-result"></div>
+    </div>
+</div>
+<script>
+    function sendPayment()
+    {
+
+        document.getElementById("send-invoice-button").disabled = true;
+        console.log($('#invoice_form').serialize());
+        $.post(
+            '{{ path('invoices-create') }}',
+            $('#invoice_form').serialize(),
+            function(data){
+                document.getElementById('qr-code-result').innerHTML = data
+            });
+        setTimeout(function(){document.getElementById("send-invoice-button").disabled = false;},2000);
+    }
+
+    function refreshStatus()
+    {
+        document.getElementById("refresh-status").disabled = true;
+        let url = '{{ path("invoices-refresh", {'invoiceId': 'invoice_id'}) }}';
+        try {
+            url = url.replace("invoice_id", document.getElementById("template-result-id").value);
+        } catch (err) {
+            alert('Please get create QR code first')
+            setTimeout(function(){document.getElementById("refresh-status").disabled = false;},2000);
+            return;
+        }
+        $.post(
+            url,
+            null,
+            function(data){
+                document.getElementById('invoice-result').innerHTML = data
+            });
+        setTimeout(function(){document.getElementById("refresh-status").disabled = false;},2000);
+    }
+</script>
+{% endblock %}

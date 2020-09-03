@@ -2,22 +2,11 @@
 
 namespace App\Service;
 
-use PayPal\Api\Currency;
-use PayPal\Api\OpenIdTokeninfo;
-use PayPal\Api\OpenIdUserinfo;
-use PayPal\Api\Payment;
-use PayPal\Api\Payout;
-use PayPal\Api\PayoutBatch;
-use PayPal\Api\PayoutItem;
-use PayPal\Api\PayoutSenderBatchHeader;
-use PayPal\Auth\OAuthTokenCredential;
-use PayPal\Rest\ApiContext;
-use PayPalCheckoutSdk\Core\PayPalHttpClient;
-use PayPalCheckoutSdk\Core\SandboxEnvironment;
-use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
-use PayPalHttp\HttpResponse;
-use Psr\Log\LoggerInterface;
-use Exception;
+use App\Service\Paypal\IdentityService;
+use App\Service\Paypal\InvoiceService;
+use App\Service\Paypal\PaymentService;
+use App\Service\Paypal\PayoutService;
+use App\Service\Paypal\ReportingService;
 
 /**
  * Class PaypalService
@@ -26,237 +15,89 @@ use Exception;
 class PaypalService
 {
     /**
-     * @var string
+     * @var IdentityService
      */
-    private $clientId;
+    protected $identityService;
 
     /**
-     * @var string
+     * @var PaymentService
      */
-    private $clientSecret;
+    protected $paymentService;
 
     /**
-     * @var ApiContext
+     * @var PayoutService
      */
-    private $apiContext;
+    protected $payoutService;
 
     /**
-     * @var LoggerInterface
+     * @var ReportingService
      */
-    private $logger;
+    protected $reportingService;
+
+    /**
+     * @var InvoiceService
+     */
+    protected $invoiceService;
 
     /**
      * PaypalService constructor.
-     * @param string $clientId
-     * @param string $clientSecret
-     * @param LoggerInterface $logger
-     * @param SessionService $sessionService
+     * @param IdentityService $identityService
+     * @param PaymentService $paymentService
+     * @param PayoutService $payoutService
+     * @param ReportingService $reportingService
+     * @param InvoiceService $invoiceService
      */
     public function __construct(
-        string $clientId,
-        string $clientSecret,
-        LoggerInterface $logger,
-        SessionService $sessionService
+        IdentityService $identityService,
+        PaymentService $paymentService,
+        PayoutService $payoutService,
+        ReportingService $reportingService,
+        InvoiceService $invoiceService
     ) {
-        $sessionClientId = $sessionService->session->get('PAYPAL_SDK_CLIENT_ID');
-        $sessionClientSecret = $sessionService->session->get('PAYPAL_SDK_CLIENT_SECRET');
-        $this->clientId = $sessionClientId ?? $clientId;
-        $this->clientSecret = $sessionClientSecret ?? $clientSecret;
-        $this->logger = $logger;
-        $apiContext = new ApiContext(new OAuthTokenCredential($this->clientId, $this->clientSecret));
-        $apiContext->setConfig(['mode' => 'sandbox']);
-        $this->apiContext = $apiContext;
+        $this->identityService = $identityService;
+        $this->paymentService = $paymentService;
+        $this->payoutService = $payoutService;
+        $this->reportingService = $reportingService;
+        $this->invoiceService = $invoiceService;
     }
 
     /**
-     * @return PayPalHttpClient
+     * @return IdentityService
      */
-    public function getHttpClient(): PayPalHttpClient
+    public function getIdentityService(): IdentityService
     {
-        $sandboxEnvironment = new SandboxEnvironment($this->clientId, $this->clientSecret);
-        return new PayPalHttpClient($sandboxEnvironment);
+        return $this->identityService;
     }
 
     /**
-     * getAccessTokenFromAuthToken
-     *
-     * @param $authToken
-     * @return OpenIdTokeninfo|null
+     * @return PaymentService
      */
-    public function getAccessTokenFromAuthToken($authToken) : ?OpenIdTokeninfo
+    public function getPaymentService(): PaymentService
     {
-        try {
-            $accessToken = OpenIdTokeninfo::createFromAuthorizationCode(
-                ['code' => $authToken],
-                $this->clientId,
-                $this->clientSecret,
-                $this->apiContext
-            );
-        } catch (Exception $e) {
-            $this->logger->error('Error on PayPal::getAccessTokenFromAuthToken = ' . $e->getMessage());
-            return null;
-        }
-        return $accessToken;
+        return $this->paymentService;
     }
 
     /**
-     * refreshToken
-     *
-     * @param string $refreshToken
-     * @return OpenIdTokeninfo|null
+     * @return PayoutService
      */
-    public function refreshToken(string $refreshToken) : ?OpenIdTokeninfo
+    public function getPayoutService(): PayoutService
     {
-        try {
-            $tokenInfo = new OpenIdTokeninfo();
-            $tokenInfo = $tokenInfo->createFromRefreshToken(['refresh_token' => $refreshToken], $this->apiContext);
-        } catch (Exception $e) {
-            $this->logger->error('Error on PayPal::refreshToken = ' . $e->getMessage());
-            return null;
-        }
-        return $tokenInfo;
+        return $this->payoutService;
     }
 
     /**
-     * @param OpenIdTokeninfo $tokenInfo
-     * @return OpenIdUserinfo|null
+     * @return ReportingService
      */
-    public function getUserInfo(OpenIdTokeninfo $tokenInfo) : ?OpenIdUserinfo
+    public function getReportingService(): ReportingService
     {
-        try {
-            $params = ['access_token' => $tokenInfo->getAccessToken()];
-            $userInfo = OpenIdUserinfo::getUserinfo($params, $this->apiContext);
-        } catch (Exception $e) {
-            $this->logger->error('Error on PayPal::getUserInfo = ' . $e->getMessage());
-            return null;
-        }
-        return $userInfo;
+        return $this->reportingService;
     }
 
     /**
-     * @param string $refreshToken
-     * @return OpenIdUserinfo|null
+     * @return InvoiceService
      */
-    public function getUserInfoFromRefreshToken(string $refreshToken) : ?OpenIdUserinfo
+    public function getInvoiceService(): InvoiceService
     {
-        try {
-            $tokenInfo = $this->refreshToken($refreshToken);
-            $userInfo = $this->getUserInfo($tokenInfo);
-        } catch (Exception $e) {
-            $this->logger->error('Error on PayPal::getUserInfoFromRefreshToken = ' . $e->getMessage());
-            return null;
-        }
-        return $userInfo;
-    }
-
-    /**
-     * @param string $refreshToken
-     * @return bool|string|null
-     */
-    public function getUserTransactionsFromRefreshToken(string $refreshToken)
-    {
-        try {
-            $tokenInfo = $this->refreshToken($refreshToken);
-            $ch = curl_init();
-            curl_setopt(
-                $ch,
-                CURLOPT_URL,
-                "https://api.sandbox.paypal.com/v1/reporting/transactions?start_date=" .
-                date('Y-m-d', strtotime('15 days ago')) . 'T00:00:00-0700' .
-                "&end_date=" . date('Y-m-d', strtotime('now')) . 'T00:00:00-0700'
-            );
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Content-Type: application/json',
-                'Authorization: Bearer ' . $tokenInfo->getAccessToken(),
-            ]);
-            $userTransactions = curl_exec($ch);
-            curl_close($ch);
-        } catch (Exception $e) {
-            $this->logger->error('Error on PayPal::getUserTransactionsFromRefreshToken = ' . $e->getMessage());
-            return null;
-        }
-        return json_decode($userTransactions);
-    }
-
-    /**
-     * @param string $subject
-     * @param string $note
-     * @param string $receiverEmail
-     * @param string $itemId
-     * @param float $amount
-     * @param string $currency
-     * @return PayoutBatch|null
-     */
-    public function createPayout(
-        string $subject,
-        string $note,
-        string $receiverEmail,
-        string $itemId,
-        float $amount,
-        string $currency
-    ): ?PayoutBatch {
-        $payout = new Payout();
-        $senderBatchHeader = new PayoutSenderBatchHeader();
-        $senderBatchHeader
-            ->setSenderBatchId(uniqid())
-            ->setEmailSubject($subject);
-        $senderItem = new PayoutItem();
-        $senderItem->setRecipientType('Email')
-            ->setNote($note)
-            ->setReceiver($receiverEmail)
-            ->setSenderItemId($itemId)
-            ->setAmount(new Currency(json_encode((object)[
-                'value' => $amount,
-                'currency' => $currency,
-            ])));
-
-        $payout->setSenderBatchHeader($senderBatchHeader)
-            ->addItem($senderItem);
-
-        try {
-            $payouts = $payout->create(null, $this->apiContext);
-        } catch (Exception $e) {
-            $this->logger->error('Error on PayPal::createPayout = ' . $e->getMessage());
-            return null;
-        }
-
-        return $payouts;
-    }
-
-    /**
-     * @param string $payoutId
-     * @return PayoutBatch|null
-     */
-    public function getPayout(string $payoutId): ?PayoutBatch
-    {
-        $payout = new Payout();
-        try {
-            $payout = $payout->get($payoutId, $this->apiContext);
-        } catch (Exception $e) {
-            $this->logger->error('Error on PayPal::getPayout = ' . $e->getMessage());
-            return null;
-        }
-
-        return $payout;
-    }
-
-    /**
-     * @param string $orderId
-     * @return Payment|null
-     */
-    public function capturePayment(string $orderId): ?HttpResponse
-    {
-        try {
-            $request = new OrdersCaptureRequest($orderId);
-            $request->headers["prefer"] = "return=representation";
-            $client = $this->getHttpClient();
-            $response = $client->execute($request);
-        } catch (Exception $e) {
-            $this->logger->error('Error on PayPal::capturePayment = ' . $e->getMessage());
-            return null;
-        }
-
-        return $response;
+        return $this->invoiceService;
     }
 }
