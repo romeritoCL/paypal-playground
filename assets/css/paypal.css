@@ -1,0 +1,10 @@
+body {
+}
+
+.navbar-nav .nav-link {
+    border-right: 2px solid white;
+}
+
+.navbar-nav .nav-link:last-child {
+    border-right: 0;
+}

@@ -1,10 +1,21 @@
 body {
 }
 
-.navbar-nav .nav-link {
-    border-right: 2px solid white;
+.red-text {
+    color: red;
 }
 
-.navbar-nav .nav-link:last-child {
-    border-right: 0;
+.bullet:before {
+    content:"• ";
+}
+
+.logo:before {
+    vertical-align: middle;
+    background-image: url('https://upload.wikimedia.org/wikipedia/donate/thumb/0/02/Paypal-logo-white.svg/286px-Paypal-logo-white.svg.png');
+    background-size: 70px 20px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 70px;
+    height: 20px;
+    content:"";
 }

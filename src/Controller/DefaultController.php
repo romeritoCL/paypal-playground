@@ -28,11 +28,10 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="index")
      *
-     * @return RedirectResponse|Response
+     * @return Response
      */
     public function index()
     {
-        $request = Request::createFromGlobals();
-        return $this->redirectToRoute('anonymous-home', $request->query->all());
+        return $this->render('index.html.twig');
     }
 }
