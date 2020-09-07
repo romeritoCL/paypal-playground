@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" xmlns="http://www.w3.org/1999/html">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -8,4 +8,46 @@
             {% include "navbar/dropdown.html.twig" %}
         </div>
     </nav>
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">PayPal Products</h1>
+            <p class="lead text-muted">Only showing a part of them...</p>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <section class="jumbotron h-100 bg-paypal">
+                    <div class="container">
+                        <h3 class="text-white">PayPal Commerce Platform for <strong>Business</strong></h3>
+                        <p class="text-light">Build a full-stack solution for small to medium-sized businesses.</p>
+                        <div class="list-inline">
+                            <a class="btn-secondary btn nav-link bg-nearly-white" href="{{ path('anonymous-home') }}"><p class="paypal-developer-logo"></p></a>
+                            <a class="font-weight-bold bullet nav-link text-light" href="{{ path('anonymous-home') }}">Connect with PayPal</a>
+                            <a class="bullet nav-link text-light" href="{{ path('account') }}">My Account</a>
+                            <a class="bullet nav-link text-light" href="{{ path('payments') }}">Send Payments</a>
+                            <a class="bullet nav-link text-light" href="{{ path('payouts') }}">Receive Payments</a>
+                            <a class="bullet nav-link text-light" href="{{ path('invoices') }}">Invoices QR</a>
+                            <a class="bullet nav-link text-light" href="{{ path('subscriptions') }}">Subscriptions</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col">
+                <section class="jumbotron h-100 bg-dark">
+                    <div class="container">
+                        <h3 class="text-white">PayPal Commerce Platform for <strong>Enterprise</strong></h3>
+                        <p class="text-light">Explore our robust payment solutions for large enterprises.</p>
+                        <div class="list-inline">
+                            <a class="btn-secondary btn nav-link text-light" href="{{ path('braintree-index') }}"><p class="braintree-logo"></p></a>
+                            <p class="nav-link text-white">Receive payments with Cards, PayPal, and many other wallets or APMs</p>
+                            <a class="btn-secondary btn nav-link bg-nearly-white" href="#"><p class="hyperwallet-logo"></p></a>
+                                <p class="nav-link text-white">Send money anywhere, make payouts to bank accounts, paypal accounts, etc...</p>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
 {% endblock %}
