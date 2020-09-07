@@ -21,6 +21,6 @@ class DefaultController extends AbstractController
      */
     public function index()
     {
-        return $this->render('braintree/base.html.twig');
+        return $this->render('braintree/index.html.twig');
     }
 }
