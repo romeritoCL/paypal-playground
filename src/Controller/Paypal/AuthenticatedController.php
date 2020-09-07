@@ -223,4 +223,17 @@ class AuthenticatedController extends AbstractController
             'result_id' => $invoice->getId()
         ]);
     }
+
+    /**
+     * @Route("/logged-in/subscriptions", name="subscriptions")
+     *
+     * @return Response | RedirectResponse
+     */
+    public function subscriptions()
+    {
+        if (!$this->sessionService->isActive()) {
+            return $this->redirectToRoute('index');
+        }
+        return $this->render('paypal/authenticated/subscriptions.html.twig');
+    }
 }
