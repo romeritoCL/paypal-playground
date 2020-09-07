@@ -37,7 +37,7 @@ class SessionController extends AbstractController
     public function logout()
     {
         $this->sessionService->session->clear();
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('paypal-index');
     }
 
     /**
@@ -53,6 +53,6 @@ class SessionController extends AbstractController
         if ($clientId && $clientSecret) {
             $this->sessionService->updateCredentials($clientId, $clientSecret);
         }
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('paypal-index');
     }
 }

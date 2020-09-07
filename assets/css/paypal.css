@@ -1,10 +1,10 @@
 body {
 }
 
-.navbar-nav .nav-link {
-    border-right: 2px solid white;
+.bg-primary {
+    background-color:  #005ea6 !important;
 }
 
-.navbar-nav .nav-link:last-child {
-    border-right: 0;
+.paypal-font {
+    color: darkgray !important;
 }

@@ -19,3 +19,10 @@ body {
     height: 20px;
     content:"";
 }
+
+.paypal-font {
+    color: snow !important;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    font-weight: bold;
+    font-style: oblique;
+}

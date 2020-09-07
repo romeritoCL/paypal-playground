@@ -49,7 +49,7 @@ class AuthenticatedController extends AbstractController
     public function account()
     {
         if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('paypal-index');
         }
         $refreshToken = $this->sessionService->getRefreshToken();
         $myTransactions = $this->paypalService
@@ -68,7 +68,7 @@ class AuthenticatedController extends AbstractController
                 ]);
             }
         }
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('paypal-index');
     }
 
     /**
@@ -79,7 +79,7 @@ class AuthenticatedController extends AbstractController
     public function payments()
     {
         if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('paypal-index');
         }
         return $this->render('paypal/authenticated/payments.html.twig', [
             'PAYPAL_SDK_CLIENT_ID' =>
@@ -96,7 +96,7 @@ class AuthenticatedController extends AbstractController
     public function paymentsCapture(string $paymentId)
     {
         if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('paypal-index');
         }
         $capture = $this->paypalService->getPaymentService()->capturePayment($paymentId);
         return $this->render('paypal/authenticated/result.html.twig', [
@@ -114,7 +114,7 @@ class AuthenticatedController extends AbstractController
     public function payouts()
     {
         if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('paypal-index');
         }
         return $this->render('paypal/authenticated/payouts.html.twig');
     }
@@ -127,7 +127,7 @@ class AuthenticatedController extends AbstractController
     public function payoutsCreate()
     {
         if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('paypal-index');
         }
         $request = Request::createFromGlobals();
         $subject = $request->request->get('subject', null);
@@ -154,7 +154,7 @@ class AuthenticatedController extends AbstractController
     public function payoutsRefresh(string $statusId)
     {
         if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('paypal-index');
         }
         $payout = $this->paypalService->getPayoutService()->getPayout($statusId);
         return $this->render('paypal/authenticated/result.html.twig', [
@@ -172,7 +172,7 @@ class AuthenticatedController extends AbstractController
     public function invoices()
     {
         if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('paypal-index');
         }
         return $this->render('paypal/authenticated/invoices.html.twig');
     }
@@ -185,7 +185,7 @@ class AuthenticatedController extends AbstractController
     public function invoicesCreate()
     {
         if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('paypal-index');
         }
         $request = Request::createFromGlobals();
         $inputForm = $request->request->all();
@@ -214,7 +214,7 @@ class AuthenticatedController extends AbstractController
     public function invoicesRefresh(string $invoiceId)
     {
         if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('paypal-index');
         }
         $invoice = $this->paypalService->getInvoiceService()->getInvoice($invoiceId);
         return $this->render('paypal/authenticated/result.html.twig', [
@@ -232,7 +232,7 @@ class AuthenticatedController extends AbstractController
     public function subscriptions()
     {
         if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('paypal-index');
         }
         return $this->render('paypal/authenticated/subscriptions.html.twig');
     }

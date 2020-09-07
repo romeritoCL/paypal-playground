@@ -19,10 +19,9 @@ class DefaultControllerTest extends WebTestCase
         $client = static::createClient();
         $container = self::$container;
         $indexRoute = $container->get('router')->generate('index');
-        $anonymousRoute = $container->get('router')->generate('anonymous-home');
         $client->request('GET', $indexRoute);
-        $this->assertEquals(302, $client->getResponse()->getStatusCode());
-        $this->assertResponseRedirects($anonymousRoute);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertResponseIsSuccessful('PlayGround');
     }
 
     /**

@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block title %}PayPal PlayGround{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('paypal') }}
+{% endblock %}
 {% block body %}{% endblock %}
 {% block javascripts %}
     {{ parent() }}

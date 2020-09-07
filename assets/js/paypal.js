@@ -5,7 +5,7 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
-import '../css/app.css';
+import '../css/paypal.css';
 
 require('jquery');
 require('bootstrap');
