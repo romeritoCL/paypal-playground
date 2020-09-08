@@ -10,11 +10,15 @@ import '../css/braintree.css';
 import dropin from 'braintree-web-drop-in';
 
 let submitButton = document.querySelector('#submit-button');
+let submitButtonTwo = document.querySelector('#submit-button-two');
 let stepOneSubmitButton = document.querySelector('#step-1-submit');
+let stepTwoSubmitButton = document.querySelector('#step-2-submit');
 let jsClientToken = document.querySelector('.js-client-token');
 let clientToken = jsClientToken.dataset.clientToken;
 let jsPayLoadUrl = document.querySelector('.js-payload-url');
 let payloadUrl = jsPayLoadUrl.dataset.payloadUrl;
+let jsSaleUrl = document.querySelector('.js-sale-url');
+let saleUrl = jsSaleUrl.dataset.saleUrl;
 
 dropin.create({
     authorization: clientToken,
@@ -37,6 +41,11 @@ dropin.create({
                 function (data) {
                     document.getElementById('step-one-result-row').innerHTML = data
             });
+            let deviceData = JSON.parse(payload.deviceData);
+            document.querySelector('#payment-nonce').value = payload.nonce;
+            document.querySelector('#device-info').value = deviceData.correlation_id;
+            document.querySelector('#deviceInformation').value = payload.deviceData;
+            window.payload_export=payload;
             setTimeout(function () {
                 submitButton.disabled = false;
             }, 2000);
@@ -46,7 +55,31 @@ dropin.create({
 });
 
 stepOneSubmitButton.addEventListener('click', function (event) {
-    event.stopPropagation();
+    $('#collapseTwo').collapse('show');
+    stepOneSubmitButton.disabled = true;
 });
+
+stepTwoSubmitButton.addEventListener('click', function (event) {
+    $('#collapseThree').collapse('show');
+    stepTwoSubmitButton.disabled = true;
+});
+
+submitButtonTwo.addEventListener('click', function () {
+    submitButtonTwo.disabled = true;
+    let saleDetails = {
+        'payment_nonce'         : $('#payment-nonce').val(),
+        'correlation_id'        : $('#device-info').val(),
+        'amount'                : $('#amount').val(),
+        'device_data'           : $('#deviceInformation').val()
+    };
+
+    $.post(
+        saleUrl,
+        saleDetails,
+        function (data) {
+            document.getElementById('step-two-result-row').innerHTML = data;
+            stepTwoSubmitButton.disabled = false;
+        });
+})
 
 

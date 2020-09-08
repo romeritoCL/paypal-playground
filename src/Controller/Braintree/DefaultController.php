@@ -67,4 +67,39 @@ class DefaultController extends AbstractController
             'raw_result' => false,
         ]);
     }
+
+    /**
+     * @Route("/payments/sale", name="payments-sale")
+     *
+     * @return Response
+     */
+    public function paymentsSale()
+    {
+        $request = Request::createFromGlobals();
+        $paymentNonce = $request->request->get('payment_nonce');
+        $amount = $request->request->get('amount');
+        $deviceData = $request->request->get('device_data');
+        $sale = $this->braintreeService->getPaymentService()->createSale($amount, $paymentNonce, $deviceData);
+        return $this->render('default/dump.html.twig', [
+            'result' => (object) $sale,
+            'raw_result' => false,
+        ]);
+    }
+
+    /**
+     * @Route("/payments/capture", name="payments-capture")
+     *
+     * @return Response
+     */
+    public function paymentsCapture()
+    {
+        $request = Request::createFromGlobals();
+        $transactionId = $request->request->get('transaction_id');
+        $amount = $request->request->get('amount');
+        $capture = $this->braintreeService->getPaymentService()->captureSale($transactionId, $amount);
+        return $this->render('default/dump.html.twig', [
+            'result' => (object) $capture,
+            'raw_result' => false,
+        ]);
+    }
 }

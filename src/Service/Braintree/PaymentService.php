@@ -40,8 +40,18 @@ class PaymentService extends AbstractBraintreeService
             'paymentMethodNonce' => $paymentNonce,
             'deviceData' => $deviceDataFromTheClient,
             'options' => [
-                'submitForSettlement' => true
+                'submitForSettlement' => false
             ]
         ]);
+    }
+
+    /**
+     * @param $transactionId
+     * @param $amount
+     * @return Error|Successful
+     */
+    public function captureSale($transactionId, $amount)
+    {
+        return $this->gateway->transaction()->submitForSettlement($transactionId, $amount);
     }
 }
