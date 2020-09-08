@@ -1,0 +1,5 @@
+{% if raw_result == true %}
+    {{ result|raw }}
+{% else %}
+    {{ dump(result) }}
+{% endif %}

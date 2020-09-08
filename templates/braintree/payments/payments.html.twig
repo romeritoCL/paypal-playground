@@ -1,20 +1,96 @@
 {% extends 'braintree/base.html.twig' %}
 {% block content %}
-    <section class="jumbotron">
-        <div class="container container-fluid">
-            <div class="row justify-content-center">
-                <button class="btn btn-dark braintree-logo d-inline align-middle"></button>
-                <h1 class="jumbotron-heading d-inline align-middle"> Let's Play</h1>
-            </div>
+    <div class="container-fluid">
+        <!-- INFORMATION SECTION -->
+        <div class="js-client-token" data-client-token="{{ clientToken }}"></div>
+        <div class="js-payload-url" data-payload-url="{{ path('braintree-payments-payload') }}"></div>
+        <div class="js-payment-nonce" data-payment-nonce=""></div>
+        <!-- -->
+        <div class="alert alert-secondary text-center">
+            <span class="badge badge-pill badge-success">Yeah!</span>
+            <h6 class="d-inline"> BrainTree DropUI example. Follow the steps to perform a sandbox payment</h6>
         </div>
-    </section>
-    <div class="row">
-        <div class="col">
-            <ul class="list">
-                <li>Payments with BrainTree</li>
-                <li>We are going to implement Drop-UI to begin with</li>
-                <li>we will display the payment form just below</li>
-            </ul>
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0 d-inline">1. Identify card</h5>
+                    <button class="btn btn-success d-inline float-right" data-toggle="collapse" data-target="#collapseOne" disabled aria-expanded="true" aria-controls="collapseOne" id="step-1-submit">Next Step</button>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="row mt-1">
+                            <div class="col">
+                                <div id="dropin-container"></div>
+                                <button class="btn btn-success mt-2" id="submit-button">Get Payment Nonce</button>
+                            </div>
+                            <div class="col align-baseline">
+                                <div class="row mt-5">
+                                        <div class="col text-center">
+                                            <p class="font-weight-bold d-inline">Success Visa </p>
+                                        </div>
+                                        <div class="col text-center">
+                                            <p class="badge-pill badge badge-success d-inline">4111111111111111</p>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <p class="font-weight-bold d-inline">Declined Visa </p>
+                                    </div>
+                                    <div class="col text-center">
+                                        <p class="badge-pill badge badge-warning d-inline">4000111111111115</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <p class="font-weight-bold d-inline">CVV</p>
+                                    </div>
+                                    <div class="col text-center">
+                                        <p class="badge-pill badge badge-info d-inline">999</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <p class="font-weight-bold d-inline">Expiration Date</p>
+                                    </div>
+                                    <div class="col text-center">
+                                        <p class="badge-pill badge badge-secondary d-inline">12/2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3" id="step-one-result-row">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            2. Send Payment
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            3. Capture Payment
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
