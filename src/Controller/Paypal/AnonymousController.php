@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Class AnonymousController
  * @package App\Controller\Paypal
  *
- * @Route("/paypal")
+ * @Route("/paypal", name="paypal-")
  */
 class AnonymousController extends AbstractController
 {
@@ -40,14 +40,14 @@ class AnonymousController extends AbstractController
     }
 
     /**
-     * @Route("/", name="paypal-index")
+     * @Route("/", name="index")
      *
      * @return RedirectResponse|Response
      */
     public function index()
     {
         $request = Request::createFromGlobals();
-        return $this->redirectToRoute('anonymous-home', $request->query->all());
+        return $this->redirectToRoute('paypal-anonymous-home', $request->query->all());
     }
 
     /**
@@ -58,7 +58,7 @@ class AnonymousController extends AbstractController
     public function anonymousHome()
     {
         if ($this->sessionService->isActive()) {
-            return $this->redirectToRoute('account');
+            return $this->redirectToRoute('paypal-account');
         }
         $request = Request::createFromGlobals();
         $authToken = $request->get('code');
@@ -96,7 +96,7 @@ class AnonymousController extends AbstractController
                 ]);
             }
         }
-        return $this->redirectToRoute('anonymous-home');
+        return $this->redirectToRoute('paypal-anonymous-home');
     }
 
     /**
@@ -121,6 +121,6 @@ class AnonymousController extends AbstractController
                 ]);
             }
         }
-        return $this->redirectToRoute('anonymous-home');
+        return $this->redirectToRoute('paypal-anonymous-home');
     }
 }

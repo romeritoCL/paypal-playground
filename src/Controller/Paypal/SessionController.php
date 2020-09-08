@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Class SessionController
  * @package App\Controller\Paypal
  *
- * @Route("/paypal")
+ * @Route("/paypal", name="paypal-")
  */
 class SessionController extends AbstractController
 {

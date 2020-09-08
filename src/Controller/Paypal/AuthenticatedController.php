@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Class AuthenticatedController
  * @package App\Controller\Paypal
  *
- * @Route("/paypal")
+ * @Route("/paypal", name="paypal-")
  */
 class AuthenticatedController extends AbstractController
 {

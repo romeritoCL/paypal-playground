@@ -7,11 +7,11 @@
     <div class="navbar-brand collapse navbar-collapse" id="navbarSupportedContent">
         {% include "navbar/dropdown.html.twig" %}
         <div class="navbar-nav col justify-content-center">
-            <a class="nav-link text-light" href="{{ path('account') }}">My Account</a>
-            <a class="nav-link text-light" href="{{ path('payments') }}">Send Payments</a>
-            <a class="nav-link text-light" href="{{ path('payouts') }}">Receive Payments</a>
-            <a class="nav-link text-light" href="{{ path('invoices') }}">Invoices QR</a>
-            <a class="nav-link text-light" href="{{ path('subscriptions') }}">Subscriptions</a>
+            <a class="nav-link text-light" href="{{ path('paypal-account') }}">My Account</a>
+            <a class="nav-link text-light" href="{{ path('paypal-payments') }}">Send Payments</a>
+            <a class="nav-link text-light" href="{{ path('paypal-payouts') }}">Receive Payments</a>
+            <a class="nav-link text-light" href="{{ path('paypal-invoices') }}">Invoices QR</a>
+            <a class="nav-link text-light" href="{{ path('paypal-subscriptions') }}">Subscriptions</a>
         </div>
         <ul class="navbar-nav col justify-content-end">
             {% include "paypal/modals/sandbox-credentials.html.twig" %}
@@ -24,7 +24,7 @@
     </div>
     <div class="col text-center">
         <button type="button" class="btn btn-success" onclick="window.location.reload();">Refresh</button>
-        <button type="button" class="btn btn-secondary" onclick="location.href = '{{ path('logout') }}';">Log Out</button>
+        <button type="button" class="btn btn-secondary" onclick="location.href = '{{ path('paypal-logout') }}';">Log Out</button>
     </div>
 </div>
 <div class="container mt-4">

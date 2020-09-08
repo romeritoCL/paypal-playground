@@ -5,4 +5,4 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
-import '../css/paypal.css';
+import '../css/braintree.css';
