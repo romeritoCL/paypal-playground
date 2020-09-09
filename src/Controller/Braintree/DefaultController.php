@@ -3,6 +3,8 @@
 namespace App\Controller\Braintree;
 
 use App\Service\BraintreeService;
+use Braintree\Exception\NotFound;
+use Braintree\Transaction;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -80,9 +82,12 @@ class DefaultController extends AbstractController
         $amount = $request->request->get('amount');
         $deviceData = $request->request->get('device_data');
         $sale = $this->braintreeService->getPaymentService()->createSale($amount, $paymentNonce, $deviceData);
-        return $this->render('default/dump.html.twig', [
-            'result' => (object) $sale,
+        /** @var Transaction $transaction */
+        $transaction = $sale->transaction;
+        return $this->render('default/dump-input-id.html.twig', [
+            'result' => $sale,
             'raw_result' => false,
+            'result_id' => $transaction->id
         ]);
     }
 
@@ -99,6 +104,22 @@ class DefaultController extends AbstractController
         $capture = $this->braintreeService->getPaymentService()->captureSale($transactionId, $amount);
         return $this->render('default/dump.html.twig', [
             'result' => (object) $capture,
+            'raw_result' => false,
+        ]);
+    }
+
+    /**
+     * @Route("/payments/{transactionId}", name="payments-get-transaction")
+     *
+     * @param string $transactionId
+     * @return Response
+     * @throws NotFound
+     */
+    public function getTransaction(string $transactionId)
+    {
+        $transaction = $this->braintreeService->getPaymentService()->getTransaction($transactionId);
+        return $this->render('default/dump.html.twig', [
+            'result' => (object) $transaction,
             'raw_result' => false,
         ]);
     }

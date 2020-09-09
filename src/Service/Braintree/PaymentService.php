@@ -54,4 +54,14 @@ class PaymentService extends AbstractBraintreeService
     {
         return $this->gateway->transaction()->submitForSettlement($transactionId, $amount);
     }
+
+    /**
+     * @param $transactionId
+     * @return \Braintree\Transaction
+     * @throws \Braintree\Exception\NotFound
+     */
+    public function getTransaction($transactionId)
+    {
+        return $this->gateway->transaction()->find($transactionId);
+    }
 }
