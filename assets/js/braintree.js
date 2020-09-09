@@ -47,7 +47,8 @@ dropin.create({
                 payload,
                 function (data) {
                     document.getElementById('step-one-result-row').innerHTML = data
-            });
+                }
+            );
             let deviceData = JSON.parse(payload.deviceData);
             document.querySelector('#payment-nonce').value = payload.nonce;
             document.querySelector('#device-info').value = deviceData.correlation_id;
@@ -77,13 +78,15 @@ submitButtonTwo.addEventListener('click', function () {
             document.getElementById('step-two-result-row').innerHTML = data;
             document.getElementById('transaction_id').value = document.getElementById('template-result-id').value
             stepTwoSubmitButton.disabled = false;
-    });
+        }
+    );
 })
 
 submitButtonThree.addEventListener('click', function () {
     submitButtonThree.disabled = true;
+    let transactionId = $('#transaction_id').val()
+    captureUrl = captureUrl.replace("transaction_id_replace", transactionId);
     let captureDetails = {
-        'transaction_id'         : $('#transaction_id').val(),
         'amount'                : $('#amount_capture').val(),
     };
 
@@ -93,24 +96,21 @@ submitButtonThree.addEventListener('click', function () {
         function (data) {
             document.getElementById('step-three-result-row').innerHTML = data;
             stepThreeSubmitButton.disabled = false;
-    });
+        }
+    );
 })
 
 submitButtonThreeStatus.addEventListener('click', function () {
     submitButtonThreeStatus.disabled = true;
     let transactionId = $('#transaction_id').val()
     getSaleUrl = getSaleUrl.replace("transaction_id_replace", transactionId);
-    let transactionDetails = {
-        'transaction_id'         : transactionId,
-    };
-
-    $.post(
+    $.get(
         getSaleUrl,
-        transactionDetails,
         function (data) {
             document.getElementById('step-three-result-row').innerHTML = data;
             submitButtonThreeStatus.disabled = false;
-        });
+        }
+    );
 })
 
 stepOneSubmitButton.addEventListener('click', function () {

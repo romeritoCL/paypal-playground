@@ -5,7 +5,7 @@
         <div class="js-client-token" data-client-token="{{ clientToken }}"></div>
         <div class="js-payload-url" data-payload-url="{{ path('braintree-payments-payload') }}"></div>
         <div class="js-sale-url" data-sale-url="{{ path('braintree-payments-create') }}"></div>
-        <div class="js-capture-url" data-capture-url="{{ path('braintree-payments-capture') }}"></div>
+        <div class="js-capture-url" data-capture-url="{{ path("braintree-payments-capture", {'transactionId': 'transaction_id_replace'}) }}"></div>
         <div class="js-get-sale-url" data-get-sale-url="{{ path("braintree-payments-get", {'transactionId': 'transaction_id_replace'}) }}"></div>
         <!-- -->
         <div class="alert alert-secondary text-center">
