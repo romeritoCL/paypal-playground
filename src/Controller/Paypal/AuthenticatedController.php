@@ -2,10 +2,7 @@
 
 namespace App\Controller\Paypal;
 
-use App\Service\PaypalService;
-use App\Service\SessionService;
 use PayPal\Api\Invoice;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,37 +13,16 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Class AuthenticatedController
  * @package App\Controller\Paypal
  *
- * @Route("/paypal", name="paypal-")
+ * @Route("/paypal/logged-in", name="paypal-authenticated-")
  */
 class AuthenticatedController extends AbstractController
 {
     /**
-     * @var SessionService
-     */
-    protected $sessionService;
-
-    /**
-     * @var PaypalService
-     */
-    protected $paypalService;
-
-    /**
-     * DefaultController constructor.
-     * @param SessionService $sessionService
-     * @param PaypalService $paypalService
-     */
-    public function __construct(SessionService $sessionService, PaypalService $paypalService)
-    {
-        $this->sessionService = $sessionService;
-        $this->paypalService = $paypalService;
-    }
-
-    /**
-     * @Route("/logged-in/account", name="account")
+     * @Route("/", name="index", methods={"GET"})
      *
      * @return Response | RedirectResponse
      */
-    public function account()
+    public function index()
     {
         if (!$this->sessionService->isActive()) {
             return $this->redirectToRoute('paypal-index');
@@ -72,7 +48,7 @@ class AuthenticatedController extends AbstractController
     }
 
     /**
-     * @Route("/logged-in/payments", name="payments")
+     * @Route("/payments", name="payments", methods={"GET"})
      *
      * @return Response | RedirectResponse
      */
@@ -89,7 +65,7 @@ class AuthenticatedController extends AbstractController
     }
 
     /**
-     * @Route("/logged-in/payments/capture/{paymentId}", name="payments-capture")
+     * @Route("/payments/{paymentId}/capture", name="payments-capture", methods={"POST"})
      * @param string $paymentId
      * @return Response | RedirectResponse
      */
@@ -107,7 +83,7 @@ class AuthenticatedController extends AbstractController
     }
 
     /**
-     * @Route("/logged-in/payouts", name="payouts")
+     * @Route("/payouts", name="payouts", methods={"GET"})
      *
      * @return Response | RedirectResponse
      */
@@ -120,7 +96,7 @@ class AuthenticatedController extends AbstractController
     }
 
     /**
-     * @Route("/logged-in/payouts/create", name="payouts-create")
+     * @Route("/payouts", name="payouts-create", methods={"POST"})
      *
      * @return Response | RedirectResponse
      */
@@ -147,7 +123,7 @@ class AuthenticatedController extends AbstractController
     }
 
     /**
-     * @Route("/logged-in/payouts/{statusId}", name="payouts-refresh")
+     * @Route("/payouts/{statusId}", name="payouts-refresh", methods={"GET"})
      * @param string $statusId
      * @return Response | RedirectResponse
      */
@@ -165,7 +141,7 @@ class AuthenticatedController extends AbstractController
     }
 
     /**
-     * @Route("/logged-in/invoices", name="invoices")
+     * @Route("/invoices", name="invoices", methods={"GET"})
      *
      * @return Response | RedirectResponse
      */
@@ -178,7 +154,7 @@ class AuthenticatedController extends AbstractController
     }
 
     /**
-     * @Route("/logged-in/invoices/create", name="invoices-create")
+     * @Route("/invoices", name="invoices-create", methods={"POST"})
      *
      * @return Response | RedirectResponse
      */
@@ -207,7 +183,7 @@ class AuthenticatedController extends AbstractController
     }
 
     /**
-     * @Route("/logged-in/invoices/{invoiceId}", name="invoices-refresh")
+     * @Route("/invoices/{invoiceId}", name="invoices-refresh", methods={"GET"})
      * @param string $invoiceId
      * @return Response | RedirectResponse
      */
@@ -225,7 +201,7 @@ class AuthenticatedController extends AbstractController
     }
 
     /**
-     * @Route("/logged-in/subscriptions", name="subscriptions")
+     * @Route("/subscriptions", name="subscriptions", methods={"GET"})
      *
      * @return Response | RedirectResponse
      */

@@ -131,7 +131,7 @@
                             });
                         },
                         onApprove: function(data) {
-                            let url = '{{ path("paypal-payments-capture", {'paymentId': 'payment_id_status'}) }}';
+                            let url = '{{ path("paypal-authenticated-payments-capture", {'paymentId': 'payment_id_status'}) }}';
                             url = url.replace("payment_id_status", data.orderID);
                             jQuery.get(
                                 url,

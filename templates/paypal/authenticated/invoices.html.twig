@@ -122,7 +122,7 @@
 
         document.getElementById("send-invoice-button").disabled = true;
         $.post(
-            '{{ path('paypal-invoices-create') }}',
+            '{{ path('paypal-authenticated-invoices-create') }}',
             $('#invoice_form').serialize(),
             function(data){
                 document.getElementById('qr-code-result').innerHTML = data
@@ -133,7 +133,7 @@
     function refreshStatus()
     {
         document.getElementById("refresh-status").disabled = true;
-        let url = '{{ path("paypal-invoices-refresh", {'invoiceId': 'invoice_id'}) }}';
+        let url = '{{ path("paypal-authenticated-invoices-refresh", {'invoiceId': 'invoice_id'}) }}';
         try {
             url = url.replace("invoice_id", document.getElementById("template-result-id").value);
         } catch (err) {

@@ -2,9 +2,6 @@
 
 namespace App\Controller\Paypal;
 
-use App\Service\PaypalService;
-use App\Service\SessionService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,31 +11,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Class AnonymousController
  * @package App\Controller\Paypal
  *
- * @Route("/paypal", name="paypal-")
+ * @Route("/paypal/anonymous", name="paypal-anonymous-")
  */
 class AnonymousController extends AbstractController
 {
-    /**
-     * @var SessionService
-     */
-    protected $sessionService;
-
-    /**
-     * @var PaypalService
-     */
-    protected $paypalService;
-
-    /**
-     * DefaultController constructor.
-     * @param SessionService $sessionService
-     * @param PaypalService $paypalService
-     */
-    public function __construct(SessionService $sessionService, PaypalService $paypalService)
-    {
-        $this->sessionService = $sessionService;
-        $this->paypalService = $paypalService;
-    }
-
     /**
      * @Route("/", name="index")
      *
@@ -46,19 +22,8 @@ class AnonymousController extends AbstractController
      */
     public function index()
     {
-        $request = Request::createFromGlobals();
-        return $this->redirectToRoute('paypal-anonymous-home', $request->query->all());
-    }
-
-    /**
-     * @Route("/anonymous/home", name="anonymous-home")
-     *
-     * @return RedirectResponse|Response
-     */
-    public function anonymousHome()
-    {
         if ($this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-account');
+            return $this->redirectToRoute('paypal-authenticated-index');
         }
         $request = Request::createFromGlobals();
         $authToken = $request->get('code');
@@ -75,13 +40,13 @@ class AnonymousController extends AbstractController
     }
 
     /**
-     * @Route("/anonymous/auth-token", name="anonymous-auth-token")
+     * @Route("auth-token", name="auth-token")
      * @return RedirectResponse|Response
      */
     public function anonymousAuthToken()
     {
         if ($this->sessionService->isActive()) {
-            return $this->redirectToRoute('account');
+            return $this->redirectToRoute('paypal-authenticated-index');
         }
         $request = Request::createFromGlobals();
         $authToken = $request->request->get('auth_token', null);
@@ -96,17 +61,17 @@ class AnonymousController extends AbstractController
                 ]);
             }
         }
-        return $this->redirectToRoute('paypal-anonymous-home');
+        return $this->redirectToRoute('paypal-anonymous-index');
     }
 
     /**
-     * @Route("/anonymous/user-info", name="anonymous-user-info")
+     * @Route("/user-info", name="user-info")
      * @return RedirectResponse|Response
      */
     public function anonymousUserInfo()
     {
         if ($this->sessionService->isActive()) {
-            return $this->redirectToRoute('account');
+            return $this->redirectToRoute('paypal-authenticated-index');
         }
         $request = Request::createFromGlobals();
         $refreshToken = $request->request->get('refresh_token', null);
@@ -121,6 +86,6 @@ class AnonymousController extends AbstractController
                 ]);
             }
         }
-        return $this->redirectToRoute('paypal-anonymous-home');
+        return $this->redirectToRoute('paypal-anonymous-index');
     }
 }
