@@ -21,7 +21,7 @@ class PaymentService extends AbstractBraintreeService
             return $this->gateway->clientToken()->generate();
         } catch (Exception $exception) {
             $this->logger->error(
-                'Error on ' . __CLASS__ . '->' . __FUNCTION__ - ': ' . $exception->getMessage()
+                'Error on ' . __CLASS__ . '->' . __FUNCTION__ . ': ' . $exception->getMessage()
             );
         }
         return null;
