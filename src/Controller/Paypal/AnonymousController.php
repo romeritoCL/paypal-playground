@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class AnonymousController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="index", methods={"GET"})
      *
      * @return RedirectResponse|Response
      */
@@ -40,7 +40,7 @@ class AnonymousController extends AbstractController
     }
 
     /**
-     * @Route("auth-token", name="auth-token")
+     * @Route("/auth-token", name="auth-token", methods={"POST"})
      * @return RedirectResponse|Response
      */
     public function anonymousAuthToken()
@@ -65,7 +65,7 @@ class AnonymousController extends AbstractController
     }
 
     /**
-     * @Route("/user-info", name="user-info")
+     * @Route("/user-info", name="user-info", methods={"POST"})
      * @return RedirectResponse|Response
      */
     public function anonymousUserInfo()

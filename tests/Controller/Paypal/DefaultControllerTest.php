@@ -5,10 +5,10 @@ namespace App\Tests\Controller\Paypal;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class AnonymousControllerTest
+ * Class DefaultControllerTest
  * @package App\Tests\Controller\Braintree
  */
-class AnonymousControllerTest extends WebTestCase
+class DefaultControllerTest extends WebTestCase
 {
     /**
      * testIndex
@@ -18,9 +18,9 @@ class AnonymousControllerTest extends WebTestCase
         $client = static::createClient();
         $container = self::$container;
         $indexRoute = $container->get('router')->generate('paypal-index');
-        $anonymousHomeRoute = $container->get('router')->generate('paypal-anonymous-home');
+        $anonymousIndexRoute = $container->get('router')->generate('paypal-anonymous-index');
         $client->request('GET', $indexRoute);
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
-        $this->assertResponseRedirects($anonymousHomeRoute);
+        $this->assertResponseRedirects($anonymousIndexRoute);
     }
 }

@@ -19,16 +19,16 @@
             <div class="col">
                 <section class="jumbotron h-100 bg-paypal">
                     <div class="container">
-                        <h3 class="text-white">PayPal Commerce Platform for <strong>Business</strong></h3>
+                        <h3 class="text-white">PayPal Commerce Platform for <strong class="red-text">Business</strong></h3>
                         <p class="text-light">Build a full-stack solution for small to medium-sized businesses.</p>
                         <div class="list-inline">
-                            <a class="btn-secondary btn nav-link bg-nearly-white" href="{{ path('paypal-anonymous-home') }}"><p class="paypal-developer-logo"></p></a>
-                            <a class="font-weight-bold bullet nav-link text-light" href="{{ path('paypal-anonymous-home') }}">Connect with PayPal</a>
-                            <a class="bullet nav-link text-light" href="{{ path('paypal-account') }}">My Account</a>
-                            <a class="bullet nav-link text-light" href="{{ path('paypal-payments') }}">Send Payments</a>
-                            <a class="bullet nav-link text-light" href="{{ path('paypal-payouts') }}">Receive Payments</a>
-                            <a class="bullet nav-link text-light" href="{{ path('paypal-invoices') }}">Invoices QR</a>
-                            <a class="bullet nav-link text-light" href="{{ path('paypal-subscriptions') }}">Subscriptions</a>
+                            <a class="btn-secondary btn nav-link bg-nearly-white" href="{{ path('paypal-index') }}"><p class="paypal-developer-logo"></p></a>
+                            <a class="font-weight-bold bullet nav-link text-light" href="{{ path('paypal-anonymous-index') }}">Connect with PayPal</a>
+                            <a class="bullet nav-link text-light" href="{{ path('paypal-authenticated-index') }}">My Account</a>
+                            <a class="bullet nav-link text-light" href="{{ path('paypal-authenticated-payments') }}">Send Payments</a>
+                            <a class="bullet nav-link text-light" href="{{ path('paypal-authenticated-payouts') }}">Receive Payments</a>
+                            <a class="bullet nav-link text-light" href="{{ path('paypal-authenticated-invoices') }}">Invoices QR</a>
+                            <a class="bullet nav-link text-light" href="{{ path('paypal-authenticated-subscriptions') }}">Subscriptions</a>
                         </div>
                     </div>
                 </section>
@@ -36,7 +36,7 @@
             <div class="col">
                 <section class="jumbotron h-100 bg-dark">
                     <div class="container">
-                        <h3 class="text-white">PayPal Commerce Platform for <strong>Enterprise</strong></h3>
+                        <h3 class="text-white">PayPal Commerce Platform for <strong class="red-text">Enterprise</strong></h3>
                         <p class="text-light">Explore our robust payment solutions for large enterprises.</p>
                         <div class="list-inline">
                             <a class="btn-secondary btn nav-link text-light" href="{{ path('braintree-index') }}"><p class="braintree-logo"></p></a>
