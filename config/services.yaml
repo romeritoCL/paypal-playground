@@ -6,6 +6,7 @@
 parameters:
     PAYPAL_SDK_CLIENT_ID: '%env(PAYPAL_SDK_CLIENT_ID)%'
     PAYPAL_SDK_CLIENT_SECRET: '%env(PAYPAL_SDK_CLIENT_SECRET)%'
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -35,3 +36,12 @@ services:
         bind:
             string $clientId: '%env(PAYPAL_SDK_CLIENT_ID)%'
             string $clientSecret: '%env(PAYPAL_SDK_CLIENT_SECRET)%'
+
+    # PayPal's specific services definition with client and secret tokens
+    App\Service\Braintree\:
+        resource: '../src/Service/Braintree'
+        bind:
+            string $environment: '%env(BRAINTREE_ENVIRONMENT)%'
+            string $merchantId: '%env(BRAINTREE_MERCHANT_ID)%'
+            string $publicKey: '%env(BRAINTREE_PUBLIC_KEY)%'
+            string $privateKey: '%env(BRAINTREE_PRIVATE_KEY)%'

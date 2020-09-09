@@ -13,7 +13,7 @@
             'amount'       : $('#amount').val(),
         };
         $.post(
-            '{{ path('payouts-create') }}',
+            '{{ path('paypal-authenticated-payouts-create') }}',
             payment_details,
             function(data){
                 document.getElementById('result-col').innerHTML = data
@@ -24,7 +24,7 @@
     function refreshStatus()
     {
         document.getElementById("refresh-status").disabled = true;
-        let url = '{{ path("payouts-refresh", {'statusId': 'payout_batch_status'}) }}';
+        let url = '{{ path("paypal-authenticated-payouts-refresh", {'statusId': 'payout_batch_status'}) }}';
         try {
             url = url.replace("payout_batch_status", document.getElementById("template-result-id").value);
         } catch (err) {
@@ -32,9 +32,8 @@
             setTimeout(function(){document.getElementById("refresh-status").disabled = false;},2000);
             return;
         }
-        $.post(
+        $.get(
             url,
-            null,
             function(data){
                 document.getElementById('result-col').innerHTML = data
             });

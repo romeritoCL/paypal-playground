@@ -1,21 +1,21 @@
 {% extends 'paypal/base.html.twig' %}
 {% block body %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">PayPal PlayGround</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-paypal">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-nav justify-content-center col-10">
-                <a class="nav-link active" href="{{ path('account') }}">My Account</a>
-                <a class="nav-link active" href="{{ path('payments') }}">Send Payments</a>
-                <a class="nav-link active" href="{{ path('payouts') }}">Receive Payments</a>
-                <a class="nav-link active" href="{{ path('invoices') }}">Invoices QR</a>
-                <a class="nav-link active" href="{{ path('subscriptions') }}">Subscriptions</a>
-            </div>
-            <ul class="navbar-nav col justify-content-end">
-                {% include "paypal/modals/sandbox-credentials.html.twig" %}
-            </ul>
+    <div class="navbar-brand collapse navbar-collapse" id="navbarSupportedContent">
+        {% include "navbar/dropdown.html.twig" %}
+        <div class="navbar-nav col justify-content-center">
+            <a class="nav-link text-light" href="{{ path('paypal-authenticated-index') }}">My Account</a>
+            <a class="nav-link text-light" href="{{ path('paypal-authenticated-payments') }}">Send Payments</a>
+            <a class="nav-link text-light" href="{{ path('paypal-authenticated-payouts') }}">Receive Payments</a>
+            <a class="nav-link text-light" href="{{ path('paypal-authenticated-invoices') }}">Invoices QR</a>
+            <a class="nav-link text-light" href="{{ path('paypal-authenticated-subscriptions') }}">Subscriptions</a>
+        </div>
+        <ul class="navbar-nav col justify-content-end">
+            {% include "paypal/modals/sandbox-credentials.html.twig" %}
+        </ul>
     </div>
 </nav>
 <div class="navbar">
@@ -24,7 +24,7 @@
     </div>
     <div class="col text-center">
         <button type="button" class="btn btn-success" onclick="window.location.reload();">Refresh</button>
-        <button type="button" class="btn btn-secondary" onclick="location.href = '{{ path('logout') }}';">Log Out</button>
+        <button type="button" class="btn btn-secondary" onclick="location.href = '{{ path('paypal-session-logout') }}';">Log Out</button>
     </div>
 </div>
 <div class="container mt-4">

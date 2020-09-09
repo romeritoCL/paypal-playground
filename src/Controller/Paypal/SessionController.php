@@ -2,8 +2,6 @@
 
 namespace App\Controller\Paypal;
 
-use App\Service\SessionService;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,31 +11,17 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Class SessionController
  * @package App\Controller\Paypal
  *
- * @Route("/paypal")
+ * @Route("/paypal/session", name="paypal-session-")
  */
 class SessionController extends AbstractController
 {
-    /**
-     * @var SessionService
-     */
-    protected $sessionService;
-
-    /**
-     * DefaultController constructor.
-     * @param SessionService $sessionService
-     */
-    public function __construct(SessionService $sessionService)
-    {
-        $this->sessionService = $sessionService;
-    }
-
     /**
      * @Route("/logout", name="logout")
      */
     public function logout()
     {
         $this->sessionService->session->clear();
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('paypal-index');
     }
 
     /**
@@ -53,6 +37,6 @@ class SessionController extends AbstractController
         if ($clientId && $clientSecret) {
             $this->sessionService->updateCredentials($clientId, $clientSecret);
         }
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('paypal-index');
     }
 }

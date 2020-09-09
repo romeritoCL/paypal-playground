@@ -121,9 +121,8 @@
     {
 
         document.getElementById("send-invoice-button").disabled = true;
-        console.log($('#invoice_form').serialize());
         $.post(
-            '{{ path('invoices-create') }}',
+            '{{ path('paypal-authenticated-invoices-create') }}',
             $('#invoice_form').serialize(),
             function(data){
                 document.getElementById('qr-code-result').innerHTML = data
@@ -134,7 +133,7 @@
     function refreshStatus()
     {
         document.getElementById("refresh-status").disabled = true;
-        let url = '{{ path("invoices-refresh", {'invoiceId': 'invoice_id'}) }}';
+        let url = '{{ path("paypal-authenticated-invoices-refresh", {'invoiceId': 'invoice_id'}) }}';
         try {
             url = url.replace("invoice_id", document.getElementById("template-result-id").value);
         } catch (err) {
@@ -142,9 +141,8 @@
             setTimeout(function(){document.getElementById("refresh-status").disabled = false;},2000);
             return;
         }
-        $.post(
+        $.get(
             url,
-            null,
             function(data){
                 document.getElementById('invoice-result').innerHTML = data
             });

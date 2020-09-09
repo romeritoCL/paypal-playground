@@ -31,10 +31,7 @@
         </div>
         <div class="row">
             <div class="col text-center">
-                <form action="{{ path('account') }}" method="post">
-                    <input type="hidden" id="refresh_token" name="refresh_token" value="{{ refresh_token }}">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Go to MyAccount</button>
-                </form>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="location.href = '{{ path('paypal-authenticated-index') }}';">Go to MyAccount</button>
             </div>
         </div>
     </div>

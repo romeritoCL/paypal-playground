@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -16,7 +15,7 @@ class DefaultController extends AbstractController
 {
     public const PAYPAL_FAVICON_URL = 'https://www.paypalobjects.com/webstatic/icon/favicon.ico';
     /**
-     * @Route("/favicon.ico", name="favicon")
+     * @Route("/favicon.ico", name="favicon", methods={"GET"})
      *
      * @return RedirectResponse
      */
@@ -26,13 +25,12 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="index", methods={"GET"})
      *
-     * @return RedirectResponse|Response
+     * @return Response
      */
     public function index()
     {
-        $request = Request::createFromGlobals();
-        return $this->redirectToRoute('anonymous-home', $request->query->all());
+        return $this->render('index.html.twig');
     }
 }

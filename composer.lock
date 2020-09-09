@@ -4,8 +4,52 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bc0630c1457a281a0d546139d5eefa7e",
+    "content-hash": "29bb649b7e3d226a6312d03ad343e7dc",
     "packages": [
+        {
+            "name": "braintree/braintree_php",
+            "version": "5.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/braintree/braintree_php.git",
+                "reference": "c82b5297c617b4ad37b1d16edc8aa869d1f47047"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/braintree/braintree_php/zipball/c82b5297c617b4ad37b1d16edc8aa869d1f47047",
+                "reference": "c82b5297c617b4ad37b1d16edc8aa869d1f47047",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-dom": "*",
+                "ext-hash": "*",
+                "ext-openssl": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=7.2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Braintree\\": "lib/Braintree"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Braintree",
+                    "homepage": "https://www.braintreepayments.com"
+                }
+            ],
+            "description": "Braintree PHP Client Library",
+            "time": "2020-08-05T16:23:34+00:00"
+        },
         {
             "name": "composer/package-versions-deprecated",
             "version": "1.10.99.1",

@@ -1,0 +1,17 @@
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle paypal-logo paypal-font" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            PlayGround
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item bullet" href="{{ path('index') }}">PlayGround Home</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header d-inline">PayPal Commerce Platform <strong class="red-text">Business</strong></h6>
+            <a class="dropdown-item bullet" href="{{ path('paypal-index') }}">PayPal Checkout</a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header d-inline">PayPal Commerce Platform <strong class="red-text">Enterprise</strong></h6>
+            <a class="dropdown-item bullet" href="{{ path('braintree-index') }}">BrainTree</a>
+            <a class="dropdown-item bullet" href="#">HyperWallet</a>
+        </div>
+    </li>
+</ul>

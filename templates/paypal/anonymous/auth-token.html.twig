@@ -35,7 +35,7 @@
         </div>
         <div class="row">
             <div class="col text-center">
-                <form action="{{ path('anonymous-auth-token') }}" method="post">
+                <form action="{{ path('paypal-anonymous-auth-token') }}" method="post">
                     <input type="hidden" id="auth_token" name="auth_token" value="{{ auth_token }}">
                     <button type="submit" class="btn btn-primary btn-lg btn-block">Go on, call PayPal's API</button>
                 </form>

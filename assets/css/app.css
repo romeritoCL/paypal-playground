@@ -1,10 +1,70 @@
-body {
+.red-text {
+    color: red;
 }
 
-.navbar-nav .nav-link {
-    border-right: 2px solid white;
+.bullet:before {
+    content:"• ";
 }
 
-.navbar-nav .nav-link:last-child {
-    border-right: 0;
+.paypal-logo:before {
+    vertical-align: middle;
+    background-image: url('https://upload.wikimedia.org/wikipedia/donate/thumb/0/02/Paypal-logo-white.svg/286px-Paypal-logo-white.svg.png');
+    background-size: 70px 20px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 70px;
+    height: 20px;
+    content:"";
+}
+
+.paypal-developer-logo:before {
+    vertical-align: middle;
+    background-image: url('https://developer.paypal.com/components/dx/img/logo-PayPal-Developer.svg');
+    background-size: 226px 37.5px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 226px;
+    height: 37.5px;
+    content:"";
+}
+
+.braintree-logo:before {
+    vertical-align: middle;
+    background-image: url('https://www.braintreepayments.com/images/braintree-logo-white.png');
+    background-size: 170px 42px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 170px;
+    height: 42px;
+    content:"";
+}
+
+.hyperwallet-logo:before {
+    vertical-align: middle;
+    background-image: url('https://www.bobsguide.com/logos/v-30331.png');
+    background-size: 240px 44px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 240px;
+    height: 44px;
+    content:"";
+}
+
+.paypal-font {
+    color: snow !important;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    font-weight: bold;
+    font-style: oblique;
+}
+
+.bg-paypal {
+    background-color:  #005ea6;
+}
+
+.bg-braintree {
+    background-color: #202020;
+}
+
+.bg-nearly-white {
+    background-color: #f4f4f4;
 }
