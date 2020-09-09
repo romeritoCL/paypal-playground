@@ -21,7 +21,10 @@ class DefaultControllerTest extends WebTestCase
         $indexRoute = $container->get('router')->generate('index');
         $client->request('GET', $indexRoute);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertResponseIsSuccessful('PlayGround');
+        $this->assertStringContainsString(
+            "PayPal Products",
+            $client->getResponse()->getContent()
+        );
     }
 
     /**

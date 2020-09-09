@@ -15,7 +15,7 @@ class DefaultController extends AbstractController
 {
     public const PAYPAL_FAVICON_URL = 'https://www.paypalobjects.com/webstatic/icon/favicon.ico';
     /**
-     * @Route("/favicon.ico", name="favicon")
+     * @Route("/favicon.ico", name="favicon", methods={"GET"})
      *
      * @return RedirectResponse
      */
@@ -25,7 +25,7 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="index", methods={"GET"})
      *
      * @return Response
      */
