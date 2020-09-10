@@ -5,9 +5,9 @@ namespace App\Tests\Controller\Braintree;
 use App\Controller\Braintree\AbstractController;
 use App\Controller\Braintree\DefaultController;
 use App\Service\BraintreeService;
+use App\Tests\Helper\InvisiblePropertiesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use ReflectionException;
-use ReflectionClass;
 
 /**
  * Class DefaultControllerTest
@@ -15,6 +15,8 @@ use ReflectionClass;
  */
 class DefaultControllerTest extends WebTestCase
 {
+    use InvisiblePropertiesTrait;
+
     /**
      * testIndex
      */
@@ -44,11 +46,7 @@ class DefaultControllerTest extends WebTestCase
         $this->assertInstanceOf(AbstractController::class, $defaultController);
         $this->assertInstanceOf(DefaultController::class, $defaultController);
 
-        $defaultControllerReflection = new ReflectionClass(DefaultController::class);
-        $property = $defaultControllerReflection->getProperty('braintreeService');
-        $property->setAccessible(true);
-        $defaultControllerBraintreeServiceAccessible = $property->getValue($defaultController);
-
-        $this->assertInstanceOf(BraintreeService::class, $defaultControllerBraintreeServiceAccessible);
+        $property = $this->getInvisibleProperty('braintreeService', $defaultController);
+        $this->assertInstanceOf(BraintreeService::class, $property);
     }
 }
