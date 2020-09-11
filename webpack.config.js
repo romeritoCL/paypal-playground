@@ -25,8 +25,8 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('paypal', './assets/js/paypal.js')
-    .addEntry('dropui', './assets/js/dropui.js')
-    .addEntry('hosted-fields', './assets/js/hosted-fields.js')
+    .addEntry('dropui', './assets/js/braintree/dropui.js')
+    .addEntry('hosted-fields', './assets/js/braintree/hosted-fields.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
