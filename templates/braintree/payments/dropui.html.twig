@@ -1,0 +1,9 @@
+{% extends 'braintree/payments/base.html.twig' %}
+{% block card_template %}
+    <div id="dropin-container"></div>
+    <button class="btn btn-success mt-2" id="submit-button-one">Get Payment Nonce</button>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('dropui') }}
+{% endblock %}

@@ -22,7 +22,6 @@ class DefaultController extends AbstractController
      */
     public function index()
     {
-        $request = Request::createFromGlobals();
-        return $this->redirectToRoute('paypal-anonymous-index', $request->query->all());
+        return $this->redirectToRoute('paypal-anonymous-index');
     }
 }
