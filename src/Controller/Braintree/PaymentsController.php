@@ -18,14 +18,27 @@ use Symfony\Component\HttpFoundation\Response;
 class PaymentsController extends AbstractController
 {
     /**
-     * @Route("/", name="index", methods={"GET"})
+     * @Route("/dropui", name="dropui", methods={"GET"})
      *
      * @return Response
      */
-    public function payments()
+    public function dropUI()
     {
         $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
-        return $this->render('braintree/payments/payments.html.twig', [
+        return $this->render('braintree/payments/dropui.html.twig', [
+            'clientToken' => $clientToken,
+        ]);
+    }
+
+    /**
+     * @Route("/hosted-fields", name="hosted-fields", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function hostedFields()
+    {
+        $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
+        return $this->render('braintree/payments/hosted-fields.html.twig', [
             'clientToken' => $clientToken,
         ]);
     }

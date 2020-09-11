@@ -10,7 +10,7 @@
         <!-- -->
         <div class="alert alert-secondary text-center">
             <span class="badge badge-pill badge-success">Yeah!</span>
-            <h6 class="d-inline"> BrainTree DropUI example. Follow the steps to perform a sandbox payment</h6>
+            <h6 class="d-inline"> BrainTree HostedFields example. Follow the steps to perform a sandbox payment</h6>
         </div>
         <div id="accordion">
             <div class="card">
@@ -22,8 +22,27 @@
                     <div class="card-body">
                         <div class="row mt-1">
                             <div class="col">
-                                <div id="dropin-container"></div>
-                                <button class="btn btn-success mt-2" id="submit-button-one">Get Payment Nonce</button>
+                                <form id="hosted-fields-form">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Card Number</span>
+                                        </div>
+                                        <div id="card-number" aria-label="Name" class="form-control text-right"></div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">CVV</span>
+                                        </div>
+                                        <div id="card-cvv" aria-label="Name" class="form-control text-right"></div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Expiration Date</span>
+                                        </div>
+                                        <div id="card-expiration" aria-label="Name" class="form-control text-right"></div>
+                                    </div>
+                                    <input type="submit" disabled class="btn btn-success mt-2" id="submit-button-one" value="Get Payment Nonce"/>
+                                </form>
                             </div>
                             <div class="col align-baseline">
                                 <div class="row mt-5">
@@ -133,4 +152,8 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('hosted-fields') }}
 {% endblock %}

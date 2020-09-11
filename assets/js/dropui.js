@@ -5,8 +5,6 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
-import '../css/braintree.css';
-
 import dropin from 'braintree-web-drop-in';
 
 let submitButtonOne = document.querySelector('#submit-button-one');
