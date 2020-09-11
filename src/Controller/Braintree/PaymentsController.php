@@ -27,6 +27,7 @@ class PaymentsController extends AbstractController
         $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
         return $this->render('braintree/payments/dropui.html.twig', [
             'clientToken' => $clientToken,
+            'name' => 'Drop UI'
         ]);
     }
 
@@ -40,6 +41,22 @@ class PaymentsController extends AbstractController
         $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
         return $this->render('braintree/payments/hosted-fields.html.twig', [
             'clientToken' => $clientToken,
+            'name' => 'Hosted Fields'
+        ]);
+    }
+
+    /**
+     * @Route("/apm", name="apm", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function paypal()
+    {
+        $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
+        return $this->render('braintree/payments/apm.html.twig', [
+            'clientToken' => $clientToken,
+            'name' => 'DropUI + APM',
+            'paypalClientId' => $this->getParameter('PAYPAL_SDK_CLIENT_ID'),
         ]);
     }
 

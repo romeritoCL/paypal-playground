@@ -1,0 +1,39 @@
+{% extends 'braintree/payments/base.html.twig' %}
+{% block card_template %}
+    <div class="input-group mb-3" id="apm-creation-destroyable">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="amount-text">Amount</span>
+        </div>
+        <input type="number" aria-label="Price" class="form-control text-right" id="apm-amount" value="180">
+        <div class="input-group-append">
+            <span class="input-group-text">.00 €</span>
+        </div>
+        <button type="button" class="ml-1 btn btn-success"  id="submit-button-one">Create PayPal Button</button>
+    </div>
+    <div class="js-paypal-client-id" data-paypal-client-id="{{ paypalClientId }}"></div>
+    <div id="apm-container"></div>
+{% endblock %}
+{% block card_details_help %}
+    <p>think that you are seeing the Smart Payment Buttons rendered via BrainTree SDK. Also the payment is going
+    to be processed also via BrainTree</p>
+    <div class="row">
+        <div class="col text-center">
+            <p class="font-weight-bold d-inline">PayPal SandBox User</p>
+        </div>
+        <div class="col text-center">
+            <p class="badge-pill badge badge-primary d-inline">Go to PayPal developer and login, find users</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <p class="font-weight-bold d-inline">PayPal SandBox Password</p>
+        </div>
+        <div class="col text-center">
+            <p class="badge-pill badge badge-warning d-inline">password</p>
+        </div>
+    </div>
+{%  endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('apm') }}
+{% endblock %}

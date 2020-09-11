@@ -26,6 +26,7 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('paypal', './assets/js/paypal.js')
     .addEntry('dropui', './assets/js/braintree/dropui.js')
+    .addEntry('apm', './assets/js/braintree/apm.js')
     .addEntry('hosted-fields', './assets/js/braintree/hosted-fields.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
