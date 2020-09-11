@@ -47,12 +47,12 @@
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "5.1.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "symfony/debug-bundle": "^5.1"
     },
     "require-dev": {
         "symfony/browser-kit": "5.1.*",
         "symfony/css-selector": "5.1.*",
-        "symfony/debug-bundle": "^5.1",
         "symfony/maker-bundle": "^1.20",
         "symfony/monolog-bundle": "^3.0",
         "symfony/phpunit-bridge": "^5.1",
