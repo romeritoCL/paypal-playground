@@ -7,6 +7,10 @@
     </button>
     <div class="navbar-brand collapse navbar-collapse" id="navbarSupportedContent">
         {% include "navbar/dropdown.html.twig" %}
+        <div class="navbar-nav col justify-content-center">
+            <a class="nav-link text-light" href="{{ path('braintree-payments-dropui') }}">DropUi</a>
+            <a class="nav-link text-light" href="{{ path('braintree-payments-hosted-fields') }}">HostedFields</a>
+        </div>
     </div>
 </nav>
 <div class="container mt-4">
