@@ -92,6 +92,9 @@ function sendServerPayLoad(payload, deviceData)
     let payloadUrl = jsPayLoadUrl.dataset.payloadUrl;
     let stepOneSubmitButton = document.querySelector('#step-1-submit');
     let submitButtonOne = document.querySelector('#submit-button-one');
+    if (submitButtonOne) {
+        submitButtonOne.disabled = true;
+    }
 
     $.post(
         payloadUrl,
@@ -104,9 +107,11 @@ function sendServerPayLoad(payload, deviceData)
     document.querySelector('#device-info').value = deviceData.correlation_id;
     document.querySelector('#deviceInformation').value = payload.deviceData;
     window.payload_export=payload;
-    setTimeout(function () {
-        submitButtonOne.disabled = false;
-    }, 2000);
+    if (submitButtonOne) {
+        setTimeout(function () {
+            submitButtonOne.disabled = false;
+        }, 2000);
+    }
     stepOneSubmitButton.disabled = false;
 }
 
