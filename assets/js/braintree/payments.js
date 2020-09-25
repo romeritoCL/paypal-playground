@@ -72,12 +72,12 @@ function animatePaymentForm()
     })
 
     stepOneSubmitButton.addEventListener('click', function () {
-        $('#collapseTwo').collapse('show');
+        $('#collapseTwo').collapse(true);
         stepOneSubmitButton.disabled = true;
     });
 
     stepTwoSubmitButton.addEventListener('click', function () {
-        $('#collapseThree').collapse('show');
+        $('#collapseThree').collapse(true);
         stepTwoSubmitButton.disabled = true;
     });
 
