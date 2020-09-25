@@ -50,13 +50,27 @@ class PaymentsController extends AbstractController
      *
      * @return Response
      */
-    public function paypal()
+    public function apm()
     {
         $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
         return $this->render('braintree/payments/apm.html.twig', [
             'clientToken' => $clientToken,
-            'name' => 'DropUI + APM',
+            'name' => 'APM',
             'paypalClientId' => $this->getParameter('PAYPAL_SDK_CLIENT_ID'),
+        ]);
+    }
+
+    /**
+     * @Route("/3ds", name="three-ds", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function threeDS()
+    {
+        $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
+        return $this->render('braintree/payments/3ds.html.twig', [
+            'clientToken' => $clientToken,
+            'name' => 'DropIn 3DS',
         ]);
     }
 

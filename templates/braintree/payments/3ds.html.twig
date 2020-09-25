@@ -1,0 +1,54 @@
+{% extends 'braintree/payments/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('3ds') }}
+{% endblock %}
+{% block step_zero %}
+<div class="card">
+    <div class="card-header" id="headingZero">
+        <h5 class="mb-0 d-inline">0. Create customer</h5>
+        <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseZero" aria-expanded="true" aria-controls="collapseZero" id="step-0-submit">Next Step</button>
+    </div>
+    <div id="collapseZero" class="collapse show" aria-labelledby="headingZero" data-parent="#accordion">
+        <div class="card-body">
+            <div class="row mt-1">
+                <div class="col">
+                    <div id="customer-json-editor" style="height: 600px;"></div>
+                </div>
+                <div class="col align-baseline">
+                    <div class="col">
+                        <p class="font-weight-bold d-inline">On the STEP 1 please verify</p>
+                        <p class="font-weight-bold d-inline">that the paymentNonce details</p>
+                        <p class="font-weight-bold d-inline">contains the Liability tags</p>
+                    </div>
+                    <div class="row mt-5 ml-5">
+                        <div class="col">
+                            <p class="font-weight-bold d-inline">liabilityShifted</p>
+                        </div>
+                        <div class="col text-center">
+                            <p class="badge-pill badge badge-success d-inline">true</p>
+                        </div>
+                    </div>
+                    <div class="row ml-5">
+                        <div class="col">
+                            <p class="font-weight-bold d-inline">liabilityShiftPossible</p>
+                        </div>
+                        <div class="col text-center">
+                            <p class="badge-pill badge badge-warning d-inline">true</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block element_one_class %}{% endblock %}
+{% block card_template %}
+    <div id="dropin-container"></div>
+    <button class="btn btn-success mt-2" id="submit-button-one">Get Payment Nonce</button>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('3ds') }}
+{% endblock %}

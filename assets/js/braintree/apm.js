@@ -52,7 +52,7 @@ submitButtonOne.addEventListener('click', function () {
                         });
                     },
 
-                    onApprove: function (data, actions) {
+                    onApprove: function (data) {
                         return paypalCheckoutInstance.tokenizePayment(data, function (err, payload) {
                             braintreePayments.sendServerPayLoad(payload,deviceData);
                         });

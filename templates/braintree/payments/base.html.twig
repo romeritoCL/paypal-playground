@@ -13,12 +13,13 @@
             <h6 class="d-inline"> BrainTree {{ name}} example. Follow the steps to perform a sandbox payment</h6>
         </div>
         <div id="accordion">
+            {% block step_zero %}{% endblock %}
             <div class="card">
                 <div class="card-header" id="headingOne">
                     <h5 class="mb-0 d-inline">1. Identify card</h5>
                     <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="step-1-submit">Next Step</button>
                 </div>
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div id="collapseOne" class="collapse {% block element_one_class %}show{% endblock %}" aria-labelledby="headingOne" data-parent="#accordion">
                     <div class="card-body">
                         <div class="row mt-1">
                             <div class="col">
