@@ -9,7 +9,7 @@
         <div class="js-get-sale-url" data-get-sale-url="{{ path("braintree-payments-get", {'transactionId': 'transaction_id_replace'}) }}"></div>
         <!-- -->
         <div class="alert alert-secondary text-center">
-            <span class="badge badge-pill badge-success">Yeah!</span>
+            <span class="badge badge-pill badge-success">{{ random(['Yeah!', 'C\'mon!', 'Booom!', 'Awesome!', 'Massive!','Bombastic!']) }}</span>
             <h6 class="d-inline"> BrainTree {{ name}} example. Follow the steps to perform a sandbox payment</h6>
         </div>
         <div id="accordion">

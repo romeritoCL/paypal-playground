@@ -15,6 +15,10 @@
             <a class="nav-link text-light" href="{{ path('braintree-payments-vault') }}">Vault</a>
         </div>
     </div>
+    <span class="badge badge-pill badge-success">{{ random([
+            'Yeah!', 'C\'mon!', 'Booom!', 'Awesome!', 'Massive!','Bombastic!','Payments Rocks',
+            'PayPal Powah!', 'BrainTree you say?', 'What about some PayPal Magic?'
+        ]) }}</span>
 </nav>
 <div class="container mt-4">
     {% block content %}{% endblock %}
