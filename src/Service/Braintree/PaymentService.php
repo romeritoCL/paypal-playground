@@ -19,7 +19,7 @@ class PaymentService extends AbstractBraintreeService
     public function getClientToken(string $customerId = null): ?string
     {
         try {
-            if ($customerId) {
+            if ($customerId !== null) {
                 return $this->gateway->clientToken()->generate(['customerId' => $customerId]);
             }
             return $this->gateway->clientToken()->generate();
