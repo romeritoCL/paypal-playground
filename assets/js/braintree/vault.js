@@ -1,22 +1,65 @@
 import braintreePayments from './payments';
 import JSONEditor from 'jsoneditor';
 import 'jsoneditor/dist/jsoneditor.css';
+import dropin from "braintree-web-drop-in";
 
 let stepZeroSubmitButton = document.querySelector('#step-0-submit');
-let jsClientToken = document.querySelector('.js-client-token');
-let clientToken = jsClientToken.dataset.clientToken;
 let searchCustomerButton = document.getElementById('search-customer');
 let createCustomerButton = document.getElementById('create-customer');
 let jsGetCustomerUrl = document.querySelector('.js-get-customer-url');
 let getCustomerUrl = jsGetCustomerUrl.dataset.getCustomerUrl;
+let jsGetCustomerTokenUrl = document.querySelector('.js-get-customer-token-url');
+let getCustomerTokenUrl = jsGetCustomerTokenUrl.dataset.getCustomerTokenUrl;
 let jsCreateCustomerUrl = document.querySelector('.js-create-customer-url');
 let createCustomerUrl = jsCreateCustomerUrl.dataset.createCustomerUrl;
+let clientToken, customerId;
 
 braintreePayments.animatePaymentForm();
 
 stepZeroSubmitButton.addEventListener('click', function () {
-    $('#collapseOne').collapse(true);
-    stepZeroSubmitButton.disabled = true;
+    getCustomerTokenUrl = getCustomerTokenUrl.replace("customer_id_replace", customerId);
+    $.get(
+        getCustomerTokenUrl,
+        function (data) {
+            clientToken = data;
+            $('#collapseOne').collapse(true);
+            stepZeroSubmitButton.disabled = true;
+            if (clientToken) {
+                dropin.create({
+                    vaultManager: true,
+                    authorization: clientToken,
+                    container: '#dropin-container',
+                    dataCollector: {
+                        kount: true
+                    },
+                    paypal: {
+                        flow: 'vault',
+                        buttonStyle: {
+                            color: 'black',
+                            shape: 'rect',
+                            size: 'responsive',
+                            label: 'paypal',
+                            tagline: false
+                        }
+                    }
+                }, function (createErr, instance) {
+                    let submitButtonOne = document.querySelector('#submit-button-one');
+                    submitButtonOne.addEventListener('click', function (event) {
+                        event.stopPropagation();
+                        submitButtonOne.disabled=true;
+                        instance.requestPaymentMethod(function (err, payload) {
+                            if (err) {
+                                submitButtonOne.disabled = false
+                                return false;
+                            }
+                            let deviceData = JSON.parse(payload.deviceData);
+                            braintreePayments.sendServerPayLoad(payload,deviceData);
+                        })
+                    });
+                });
+            }
+        }
+    );
 });
 
 searchCustomerButton.addEventListener('click', function () {
@@ -26,6 +69,10 @@ searchCustomerButton.addEventListener('click', function () {
         getCustomerUrl,
         function (data) {
             document.getElementById('search-customer-form').innerHTML = data;
+            $('#customer-list-group a').on('click', function () {
+                customerId = this.id;
+            });
+            stepZeroSubmitButton.disabled = false;
         }
     );
 })
@@ -66,8 +113,10 @@ createCustomerButton.addEventListener('click', function () {
             customerJsonEditor.get(),
             function (data) {
                 document.getElementById('create-customer-form').innerHTML = data;
-                //TODO VERIFY CUSTOMER ID IS SET
-                if (true) {
+                let createCustomerResult = document.getElementById('template-result-id');
+                customerId = createCustomerResult.value;
+                createCustomerResult.parentNode.removeChild(createCustomerResult);
+                if (customerId) {
                     stepZeroSubmitButton.disabled = false;
                 }
             }

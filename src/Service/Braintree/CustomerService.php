@@ -18,14 +18,20 @@ class CustomerService extends AbstractBraintreeService
     public function listCustomers()
     {
         $customers = [];
-        $customersList = $this->gateway->customer()->search([]);
+        $customersList = $this->gateway->customer()->search([
+
+        ]);
         foreach ($customersList as $customer) {
-            $customers [] = [
+            $customer = [
                 'id' => $customer->id,
                 'full_name' => $customer->firstName . ' ' . $customer->lastName,
                 'email' => $customer->email,
                 'available_payment_methods' => count($customer->paymentMethods)
             ];
+
+            if ($customer['full_name'] && $customer['email']) {
+                array_unshift($customers, $customer);
+            }
         }
         return $customers;
     }

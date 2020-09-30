@@ -5,6 +5,7 @@
 {% endblock %}
 {% block step_zero %}
 <div class="js-get-customer-url" data-get-customer-url="{{ path('braintree-customers-list') }}"></div>
+<div class="js-get-customer-token-url" data-get-customer-token-url="{{ path('braintree-customers-get-cutomer-token', {'customerId': 'customer_id_replace'}) }}"></div>
 <div class="js-create-customer-url" data-create-customer-url="{{ path('braintree-customers-create') }}"></div>
 <div class="card">
     <div class="card-header" id="headingZero">

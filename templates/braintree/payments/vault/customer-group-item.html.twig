@@ -1,4 +1,4 @@
-<div class="list-group" id="list-tab" role="tablist">
+<div class="list-group list-group-scroll" id="customer-list-group" role="tablist">
     <a class="list-group-item list-group-item-action disabled" data-toggle="list" role="tab">
         <div class="row">
             <div class="col text-left">
@@ -13,18 +13,18 @@
         </div>
     </a>
     {% for customer in customers %}
-        <a class="list-group-item list-group-item-action {% if loop.first %}active{% endif %}" id="{{ customer.id }}" data-toggle="list" href="#{{ customer.id }}" role="tab" aria-controls="{{ customer.id }}">
-            <div class="row">
-                <div class="col text-left">
-                    <span>{{ customer.full_name }}</span>
-                </div>
-                <div class="col text-center">
-                    <span>{{ customer.email }}</span>
-                </div>
-                <div class="col text-right">
-                    <span>{{ customer.available_payment_methods }}</span>
-                </div>
+    <a class="list-group-item list-group-item-action {% if loop.first %}active{% endif %}" id="{{ customer.id }}" data-toggle="list" href="#{{ customer.id }}" role="tab" aria-controls="{{ customer.id }}">
+        <div class="row">
+            <div class="col text-left">
+                <span>{{ customer.full_name|length > 18 ? customer.full_name|slice(0, 18) ~ '...' : customer.full_name  }}</span>
             </div>
-        </a>
+            <div class="col text-center">
+                <span>{{ customer.email|length > 12 ? customer.email|slice(0, 12) ~ '...' : customer.email  }}</span>
+            </div>
+            <div class="col text-right">
+                <span>{{ customer.available_payment_methods }}</span>
+            </div>
+        </div>
+    </a>
     {% endfor %}
 </div>

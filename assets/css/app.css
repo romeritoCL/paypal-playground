@@ -68,3 +68,10 @@
 .bg-nearly-white {
     background-color: #f4f4f4;
 }
+
+.list-group-scroll {
+    max-height: 320px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
