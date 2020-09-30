@@ -1,0 +1,58 @@
+{% extends 'braintree/payments/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('vault') }}
+{% endblock %}
+{% block step_zero %}
+<div class="js-get-customer-url" data-get-customer-url="{{ path('braintree-customers-list') }}"></div>
+<div class="js-get-customer-token-url" data-get-customer-token-url="{{ path('braintree-customers-get-cutomer-token', {'customerId': 'customer_id_replace'}) }}"></div>
+<div class="js-create-customer-url" data-create-customer-url="{{ path('braintree-customers-create') }}"></div>
+<div class="card">
+    <div class="card-header" id="headingZero">
+        <h5 class="mb-0 d-inline">0.Customer Database</h5>
+        <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseZero" aria-expanded="true" aria-controls="collapseZero" id="step-0-submit">Next Step</button>
+    </div>
+    <div id="collapseZero" class="collapse show" aria-labelledby="headingZero" data-parent="#accordion">
+        <div class="card-body">
+            <div class="row ml-1">
+                <p class="d-inline">
+                    <span class="badge badge-pill badge-info">BrainTree</span>
+                    Gives you the option to create or select
+                    <span class="badge badge-pill badge-secondary">Customers</span>
+                    from the
+                    <span class="badge badge-pill badge-warning">Vault</span>.
+                    <span class="text-secondary">And many other options.</span>
+                </p>
+            </div>
+            <div class="row text-center mt-1">
+                <div class="col">
+                    <button class="btn btn-success d-inline float-right" id="create-customer">Create Customer</button>
+                </div>
+                <div class="col"><h5>OR</h5></div>
+                <div class="col">
+                    <button class="btn btn-success d-inline float-left" id="search-customer">Search Customers</button>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-lg-6 mt-3 invisible" id="create-customer-form">
+                    <div class="col">
+                        <div id="customer-json-editor" style="height: 300px;"></div>
+                        <button class="btn btn-primary mt-2 btn-block" id="create-customer-post">Go Go Go</button>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-3" id="search-customer-form">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block element_one_class %}{% endblock %}
+{% block card_template %}
+    <div id="dropin-container"></div>
+    <button class="btn btn-success mt-2" id="submit-button-one">Get Payment Nonce</button>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('vault') }}
+{% endblock %}

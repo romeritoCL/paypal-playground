@@ -13,11 +13,15 @@ use Exception;
 class PaymentService extends AbstractBraintreeService
 {
     /**
-     * @return string
+     * @param string|null $customerId
+     * @return string|null
      */
-    public function getClientToken(): ?string
+    public function getClientToken(string $customerId = null): ?string
     {
         try {
+            if ($customerId !== null) {
+                return $this->gateway->clientToken()->generate(['customerId' => $customerId]);
+            }
             return $this->gateway->clientToken()->generate();
         } catch (Exception $exception) {
             $this->logger->error(

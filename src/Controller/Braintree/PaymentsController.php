@@ -75,6 +75,20 @@ class PaymentsController extends AbstractController
     }
 
     /**
+     * @Route("/vault", name="vault", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function vault()
+    {
+        $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
+        return $this->render('braintree/payments/vault.html.twig', [
+            'clientToken' => $clientToken,
+            'name' => 'DropIn Vaulting',
+        ]);
+    }
+
+    /**
      * @Route("/payload", name="payload", methods={"POST"})
      *
      * @return Response
