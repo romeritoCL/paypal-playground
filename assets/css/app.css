@@ -6,48 +6,16 @@
     content:"• ";
 }
 
-.paypal-logo:before {
-    vertical-align: middle;
-    background-image: url('https://upload.wikimedia.org/wikipedia/donate/thumb/0/02/Paypal-logo-white.svg/286px-Paypal-logo-white.svg.png');
-    background-size: 70px 20px;
-    background-repeat: no-repeat;
-    display: inline-block;
-    width: 70px;
-    height: 20px;
-    content:"";
+.logo-paypal {
+    max-width: 120px;
 }
 
-.paypal-developer-logo:before {
-    vertical-align: middle;
-    background-image: url('https://developer.paypal.com/components/dx/img/logo-PayPal-Developer.svg');
-    background-size: 226px 37.5px;
-    background-repeat: no-repeat;
-    display: inline-block;
-    width: 226px;
-    height: 37.5px;
-    content:"";
+.logo-braintree {
+    max-width: 160px;
 }
 
-.braintree-logo:before {
-    vertical-align: middle;
-    background-image: url('https://www.braintreepayments.com/images/braintree-logo-white.png');
-    background-size: 170px 42px;
-    background-repeat: no-repeat;
-    display: inline-block;
-    width: 170px;
-    height: 42px;
-    content:"";
-}
-
-.hyperwallet-logo:before {
-    vertical-align: middle;
-    background-image: url('https://www.bobsguide.com/logos/v-30331.png');
-    background-size: 240px 44px;
-    background-repeat: no-repeat;
-    display: inline-block;
-    width: 240px;
-    height: 44px;
-    content:"";
+.logo-hyperwallet {
+    max-width: 220px;
 }
 
 .paypal-font {
