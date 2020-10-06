@@ -8,6 +8,7 @@
 import '../css/app.css';
 
 require('jquery');
+require('jqueryui')
 require('bootstrap');
 require("bootstrap/dist/css/bootstrap.css");
 

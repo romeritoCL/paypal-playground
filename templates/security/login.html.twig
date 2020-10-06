@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block title %}PlayGround Login{% endblock %}
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" xmlns="http://www.w3.org/1999/html">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-brand collapse navbar-collapse" id="navbarSupportedContent">
+            {% include "navbar/dropdown.html.twig" %}
+        </div>
+    </nav>
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Please Login</h1>
+            <p class="lead text-muted">To prevent bots indexing this playground</p>
+        </div>
+    </section>
+    <div class="container-fluid text-center">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %}
+        <h1 class="h4 mb-3 font-weight-normal">Use your creativity and type any email</h1>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                <form id="login-form" action="{{ path('app_login') }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <div class="input-group mb-3">
+                        <input required autofocus type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="john@paypal.com" aria-label="john@paypal.com" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="submit">GO</button>
+                        </div>
+                    </div>
+                    <div id="g-recaptcha" class="g-recaptcha" data-sitekey="{{ GOOGLE_RECAPTCHA_SITE_KEY }}"></div>
+                </form>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('login') }}
+{% endblock %}
