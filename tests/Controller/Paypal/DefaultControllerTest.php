@@ -4,6 +4,7 @@ namespace App\Tests\Controller\Paypal;
 
 use App\Controller\Paypal\AbstractController;
 use App\Controller\Paypal\DefaultController;
+use App\Security\User;
 use App\Service\PaypalService;
 use App\Service\SessionService;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -24,6 +25,7 @@ class DefaultControllerTest extends WebTestCase
     public function testIndex()
     {
         $client = static::createClient();
+        $client->loginUser(new User('john@paypal.com'));
         $container = self::$container;
         $indexRoute = $container->get('router')->generate('paypal-index');
         $anonymousIndexRoute = $container->get('router')->generate('paypal-anonymous-index');

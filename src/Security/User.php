@@ -21,6 +21,15 @@ class User implements UserInterface
     private $roles = [];
 
     /**
+     * User constructor.
+     * @param string $email
+     */
+    public function __construct(string $email)
+    {
+        $this->email = $email;
+    }
+
+    /**
      * @return string|null
      */
     public function getEmail(): ?string
