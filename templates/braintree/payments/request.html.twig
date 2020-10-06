@@ -1,0 +1,17 @@
+{% extends 'braintree/payments/base.html.twig' %}
+{% block card_template %}
+    <div class="row invisible" id="PaymentRequestButton">
+        <button id="payment-request-button" class="btn btn-primary">Payment Request</button>
+    </div>
+    <div class="row invisible" id="PaymentRequestHostedFields">
+        <div class="badge badge-pill badge-secondary">
+            Impossible to render the PaymentRequest component of the browser
+        </div>
+    </div>
+{% endblock %}
+{% block card_details_help %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('request') }}
+{% endblock %}
