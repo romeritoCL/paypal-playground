@@ -89,6 +89,20 @@ class PaymentsController extends AbstractController
     }
 
     /**
+     * @Route("/request", name="request", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function request()
+    {
+        $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
+        return $this->render('braintree/payments/request.html.twig', [
+            'clientToken' => $clientToken,
+            'name' => 'Payment Request',
+        ]);
+    }
+
+    /**
      * @Route("/payload", name="payload", methods={"POST"})
      *
      * @return Response

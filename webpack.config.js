@@ -30,6 +30,7 @@ Encore
     .addEntry('3ds', './assets/js/braintree/3ds.js')
     .addEntry('vault', './assets/js/braintree/vault.js')
     .addEntry('hosted-fields', './assets/js/braintree/hosted-fields.js')
+    .addEntry('request', './assets/js/braintree/request.js')
     .addEntry('login', './assets/js/security/login.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
