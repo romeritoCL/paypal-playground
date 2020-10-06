@@ -22,9 +22,9 @@ class User implements UserInterface
 
     /**
      * User constructor.
-     * @param string $email
+     * @param string|null $email
      */
-    public function __construct(string $email)
+    public function __construct(string $email = null)
     {
         $this->email = $email;
     }
