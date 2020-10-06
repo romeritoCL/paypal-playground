@@ -18,6 +18,7 @@
         "braintree-web": "^3.65.0",
         "braintree-web-drop-in": "^1.23.0",
         "jquery": "^3.5.1",
+        "jqueryui": "^1.11.1",
         "jsoneditor": "^9.1.1",
         "popper.js": "^1.16.1"
     }

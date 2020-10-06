@@ -19,18 +19,18 @@
     semver "^5.5.0"
 
 "@babel/core@^7.7.0":
-  version "7.11.4"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/core/-/core-7.11.4.tgz#4301dfdfafa01eeb97f1896c5501a3f0655d4229"
-  integrity sha1-QwHf36+gHuuX8YlsVQGj8GVdQik=
+  version "7.11.6"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/core/-/core-7.11.6.tgz#3a9455dc7387ff1bac45770650bc13ba04a15651"
+  integrity sha1-OpRV3HOH/xusRXcGULwTugShVlE=
   dependencies:
     "@babel/code-frame" "^7.10.4"
-    "@babel/generator" "^7.11.4"
+    "@babel/generator" "^7.11.6"
     "@babel/helper-module-transforms" "^7.11.0"
     "@babel/helpers" "^7.10.4"
-    "@babel/parser" "^7.11.4"
+    "@babel/parser" "^7.11.5"
     "@babel/template" "^7.10.4"
-    "@babel/traverse" "^7.11.0"
-    "@babel/types" "^7.11.0"
+    "@babel/traverse" "^7.11.5"
+    "@babel/types" "^7.11.5"
     convert-source-map "^1.7.0"
     debug "^4.1.0"
     gensync "^1.0.0-beta.1"
@@ -40,12 +40,12 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/generator@^7.11.0", "@babel/generator@^7.11.4":
-  version "7.11.4"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/generator/-/generator-7.11.4.tgz#1ec7eec00defba5d6f83e50e3ee72ae2fee482be"
-  integrity sha1-HsfuwA3vul1vg+UOPucq4v7kgr4=
+"@babel/generator@^7.11.5", "@babel/generator@^7.11.6":
+  version "7.11.6"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/generator/-/generator-7.11.6.tgz#b868900f81b163b4d464ea24545c61cbac4dc620"
+  integrity sha1-uGiQD4GxY7TUZOokVFxhy6xNxiA=
   dependencies:
-    "@babel/types" "^7.11.0"
+    "@babel/types" "^7.11.5"
     jsesc "^2.5.1"
     source-map "^0.5.0"
 
@@ -256,10 +256,10 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.10.4", "@babel/parser@^7.11.0", "@babel/parser@^7.11.4":
-  version "7.11.4"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/parser/-/parser-7.11.4.tgz#6fa1a118b8b0d80d0267b719213dc947e88cc0ca"
-  integrity sha1-b6GhGLiw2A0CZ7cZIT3JR+iMwMo=
+"@babel/parser@^7.10.4", "@babel/parser@^7.11.5":
+  version "7.11.5"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/parser/-/parser-7.11.5.tgz#c7ff6303df71080ec7a4f5b8c003c58f1cf51037"
+  integrity sha1-x/9jA99xCA7HpPW4wAPFjxz1EDc=
 
 "@babel/plugin-proposal-async-generator-functions@^7.10.4":
   version "7.10.5"
@@ -704,9 +704,9 @@
     "@babel/helper-plugin-utils" "^7.10.4"
 
 "@babel/preset-env@^7.4.0":
-  version "7.11.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/preset-env/-/preset-env-7.11.0.tgz#860ee38f2ce17ad60480c2021ba9689393efb796"
-  integrity sha1-hg7jjyzhetYEgMICG6lok5Pvt5Y=
+  version "7.11.5"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/preset-env/-/preset-env-7.11.5.tgz#18cb4b9379e3e92ffea92c07471a99a2914e4272"
+  integrity sha1-GMtLk3nj6S/+qSwHRxqZopFOQnI=
   dependencies:
     "@babel/compat-data" "^7.11.0"
     "@babel/helper-compilation-targets" "^7.10.4"
@@ -770,7 +770,7 @@
     "@babel/plugin-transform-unicode-escapes" "^7.10.4"
     "@babel/plugin-transform-unicode-regex" "^7.10.4"
     "@babel/preset-modules" "^0.1.3"
-    "@babel/types" "^7.11.0"
+    "@babel/types" "^7.11.5"
     browserslist "^4.12.0"
     core-js-compat "^3.6.2"
     invariant "^2.2.2"
@@ -778,9 +778,9 @@
     semver "^5.5.0"
 
 "@babel/preset-modules@^0.1.3":
-  version "0.1.3"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/preset-modules/-/preset-modules-0.1.3.tgz#13242b53b5ef8c883c3cf7dddd55b36ce80fbc72"
-  integrity sha1-EyQrU7XvjIg8PPfd3VWzbOgPvHI=
+  version "0.1.4"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/preset-modules/-/preset-modules-0.1.4.tgz#362f2b68c662842970fdb5e254ffc8fc1c2e415e"
+  integrity sha1-Ni8raMZihClw/bXiVP/I/BwuQV4=
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-proposal-unicode-property-regex" "^7.4.4"
@@ -804,36 +804,29 @@
     "@babel/parser" "^7.10.4"
     "@babel/types" "^7.10.4"
 
-"@babel/traverse@^7.10.4", "@babel/traverse@^7.11.0":
-  version "7.11.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/traverse/-/traverse-7.11.0.tgz#9b996ce1b98f53f7c3e4175115605d56ed07dd24"
-  integrity sha1-m5ls4bmPU/fD5BdRFWBdVu0H3SQ=
+"@babel/traverse@^7.10.4", "@babel/traverse@^7.11.5":
+  version "7.11.5"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/traverse/-/traverse-7.11.5.tgz#be777b93b518eb6d76ee2e1ea1d143daa11e61c3"
+  integrity sha1-vnd7k7UY62127i4eodFD2qEeYcM=
   dependencies:
     "@babel/code-frame" "^7.10.4"
-    "@babel/generator" "^7.11.0"
+    "@babel/generator" "^7.11.5"
     "@babel/helper-function-name" "^7.10.4"
     "@babel/helper-split-export-declaration" "^7.11.0"
-    "@babel/parser" "^7.11.0"
-    "@babel/types" "^7.11.0"
+    "@babel/parser" "^7.11.5"
+    "@babel/types" "^7.11.5"
     debug "^4.1.0"
     globals "^11.1.0"
     lodash "^4.17.19"
 
-"@babel/types@^7.10.4", "@babel/types@^7.10.5", "@babel/types@^7.11.0", "@babel/types@^7.4.4":
-  version "7.11.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/types/-/types-7.11.0.tgz#2ae6bf1ba9ae8c3c43824e5861269871b206e90d"
-  integrity sha1-Kua/G6mujDxDgk5YYSaYcbIG6Q0=
+"@babel/types@^7.10.4", "@babel/types@^7.10.5", "@babel/types@^7.11.0", "@babel/types@^7.11.5", "@babel/types@^7.4.4":
+  version "7.11.5"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@babel/types/-/types-7.11.5.tgz#d9de577d01252d77c6800cee039ee64faf75662d"
+  integrity sha1-2d5XfQElLXfGgAzuA57mT691Zi0=
   dependencies:
     "@babel/helper-validator-identifier" "^7.10.4"
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
-
-"@braintree/asset-loader@0.3.1":
-  version "0.3.1"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/asset-loader/-/asset-loader-0.3.1.tgz#2ee703193fba9f479e674e76ac83f2ccfd6e7a9e"
-  integrity sha1-LucDGT+6n0eeZ052rIPyzP1uep4=
-  dependencies:
-    promise-polyfill "^8.1.0"
 
 "@braintree/asset-loader@0.4.4":
   version "0.4.4"
@@ -842,75 +835,45 @@
   dependencies:
     promise-polyfill "^8.1.3"
 
-"@braintree/browser-detection@1.10.0", "@braintree/browser-detection@^1.10.0", "@braintree/browser-detection@^1.9.0":
+"@braintree/browser-detection@1.10.0", "@braintree/browser-detection@^1.10.0":
   version "1.10.0"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/browser-detection/-/browser-detection-1.10.0.tgz#065c63e526e874b28d9957423be04b7788fd68ee"
   integrity sha1-Blxj5SbodLKNmVdCO+BLd4j9aO4=
-
-"@braintree/browser-detection@1.9.0":
-  version "1.9.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/browser-detection/-/browser-detection-1.9.0.tgz#bbaca6965a0685d0d91fd6e9194db034857d1d46"
-  integrity sha1-u6ymlloGhdDZH9bpGU2wNIV9HUY=
-
-"@braintree/class-list@0.1.0":
-  version "0.1.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/class-list/-/class-list-0.1.0.tgz#d6c8606ce6a82b4b37f28e32eadd090abcf1adaa"
-  integrity sha1-1shgbOaoK0s38o4y6t0JCrzxrao=
 
 "@braintree/class-list@0.2.0":
   version "0.2.0"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/class-list/-/class-list-0.2.0.tgz#4c4352ac19c262f61526f93d07d248244b399ec4"
   integrity sha1-TENSrBnCYvYVJvk9B9JIJEs5nsQ=
 
-"@braintree/event-emitter@0.3.0":
-  version "0.3.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/event-emitter/-/event-emitter-0.3.0.tgz#8239ad51c71707b317f30da2d29abb369f91a579"
-  integrity sha1-gjmtUccXB7MX8w2i0pq7Np+RpXk=
-
 "@braintree/event-emitter@0.4.1":
   version "0.4.1"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/event-emitter/-/event-emitter-0.4.1.tgz#204eaad8cf84eb7bf81fb288a359d34eda85a396"
   integrity sha1-IE6q2M+E63v4H7KIo1nTTtqFo5Y=
-
-"@braintree/extended-promise@0.3.1":
-  version "0.3.1"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/extended-promise/-/extended-promise-0.3.1.tgz#13eb22125c02bd47ff41a68d67639e4b185f03d5"
-  integrity sha1-E+siElwCvUf/QaaNZ2OeSxhfA9U=
 
 "@braintree/extended-promise@0.4.0":
   version "0.4.0"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/extended-promise/-/extended-promise-0.4.0.tgz#7c14bce7f32f451a4a10265159cd8b3a817cd051"
   integrity sha1-fBS85/MvRRpKECZRWc2LOoF80FE=
 
-"@braintree/iframer@1.0.3":
-  version "1.0.3"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/iframer/-/iframer-1.0.3.tgz#21dd1fd4cebd4154aeab1efa4d5b0d5f4384364e"
-  integrity sha1-Id0f1M69QVSuqx76TVsNX0OENk4=
-
 "@braintree/iframer@1.1.0":
   version "1.1.0"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/iframer/-/iframer-1.1.0.tgz#7e59b975c2a48bd92616f653367a5214fc2ddd4b"
   integrity sha1-flm5dcKki9kmFvZTNnpSFPwt3Us=
-
-"@braintree/sanitize-url@4.0.1":
-  version "4.0.1"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/sanitize-url/-/sanitize-url-4.0.1.tgz#16e719eba72693f95989c05f2b3b424f2aabc5b0"
-  integrity sha1-FucZ66cmk/lZicBfKztCTyqrxbA=
 
 "@braintree/sanitize-url@4.1.1":
   version "4.1.1"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/sanitize-url/-/sanitize-url-4.1.1.tgz#671b3cfdbcc40d1449036ce586e882ab6150828e"
   integrity sha1-Zxs8/bzEDRRJA2zlhuiCq2FQgo4=
 
+"@braintree/sanitize-url@5.0.0":
+  version "5.0.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/sanitize-url/-/sanitize-url-5.0.0.tgz#3ba791f37b90e7f6170d252b63aacfcae943c039"
+  integrity sha1-O6eR83uQ5/YXDSUrY6rPyulDwDk=
+
 "@braintree/uuid@0.1.0":
   version "0.1.0"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/uuid/-/uuid-0.1.0.tgz#ab9355015a7fb0e25cf3c2ff9cd32ece8ea304b0"
   integrity sha1-q5NVAVp/sOJc88L/nNMuzo6jBLA=
-
-"@braintree/wrap-promise@2.0.0":
-  version "2.0.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@braintree/wrap-promise/-/wrap-promise-2.0.0.tgz#6bf4bd934f18bb1b460bdd608d81154db8d2ff65"
-  integrity sha1-a/S9k08YuxtGC91gjYEVTbjS/2U=
 
 "@braintree/wrap-promise@2.1.0":
   version "2.1.0"
@@ -960,11 +923,6 @@
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
   integrity sha1-M2utwb7sudrMOL6izzKt9ieoQho=
 
-"@types/color-name@^1.1.1":
-  version "1.1.1"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
-  integrity sha1-HBJhu+qhCoBVu8XYq4S3sq/IRqA=
-
 "@types/glob@^7.1.1":
   version "7.1.3"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@types/glob/-/glob-7.1.3.tgz#e6ba80f36b7daad2c685acd9266382e68985c183"
@@ -973,10 +931,10 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/json-schema@^7.0.4":
-  version "7.0.5"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@types/json-schema/-/json-schema-7.0.5.tgz#dcce4430e64b443ba8945f0290fb564ad5bac6dd"
-  integrity sha1-3M5EMOZLRDuolF8CkPtWStW6xt0=
+"@types/json-schema@^7.0.5":
+  version "7.0.6"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@types/json-schema/-/json-schema-7.0.6.tgz#f4c7ec43e81b319a9815115031709f26987891f0"
+  integrity sha1-9MfsQ+gbMZqYFRFQMXCfJph4kfA=
 
 "@types/minimatch@*":
   version "3.0.3"
@@ -984,9 +942,9 @@
   integrity sha1-PcoOPzOyAPx9ETnAzZbBJoyt/Z0=
 
 "@types/node@*":
-  version "14.6.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@types/node/-/node-14.6.0.tgz#7d4411bf5157339337d7cff864d9ff45f177b499"
-  integrity sha1-fUQRv1FXM5M318/4ZNn/RfF3tJk=
+  version "14.11.5"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@types/node/-/node-14.11.5.tgz#fecad41c041cae7f2404ad4b2d0742fdb628b305"
+  integrity sha1-/srUHAQcrn8kBK1LLQdC/bYoswU=
 
 "@types/q@^1.5.1":
   version "1.5.4"
@@ -1004,25 +962,25 @@
   integrity sha1-qcpLcKGLJwzLK8Cqr+/R1Ia36nQ=
 
 "@types/uglify-js@*":
-  version "3.9.3"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@types/uglify-js/-/uglify-js-3.9.3.tgz#d94ed608e295bc5424c9600e6b8565407b6b4b6b"
-  integrity sha1-2U7WCOKVvFQkyWAOa4VlQHtrS2s=
+  version "3.11.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@types/uglify-js/-/uglify-js-3.11.0.tgz#2868d405cc45cd9dc3069179052103032c33afbc"
+  integrity sha1-KGjUBcxFzZ3DBpF5BSEDAywzr7w=
   dependencies:
     source-map "^0.6.1"
 
 "@types/webpack-sources@*":
-  version "1.4.2"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@types/webpack-sources/-/webpack-sources-1.4.2.tgz#5d3d4dea04008a779a90135ff96fb5c0c9e6292c"
-  integrity sha1-XT1N6gQAineakBNf+W+1wMnmKSw=
+  version "2.0.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@types/webpack-sources/-/webpack-sources-2.0.0.tgz#08216ab9be2be2e1499beaebc4d469cec81e82a7"
+  integrity sha1-CCFqub4r4uFJm+rrxNRpzsgegqc=
   dependencies:
     "@types/node" "*"
     "@types/source-list-map" "*"
     source-map "^0.7.3"
 
 "@types/webpack@^4.4.31":
-  version "4.41.21"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@types/webpack/-/webpack-4.41.21.tgz#cc685b332c33f153bb2f5fc1fa3ac8adeb592dee"
-  integrity sha1-zGhbMywz8VO7L1/B+jrIretZLe4=
+  version "4.41.22"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/@types/webpack/-/webpack-4.41.22.tgz#ff9758a17c6bd499e459b91e78539848c32d0731"
+  integrity sha1-/5dYoXxr1JnkWbkeeFOYSMMtBzE=
   dependencies:
     "@types/anymatch" "*"
     "@types/node" "*"
@@ -1200,9 +1158,9 @@ ace-builds@^1.4.12:
   integrity sha1-iI76OG429DRfQLUjP8xP5MWI+uc=
 
 acorn@^6.4.1:
-  version "6.4.1"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/acorn/-/acorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
-  integrity sha1-Ux5Yuj9RudrLmmZGyk3r9bFMpHQ=
+  version "6.4.2"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/acorn/-/acorn-6.4.2.tgz#35866fd710528e92de10cf06016498e47e39e1e6"
+  integrity sha1-NYZv1xBSjpLeEM8GAWSY5H454eY=
 
 adjust-sourcemap-loader@2.0.0:
   version "2.0.0"
@@ -1220,22 +1178,12 @@ ajv-errors@^1.0.0:
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/ajv-errors/-/ajv-errors-1.0.1.tgz#f35986aceb91afadec4102fbd85014950cefa64d"
   integrity sha1-81mGrOuRr63sQQL72FAUlQzvpk0=
 
-ajv-keywords@^3.1.0, ajv-keywords@^3.4.1:
+ajv-keywords@^3.1.0, ajv-keywords@^3.4.1, ajv-keywords@^3.5.2:
   version "3.5.2"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/ajv-keywords/-/ajv-keywords-3.5.2.tgz#31f29da5ab6e00d1c2d329acf7b5929614d5014d"
   integrity sha1-MfKdpatuANHC0yms97WSlhTVAU0=
 
-ajv@^6.1.0, ajv@^6.10.2, ajv@^6.12.2:
-  version "6.12.4"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/ajv/-/ajv-6.12.4.tgz#0614facc4522127fa713445c6bfd3ebd376e2234"
-  integrity sha1-BhT6zEUiEn+nE0Rca/0+vTduIjQ=
-  dependencies:
-    fast-deep-equal "^3.1.1"
-    fast-json-stable-stringify "^2.0.0"
-    json-schema-traverse "^0.4.1"
-    uri-js "^4.2.2"
-
-ajv@^6.12.5:
+ajv@^6.1.0, ajv@^6.10.2, ajv@^6.12.4, ajv@^6.12.5:
   version "6.12.5"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/ajv/-/ajv-6.12.5.tgz#19b0e8bae8f476e5ba666300387775fb1a00a4da"
   integrity sha1-GbDouuj0duW6ZmMAOHd1+xoApNo=
@@ -1283,11 +1231,10 @@ ansi-styles@^3.2.0, ansi-styles@^3.2.1:
     color-convert "^1.9.0"
 
 ansi-styles@^4.1.0:
-  version "4.2.1"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/ansi-styles/-/ansi-styles-4.2.1.tgz#90ae75c424d008d2624c5bf29ead3177ebfcf359"
-  integrity sha1-kK51xCTQCNJiTFvynq0xd+v881k=
+  version "4.3.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/ansi-styles/-/ansi-styles-4.3.0.tgz#edd803628ae71c04c85ae7a0906edad34b648937"
+  integrity sha1-7dgDYornHATIWuegkG7a00tkiTc=
   dependencies:
-    "@types/color-name" "^1.1.1"
     color-convert "^2.0.1"
 
 anymatch@^2.0.0:
@@ -1580,39 +1527,20 @@ braces@~3.0.2:
     fill-range "^7.0.1"
 
 braintree-web-drop-in@^1.23.0:
-  version "1.23.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/braintree-web-drop-in/-/braintree-web-drop-in-1.23.0.tgz#89b1cb819c513f7faa79bde1d15e0e36826e3353"
-  integrity sha1-ibHLgZxRP3+qeb3h0V4ONoJuM1M=
+  version "1.24.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/braintree-web-drop-in/-/braintree-web-drop-in-1.24.0.tgz#884c8e52decb633460ada6a326ab0e516a9bdb81"
+  integrity sha1-iEyOUt7LYzRgraajJqsOUWqb24E=
   dependencies:
-    "@braintree/asset-loader" "0.3.1"
-    "@braintree/browser-detection" "1.9.0"
-    "@braintree/class-list" "0.1.0"
-    "@braintree/event-emitter" "0.3.0"
-    "@braintree/wrap-promise" "2.0.0"
-    braintree-web "3.63.0"
+    "@braintree/asset-loader" "0.4.4"
+    "@braintree/browser-detection" "1.10.0"
+    "@braintree/class-list" "0.2.0"
+    "@braintree/event-emitter" "0.4.1"
+    "@braintree/uuid" "0.1.0"
+    "@braintree/wrap-promise" "2.1.0"
+    braintree-web "3.65.0"
     promise-polyfill "8.1.3"
 
-braintree-web@3.63.0:
-  version "3.63.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/braintree-web/-/braintree-web-3.63.0.tgz#c534bfe2c7a88cb052df8912f498c52ba541839a"
-  integrity sha1-xTS/4seojLBS34kS9JjFK6VBg5o=
-  dependencies:
-    "@braintree/asset-loader" "0.3.1"
-    "@braintree/browser-detection" "1.9.0"
-    "@braintree/class-list" "0.1.0"
-    "@braintree/event-emitter" "0.3.0"
-    "@braintree/extended-promise" "0.3.1"
-    "@braintree/iframer" "1.0.3"
-    "@braintree/sanitize-url" "4.0.1"
-    "@braintree/wrap-promise" "2.0.0"
-    card-validator "6.2.0"
-    credit-card-type "8.3.0"
-    framebus "4.0.2"
-    inject-stylesheet "2.0.0"
-    promise-polyfill "8.1.3"
-    restricted-input "2.1.1"
-
-braintree-web@^3.65.0:
+braintree-web@3.65.0:
   version "3.65.0"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/braintree-web/-/braintree-web-3.65.0.tgz#3641e4ea553eeab1b986c7c64fda31e8396ed58a"
   integrity sha1-NkHk6lU+6rG5hsfGT9ox6Dlu1Yo=
@@ -1624,6 +1552,27 @@ braintree-web@^3.65.0:
     "@braintree/extended-promise" "0.4.0"
     "@braintree/iframer" "1.1.0"
     "@braintree/sanitize-url" "4.1.1"
+    "@braintree/uuid" "0.1.0"
+    "@braintree/wrap-promise" "2.1.0"
+    card-validator "8.1.0"
+    credit-card-type "9.0.1"
+    framebus "4.0.2"
+    inject-stylesheet "4.0.0"
+    promise-polyfill "8.1.3"
+    restricted-input "3.0.3"
+
+braintree-web@^3.65.0:
+  version "3.67.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/braintree-web/-/braintree-web-3.67.0.tgz#a4e2340aaac136a2a546b0522340814c2c915a94"
+  integrity sha1-pOI0CqrBNqKlRrBSI0CBTCyRWpQ=
+  dependencies:
+    "@braintree/asset-loader" "0.4.4"
+    "@braintree/browser-detection" "1.10.0"
+    "@braintree/class-list" "0.2.0"
+    "@braintree/event-emitter" "0.4.1"
+    "@braintree/extended-promise" "0.4.0"
+    "@braintree/iframer" "1.1.0"
+    "@braintree/sanitize-url" "5.0.0"
     "@braintree/uuid" "0.1.0"
     "@braintree/wrap-promise" "2.1.0"
     card-validator "8.1.0"
@@ -1700,14 +1649,14 @@ browserify-zlib@^0.2.0:
     pako "~1.0.5"
 
 browserslist@^4.0.0, browserslist@^4.12.0, browserslist@^4.8.5:
-  version "4.14.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/browserslist/-/browserslist-4.14.0.tgz#2908951abfe4ec98737b72f34c3bcedc8d43b000"
-  integrity sha1-KQiVGr/k7Jhze3LzTDvO3I1DsAA=
+  version "4.14.5"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/browserslist/-/browserslist-4.14.5.tgz#1c751461a102ddc60e40993639b709be7f2c4015"
+  integrity sha1-HHUUYaEC3cYOQJk2ObcJvn8sQBU=
   dependencies:
-    caniuse-lite "^1.0.30001111"
-    electron-to-chromium "^1.3.523"
-    escalade "^3.0.2"
-    node-releases "^1.1.60"
+    caniuse-lite "^1.0.30001135"
+    electron-to-chromium "^1.3.571"
+    escalade "^3.1.0"
+    node-releases "^1.1.61"
 
 buffer-from@^1.0.0:
   version "1.1.1"
@@ -1828,17 +1777,10 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001111:
-  version "1.0.30001117"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/caniuse-lite/-/caniuse-lite-1.0.30001117.tgz#69a9fae5d480eaa9589f7641a83842ad396d17c4"
-  integrity sha1-aan65dSA6qlYn3ZBqDhCrTltF8Q=
-
-card-validator@6.2.0:
-  version "6.2.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/card-validator/-/card-validator-6.2.0.tgz#59037c6480df5786473cab720f165ba868560e0b"
-  integrity sha1-WQN8ZIDfV4ZHPKtyDxZbqGhWDgs=
-  dependencies:
-    credit-card-type "^8.0.0"
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001135:
+  version "1.0.30001144"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/caniuse-lite/-/caniuse-lite-1.0.30001144.tgz#bca0fffde12f97e1127a351fec3bfc1971aa3b3d"
+  integrity sha1-vKD//eEvl+ESejUf7Dv8GXGqOz0=
 
 card-validator@8.1.0:
   version "8.1.0"
@@ -2184,11 +2126,6 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-credit-card-type@8.3.0, credit-card-type@^8.0.0:
-  version "8.3.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/credit-card-type/-/credit-card-type-8.3.0.tgz#f93c187c9362411544158c91d552efcc443aa87a"
-  integrity sha1-+TwYfJNiQRVEFYyR1VLvzEQ6qHo=
-
 credit-card-type@9.0.1, credit-card-type@^9.0.0:
   version "9.0.1"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/credit-card-type/-/credit-card-type-9.0.1.tgz#b800ae4089ece5e9362626ff1bb44fb3bb8757ed"
@@ -2301,9 +2238,9 @@ css-what@2.1:
   integrity sha1-ptdgRXM2X+dGhsPzEcVlE9iChfI=
 
 css-what@^3.2.1:
-  version "3.3.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/css-what/-/css-what-3.3.0.tgz#10fec696a9ece2e591ac772d759aacabac38cd39"
-  integrity sha1-EP7Glqns4uWRrHctdZqsq6w4zTk=
+  version "3.4.1"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/css-what/-/css-what-3.4.1.tgz#81cb70b609e4b1351b1e54cbc90fd9c54af86e2e"
+  integrity sha1-gctwtgnksTUbHlTLyQ/ZxUr4bi4=
 
 css@^2.0.0:
   version "2.2.4"
@@ -2423,11 +2360,11 @@ debug@^3.1.1, debug@^3.2.5:
     ms "^2.1.1"
 
 debug@^4.1.0, debug@^4.1.1:
-  version "4.1.1"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
-  integrity sha1-O3ImAlUQnGtYnO4FDx1RYTlmR5E=
+  version "4.2.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/debug/-/debug-4.2.0.tgz#7f150f93920e94c58f5574c2fd01a3110effe7f1"
+  integrity sha1-fxUPk5IOlMWPVXTC/QGjEQ7/5/E=
   dependencies:
-    ms "^2.1.1"
+    ms "2.1.2"
 
 decamelize@^1.2.0:
   version "1.2.0"
@@ -2459,7 +2396,7 @@ default-gateway@^4.2.0:
     execa "^1.0.0"
     ip-regex "^2.1.0"
 
-define-properties@^1.1.2, define-properties@^1.1.3:
+define-properties@^1.1.3:
   version "1.1.3"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/define-properties/-/define-properties-1.1.3.tgz#cf88da6cbee26fe6db7094f61d870cbd84cee9f1"
   integrity sha1-z4jabL7ib+bbcJT2HYcMvYTO6fE=
@@ -2584,9 +2521,9 @@ domelementtype@1, domelementtype@^1.3.1:
   integrity sha1-0EjESzew0Qp/Kj1f7j9DM9eQSB8=
 
 domelementtype@^2.0.1:
-  version "2.0.1"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/domelementtype/-/domelementtype-2.0.1.tgz#1f8bdfe91f5a78063274e803b4bdcedf6e94f94d"
-  integrity sha1-H4vf6R9aeAYydOgDtL3O326U+U0=
+  version "2.0.2"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/domelementtype/-/domelementtype-2.0.2.tgz#f3b6e549201e46f588b59463dd77187131fe6971"
+  integrity sha1-87blSSAeRvWItZRj3XcYcTH+aXE=
 
 domhandler@^2.3.0:
   version "2.4.2"
@@ -2612,9 +2549,9 @@ domutils@^1.5.1, domutils@^1.7.0:
     domelementtype "1"
 
 dot-prop@^5.2.0:
-  version "5.2.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/dot-prop/-/dot-prop-5.2.0.tgz#c34ecc29556dc45f1f4c22697b6f4904e0cc4fcb"
-  integrity sha1-w07MKVVtxF8fTCJpe29JBODMT8s=
+  version "5.3.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/dot-prop/-/dot-prop-5.3.0.tgz#90ccce708cd9cd82cc4dc8c3ddd9abdd55b20e88"
+  integrity sha1-kMzOcIzZzYLMTcjD3dmr3VWyDog=
   dependencies:
     is-obj "^2.0.0"
 
@@ -2633,10 +2570,10 @@ ee-first@1.1.1:
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
-electron-to-chromium@^1.3.523:
-  version "1.3.544"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/electron-to-chromium/-/electron-to-chromium-1.3.544.tgz#ac1f7d319f6060f3d6d122261d542ec77eb1427e"
-  integrity sha1-rB99MZ9gYPPW0SImHVQux36xQn4=
+electron-to-chromium@^1.3.571:
+  version "1.3.577"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/electron-to-chromium/-/electron-to-chromium-1.3.577.tgz#9885f3f72c6e3367010b461ff6f2d9624a929720"
+  integrity sha1-mIXz9yxuM2cBC0Yf9vLZYkqSlyA=
 
 elliptic@^6.5.3:
   version "6.5.3"
@@ -2719,19 +2656,37 @@ error-stack-parser@^2.0.2:
     stackframe "^1.1.1"
 
 es-abstract@^1.17.0-next.1, es-abstract@^1.17.2, es-abstract@^1.17.5:
-  version "1.17.6"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/es-abstract/-/es-abstract-1.17.6.tgz#9142071707857b2cacc7b89ecb670316c3e2d52a"
-  integrity sha1-kUIHFweFeyysx7iey2cDFsPi1So=
+  version "1.17.7"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/es-abstract/-/es-abstract-1.17.7.tgz#a4de61b2f66989fc7421676c1cb9787573ace54c"
+  integrity sha1-pN5hsvZpifx0IWdsHLl4dXOs5Uw=
   dependencies:
     es-to-primitive "^1.2.1"
     function-bind "^1.1.1"
     has "^1.0.3"
     has-symbols "^1.0.1"
-    is-callable "^1.2.0"
-    is-regex "^1.1.0"
-    object-inspect "^1.7.0"
+    is-callable "^1.2.2"
+    is-regex "^1.1.1"
+    object-inspect "^1.8.0"
     object-keys "^1.1.1"
-    object.assign "^4.1.0"
+    object.assign "^4.1.1"
+    string.prototype.trimend "^1.0.1"
+    string.prototype.trimstart "^1.0.1"
+
+es-abstract@^1.18.0-next.0, es-abstract@^1.18.0-next.1:
+  version "1.18.0-next.1"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/es-abstract/-/es-abstract-1.18.0-next.1.tgz#6e3a0a4bda717e5023ab3b8e90bec36108d22c68"
+  integrity sha1-bjoKS9pxflAjqzuOkL7DYQjSLGg=
+  dependencies:
+    es-to-primitive "^1.2.1"
+    function-bind "^1.1.1"
+    has "^1.0.3"
+    has-symbols "^1.0.1"
+    is-callable "^1.2.2"
+    is-negative-zero "^2.0.0"
+    is-regex "^1.1.1"
+    object-inspect "^1.8.0"
+    object-keys "^1.1.1"
+    object.assign "^4.1.1"
     string.prototype.trimend "^1.0.1"
     string.prototype.trimstart "^1.0.1"
 
@@ -2770,10 +2725,10 @@ es6-symbol@^3.1.1, es6-symbol@~3.1.3:
     d "^1.0.1"
     ext "^1.1.2"
 
-escalade@^3.0.2:
-  version "3.0.2"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/escalade/-/escalade-3.0.2.tgz#6a580d70edb87880f22b4c91d0d56078df6962c4"
-  integrity sha1-algNcO24eIDyK0yR0NVgeN9pYsQ=
+escalade@^3.1.0:
+  version "3.1.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/escalade/-/escalade-3.1.0.tgz#e8e2d7c7a8b76f6ee64c2181d6b8151441602d4e"
+  integrity sha1-6OLXx6i3b27mTCGB1rgVFEFgLU4=
 
 escape-html@~1.0.3:
   version "1.0.3"
@@ -2804,16 +2759,21 @@ esprima@^4.0.0:
   integrity sha1-E7BM2z5sXRnfkatph6hpVhmwqnE=
 
 esrecurse@^4.1.0:
-  version "4.2.1"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/esrecurse/-/esrecurse-4.2.1.tgz#007a3b9fdbc2b3bb87e4879ea19c92fdbd3942cf"
-  integrity sha1-AHo7n9vCs7uH5IeeoZyS/b05Qs8=
+  version "4.3.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/esrecurse/-/esrecurse-4.3.0.tgz#7ad7964d679abb28bee72cec63758b1c5d2c9921"
+  integrity sha1-eteWTWeauyi+5yzsY3WLHF0smSE=
   dependencies:
-    estraverse "^4.1.0"
+    estraverse "^5.2.0"
 
-estraverse@^4.1.0, estraverse@^4.1.1:
+estraverse@^4.1.1:
   version "4.3.0"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/estraverse/-/estraverse-4.3.0.tgz#398ad3f3c5a24948be7725e83d11a7de28cdbd1d"
   integrity sha1-OYrT88WiSUi+dyXoPRGn3ijNvR0=
+
+estraverse@^5.2.0:
+  version "5.2.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/estraverse/-/estraverse-5.2.0.tgz#307df42547e6cc7324d3cf03c155d5cdb8c53880"
+  integrity sha1-MH30JUfmzHMk088DwVXVzbjFOIA=
 
 esutils@^2.0.2:
   version "2.0.3"
@@ -2826,9 +2786,9 @@ etag@~1.8.1:
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
 eventemitter3@^4.0.0:
-  version "4.0.5"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/eventemitter3/-/eventemitter3-4.0.5.tgz#51d81e4f1ccc8311a04f0c20121ea824377ea6d9"
-  integrity sha1-UdgeTxzMgxGgTwwgEh6oJDd+ptk=
+  version "4.0.7"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
+  integrity sha1-Lem2j2Uo1WRO9cWVJqG0oHMGFp8=
 
 events@^3.0.0:
   version "3.2.0"
@@ -2990,12 +2950,12 @@ figgy-pudding@^3.5.1:
   integrity sha1-tO7oFIq7Adzx0aw0Nn1Z4S+mHW4=
 
 file-loader@^6.0.0:
-  version "6.0.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/file-loader/-/file-loader-6.0.0.tgz#97bbfaab7a2460c07bcbd72d3a6922407f67649f"
-  integrity sha1-l7v6q3okYMB7y9ctOmkiQH9nZJ8=
+  version "6.1.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/file-loader/-/file-loader-6.1.0.tgz#65b9fcfb0ea7f65a234a1f10cdd7f1ab9a33f253"
+  integrity sha1-Zbn8+w6n9lojSh8Qzdfxq5oz8lM=
   dependencies:
     loader-utils "^2.0.0"
-    schema-utils "^2.6.5"
+    schema-utils "^2.7.1"
 
 file-uri-to-path@1.0.0:
   version "1.0.0"
@@ -3284,7 +3244,7 @@ has-flag@^4.0.0:
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/has-flag/-/has-flag-4.0.0.tgz#944771fd9c81c81265c4d6941860da06bb59479b"
   integrity sha1-lEdx/ZyByBJlxNaUGGDaBrtZR5s=
 
-has-symbols@^1.0.0, has-symbols@^1.0.1:
+has-symbols@^1.0.1:
   version "1.0.1"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/has-symbols/-/has-symbols-1.0.1.tgz#9f5214758a44196c406d9bd76cebf81ec2dd31e8"
   integrity sha1-n1IUdYpEGWxAbZvXbOv4HsLdMeg=
@@ -3556,11 +3516,6 @@ ini@^1.3.4, ini@^1.3.5:
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
   integrity sha1-7uJfVtscnsYIXgwid4CD9Zar+Sc=
 
-inject-stylesheet@2.0.0:
-  version "2.0.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/inject-stylesheet/-/inject-stylesheet-2.0.0.tgz#5153437cbb30c55a203613a6f079a94089b6c361"
-  integrity sha1-UVNDfLswxVogNhOm8HmpQIm2w2E=
-
 inject-stylesheet@4.0.0:
   version "4.0.0"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/inject-stylesheet/-/inject-stylesheet-4.0.0.tgz#9c2080b227fe17e7f8d5c0aabc42130de4f415c0"
@@ -3659,10 +3614,10 @@ is-buffer@^1.1.5:
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
   integrity sha1-76ouqdqg16suoTqXsritUf776L4=
 
-is-callable@^1.1.4, is-callable@^1.2.0:
-  version "1.2.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/is-callable/-/is-callable-1.2.0.tgz#83336560b54a38e35e3a2df7afd0454d691468bb"
-  integrity sha1-gzNlYLVKOONeOi33r9BFTWkUaLs=
+is-callable@^1.1.4, is-callable@^1.2.2:
+  version "1.2.2"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/is-callable/-/is-callable-1.2.2.tgz#c7c6715cd22d4ddb48d3e19970223aceabb080d9"
+  integrity sha1-x8ZxXNItTdtI0+GZcCI6zquwgNk=
 
 is-color-stop@^1.0.0:
   version "1.1.0"
@@ -3754,6 +3709,11 @@ is-glob@^4.0.0, is-glob@^4.0.1, is-glob@~4.0.1:
   dependencies:
     is-extglob "^2.1.1"
 
+is-negative-zero@^2.0.0:
+  version "2.0.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/is-negative-zero/-/is-negative-zero-2.0.0.tgz#9553b121b0fac28869da9ed459e20c7543788461"
+  integrity sha1-lVOxIbD6wohp2p7UWeIMdUN4hGE=
+
 is-number@^3.0.0:
   version "3.0.0"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/is-number/-/is-number-3.0.0.tgz#24fd6201a4782cf50561c810276afc7d12d71195"
@@ -3797,7 +3757,7 @@ is-plain-object@^2.0.3, is-plain-object@^2.0.4:
   dependencies:
     isobject "^3.0.1"
 
-is-regex@^1.0.4, is-regex@^1.1.0:
+is-regex@^1.0.4, is-regex@^1.1.1:
   version "1.1.1"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/is-regex/-/is-regex-1.1.1.tgz#c6f98aacc546f6cec5468a07b7b153ab564a57b9"
   integrity sha1-xvmKrMVG9s7FRooHt7FTq1ZKV7k=
@@ -3874,6 +3834,11 @@ jquery@^3.5.1:
   version "3.5.1"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha1-17TQjhv9uGrS8aPQOeoXMEcXq7U=
+
+jqueryui@^1.11.1:
+  version "1.11.1"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/jqueryui/-/jqueryui-1.11.1.tgz#8718550705f5568d1199196169094db73b2291bc"
+  integrity sha1-hxhVBwX1Vo0RmRlhaQlNtzsikbw=
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
@@ -4063,9 +4028,9 @@ lodash@4.17.15:
   integrity sha1-tEqbYpe8tpjxxRo1RaKzs2jVnFI=
 
 loglevel@^1.6.8:
-  version "1.6.8"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/loglevel/-/loglevel-1.6.8.tgz#8a25fb75d092230ecd4457270d80b54e28011171"
-  integrity sha1-iiX7ddCSIw7NRFcnDYC1TigBEXE=
+  version "1.7.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/loglevel/-/loglevel-1.7.0.tgz#728166855a740d59d38db01cf46f042caa041bb0"
+  integrity sha1-coFmhVp0DVnTjbAc9G8ELKoEG7A=
 
 loose-envify@^1.0.0:
   version "1.4.0"
@@ -4178,10 +4143,15 @@ miller-rabin@^4.0.0:
     bn.js "^4.0.0"
     brorand "^1.0.1"
 
-mime-db@1.44.0, "mime-db@>= 1.43.0 < 2":
+mime-db@1.44.0:
   version "1.44.0"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/mime-db/-/mime-db-1.44.0.tgz#fa11c5eb0aca1334b4233cb4d52f10c5a6272f92"
   integrity sha1-+hHF6wrKEzS0Izy01S8QxaYnL5I=
+
+"mime-db@>= 1.43.0 < 2":
+  version "1.45.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/mime-db/-/mime-db-1.45.0.tgz#cceeda21ccd7c3a745eba2decd55d4b73e7879ea"
+  integrity sha1-zO7aIczXw6dF66LezVXUtz54eeo=
 
 mime-types@~2.1.17, mime-types@~2.1.24:
   version "2.1.27"
@@ -4294,7 +4264,7 @@ ms@2.1.1:
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
   integrity sha1-MKWGTrPrsKZvLr5tcnrwagnYbgo=
 
-ms@^2.1.1:
+ms@2.1.2, ms@^2.1.1:
   version "2.1.2"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=
@@ -4354,10 +4324,10 @@ nice-try@^1.0.4:
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha1-ozeKdpbOfSI+iPybdkvX7xCJ42Y=
 
-node-forge@0.9.0:
-  version "0.9.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/node-forge/-/node-forge-0.9.0.tgz#d624050edbb44874adca12bb9a52ec63cb782579"
-  integrity sha1-1iQFDtu0SHStyhK7mlLsY8t4JXk=
+node-forge@^0.10.0:
+  version "0.10.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/node-forge/-/node-forge-0.10.0.tgz#32dea2afb3e9926f02ee5ce8794902691a676bf3"
+  integrity sha1-Mt6ir7Ppkm8C7lzoeUkCaRpna/M=
 
 node-libs-browser@^2.2.1:
   version "2.2.1"
@@ -4399,10 +4369,10 @@ node-notifier@^5.1.2:
     shellwords "^0.1.1"
     which "^1.3.0"
 
-node-releases@^1.1.60:
-  version "1.1.60"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/node-releases/-/node-releases-1.1.60.tgz#6948bdfce8286f0b5d0e5a88e8384e954dfe7084"
-  integrity sha1-aUi9/OgobwtdDlqI6DhOlU3+cIQ=
+node-releases@^1.1.61:
+  version "1.1.61"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/node-releases/-/node-releases-1.1.61.tgz#707b0fca9ce4e11783612ba4a2fcba09047af16e"
+  integrity sha1-cHsPypzk4ReDYSukovy6CQR68W4=
 
 normalize-path@^2.1.1:
   version "2.1.1"
@@ -4449,20 +4419,20 @@ object-copy@^0.1.0:
     define-property "^0.2.5"
     kind-of "^3.0.3"
 
-object-inspect@^1.7.0:
+object-inspect@^1.8.0:
   version "1.8.0"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/object-inspect/-/object-inspect-1.8.0.tgz#df807e5ecf53a609cc6bfe93eac3cc7be5b3a9d0"
   integrity sha1-34B+Xs9TpgnMa/6T6sPMe+WzqdA=
 
 object-is@^1.0.1:
-  version "1.1.2"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/object-is/-/object-is-1.1.2.tgz#c5d2e87ff9e119f78b7a088441519e2eec1573b6"
-  integrity sha1-xdLof/nhGfeLegiEQVGeLuwVc7Y=
+  version "1.1.3"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/object-is/-/object-is-1.1.3.tgz#2e3b9e65560137455ee3bd62aec4d90a2ea1cc81"
+  integrity sha1-LjueZVYBN0Ve471irsTZCi6hzIE=
   dependencies:
     define-properties "^1.1.3"
-    es-abstract "^1.17.5"
+    es-abstract "^1.18.0-next.1"
 
-object-keys@^1.0.11, object-keys@^1.0.12, object-keys@^1.1.1:
+object-keys@^1.0.12, object-keys@^1.1.1:
   version "1.1.1"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha1-HEfyct8nfzsdrwYWd9nILiMixg4=
@@ -4479,15 +4449,15 @@ object-visit@^1.0.0:
   dependencies:
     isobject "^3.0.0"
 
-object.assign@^4.1.0:
-  version "4.1.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/object.assign/-/object.assign-4.1.0.tgz#968bf1100d7956bb3ca086f006f846b3bc4008da"
-  integrity sha1-lovxEA15Vrs8oIbwBvhGs7xACNo=
+object.assign@^4.1.0, object.assign@^4.1.1:
+  version "4.1.1"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/object.assign/-/object.assign-4.1.1.tgz#303867a666cdd41936ecdedfb1f8f3e32a478cdd"
+  integrity sha1-MDhnpmbN1Bk27N7fsfjz4ypHjN0=
   dependencies:
-    define-properties "^1.1.2"
-    function-bind "^1.1.1"
-    has-symbols "^1.0.0"
-    object-keys "^1.0.11"
+    define-properties "^1.1.3"
+    es-abstract "^1.18.0-next.0"
+    has-symbols "^1.0.1"
+    object-keys "^1.1.1"
 
 object.entries@^1.1.0:
   version "1.1.2"
@@ -4555,9 +4525,9 @@ opn@^5.5.0:
     is-wsl "^1.1.0"
 
 optimize-css-assets-webpack-plugin@^5.0.1:
-  version "5.0.3"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/optimize-css-assets-webpack-plugin/-/optimize-css-assets-webpack-plugin-5.0.3.tgz#e2f1d4d94ad8c0af8967ebd7cf138dcb1ef14572"
-  integrity sha1-4vHU2UrYwK+JZ+vXzxONyx7xRXI=
+  version "5.0.4"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/optimize-css-assets-webpack-plugin/-/optimize-css-assets-webpack-plugin-5.0.4.tgz#85883c6528aaa02e30bbad9908c92926bb52dc90"
+  integrity sha1-hYg8ZSiqoC4wu62ZCMkpJrtS3JA=
   dependencies:
     cssnano "^4.1.10"
     last-call-webpack-plugin "^3.0.0"
@@ -4775,9 +4745,9 @@ posix-character-classes@^0.1.0:
   integrity sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
 
 postcss-calc@^7.0.1:
-  version "7.0.3"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/postcss-calc/-/postcss-calc-7.0.3.tgz#d65cca92a3c52bf27ad37a5f732e0587b74f1623"
-  integrity sha1-1lzKkqPFK/J603pfcy4Fh7dPFiM=
+  version "7.0.5"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/postcss-calc/-/postcss-calc-7.0.5.tgz#f8a6e99f12e619c2ebc23cf6c486fdc15860933e"
+  integrity sha1-+KbpnxLmGcLrwjz2xIb9wVhgkz4=
   dependencies:
     postcss "^7.0.27"
     postcss-selector-parser "^6.0.2"
@@ -5045,13 +5015,14 @@ postcss-selector-parser@^3.0.0:
     uniq "^1.0.1"
 
 postcss-selector-parser@^6.0.0, postcss-selector-parser@^6.0.2:
-  version "6.0.2"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/postcss-selector-parser/-/postcss-selector-parser-6.0.2.tgz#934cf799d016c83411859e09dcecade01286ec5c"
-  integrity sha1-k0z3mdAWyDQRhZ4J3Oyt4BKG7Fw=
+  version "6.0.4"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/postcss-selector-parser/-/postcss-selector-parser-6.0.4.tgz#56075a1380a04604c38b063ea7767a129af5c2b3"
+  integrity sha1-VgdaE4CgRgTDiwY+p3Z6Epr1wrM=
   dependencies:
     cssesc "^3.0.0"
     indexes-of "^1.0.1"
     uniq "^1.0.1"
+    util-deprecate "^1.0.2"
 
 postcss-svgo@^4.0.2:
   version "4.0.2"
@@ -5092,9 +5063,9 @@ postcss@7.0.21:
     supports-color "^6.1.0"
 
 postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.27, postcss@^7.0.32, postcss@^7.0.5, postcss@^7.0.6:
-  version "7.0.32"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/postcss/-/postcss-7.0.32.tgz#4310d6ee347053da3433db2be492883d62cec59d"
-  integrity sha1-QxDW7jRwU9o0M9sr5JKIPWLOxZ0=
+  version "7.0.35"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/postcss/-/postcss-7.0.35.tgz#d2be00b998f7f211d8a276974079f2e92b970e24"
+  integrity sha1-0r4AuZj38hHYonaXQHny6SuXDiQ=
   dependencies:
     chalk "^2.4.2"
     source-map "^0.6.1"
@@ -5123,7 +5094,7 @@ promise-inflight@^1.0.1:
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
-promise-polyfill@8.1.3, promise-polyfill@^8.1.0, promise-polyfill@^8.1.3:
+promise-polyfill@8.1.3, promise-polyfill@^8.1.3:
   version "8.1.3"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/promise-polyfill/-/promise-polyfill-8.1.3.tgz#8c99b3cf53f3a91c68226ffde7bde81d7f904116"
   integrity sha1-jJmzz1PzqRxoIm/9573oHX+QQRY=
@@ -5332,9 +5303,9 @@ regexp.prototype.flags@^1.2.0:
     es-abstract "^1.17.0-next.1"
 
 regexpu-core@^4.7.0:
-  version "4.7.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/regexpu-core/-/regexpu-core-4.7.0.tgz#fcbf458c50431b0bb7b45d6967b8192d91f3d938"
-  integrity sha1-/L9FjFBDGwu3tF1pZ7gZLZHz2Tg=
+  version "4.7.1"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/regexpu-core/-/regexpu-core-4.7.1.tgz#2dea5a9a07233298fbf0db91fa9abc4c6e0f8ad6"
+  integrity sha1-LepamgcjMpj78NuR+pq8TG4PitY=
   dependencies:
     regenerate "^1.4.0"
     regenerate-unicode-properties "^8.2.0"
@@ -5444,13 +5415,6 @@ resolve@^1.3.2:
   dependencies:
     path-parse "^1.0.6"
 
-restricted-input@2.1.1:
-  version "2.1.1"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/restricted-input/-/restricted-input-2.1.1.tgz#8bdb8c924972b73f1bc3f9a91759ecf2ef34c805"
-  integrity sha1-i9uMkklytz8bw/mpF1ns8u80yAU=
-  dependencies:
-    "@braintree/browser-detection" "^1.9.0"
-
 restricted-input@3.0.3:
   version "3.0.3"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/restricted-input/-/restricted-input-3.0.3.tgz#77f6641fe88ac330bbf431848ccfe55061aa4745"
@@ -5556,14 +5520,14 @@ schema-utils@^1.0.0:
     ajv-errors "^1.0.0"
     ajv-keywords "^3.1.0"
 
-schema-utils@^2.6.5, schema-utils@^2.6.6, schema-utils@^2.7.0:
-  version "2.7.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/schema-utils/-/schema-utils-2.7.0.tgz#17151f76d8eae67fbbf77960c33c676ad9f4efc7"
-  integrity sha1-FxUfdtjq5n+793lgwzxnatn078c=
+schema-utils@^2.6.5, schema-utils@^2.7.0, schema-utils@^2.7.1:
+  version "2.7.1"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/schema-utils/-/schema-utils-2.7.1.tgz#1ca4f32d1b24c590c203b8e7a50bf0ea4cd394d7"
+  integrity sha1-HKTzLRskxZDCA7jnpQvw6kzTlNc=
   dependencies:
-    "@types/json-schema" "^7.0.4"
-    ajv "^6.12.2"
-    ajv-keywords "^3.4.1"
+    "@types/json-schema" "^7.0.5"
+    ajv "^6.12.4"
+    ajv-keywords "^3.5.2"
 
 select-hose@^2.0.0:
   version "2.0.0"
@@ -5571,11 +5535,11 @@ select-hose@^2.0.0:
   integrity sha1-Yl2GWPhlr0Psliv8N2o3NZpJlMo=
 
 selfsigned@^1.10.7:
-  version "1.10.7"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/selfsigned/-/selfsigned-1.10.7.tgz#da5819fd049d5574f28e88a9bcc6dbc6e6f3906b"
-  integrity sha1-2lgZ/QSdVXTyjoipvMbbxubzkGs=
+  version "1.10.8"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/selfsigned/-/selfsigned-1.10.8.tgz#0d17208b7d12c33f8eac85c41835f27fc3d81a30"
+  integrity sha1-DRcgi30Swz+OrIXEGDXyf8PYGjA=
   dependencies:
-    node-forge "0.9.0"
+    node-forge "^0.10.0"
 
 semver@7.0.0:
   version "7.0.0"
@@ -5979,12 +5943,12 @@ strip-eof@^1.0.0:
   integrity sha1-u0P/VZim6wXYm1n80SnJgzE2Br8=
 
 style-loader@^1.1.3:
-  version "1.2.1"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/style-loader/-/style-loader-1.2.1.tgz#c5cbbfbf1170d076cfdd86e0109c5bba114baa1a"
-  integrity sha1-xcu/vxFw0HbP3YbgEJxbuhFLqho=
+  version "1.3.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/style-loader/-/style-loader-1.3.0.tgz#828b4a3b3b7e7aa5847ce7bae9e874512114249e"
+  integrity sha1-gotKOzt+eqWEfOe66eh0USEUJJ4=
   dependencies:
     loader-utils "^2.0.0"
-    schema-utils "^2.6.6"
+    schema-utils "^2.7.0"
 
 stylehacks@^4.0.0:
   version "4.0.3"
@@ -6010,9 +5974,9 @@ supports-color@^6.1.0:
     has-flag "^3.0.0"
 
 supports-color@^7.1.0:
-  version "7.1.0"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/supports-color/-/supports-color-7.1.0.tgz#68e32591df73e25ad1c4b49108a2ec507962bfd1"
-  integrity sha1-aOMlkd9z4lrRxLSRCKLsUHliv9E=
+  version "7.2.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/supports-color/-/supports-color-7.2.0.tgz#1b7dcdcb32b8138801b3e478ba6a51caa89648da"
+  integrity sha1-G33NyzK4E4gBs+R4umpRyqiWSNo=
   dependencies:
     has-flag "^4.0.0"
 
@@ -6262,9 +6226,9 @@ upath@^1.1.1:
   integrity sha1-j2bbzVWog6za5ECK+LA1pQRMGJQ=
 
 uri-js@^4.2.2:
-  version "4.2.2"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/uri-js/-/uri-js-4.2.2.tgz#94c540e1ff772956e2299507c010aea6c8838eb0"
-  integrity sha1-lMVA4f93KVbiKZUHwBCupsiDjrA=
+  version "4.4.0"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/uri-js/-/uri-js-4.4.0.tgz#aa714261de793e8a82347a7bcc9ce74e86f28602"
+  integrity sha1-qnFCYd55PoqCNHp7zJznTobyhgI=
   dependencies:
     punycode "^2.1.0"
 
@@ -6294,7 +6258,7 @@ use@^3.1.0:
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha1-1QyMrHmhn7wg8pEfVuuXP04QBw8=
 
-util-deprecate@^1.0.1, util-deprecate@~1.0.1:
+util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
@@ -6493,9 +6457,9 @@ webpack-sources@^1.1.0, webpack-sources@^1.3.0, webpack-sources@^1.4.0, webpack-
     source-map "~0.6.1"
 
 webpack@^4.36.0:
-  version "4.44.1"
-  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/webpack/-/webpack-4.44.1.tgz#17e69fff9f321b8f117d1fda714edfc0b939cc21"
-  integrity sha1-F+af/58yG48RfR/acU7fwLk5zCE=
+  version "4.44.2"
+  resolved "http://npm.paypal.com/artifactory/api/npm/npm-all/webpack/-/webpack-4.44.2.tgz#6bfe2b0af055c8b2d1e90ed2cd9363f841266b72"
+  integrity sha1-a/4rCvBVyLLR6Q7SzZNj+EEma3I=
   dependencies:
     "@webassemblyjs/ast" "1.9.0"
     "@webassemblyjs/helper-module-context" "1.9.0"

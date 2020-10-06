@@ -4,6 +4,7 @@ namespace App\Tests\Controller\Braintree;
 
 use App\Controller\Braintree\AbstractController;
 use App\Controller\Braintree\DefaultController;
+use App\Security\User;
 use App\Service\BraintreeService;
 use App\Tests\Helper\InvisiblePropertiesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -23,6 +24,7 @@ class DefaultControllerTest extends WebTestCase
     public function testIndex()
     {
         $client = static::createClient();
+        $client->loginUser(new User('john@paypal.com'));
         $container = self::$container;
         $indexRoute = $container->get('router')->generate('braintree-index');
         $client->request('GET', $indexRoute);

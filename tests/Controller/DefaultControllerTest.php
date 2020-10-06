@@ -3,6 +3,7 @@
 namespace App\Tests\Controller;
 
 use App\Controller\DefaultController;
+use App\Security\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -17,6 +18,7 @@ class DefaultControllerTest extends WebTestCase
     public function testIndex()
     {
         $client = static::createClient();
+        $client->loginUser(new User('john@paypal.com'));
         $container = self::$container;
         $indexRoute = $container->get('router')->generate('index');
         $client->request('GET', $indexRoute);
