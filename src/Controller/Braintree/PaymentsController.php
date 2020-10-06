@@ -18,87 +18,30 @@ use Symfony\Component\HttpFoundation\Response;
 class PaymentsController extends AbstractController
 {
     /**
-     * @Route("/dropui", name="dropui", methods={"GET"})
-     *
+     * @param string $action
+     * @param string $description
      * @return Response
+     *
+     * @Route("/dropui", name="dropui", methods={"GET"},
+     *     defaults={"description" = "DropUI", "action" = "dropui"})
+     * @Route("/hosted-fields", name="hosted-fields", methods={"GET"},
+     *     defaults={"description" = "Hosted Fields", "action" = "hosted-fields"})
+     * @Route("/apm", name="apm", methods={"GET"},
+     *     defaults={"description" = "Alternative Payments", "action" = "apm"})
+     * @Route("/3ds", name="three-ds", methods={"GET"},
+     *     defaults={"description" = "3D Secure", "action" = "3ds"})
+     * @Route("/vault", name="vault", methods={"GET"},
+     *     defaults={"description" = "Vault API", "action" = "vault"})
+     * @Route("/request", name="request", methods={"GET"},
+     *     defaults={"description" = "PaymentRequestAPI", "action" = "request"})
      */
-    public function dropUI()
+    public function payments(string $action, string $description)
     {
         $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
-        return $this->render('braintree/payments/dropui.html.twig', [
-            'clientToken' => $clientToken,
-            'name' => 'Drop UI'
-        ]);
-    }
-
-    /**
-     * @Route("/hosted-fields", name="hosted-fields", methods={"GET"})
-     *
-     * @return Response
-     */
-    public function hostedFields()
-    {
-        $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
-        return $this->render('braintree/payments/hosted-fields.html.twig', [
-            'clientToken' => $clientToken,
-            'name' => 'Hosted Fields'
-        ]);
-    }
-
-    /**
-     * @Route("/apm", name="apm", methods={"GET"})
-     *
-     * @return Response
-     */
-    public function apm()
-    {
-        $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
-        return $this->render('braintree/payments/apm.html.twig', [
-            'clientToken' => $clientToken,
-            'name' => 'APM',
+        return $this->render('braintree/payments/'. $action .'.html.twig', [
             'paypalClientId' => $this->getParameter('PAYPAL_SDK_CLIENT_ID'),
-        ]);
-    }
-
-    /**
-     * @Route("/3ds", name="three-ds", methods={"GET"})
-     *
-     * @return Response
-     */
-    public function threeDS()
-    {
-        $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
-        return $this->render('braintree/payments/3ds.html.twig', [
             'clientToken' => $clientToken,
-            'name' => 'DropIn 3DS',
-        ]);
-    }
-
-    /**
-     * @Route("/vault", name="vault", methods={"GET"})
-     *
-     * @return Response
-     */
-    public function vault()
-    {
-        $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
-        return $this->render('braintree/payments/vault.html.twig', [
-            'clientToken' => $clientToken,
-            'name' => 'DropIn Vaulting',
-        ]);
-    }
-
-    /**
-     * @Route("/request", name="request", methods={"GET"})
-     *
-     * @return Response
-     */
-    public function request()
-    {
-        $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
-        return $this->render('braintree/payments/request.html.twig', [
-            'clientToken' => $clientToken,
-            'name' => 'Payment Request',
+            'name' => $description
         ]);
     }
 

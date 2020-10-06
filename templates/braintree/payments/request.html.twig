@@ -4,28 +4,12 @@
         <button id="payment-request-button" class="btn btn-primary">Payment Request</button>
     </div>
     <div class="row invisible" id="PaymentRequestHostedFields">
-        <form id="hosted-fields-form">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Card Number</span>
-                </div>
-                <div id="card-number" aria-label="Name" class="form-control text-right"></div>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">CVV</span>
-                </div>
-                <div id="card-cvv" aria-label="Name" class="form-control text-right"></div>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Expiration Date</span>
-                </div>
-                <div id="card-expiration" aria-label="Name" class="form-control text-right"></div>
-            </div>
-            <input type="submit" disabled class="btn btn-success mt-2" id="submit-button-one" value="Get Payment Nonce"/>
-        </form>
+        <div class="badge badge-pill badge-secondary">
+            Impossible to render the PaymentRequest component of the browser
+        </div>
     </div>
+{% endblock %}
+{% block card_details_help %}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
