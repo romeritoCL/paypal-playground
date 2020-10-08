@@ -3,10 +3,10 @@ import braintreePayments from './payments';
 
 let jsClientToken = document.querySelector('.js-client-token');
 let clientToken = jsClientToken.dataset.clientToken;
+let requestAmount = document.getElementById('request-amount');
 let deviceData;
 
 //window.PaymentRequest = braintree.paymentRequest;
-
 braintreePayments.animatePaymentForm();
 
 if (window.PaymentRequest) {
@@ -33,8 +33,9 @@ if (window.PaymentRequest) {
                 alert(err);
                 return;
             }
+            requestAmount = requestAmount.value;
             button.addEventListener('click', function (event) {
-                let amount = '180.00';
+                let amount = requestAmount;
                 instance.tokenize({
                     details: {
                         total: {
@@ -50,6 +51,8 @@ if (window.PaymentRequest) {
                         console.error(err);
                         return;
                     }
+                    let destroy = document.getElementById('request-creation-destroyable');
+                    destroy.parentNode.removeChild(destroy);
                     braintreePayments.sendServerPayLoad(payload, deviceData);
                 });
             });

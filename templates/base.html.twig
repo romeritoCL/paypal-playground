@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}PlayGround{% endblock %}</title>
     {% block stylesheets %}
+        <style type="text/css">
+            @font-face {
+                font-family: 'paypal-font';
+                src:    url({{asset('build/fonts/paypal.woff')}}) format('woff');
+            }
+            @font-face {
+                font-family: 'braintree-font';
+                src:    url({{asset('build/fonts/braintree.woff')}}) format('woff');
+            }
+            @font-face {
+                font-family: 'hyperwallet-font';
+                src:    url({{asset('build/fonts/hyperwallet.woff')}}) format('woff');
+            }
+        </style>
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
