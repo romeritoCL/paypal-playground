@@ -1,72 +1,74 @@
 {% extends 'braintree/base.html.twig' %}
 {% block content %}
-    <section class="jumbotron">
-        <div class="container container-fluid">
-            <div class="row justify-content-center">
-                <button class="btn d-inline align-middle">
-                    <img class="inverted logo-braintree" src="https://customer-stories-feed.github.com/customer_stories/braintree/logo.svg" />
-                </button>
-                <div class="jumbotron-heading d-inline align-middle">
-                    <h1 class="ml-3 align-middle">Let's Play</h1>
+    <div class="braintree-font">
+        <section class="jumbotron">
+            <div class="container container-fluid">
+                <div class="row justify-content-center">
+                    <button class="btn d-inline align-middle">
+                        <img class="inverted logo-braintree" src="https://customer-stories-feed.github.com/customer_stories/braintree/logo.svg" />
+                    </button>
+                    <div class="jumbotron-heading d-inline align-middle">
+                        <h1 class="ml-3 align-middle">Let's Play</h1>
+                    </div>
                 </div>
             </div>
+        </section>
+        <div class="row">
+            <div class="col">
+                <ul class="list">
+                    <li>Payments with BrainTree</li>
+                    <li>We are going to implement Drop-UI to begin with</li>
+                    <li>we will display the payment form just below</li>
+                </ul>
+            </div>
         </div>
-    </section>
-    <div class="row">
-        <div class="col">
-            <ul class="list">
-                <li>Payments with BrainTree</li>
-                <li>We are going to implement Drop-UI to begin with</li>
-                <li>we will display the payment form just below</li>
-            </ul>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn btn-dark bg-braintree btn-block" href="{{ path('braintree-payments-dropui') }}">Easy DropUI</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Test payments with a DropUI format. Using latest version of JS SDK v3</h6>
+            </div>
         </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col-3">
-            <a class="btn btn-dark bg-braintree btn-block" href="{{ path('braintree-payments-dropui') }}">Easy DropUI</a>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn btn-dark bg-braintree btn-block" href="{{ path('braintree-payments-hosted-fields') }}">Hosted Fields</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Test payments with a Hosted Fields format. Using latest version of JS SDK v3</h6>
+            </div>
         </div>
-        <div class="col justify-content-start">
-            <h6 class="ml-5 d-inline">Test payments with a DropUI format. Using latest version of JS SDK v3</h6>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn btn-dark bg-braintree btn-block" href="{{ path('braintree-payments-apm') }}">Alternative PM</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Test payments with Alternative Payment Methods</h6>
+            </div>
         </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col-3">
-            <a class="btn btn-dark bg-braintree btn-block" href="{{ path('braintree-payments-hosted-fields') }}">Hosted Fields</a>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn btn-dark bg-braintree btn-block" href="{{ path('braintree-payments-three-ds') }}">3DSecure</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Test payments with DropUI and 3DS</h6>
+            </div>
         </div>
-        <div class="col justify-content-start">
-            <h6 class="ml-5 d-inline">Test payments with a Hosted Fields format. Using latest version of JS SDK v3</h6>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn btn-dark bg-braintree btn-block" href="{{ path('braintree-payments-vault') }}">Vault</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Test payments with DropUI and Vaulting</h6>
+            </div>
         </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col-3">
-            <a class="btn btn-dark bg-braintree btn-block" href="{{ path('braintree-payments-apm') }}">Alternative PM</a>
-        </div>
-        <div class="col justify-content-start">
-            <h6 class="ml-5 d-inline">Test payments with Alternative Payment Methods</h6>
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col-3">
-            <a class="btn btn-dark bg-braintree btn-block" href="{{ path('braintree-payments-three-ds') }}">3DSecure</a>
-        </div>
-        <div class="col justify-content-start">
-            <h6 class="ml-5 d-inline">Test payments with DropUI and 3DS</h6>
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col-3">
-            <a class="btn btn-dark bg-braintree btn-block" href="{{ path('braintree-payments-vault') }}">Vault</a>
-        </div>
-        <div class="col justify-content-start">
-            <h6 class="ml-5 d-inline">Test payments with DropUI and Vaulting</h6>
-        </div>
-    </div>
-    <div class="row mt-2">
-        <div class="col-3">
-            <a class="btn btn-dark bg-braintree btn-block" href="{{ path('braintree-payments-request') }}">RequestAPI</a>
-        </div>
-        <div class="col justify-content-start">
-            <h6 class="ml-5 d-inline">Try the payment request API</h6>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn btn-dark bg-braintree btn-block" href="{{ path('braintree-payments-request') }}">RequestAPI</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Try the payment request API</h6>
+            </div>
         </div>
     </div>
 {% endblock %}
