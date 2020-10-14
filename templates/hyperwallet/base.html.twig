@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}HyperWallet PlayGround{% endblock %}
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-hyperwallet hyperwallet-font text-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-brand collapse navbar-collapse" id="navbarSupportedContent">
+        {% include "navbar/dropdown.html.twig" %}
+        <div class="navbar-nav col justify-content-center">
+        </div>
+    </div>
+    <span class="badge badge-pill badge-success">{{ random([
+            'Yeah!', 'C\'mon!', 'Booom!', 'Awesome!', 'Massive!','Bombastic!','Payouts Rocks',
+            'PayPal Powah!', 'HyperWallet you say?', 'What about some PayPal Magic?', 'The limit is the Sky'
+        ]) }}</span>
+</nav>
+<div class="container mt-4">
+    {% block content %}{% endblock %}
+</div>
+{% endblock %}

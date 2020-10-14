@@ -18,6 +18,11 @@
                 font-family: 'hyperwallet-font';
                 src:    url({{asset('build/fonts/hyperwallet.woff')}}) format('woff');
             }
+            @font-face {
+                font-family: 'hyperwallet-font';
+                font-weight: bold;
+                src:    url({{asset('build/fonts/hyperwallet-bold.woff')}}) format('woff');
+            }
         </style>
         {{ encore_entry_link_tags('app') }}
     {% endblock %}

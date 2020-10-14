@@ -39,7 +39,7 @@
 }
 
 .hyperwallet-font {
-    color: #00AFD0;
+    color: black;
     font-family: hyperwallet-font, sans-serif;
 }
 
@@ -57,8 +57,12 @@
     background-color: #202020;
 }
 
-.bg-hyperwallet {
+.bg-hyperwallet-light {
     background-color: #f1fbfd;
+}
+
+.bg-hyperwallet {
+    background-color: #00afd0;
 }
 
 .bg-nearly-white {

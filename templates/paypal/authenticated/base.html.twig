@@ -9,10 +9,13 @@
         {% include "navbar/dropdown.html.twig" %}
         <div class="navbar-nav col justify-content-center">
             <a class="nav-link text-light" href="{{ path('paypal-authenticated-index') }}">My Account</a>
-            <a class="nav-link text-light" href="{{ path('paypal-authenticated-payments') }}">Send Payments</a>
-            <a class="nav-link text-light" href="{{ path('paypal-authenticated-payouts') }}">Receive Payments</a>
-            <a class="nav-link text-light" href="{{ path('paypal-authenticated-invoices') }}">Invoices QR</a>
+            <a class="nav-link text-light" href="{{ path('paypal-authenticated-payments') }}">PayIns</a>
+            <a class="nav-link text-light" href="{{ path('paypal-authenticated-payouts') }}">PayOuts</a>
+            <a class="nav-link text-light" href="{{ path('paypal-authenticated-invoices') }}">Invoices</a>
             <a class="nav-link text-light" href="{{ path('paypal-authenticated-subscriptions') }}">Subscriptions</a>
+            <a class="nav-link text-light" href="#">QR Codes</a>
+            <a class="nav-link text-light" href="#">BOPIS</a>
+            <a class="nav-link text-light" href="#">PayLater</a>
         </div>
     </div>
 </nav>
