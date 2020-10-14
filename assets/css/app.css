@@ -19,10 +19,34 @@
 }
 
 .paypal-font {
-    color: snow !important;
-    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
-    font-weight: bold;
-    font-style: oblique;
+    font-family: paypal-font, sans-serif;
+}
+
+.paypal-font-header {
+    color: white;
+    font-family: paypal-font, sans-serif;
+}
+
+.braintree-font {
+    color: black;
+    font-family: braintree-font, sans-serif;
+}
+
+.braintree-font-header {
+    color: black;
+    font-family: braintree-font, sans-serif;
+    font-size: 25px;
+}
+
+.hyperwallet-font {
+    color: black;
+    font-family: hyperwallet-font, sans-serif;
+}
+
+.hyperwallet-font-header {
+    color: #00AFD0;
+    font-family: hyperwallet-font, sans-serif;
+    font-size: 25px;
 }
 
 .bg-paypal {
@@ -31,6 +55,14 @@
 
 .bg-braintree {
     background-color: #202020;
+}
+
+.bg-hyperwallet-light {
+    background-color: #f1fbfd;
+}
+
+.bg-hyperwallet {
+    background-color: #00afd0;
 }
 
 .bg-nearly-white {

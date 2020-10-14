@@ -1,7 +1,16 @@
 {% extends 'braintree/payments/base.html.twig' %}
 {% block card_template %}
     <div class="row invisible" id="PaymentRequestButton">
-        <button id="payment-request-button" class="btn btn-primary">Payment Request</button>
+        <div class="input-group mb-3" id="request-creation-destroyable">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="amount-text">Amount</span>
+            </div>
+            <input type="number" aria-label="Price" class="form-control text-right" id="request-amount" value="180">
+            <div class="input-group-append">
+                <span class="input-group-text">.00 €</span>
+            </div>
+            <button id="payment-request-button" type="button" class="ml-1 btn btn-success">Create Payment Request</button>
+        </div>
     </div>
     <div class="row invisible" id="PaymentRequestHostedFields">
         <div class="badge badge-pill badge-secondary">

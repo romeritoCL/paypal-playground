@@ -17,7 +17,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <section class="jumbotron h-100 bg-paypal">
+                <section class="jumbotron h-100 bg-paypal paypal-font">
                     <div class="container">
                         <h3 class="text-white">PayPal Commerce Platform for <strong class="red-text">Business</strong></h3>
                         <p class="text-light">Build a full-stack solution for small to medium-sized businesses.</p>
@@ -25,18 +25,13 @@
                             <a class="btn-secondary btn nav-link bg-nearly-white p-md-2" href="{{ path('paypal-index') }}">
                                 <img class="logo-paypal" src="https://upload.wikimedia.org/wikipedia/commons/3/39/PayPal_logo.svg" />
                             </a>
-                            <a class="font-weight-bold bullet nav-link text-light" href="{{ path('paypal-anonymous-index') }}">Connect with PayPal</a>
-                            <a class="bullet nav-link text-light" href="{{ path('paypal-authenticated-index') }}">My Account</a>
-                            <a class="bullet nav-link text-light" href="{{ path('paypal-authenticated-payments') }}">Send Payments</a>
-                            <a class="bullet nav-link text-light" href="{{ path('paypal-authenticated-payouts') }}">Receive Payments</a>
-                            <a class="bullet nav-link text-light" href="{{ path('paypal-authenticated-invoices') }}">Invoices QR</a>
-                            <a class="bullet nav-link text-light" href="{{ path('paypal-authenticated-subscriptions') }}">Subscriptions</a>
+                            <p class="nav-link text-white">With PayPal you can, receive payments, make payments, send invoices, pay with QRC, BOPIS</p>
                         </div>
                     </div>
                 </section>
             </div>
             <div class="col">
-                <section class="jumbotron h-100 bg-dark">
+                <section class="jumbotron h-100 bg-dark paypal-font">
                     <div class="container">
                         <h3 class="text-white">PayPal Commerce Platform for <strong class="red-text">Enterprise</strong></h3>
                         <p class="text-light">Explore our robust payment solutions for large enterprises.</p>
@@ -45,7 +40,7 @@
                                 <img class="logo-braintree" src="https://customer-stories-feed.github.com/customer_stories/braintree/logo.svg" />
                             </a>
                             <p class="nav-link text-white">Receive payments with Cards, PayPal, and many other wallets or APMs</p>
-                            <a class="btn-secondary btn nav-link bg-nearly-white p-md-2" href="#">
+                            <a class="btn-secondary btn nav-link bg-nearly-white p-md-2" href="{{ path('hyperwallet-index') }}">
                                 <img class="logo-hyperwallet" src="https://static.eluta.ca/ia/h9/employer_logo_regular_universal_en_97c63eb12ab95ef0b9de832187361a42.svg" />
                             </a>
                             <p class="nav-link text-white">Send money anywhere, make payouts to bank accounts, paypal accounts, etc...</p>
