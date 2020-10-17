@@ -69,6 +69,10 @@
     background-color: #f4f4f4;
 }
 
+.bg-gray {
+    background-color: #dee2e6;
+}
+
 .list-group-scroll {
     max-height: 320px;
     margin-bottom: 10px;

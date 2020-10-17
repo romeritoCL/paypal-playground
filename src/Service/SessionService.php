@@ -90,4 +90,14 @@ class SessionService
         $this->session->set('PAYPAL_SDK_CLIENT_ID', $clientId);
         $this->session->set('PAYPAL_SDK_CLIENT_SECRET', $clientSecret);
     }
+
+    /**
+     * @param array $settings
+     */
+    public function storeSettings(array $settings): void
+    {
+        foreach ($settings as $key => $setting) {
+            $this->session->set($key, $setting);
+        }
+    }
 }

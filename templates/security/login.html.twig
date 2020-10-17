@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-{% block title %}PlayGround Login{% endblock %}
 {% block body %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" xmlns="http://www.w3.org/1999/html">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,40 +10,44 @@
     </nav>
     <section class="jumbotron text-center">
         <div class="container">
-            <h1 class="jumbotron-heading">Please Login</h1>
-            <p class="lead text-muted">To prevent bots indexing this playground</p>
+            <h1 class="jumbotron-heading">PayPal Products</h1>
+            <p class="lead text-muted">Only showing a part of them...</p>
         </div>
     </section>
-    <div class="container-fluid text-center">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
-        <h1 class="h4 mb-3 font-weight-normal">Use your creativity and type any email</h1>
+    <div class="container">
         <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-                <form id="login-form" action="{{ path('app_login') }}" method="post">
-                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                    <div class="input-group mb-3">
-                        <input required autofocus type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="john@paypal.com" aria-label="john@paypal.com" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-success" type="submit">GO</button>
+            <div class="col">
+                <section class="jumbotron h-100 bg-paypal paypal-font">
+                    <div class="container">
+                        <h3 class="text-white">PayPal Commerce Platform for <strong class="red-text">Business</strong></h3>
+                        <p class="text-light">Build a full-stack solution for small to medium-sized businesses.</p>
+                        <div class="list-inline">
+                            <a class="btn-secondary btn nav-link bg-nearly-white p-md-2" href="{{ path('paypal-index') }}">
+                                <img class="logo-paypal" src="https://upload.wikimedia.org/wikipedia/commons/3/39/PayPal_logo.svg" />
+                            </a>
+                            <p class="nav-link text-white">With PayPal you can, receive payments, make payments, send invoices, pay with QRC, BOPIS</p>
                         </div>
                     </div>
-                    <div id="g-recaptcha" class="g-recaptcha" data-sitekey="{{ GOOGLE_RECAPTCHA_SITE_KEY }}"></div>
-                </form>
+                </section>
             </div>
-            <div class="col-4"></div>
+            <div class="col">
+                <section class="jumbotron h-100 bg-dark paypal-font">
+                    <div class="container">
+                        <h3 class="text-white">PayPal Commerce Platform for <strong class="red-text">Enterprise</strong></h3>
+                        <p class="text-light">Explore our robust payment solutions for large enterprises.</p>
+                        <div class="list-inline">
+                            <a class="btn-secondary btn nav-link bg-nearly-white p-md-2" href="{{ path('braintree-index') }}">
+                                <img class="logo-braintree" src="https://customer-stories-feed.github.com/customer_stories/braintree/logo.svg" />
+                            </a>
+                            <p class="nav-link text-white">Receive payments with Cards, PayPal, and many other wallets or APMs</p>
+                            <a class="btn-secondary btn nav-link bg-nearly-white p-md-2" href="{{ path('hyperwallet-index') }}">
+                                <img class="logo-hyperwallet" src="https://static.eluta.ca/ia/h9/employer_logo_regular_universal_en_97c63eb12ab95ef0b9de832187361a42.svg" />
+                            </a>
+                            <p class="nav-link text-white">Send money anywhere, make payouts to bank accounts, paypal accounts, etc...</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
-{% endblock %}
-{% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('login') }}
 {% endblock %}
