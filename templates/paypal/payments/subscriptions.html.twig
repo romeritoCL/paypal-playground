@@ -15,27 +15,12 @@
     <div class="row">
         <div class="col text-center">
             <div id="paypal-button-container"></div>
-            <script src="https://www.paypal.com/sdk/js?client-id=AYhKxA8f4GADzZNK5IIMdyYdNBHav80mtm2io4pItCE1_89tyD5rQIm7u5n1Y0m_d97tjl208DrEN11F&vault=true" data-sdk-integration-source="button-factory"></script>
-            <script>
-                paypal.Buttons({
-                    style: {
-                        shape: 'pill',
-                        color: 'blue',
-                        layout: 'vertical',
-                        label: 'subscribe'
-                    },
-                    createSubscription: function(data, actions) {
-                        return actions.subscription.create({
-                            'plan_id': 'P-0D4765787C8312900L5ITVFA'
-                        });
-                    },
-                    onApprove: function(data) {
-                        alert(data.subscriptionID);
-                    }
-                }).render('#paypal-button-container');
-            </script>
             <div id="result-col"></div>
         </div>
     </div>
 {% endblock %}
-
+{% block javascripts %}
+{{ parent() }}
+<script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&buyer-country={{app.session.get('settings')['settings-customer-country']}}&locale={{app.session.get('settings')['settings-customer-locale']}}&vault=true&intent=subscription"></script>
+{{ encore_entry_script_tags('subscriptions') }}
+{% endblock %}

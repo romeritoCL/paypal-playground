@@ -19,7 +19,8 @@ reloadButton.addEventListener('click', function () {
     reloadPayPalButtons();
 });
 
-function reloadPayPalButtons() {
+function reloadPayPalButtons()
+{
     paypal.Buttons({
         createOrder: function (data, actions) {
             return actions.order.create({
@@ -91,3 +92,5 @@ function reloadPayPalButtons() {
         },
     }).render('#paypal-button-container');
 }
+
+reloadPayPalButtons();

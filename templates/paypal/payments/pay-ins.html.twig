@@ -66,7 +66,7 @@
         </div>
     </div>
     <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
-    <div id="capture-url" data-capture-url="{{ path("paypal-payments-payments-capture", {'paymentId': 'payment_id_status'}) }}"></div>
+    <div id="capture-url" data-capture-url="{{ path("paypal-payments-capture", {'paymentId': 'payment_id_status'}) }}"></div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

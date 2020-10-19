@@ -1,0 +1,65 @@
+{% extends 'paypal/base.html.twig' %}
+{% block content %}
+<div class="col text-center pb-4 paypal-font">
+    <h4>Let's try and Get some money</h4>
+    <p>
+        On the left side, your payout, then hit send and wait for the response
+    </p>
+</div>
+<form class="row" id="payout-form">
+    <div class="col">
+        <p><strong>
+            So, what are we paying out today
+        </strong></p>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Subject</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" name="subject" value="Monthly Salary, don't spend it all">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Note</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" name="note" value="Hey, you just got paid!">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Receiver</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" name="email" value="{{ app.session.get('settings')['settings-customer-email'] }}">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Id</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" name="item-id" value="PAYO-20312">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Currency</span>
+            </div>
+            <input type="text" aria-label="Name" class="form-control text-right" name="currency" value="EUR">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Amount</span>
+            </div>
+            <input type="number" aria-label="Price" class="form-control text-right" name="amount" value="180">
+            <div class="input-group-append">
+                <span class="input-group-text">.00 {{app.session.get('settings')['settings-customer-currency']}}</span>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success"  id="send-money-button">Send the money!</button>
+        <button type="button" class="btn btn-info"  id="refresh-status">Refresh Status</button>
+    </div>
+    <div class="col" id="result-col">
+    </div>
+</form>
+<div id="payouts-url" data-payouts-url="{{ path('paypal-payments-pay-outs-create') }}"></div>
+<div id="payouts-refresh-url" data-payouts-refresh-url="{{ path("paypal-payments-pay-outs-refresh", {'statusId': 'payout_batch_status'}) }}"></div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('pay-outs') }}
+{% endblock %}

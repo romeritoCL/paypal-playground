@@ -39,7 +39,6 @@ class PaymentsController extends AbstractController
     {
         $clientToken = $this->braintreeService->getPaymentService()->getClientToken();
         return $this->render('braintree/payments/' . $action . '.html.twig', [
-            'paypalClientId' => $this->getParameter('PAYPAL_SDK_CLIENT_ID'),
             'clientToken' => $clientToken,
             'name' => $description
         ]);

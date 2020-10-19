@@ -51,25 +51,25 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">UserId</span>
                                 </div>
-                                <input type="text" aria-label="UserId" class="form-control text-right" name="settings-customer-id" value="{{ app.session.get('settings')['settings-customer-id'] | default('CS12.000.AAE' )}}">
+                                <input type="text" aria-label="UserId" class="form-control text-right" name="settings-customer-id" value="{{ app.session.get('settings')['settings-customer-id']}}">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Name</span>
                                 </div>
-                                <input type="text" aria-label="Name" class="form-control text-right" name="settings-customer-name" value="{{ app.session.get('settings')['settings-customer-name'] | default('John' )}}">
+                                <input type="text" aria-label="Name" class="form-control text-right" name="settings-customer-name" value="{{ app.session.get('settings')['settings-customer-name']}}">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Family Name</span>
                                 </div>
-                                <input type="text" aria-label="Family Name" class="form-control text-right" name="settings-customer-family-name" value="{{ app.session.get('settings')['settings-customer-family-name'] | default('Doe' )}}">
+                                <input type="text" aria-label="Family Name" class="form-control text-right" name="settings-customer-family-name" value="{{ app.session.get('settings')['settings-customer-family-name']}}">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Email</span>
                                 </div>
-                                <input type="email" aria-label="Email" class="form-control text-right" name="settings-customer-email" value="{{ app.session.get('settings')['settings-customer-email'] | default('john.doe@paypal.com' )}}">
+                                <input type="email" aria-label="Email" class="form-control text-right" name="settings-customer-email" value="{{ app.session.get('settings')['settings-customer-email']}}">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -81,19 +81,19 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">City</span>
                                 </div>
-                                <input type="text" aria-label="City" class="form-control text-right" name="settings-customer-city" value="{{ app.session.get('settings')['settings-customer-city'] | default('Paris' )}}">
+                                <input type="text" aria-label="City" class="form-control text-right" name="settings-customer-city" value="{{ app.session.get('settings')['settings-customer-city']}}">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Province</span>
                                 </div>
-                                <input type="text" aria-label="Province" class="form-control text-right" name="settings-customer-province" value="{{ app.session.get('settings')['settings-customer-province'] | default('Paris' )}}">
+                                <input type="text" aria-label="Province" class="form-control text-right" name="settings-customer-province" value="{{ app.session.get('settings')['settings-customer-province']}}">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">ZipCode</span>
                                 </div>
-                                <input type="text" aria-label="ZipCode" class="form-control text-right" name="settings-customer-zip-code" value="{{ app.session.get('settings')['settings-customer-zip-code'] | default('75007' )}}">
+                                <input type="text" aria-label="ZipCode" class="form-control text-right" name="settings-customer-zip-code" value="{{ app.session.get('settings')['settings-customer-zip-code']}}">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -129,7 +129,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Email</span>
                                 </div>
-                                <input type="email" aria-label="Email" class="form-control text-right" name="settings-merchant-email" value="{{ app.session.get('settings')['settings-merchant-email'] | default('merchant@domain.com' )}}">
+                                <input type="email" aria-label="Email" class="form-control text-right" name="settings-merchant-email" value="{{ app.session.get('settings')['settings-merchant-email']}}">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -141,19 +141,19 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">City</span>
                                 </div>
-                                <input type="text" aria-label="City" class="form-control text-right" name="settings-merchant-city" value="{{ app.session.get('settings')['settings-merchant-city'] | default('Mahora' )}}">
+                                <input type="text" aria-label="City" class="form-control text-right" name="settings-merchant-city" value="{{ app.session.get('settings')['settings-merchant-city']}}">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Province</span>
                                 </div>
-                                <input type="text" aria-label="Province" class="form-control text-right" name="settings-merchant-province" value="{{ app.session.get('settings')['settings-merchant-province'] | default('Albacete' )}}">
+                                <input type="text" aria-label="Province" class="form-control text-right" name="settings-merchant-province" value="{{ app.session.get('settings')['settings-merchant-province']}}">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">ZipCode</span>
                                 </div>
-                                <input type="text" aria-label="ZipCode" class="form-control text-right" name="settings-merchant-zip-code" value="{{ app.session.get('settings')['settings-merchant-zip-code'] | default('02002' )}}">
+                                <input type="text" aria-label="ZipCode" class="form-control text-right" name="settings-merchant-zip-code" value="{{ app.session.get('settings')['settings-merchant-zip-code']}}">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -184,7 +184,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Price</span>
                             </div>
-                            <input type="number" aria-label="Price" class="form-control text-right" name="settings-item-price" value="{{ app.session.get('settings')['settings-item-price'] | default('18' )}}">
+                            <input type="number" aria-label="Price" class="form-control text-right" name="settings-item-price" value="{{ app.session.get('settings')['settings-item-price']}}">
                             <div class="input-group-append">
                                 <span class="input-group-text">.00 €</span>
                             </div>
@@ -193,7 +193,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Shipping</span>
                             </div>
-                            <input type="number" aria-label="Price" class="form-control text-right" name="settings-item-shipping" value="{{ app.session.get('settings')['settings-item-shipping'] | default('5' )}}">
+                            <input type="number" aria-label="Price" class="form-control text-right" name="settings-item-shipping" value="{{ app.session.get('settings')['settings-item-shipping']}}">
                             <div class="input-group-append">
                                 <span class="input-group-text">.00 €</span>
                             </div>
@@ -222,13 +222,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Tax Name</span>
                             </div>
-                            <input type="text" aria-label="note" class="form-control text-right" name="settings-item-tax-name" value="{{ app.session.get('settings')['settings-item-tax-name'] | default('VAT' )}}">
+                            <input type="text" aria-label="note" class="form-control text-right" name="settings-item-tax-name" value="{{ app.session.get('settings')['settings-item-tax-name']}}">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Tax %</span>
                             </div>
-                            <input type="text" aria-label="note" class="form-control text-right" name="settings-item-tax-value" value="{{ app.session.get('settings')['settings-item-tax-value'] | default('21' )}}">
+                            <input type="text" aria-label="note" class="form-control text-right" name="settings-item-tax-value" value="{{ app.session.get('settings')['settings-item-tax-value']}}">
                         </div>
                     </section>
                 </div>

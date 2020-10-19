@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Service\SessionService;
+use App\Service\SettingsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,17 +17,17 @@ use Symfony\Component\HttpFoundation\Response;
 class SettingsController extends AbstractController
 {
     /**
-     * @var SessionService
+     * @var SettingsService
      */
-    protected $sessionService;
+    protected $settingsService;
 
     /**
      * DefaultController constructor.
-     * @param SessionService $sessionService
+     * @param SettingsService $settingsService
      */
-    public function __construct(SessionService $sessionService)
+    public function __construct(SettingsService $settingsService)
     {
-        $this->sessionService = $sessionService;
+        $this->settingsService = $settingsService;
     }
 
     /**
@@ -49,7 +49,7 @@ class SettingsController extends AbstractController
     {
         $request = Request::createFromGlobals();
         $settings = $request->request->all();
-        $this->sessionService->storeSettings($settings);
+        $this->settingsService->storeSettings($settings);
         return new Response();
     }
 
@@ -60,7 +60,7 @@ class SettingsController extends AbstractController
      */
     public function settingsClear()
     {
-        $this->sessionService->clearSettings();
+        $this->settingsService->clearSettings();
         return new Response();
     }
 }

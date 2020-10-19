@@ -5,7 +5,7 @@
             <div class="container container-fluid">
                 <div class="row justify-content-center">
                     <button class="btn d-inline align-middle">
-                        <img class="logo-paypal" src="https://upload.wikimedia.org/wikipedia/commons/3/39/PayPal_logo.svg" />
+                        <img alt="Logo PayPal" class="logo-paypal" src="https://upload.wikimedia.org/wikipedia/commons/3/39/PayPal_logo.svg" />
                     </button>
                     <div class="jumbotron-heading d-inline align-middle">
                         <h1 class="ml-3 align-middle">Let's Play</h1>
@@ -26,7 +26,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-3">
-                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-authenticated-index') }}">Connect</a>
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-connect-index') }}">Connect</a>
             </div>
             <div class="col justify-content-start">
                 <h6 class="ml-5 d-inline">Try out PayPal Connect, get user info, authenticate email</h6>
@@ -34,7 +34,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-3">
-                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-authenticated-payments') }}">PayIns</a>
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-pay-ins') }}">PayIns</a>
             </div>
             <div class="col justify-content-start">
                 <h6 class="ml-5 d-inline">Try out PayIns with PayPal Smart Buttons + APMs</h6>
@@ -42,7 +42,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-3">
-                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-authenticated-payouts') }}">PayOuts</a>
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-pay-outs') }}">PayOuts</a>
             </div>
             <div class="col justify-content-start">
                 <h6 class="ml-5 d-inline">Want to send money, use paypal payouts APIs</h6>
@@ -50,7 +50,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-3">
-                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-authenticated-invoices') }}">Invoices</a>
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-invoices') }}">Invoices</a>
             </div>
             <div class="col justify-content-start">
                 <h6 class="ml-5 d-inline">You can use the pay by link with invoices, and QR them</h6>
@@ -58,7 +58,7 @@
         </div>
         <div class="row mt-2">
             <div class="col-3">
-                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-authenticated-subscriptions') }}">Subscriptions</a>
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-subscriptions') }}">Subscriptions</a>
             </div>
             <div class="col justify-content-start">
                 <h6 class="ml-5 d-inline">Subscribe with PayPal to any monthly or weekly or whatever</h6>

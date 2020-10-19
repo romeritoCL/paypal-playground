@@ -1,0 +1,132 @@
+{% extends 'paypal/base.html.twig' %}
+{% block content %}
+    <div class="container-fluid">
+    <!-- INFORMATION SECTION -->
+    <!-- -->
+    <div class="alert alert-secondary text-center paypal-font">
+        <span class="badge badge-pill badge-success">{{ random(['Yeah!', 'C\'mon!', 'Booom!', 'Awesome!', 'Massive!','Bombastic!']) }}</span>
+        <h6 class="d-inline"> PayPal example. Follow the steps to perform a sandbox payment</h6>
+    </div>
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0 d-inline">1. Identify card</h5>
+                <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="step-1-submit">Next Step</button>
+            </div>
+            <div id="collapseOne" class="collapse {% block element_one_class %}show{% endblock %}" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="row mt-1">
+                        <div class="col">
+                            {% block card_template %}{% endblock %}
+                        </div>
+                        <div class="col align-baseline">
+                            {% block card_details_help %}
+                                <div class="row mt-5">
+                                    <div class="col text-center">
+                                        <p class="font-weight-bold d-inline">Success Visa </p>
+                                    </div>
+                                    <div class="col text-center">
+                                        <p class="badge-pill badge badge-success d-inline">4111111111111111</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <p class="font-weight-bold d-inline">Declined Visa </p>
+                                    </div>
+                                    <div class="col text-center">
+                                        <p class="badge-pill badge badge-warning d-inline">4000111111111115</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <p class="font-weight-bold d-inline">CVV</p>
+                                    </div>
+                                    <div class="col text-center">
+                                        <p class="badge-pill badge badge-info d-inline">999</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <p class="font-weight-bold d-inline">Expiration Date</p>
+                                    </div>
+                                    <div class="col text-center">
+                                        <p class="badge-pill badge badge-secondary d-inline">12/2025</p>
+                                    </div>
+                                </div>
+                            {% endblock %}
+                        </div>
+                    </div>
+                    <div class="row mt-3" id="step-one-result-row">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0 d-inline">2. Send Payment</h5>
+                <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" id="step-2-submit">Next Step</button>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Payment Nonce</span>
+                        </div>
+                        <input type="text" aria-label="Name" disabled class="form-control text-right" id="payment-nonce" value="">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">CorrelationId</span>
+                        </div>
+                        <input type="text" aria-label="Name" disabled class="form-control text-right" id="device-info" value="">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="amount-text">Amount</span>
+                        </div>
+                        <input type="number" aria-label="Price" class="form-control text-right" id="amount" value="180">
+                        <div class="input-group-append">
+                            <span class="input-group-text">.00 €</span>
+                        </div>
+                    </div>
+                    <input type="hidden" id="deviceInformation" value="">
+                    <button type="button" class="btn btn-success"  id="submit-button-two">Create Sale</button>
+                    <div class="row justify-content-center">
+                        <div class="col mt-3" id="step-two-result-row">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0 d-inline">3. Capture Payment</h5>
+                    <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree" id="step-3-submit">Start Again</button>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Transaction ID</span>
+                            </div>
+                            <input type="text" aria-label="Name" disabled class="form-control text-right" id="transaction_id" value="">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="amount-text">Amount</span>
+                            </div>
+                            <input type="number" aria-label="Price" class="form-control text-right" id="amount_capture" value="180">
+                            <div class="input-group-append">
+                                <span class="input-group-text">.00 €</span>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-success"  id="submit-button-three">Capture Sale</button>
+                        <button type="button" class="btn btn-info"  id="submit-button-three-status">Refresh Status</button>
+                        <div class="row justify-content-center">
+                            <div class="col mt-3" id="step-three-result-row"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

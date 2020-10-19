@@ -3,7 +3,7 @@ let clearButton = document.getElementById('clear-button');
 let jsSettingsSaveUrl = document.querySelector('.js-settings-save-url');
 let settingsSaveUrl = jsSettingsSaveUrl.dataset.settingsSaveUrl;
 let jsSettingsClearUrl = document.querySelector('.js-settings-clear-url');
-let settingsClearUrl = jsSettingsSaveUrl.dataset.settingsClearUrl;
+let settingsClearUrl = jsSettingsClearUrl.dataset.settingsClearUrl;
 
 submitButton.addEventListener('click', function () {
     submitButton.disabled = true;

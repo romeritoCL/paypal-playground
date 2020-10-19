@@ -6,7 +6,7 @@ use App\Controller\Paypal\AbstractController;
 use App\Controller\Paypal\DefaultController;
 use App\Security\User;
 use App\Service\PaypalService;
-use App\Service\SessionService;
+use App\Service\AbstractSessionService;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use App\Tests\Helper\InvisiblePropertiesTrait;
 use ReflectionException;
@@ -48,7 +48,7 @@ class DefaultControllerTest extends WebTestCase
         $this->assertInstanceOf(DefaultController::class, $defaultController);
 
         $privateProperty = $this->getInvisibleProperty('sessionService', $defaultController);
-        $this->assertInstanceOf(SessionService::class, $privateProperty);
+        $this->assertInstanceOf(AbstractSessionService::class, $privateProperty);
         $privateProperty = $this->getInvisibleProperty('paypalService', $defaultController);
         $this->assertInstanceOf(PaypalService::class, $privateProperty);
     }

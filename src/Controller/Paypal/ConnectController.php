@@ -22,9 +22,12 @@ class ConnectController extends AbstractController
      */
     public function index()
     {
-        if ($this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-authenticated-index');
+        if ($this->paypalService->getSessionService()->isActive()) {
+            return $this->render('paypal/connect/authenticated.html.twig');
         }
+
+        return $this->render('paypal/connect/authenticate.html.twig');
+
         $request = Request::createFromGlobals();
         $authToken = $request->get('code');
         if ($authToken) {
@@ -90,7 +93,7 @@ class ConnectController extends AbstractController
     }
 
     /**
-     * @Route("/myAcccount", name="index", methods={"GET"})
+     * @Route("/myAcccount", name="my-account", methods={"GET"})
      *
      * @return Response | RedirectResponse
      */

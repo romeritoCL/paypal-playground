@@ -20,8 +20,8 @@ class SessionController extends AbstractController
      */
     public function logout()
     {
-        $this->sessionService->session->clear();
-        return $this->redirectToRoute('paypal-index');
+        $this->paypalService->getSessionService()->logout();
+        return $this->redirectToRoute('paypal-connect-index');
     }
 
     /**
@@ -35,7 +35,7 @@ class SessionController extends AbstractController
         $clientId = $request->request->get('client_id', null);
         $clientSecret = $request->request->get('client_secret', null);
         if ($clientId && $clientSecret) {
-            $this->sessionService->updateCredentials($clientId, $clientSecret);
+            $this->paypalService->getSessionService()->updateCredentials($clientId, $clientSecret);
         }
         return $this->redirectToRoute('paypal-index');
     }

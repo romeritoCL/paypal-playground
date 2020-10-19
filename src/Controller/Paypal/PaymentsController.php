@@ -28,17 +28,14 @@ class PaymentsController extends AbstractController
     }
 
     /**
-     * @Route("/payments/{paymentId}/capture", name="payments-capture", methods={"POST"})
+     * @Route("/{paymentId}/capture", name="capture", methods={"POST"})
      * @param string $paymentId
      * @return Response | RedirectResponse
      */
-    public function paymentsCapture(string $paymentId)
+    public function capture(string $paymentId)
     {
-        if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-index');
-        }
         $capture = $this->paypalService->getPaymentService()->capturePayment($paymentId);
-        return $this->render('paypal/authenticated/result.html.twig', [
+        return $this->render('default/dump-input-id.html.twig', [
             'raw_result' => false,
             'result' => $capture,
             'result_id' => 'payment-id'
@@ -46,28 +43,22 @@ class PaymentsController extends AbstractController
     }
 
     /**
-     * @Route("/payouts", name="payouts", methods={"GET"})
+     * @Route("/pay-outs", name="pay-outs", methods={"GET"})
      *
      * @return Response | RedirectResponse
      */
-    public function payouts()
+    public function payOuts()
     {
-        if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-index');
-        }
-        return $this->render('paypal/authenticated/payouts.html.twig');
+        return $this->render('paypal/payments/pay-outs.html.twig');
     }
 
     /**
-     * @Route("/payouts", name="payouts-create", methods={"POST"})
+     * @Route("/pay-outs", name="pay-outs-create", methods={"POST"})
      *
      * @return Response | RedirectResponse
      */
     public function payoutsCreate()
     {
-        if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-index');
-        }
         $request = Request::createFromGlobals();
         $subject = $request->request->get('subject', null);
         $note = $request->request->get('note', null);
@@ -78,7 +69,7 @@ class PaymentsController extends AbstractController
         $payout = $this->paypalService
             ->getPayoutService()
             ->createPayout($subject, $note, $email, $itemId, $amount, $currency);
-        return $this->render('paypal/authenticated/result.html.twig', [
+        return $this->render('default/dump-input-id.html.twig', [
             'raw_result' => false,
             'result' => $payout,
             'result_id' => $payout->getBatchHeader()->getPayoutBatchId()
@@ -86,17 +77,15 @@ class PaymentsController extends AbstractController
     }
 
     /**
-     * @Route("/payouts/{statusId}", name="payouts-refresh", methods={"GET"})
+     * @Route("/pay-outs/{statusId}", name="pay-outs-refresh", methods={"GET"})
+     *
      * @param string $statusId
      * @return Response | RedirectResponse
      */
     public function payoutsRefresh(string $statusId)
     {
-        if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-index');
-        }
         $payout = $this->paypalService->getPayoutService()->getPayout($statusId);
-        return $this->render('paypal/authenticated/result.html.twig', [
+        return $this->render('default/dump-input-id.html.twig', [
             'raw_result' => false,
             'result' => $payout,
             'result_id' => $payout->getBatchHeader()->getPayoutBatchId()
@@ -110,10 +99,7 @@ class PaymentsController extends AbstractController
      */
     public function invoices()
     {
-        if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-index');
-        }
-        return $this->render('paypal/authenticated/invoices.html.twig');
+        return $this->render('paypal/payments/invoices.html.twig');
     }
 
     /**
@@ -123,20 +109,15 @@ class PaymentsController extends AbstractController
      */
     public function invoicesCreate()
     {
-        if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-index');
-        }
         $request = Request::createFromGlobals();
         $inputForm = $request->request->all();
-        $invoice = $this->paypalService->getInvoiceService()
-            ->createInvoice($inputForm);
+        $invoice = $this->paypalService->getInvoiceService()->createInvoice($inputForm);
         if ($invoice instanceof Invoice) {
             $this->paypalService->getInvoiceService()->sendInvoice($invoice);
-            $invoiceQR = $this->paypalService->getInvoiceService()
-                ->getInvoiceQRHTML($invoice);
+            $invoiceQR = $this->paypalService->getInvoiceService()->getInvoiceQRHTML($invoice);
         }
         if (isset($invoiceQR)) {
-            return $this->render('paypal/authenticated/result.html.twig', [
+            return $this->render('default/dump-input-id.html.twig', [
                 'raw_result' => true,
                 'result' => $invoiceQR,
                 'result_id' => $invoice->getId()
@@ -152,11 +133,8 @@ class PaymentsController extends AbstractController
      */
     public function invoicesRefresh(string $invoiceId)
     {
-        if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-index');
-        }
         $invoice = $this->paypalService->getInvoiceService()->getInvoice($invoiceId);
-        return $this->render('paypal/authenticated/result.html.twig', [
+        return $this->render('default/dump-input-id.html.twig', [
             'raw_result' => false,
             'result' => $invoice,
             'result_id' => $invoice->getId()
@@ -170,9 +148,6 @@ class PaymentsController extends AbstractController
      */
     public function subscriptions()
     {
-        if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-index');
-        }
-        return $this->render('paypal/authenticated/subscriptions.html.twig');
+        return $this->render('paypal/payments/subscriptions.html.twig');
     }
 }

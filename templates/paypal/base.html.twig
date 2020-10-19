@@ -5,9 +5,9 @@
         {% block nav_class %}navbar-light bg-paypal paypal-font{% endblock nav_class %}
         {% block nav_items %}
             <div class="navbar-nav col justify-content-center">
-                <a class="nav-link text-light" href="{{ path('paypal-index') }}">Connect</a>
+                <a class="nav-link text-light" href="{{ path('paypal-connect-index') }}">Connect</a>
                 <a class="nav-link text-light" href="{{ path('paypal-payments-pay-ins') }}">PayIns</a>
-                <a class="nav-link text-light" href="{{ path('paypal-payments-payouts') }}">PayOuts</a>
+                <a class="nav-link text-light" href="{{ path('paypal-payments-pay-outs') }}">PayOuts</a>
                 <a class="nav-link text-light" href="{{ path('paypal-payments-invoices') }}">Invoices</a>
                 <a class="nav-link text-light" href="{{ path('paypal-payments-subscriptions') }}">Subscriptions</a>
                 <a class="nav-link text-light" href="#">QR Codes</a>

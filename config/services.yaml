@@ -25,6 +25,9 @@ services:
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
+    App\EventListener\KernelRequest:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request }
 
     # PayPal's specific services definition with client and secret tokens
     App\Service\Paypal\:
