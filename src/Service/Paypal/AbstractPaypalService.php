@@ -50,8 +50,8 @@ abstract class AbstractPaypalService
         LoggerInterface $logger,
         SessionService $sessionService
     ) {
-        $sessionClientId = $sessionService->session->get('paypal')['PAYPAL_SDK_CLIENT_ID'];
-        $sessionClientSecret = $sessionService->session->get('paypal')['PAYPAL_SDK_CLIENT_SECRET'];
+        $sessionClientId = $sessionService->session->get('PAYPAL_SDK_CLIENT_ID');
+        $sessionClientSecret = $sessionService->session->get('PAYPAL_SDK_CLIENT_SECRET');
         $this->clientId = $sessionClientId ?? $clientId;
         $this->clientSecret = $sessionClientSecret ?? $clientSecret;
         $this->logger = $logger;

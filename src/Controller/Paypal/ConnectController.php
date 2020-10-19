@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Exception;
 
 /**
  * Class ConnectController
@@ -18,7 +19,7 @@ class ConnectController extends AbstractController
     /**
      * @Route("/", name="index", methods={"GET"})
      *
-     * @return RedirectResponse|Response
+     * @return Response
      */
     public function index()
     {
@@ -27,98 +28,77 @@ class ConnectController extends AbstractController
         }
 
         return $this->render('paypal/connect/authenticate.html.twig');
-
-        $request = Request::createFromGlobals();
-        $authToken = $request->get('code');
-        if ($authToken) {
-            return $this->render('paypal/anonymous/auth-token.html.twig', [
-                'auth_token' => $authToken,
-            ]);
-        }
-        return $this->render('paypal/anonymous/index.html.twig', [
-            'PAYPAL_SDK_CLIENT_ID' =>
-                $this->sessionService->session->get('PAYPAL_SDK_CLIENT_ID') ??
-                $this->getParameter('PAYPAL_SDK_CLIENT_ID'),
-        ]);
     }
 
     /**
      * @Route("/auth-token", name="auth-token", methods={"POST"})
-     * @return RedirectResponse|Response
+     *
+     * @return Response
      */
-    public function anonymousAuthToken()
+    public function authToken()
     {
-        if ($this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-authenticated-index');
-        }
         $request = Request::createFromGlobals();
-        $authToken = $request->request->get('auth_token', null);
+        $authToken = $request->request->get('auth_token');
         if ($authToken) {
             $openIdTokeninfo = $this->paypalService->getIdentityService()->getAccessTokenFromAuthToken($authToken);
             if ($openIdTokeninfo) {
-                return $this->render('paypal/anonymous/access-token.html.twig', [
-                    'auth_token' => $authToken,
-                    'access_token' => $openIdTokeninfo->getAccessToken(),
-                    'refresh_token' => $openIdTokeninfo->getRefreshToken(),
-                    'accessTokenObject' => $openIdTokeninfo
+                return $this->render('default/dump-input-id.html.twig', [
+                    'raw_result' => false,
+                    'result' => $openIdTokeninfo,
+                    'result_id' => $openIdTokeninfo->getRefreshToken()
                 ]);
             }
         }
-        return $this->redirectToRoute('paypal-anonymous-index');
     }
 
     /**
-     * @Route("/user-info", name="user-info", methods={"POST"})
+     * @Route("/login", name="login", methods={"POST"})
      * @return RedirectResponse|Response
      */
-    public function anonymousUserInfo()
+    public function login()
     {
-        if ($this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-authenticated-index');
-        }
         $request = Request::createFromGlobals();
         $refreshToken = $request->request->get('refresh_token', null);
         if ($refreshToken) {
             $userInfo = $this->paypalService->getIdentityService()->getUserInfoFromRefreshToken($refreshToken);
             if ($userInfo) {
-                $this->sessionService->login($userInfo, $refreshToken);
-                return $this->render('paypal/anonymous/user-info.html.twig', [
-                    'refresh_token' => $refreshToken,
-                    'name' => $userInfo->getName(),
-                    'userInfo' => $userInfo
+                $this->paypalService->getSessionService()->login($userInfo, $refreshToken);
+                return $this->render('default/dump-input-id.html.twig', [
+                    'raw_result' => false,
+                    'result' => $userInfo,
+                    'result_id' => $userInfo->getEmail()
                 ]);
             }
         }
-        return $this->redirectToRoute('paypal-anonymous-index');
     }
 
     /**
-     * @Route("/myAcccount", name="my-account", methods={"GET"})
+     * @Route("/logout", name="logout", methods={"GET"})
+     *
+     * @return RedirectResponse
+     */
+    public function logout()
+    {
+        $this->paypalService->getSessionService()->logout();
+        return $this->redirectToRoute('paypal-connect-index');
+    }
+
+    /**
+     * @Route("/transactions", name="transactions", methods={"GET"})
      *
      * @return Response | RedirectResponse
      */
     public function myAccount()
     {
-        if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-index');
-        }
-        $refreshToken = $this->sessionService->getRefreshToken();
+        $refreshToken = $this->paypalService->getSessionService()->getRefreshToken();
         $myTransactions = $this->paypalService
             ->getReportingService()
             ->getUserTransactionsFromRefreshToken($refreshToken);
-        if ($refreshToken !== null) {
-            $userInfo = $this->paypalService
-                ->getIdentityService()
-                ->getUserInfoFromRefreshToken($refreshToken);
-            if ($userInfo) {
-                return $this->render('paypal/authenticated/account.html.twig', [
-                    'name' => $userInfo->getName(),
-                    'email' => $userInfo->getEmail(),
-                    'userInfo' => $userInfo,
-                    'transactions' => $myTransactions,
-                ]);
-            }
+        if ($myTransactions) {
+            return $this->render('default/dump.html.twig', [
+                'raw_result' => false,
+                'result' => $myTransactions,
+            ]);
         }
-        return $this->redirectToRoute('paypal-index');
     }
 }

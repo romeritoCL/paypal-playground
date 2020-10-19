@@ -13,14 +13,10 @@
                 <a class="nav-link text-light" href="#">QR Codes</a>
                 <a class="nav-link text-light" href="#">BOPIS</a>
                 <a class="nav-link text-light" href="#">PayLater</a>
+                {% include "paypal/modals/sandbox-credentials.html.twig" %}
             </div>
         {% endblock nav_items %}
     {% endembed %}
-    <div class="navbar">
-            <button type="button" class="btn btn-success" onclick="window.location.reload();">Refresh</button>
-            <button type="button" class="btn btn-secondary" onclick="location.href = '{{ path('paypal-session-logout') }}';">Log Out</button>
-            {% include "paypal/modals/sandbox-credentials.html.twig" %}
-    </div>
 {% endblock navbar %}
 {% block body %}
     <div class="container mt-4">

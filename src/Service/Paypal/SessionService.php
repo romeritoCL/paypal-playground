@@ -35,14 +35,6 @@ class SessionService
     }
 
     /**
-     * LogOut from Connect with PayPal
-     */
-    public function logout(): void
-    {
-        $this->session->remove('paypal');
-    }
-
-    /**
      * @return bool
      */
     public function isActive(): bool
@@ -70,8 +62,15 @@ class SessionService
             'address_country' => $userinfo->getAddress()->getCountry(),
             'refresh-token' => $refreshToken,
         ];
-
         $this->session->set('paypal', $paypalUser);
+    }
+
+    /**
+     * LogOut from Connect with PayPal
+     */
+    public function logout(): void
+    {
+        $this->session->remove('paypal');
     }
 
     /**
@@ -90,5 +89,14 @@ class SessionService
     {
         $this->session->set('PAYPAL_SDK_CLIENT_ID', $clientId);
         $this->session->set('PAYPAL_SDK_CLIENT_SECRET', $clientSecret);
+    }
+
+    /**
+     * Remove PayPal SandBox credentials
+     */
+    public function removeCredentials(): void
+    {
+        $this->session->remove('PAYPAL_SDK_CLIENT_ID');
+        $this->session->remove('PAYPAL_SDK_CLIENT_SECRET');
     }
 }
