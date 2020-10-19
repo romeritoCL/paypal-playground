@@ -4,6 +4,7 @@ let jsSettingsSaveUrl = document.querySelector('.js-settings-save-url');
 let settingsSaveUrl = jsSettingsSaveUrl.dataset.settingsSaveUrl;
 let jsSettingsClearUrl = document.querySelector('.js-settings-clear-url');
 let settingsClearUrl = jsSettingsClearUrl.dataset.settingsClearUrl;
+let backButton = document.getElementById('back-button');
 
 submitButton.addEventListener('click', function () {
     submitButton.disabled = true;
@@ -41,4 +42,9 @@ clearButton.addEventListener('click', function () {
             }
         });
     }
+});
+
+backButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    window.history.back();
 });
