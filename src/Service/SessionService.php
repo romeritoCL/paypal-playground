@@ -96,8 +96,14 @@ class SessionService
      */
     public function storeSettings(array $settings): void
     {
-        foreach ($settings as $key => $setting) {
-            $this->session->set($key, $setting);
-        }
+        $this->session->set('settings', $settings);
+    }
+
+    /**
+     * Clear settings to Defaults
+     */
+    public function clearSettings(): void
+    {
+        $this->session->remove('settings');
     }
 }

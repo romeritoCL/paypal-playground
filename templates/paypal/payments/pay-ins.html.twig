@@ -1,0 +1,75 @@
+{% extends 'paypal/base.html.twig' %}
+{% block content %}
+    <div class="col text-center pb-4 paypal-font">
+        <h4>Let's try and pay something</h4>
+        <p>
+            On the left side, create your dream product, then update the payment buttons
+        </p>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p><strong>
+                So, what are we buying today
+            </strong></p>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="name-text">Name</span>
+                </div>
+                <input type="text" aria-label="Name" class="form-control text-right" id="name" value="Make me proud! TEE (XXL)">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="pricing-text">Price</span>
+                </div>
+                <input type="number" aria-label="Price" class="form-control text-right" id="price" value="18">
+                <div class="input-group-append">
+                    <span class="input-group-text">.00 {{app.session.get('settings')['settings-customer-currency']}}</span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="shipping-text">Shipping</span>
+                </div>
+                <input type="number" aria-label="Price" class="form-control text-right" id="shipping" value="5">
+                <div class="input-group-append">
+                    <span class="input-group-text">.00 {{app.session.get('settings')['settings-customer-currency']}}</span>
+                </div>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">SKU</span>
+                </div>
+                <input type="text" aria-label="Name" class="form-control text-right" id="sku" value="TEE-MMP-XXL">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Description</span>
+                </div>
+                <input type="text" aria-label="Name" class="form-control text-right" id="item_description"
+                       value="A tee that will make you proud and good looking, in an XXL size">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Purchase</span>
+                </div>
+                <input type="text" aria-label="Name" class="form-control text-right" id="purchase_description"
+                       value="Tee sale: Make me proud! (XXL) SPECIAL OFFER">
+            </div>
+            <p id="current-payment-sentence"></p>
+            <button type="button" class="btn btn-success" id="reload-payment-buttons">Reload Payment Buttons</button>
+        </div>
+        <div class="col">
+            <div id="paypal-button-container"></div>
+            <script>
+            </script>
+            <div id="result-col"></div>
+        </div>
+    </div>
+    <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
+    <div id="capture-url" data-capture-url="{{ path("paypal-payments-payments-capture", {'paymentId': 'payment_id_status'}) }}"></div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&buyer-country={{app.session.get('settings')['settings-customer-country']}}&locale={{app.session.get('settings')['settings-customer-locale']}}"></script>
+    {{ encore_entry_script_tags('pay-ins') }}
+{% endblock %}

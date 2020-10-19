@@ -16,12 +16,12 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class DefaultController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="index", methods={"GET"})
      *
-     * @return RedirectResponse|Response
+     * @return Response
      */
     public function index()
     {
-        return $this->redirectToRoute('paypal-anonymous-index');
+        return $this->render('paypal/index.html.twig');
     }
 }

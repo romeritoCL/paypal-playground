@@ -10,58 +10,21 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * Class AuthenticatedController
+ * Class PaymentsController
  * @package App\Controller\Paypal
  *
- * @Route("/paypal/logged-in", name="paypal-authenticated-")
+ * @Route("/paypal/payments", name="paypal-payments-")
  */
-class AuthenticatedController extends AbstractController
+class PaymentsController extends AbstractController
 {
     /**
-     * @Route("/", name="index", methods={"GET"})
+     * @Route("/pay-ins", name="pay-ins", methods={"GET"})
      *
      * @return Response | RedirectResponse
      */
-    public function index()
+    public function payIns()
     {
-        if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-index');
-        }
-        $refreshToken = $this->sessionService->getRefreshToken();
-        $myTransactions = $this->paypalService
-            ->getReportingService()
-            ->getUserTransactionsFromRefreshToken($refreshToken);
-        if ($refreshToken !== null) {
-            $userInfo = $this->paypalService
-                ->getIdentityService()
-                ->getUserInfoFromRefreshToken($refreshToken);
-            if ($userInfo) {
-                return $this->render('paypal/authenticated/account.html.twig', [
-                    'name' => $userInfo->getName(),
-                    'email' => $userInfo->getEmail(),
-                    'userInfo' => $userInfo,
-                    'transactions' => $myTransactions,
-                ]);
-            }
-        }
-        return $this->redirectToRoute('paypal-index');
-    }
-
-    /**
-     * @Route("/payments", name="payments", methods={"GET"})
-     *
-     * @return Response | RedirectResponse
-     */
-    public function payments()
-    {
-        if (!$this->sessionService->isActive()) {
-            return $this->redirectToRoute('paypal-index');
-        }
-        return $this->render('paypal/authenticated/payments.html.twig', [
-            'PAYPAL_SDK_CLIENT_ID' =>
-                $this->sessionService->session->get('PAYPAL_SDK_CLIENT_ID') ??
-                $this->getParameter('PAYPAL_SDK_CLIENT_ID'),
-        ]);
+        return $this->render('paypal/payments/pay-ins.html.twig');
     }
 
     /**

@@ -8,12 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * Class AnonymousController
+ * Class ConnectController
  * @package App\Controller\Paypal
  *
- * @Route("/paypal/anonymous", name="paypal-anonymous-")
+ * @Route("/paypal/connect", name="paypal-connect-")
  */
-class AnonymousController extends AbstractController
+class ConnectController extends AbstractController
 {
     /**
      * @Route("/", name="index", methods={"GET"})
@@ -87,5 +87,35 @@ class AnonymousController extends AbstractController
             }
         }
         return $this->redirectToRoute('paypal-anonymous-index');
+    }
+
+    /**
+     * @Route("/myAcccount", name="index", methods={"GET"})
+     *
+     * @return Response | RedirectResponse
+     */
+    public function myAccount()
+    {
+        if (!$this->sessionService->isActive()) {
+            return $this->redirectToRoute('paypal-index');
+        }
+        $refreshToken = $this->sessionService->getRefreshToken();
+        $myTransactions = $this->paypalService
+            ->getReportingService()
+            ->getUserTransactionsFromRefreshToken($refreshToken);
+        if ($refreshToken !== null) {
+            $userInfo = $this->paypalService
+                ->getIdentityService()
+                ->getUserInfoFromRefreshToken($refreshToken);
+            if ($userInfo) {
+                return $this->render('paypal/authenticated/account.html.twig', [
+                    'name' => $userInfo->getName(),
+                    'email' => $userInfo->getEmail(),
+                    'userInfo' => $userInfo,
+                    'transactions' => $myTransactions,
+                ]);
+            }
+        }
+        return $this->redirectToRoute('paypal-index');
     }
 }

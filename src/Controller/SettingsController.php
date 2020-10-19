@@ -52,4 +52,15 @@ class SettingsController extends AbstractController
         $this->sessionService->storeSettings($settings);
         return new Response();
     }
+
+    /**
+     * @Route("/", name="clear", methods={"DELETE"})
+     *
+     * @return Response
+     */
+    public function settingsClear()
+    {
+        $this->sessionService->clearSettings();
+        return new Response();
+    }
 }

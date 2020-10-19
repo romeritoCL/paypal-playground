@@ -3,10 +3,6 @@
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
-parameters:
-    PAYPAL_SDK_CLIENT_ID: '%env(PAYPAL_SDK_CLIENT_ID)%'
-    PAYPAL_SDK_CLIENT_SECRET: '%env(PAYPAL_SDK_CLIENT_SECRET)%'
-
 services:
     # default configuration for services in *this* file
     _defaults:

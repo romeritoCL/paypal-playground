@@ -37,6 +37,7 @@ Encore
     .addEntry('request', './assets/js/braintree/request.js')
     .addEntry('login', './assets/js/security/login.js')
     .addEntry('settings', './assets/js/settings/settings.js')
+    .addEntry('pay-ins', './assets/js/paypal/pay-ins.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
