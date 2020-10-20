@@ -43,7 +43,7 @@ class SettingsController extends AbstractController
     /**
      * @Route("/", name="save", methods={"POST"})
      *
-         * @return Response
+     * @return Response
      */
     public function settingsSave()
     {

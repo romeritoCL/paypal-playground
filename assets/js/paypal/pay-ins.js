@@ -45,7 +45,7 @@ let orderCreateJson = {
         },
         description: settings['settings-item-description'],
         items: [{
-            name: name,
+            name: settings['settings-item-name'],
             unit_amount: { currency_code: settings['settings-customer-currency'], value: settings['settings-item-price']},
             quantity: 1,
             sku: settings['settings-item-sku'],
