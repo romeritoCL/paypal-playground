@@ -1,27 +1,22 @@
 {% extends 'base.html.twig' %}
 {% block title %}BrainTree PlayGround{% endblock %}
+{% block navbar %}
+    {% embed "navbar/navbar.html.twig" %}
+        {% block nav_class %}navbar-dark bg-braintree braintree-font{% endblock nav_class %}
+        {% block nav_items %}
+            <div class="navbar-nav col justify-content-center">
+                <a class="nav-link text-light" href="{{ path('braintree-payments-dropui') }}">DropUi</a>
+                <a class="nav-link text-light" href="{{ path('braintree-payments-hosted-fields') }}">HostedFields</a>
+                <a class="nav-link text-light" href="{{ path('braintree-payments-apm') }}">APM</a>
+                <a class="nav-link text-light" href="{{ path('braintree-payments-three-ds') }}">3DSecure</a>
+                <a class="nav-link text-light" href="{{ path('braintree-payments-vault') }}">Vault</a>
+                <a class="nav-link text-light" href="{{ path('braintree-payments-request') }}">RequestAPI</a>
+            </div>
+        {% endblock nav_items %}
+    {% endembed %}
+{% endblock navbar %}
 {% block body %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-braintree braintree-font">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-brand collapse navbar-collapse" id="navbarSupportedContent">
-        {% include "navbar/dropdown.html.twig" %}
-        <div class="navbar-nav col justify-content-center">
-            <a class="nav-link text-light" href="{{ path('braintree-payments-dropui') }}">DropUi</a>
-            <a class="nav-link text-light" href="{{ path('braintree-payments-hosted-fields') }}">HostedFields</a>
-            <a class="nav-link text-light" href="{{ path('braintree-payments-apm') }}">APM</a>
-            <a class="nav-link text-light" href="{{ path('braintree-payments-three-ds') }}">3DSecure</a>
-            <a class="nav-link text-light" href="{{ path('braintree-payments-vault') }}">Vault</a>
-            <a class="nav-link text-light" href="{{ path('braintree-payments-request') }}">RequestAPI</a>
-        </div>
+    <div class="container mt-4">
+        {% block content %}{% endblock content %}
     </div>
-    <span class="badge badge-pill badge-success">{{ random([
-            'Yeah!', 'C\'mon!', 'Booom!', 'Awesome!', 'Massive!','Bombastic!','Payments Rocks',
-            'PayPal Powah!', 'BrainTree you say?', 'What about some PayPal Magic?'
-        ]) }}</span>
-</nav>
-<div class="container mt-4">
-    {% block content %}{% endblock %}
-</div>
-{% endblock %}
+{% endblock body %}

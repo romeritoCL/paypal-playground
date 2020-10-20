@@ -29,7 +29,6 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
-    .addEntry('paypal', './assets/js/paypal.js')
     .addEntry('dropui', './assets/js/braintree/dropui.js')
     .addEntry('apm', './assets/js/braintree/apm.js')
     .addEntry('3ds', './assets/js/braintree/3ds.js')
@@ -37,6 +36,13 @@ Encore
     .addEntry('hosted-fields', './assets/js/braintree/hosted-fields.js')
     .addEntry('request', './assets/js/braintree/request.js')
     .addEntry('login', './assets/js/security/login.js')
+    .addEntry('settings', './assets/js/settings/settings.js')
+    .addEntry('pay-ins', './assets/js/paypal/pay-ins.js')
+    .addEntry('pay-outs', './assets/js/paypal/pay-outs.js')
+    .addEntry('invoices', './assets/js/paypal/invoices.js')
+    .addEntry('subscriptions', './assets/js/paypal/subscriptions.js')
+    .addEntry('connect', './assets/js/paypal/connect.js')
+    .addEntry('authenticated', './assets/js/paypal/authenticated.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

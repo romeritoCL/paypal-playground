@@ -4,6 +4,8 @@ namespace App\Service\Braintree;
 
 use Braintree\Result\Error;
 use Braintree\Result\Successful;
+use Braintree\Transaction;
+use Braintree\Exception\NotFound;
 use Exception;
 
 /**
@@ -61,8 +63,8 @@ class PaymentService extends AbstractBraintreeService
 
     /**
      * @param $transactionId
-     * @return \Braintree\Transaction
-     * @throws \Braintree\Exception\NotFound
+     * @return Transaction
+     * @throws NotFound
      */
     public function getTransaction($transactionId)
     {

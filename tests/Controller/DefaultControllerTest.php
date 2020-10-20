@@ -28,17 +28,4 @@ class DefaultControllerTest extends WebTestCase
             $client->getResponse()->getContent()
         );
     }
-
-    /**
-     * testFavicon
-     */
-    public function testFavicon()
-    {
-        $client = static::createClient();
-        $container = self::$container;
-        $faviconRoute = $container->get('router')->generate('favicon');
-        $client->request('GET', $faviconRoute);
-        $this->assertEquals(302, $client->getResponse()->getStatusCode());
-        $this->assertResponseRedirects(DefaultController::PAYPAL_FAVICON_URL);
-    }
 }

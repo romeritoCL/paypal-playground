@@ -1,0 +1,100 @@
+{% extends 'paypal/base.html.twig' %}
+{% block content %}
+    <div class="paypal-font">
+        <section class="jumbotron">
+            <div class="container container-fluid">
+                <div class="row justify-content-center">
+                    <button class="btn d-inline align-middle">
+                        <img alt="Logo PayPal" class="logo-paypal" src="https://upload.wikimedia.org/wikipedia/commons/3/39/PayPal_logo.svg" />
+                    </button>
+                    <div class="jumbotron-heading d-inline align-middle">
+                        <h1 class="ml-3 align-middle">Let's Play</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="row">
+            <div class="col">
+                <ul class="list">
+                    <li>Receive payments with PayPal</li>
+                    <li>Connect with PayPal and verify your account</li>
+                    <li>Send payments with Paypal</li>
+                    <li>Invoices, Subscriptions, BOPIS</li>
+                    <li>QRC new features</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-connect-index') }}">Connect</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Try out PayPal Connect, get user info, authenticate email</h6>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-pay-ins') }}">PayIns</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Try out PayIns with PayPal Smart Buttons + APMs</h6>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-pay-outs') }}">PayOuts</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Want to send money, use paypal payouts APIs</h6>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-invoices') }}">Invoices</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">You can use the pay by link with invoices, and QR them</h6>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-subscriptions') }}">Subscriptions</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Subscribe with PayPal to any monthly or weekly or whatever</h6>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn bg-paypal text-light btn-block" href="#">QR Codes</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">MoonShot!! Awesome, QRC payments</h6>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn bg-paypal text-light btn-block" href="#">BOPIS</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Maybe you want to Buy online pick up in store?</h6>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn bg-paypal text-light btn-block" href="#">ReferenceTransactions</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">The one and only 1 click experience, Powered by PayPal</h6>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-3">
+                <a class="btn bg-paypal text-light btn-block" href="#">PayLater</a>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Don't have the cash? Split payments with PayPal</h6>
+            </div>
+        </div>
+    </div>
+{% endblock %}

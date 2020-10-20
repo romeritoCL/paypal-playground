@@ -1,0 +1,247 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="js-settings-save-url" data-settings-save-url="{{ path('settings-index') }}"></div>
+    <div class="js-settings-clear-url" data-settings-clear-url="{{ path('settings-clear') }}"></div>
+    <form id="settings-data">
+        <section class="text-center container-fluid p-3 d-block">
+            <div class="alert alert-success alert-dismissible fade show d-none" role="alert" id="settings-save-success-alert">
+                <strong>Success!</strong> Your settings have been saved.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <button class="btn-success btn btn-lg" id="submit-button">Save Settings</button>
+            <button class="btn-danger btn btn-lg" id="clear-button">Default Settings</button>
+            <button class="btn-primary btn btn-lg" id="back-button">Go Back</button>
+        </section>
+        <div class="container w-50 d-none" id="settings-save-success-alert">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> Your settings have been saved.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <section class="jumbotron h-100 bg-gray">
+                        <div class="container text-center">
+                            <h3>Customer Settings</h3>
+                            <hr>
+                        </div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Currency</label>
+                                </div>
+                                <select class="custom-select" name="settings-customer-currency">
+                                    <option value="EUR" {% if app.session.get('settings')['settings-customer-currency'] ?? false == 'EUR' %} selected {% endif %}>EUR</option>
+                                    <option value="USD" {% if app.session.get('settings')['settings-customer-currency'] ?? false == 'USD' %} selected {% endif %}>USD</option>
+                                    <option value="GBP" {% if app.session.get('settings')['settings-customer-currency'] ?? false == 'GBP' %} selected {% endif %}>GBP</option>
+                                    <option value="SEK" {% if app.session.get('settings')['settings-customer-currency'] ?? false == 'SEK' %} selected {% endif %}>SEK</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Locale</span>
+                                </div>
+                                <input type="text" aria-label="Locale" class="form-control text-right" name="settings-customer-locale" value="{{ app.session.get('settings')['settings-customer-locale'] | default('en_GB' )}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">UserId</span>
+                                </div>
+                                <input type="text" aria-label="UserId" class="form-control text-right" name="settings-customer-id" value="{{ app.session.get('settings')['settings-customer-id']}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Name</span>
+                                </div>
+                                <input type="text" aria-label="Name" class="form-control text-right" name="settings-customer-name" value="{{ app.session.get('settings')['settings-customer-name']}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Family Name</span>
+                                </div>
+                                <input type="text" aria-label="Family Name" class="form-control text-right" name="settings-customer-family-name" value="{{ app.session.get('settings')['settings-customer-family-name']}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Email</span>
+                                </div>
+                                <input type="email" aria-label="Email" class="form-control text-right" name="settings-customer-email" value="{{ app.session.get('settings')['settings-customer-email']}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Street</span>
+                                </div>
+                                <input type="text" aria-label="Street" class="form-control text-right" name="settings-customer-street" value="{{ app.session.get('settings')['settings-customer-street'] | default('Rue Bethancourt 5' )}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">City</span>
+                                </div>
+                                <input type="text" aria-label="City" class="form-control text-right" name="settings-customer-city" value="{{ app.session.get('settings')['settings-customer-city']}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Province</span>
+                                </div>
+                                <input type="text" aria-label="Province" class="form-control text-right" name="settings-customer-province" value="{{ app.session.get('settings')['settings-customer-province']}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">ZipCode</span>
+                                </div>
+                                <input type="text" aria-label="ZipCode" class="form-control text-right" name="settings-customer-zip-code" value="{{ app.session.get('settings')['settings-customer-zip-code']}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Country</label>
+                                </div>
+                                <select class="custom-select" name="settings-customer-country">
+                                    <option value="FR" {% if app.session.get('settings')['settings-customer-country'] ?? false == 'FR' %} selected {% endif %}>FR</option>
+                                    <option value="ES" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'ES' %} selected {% endif %}>ES</option>
+                                    <option value="DE" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'DE' %} selected {% endif %}>DE</option>
+                                    <option value="NL" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'NL' %} selected {% endif %}>NL</option>
+                                    <option value="IT" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'IT' %} selected {% endif %}>IT</option>
+                                    <option value="GB" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'GB' %} selected {% endif %}>GB</option>
+                                    <option value="US" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'US' %} selected {% endif %}>US</option>
+                                    <option value="NO" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'NO' %} selected {% endif %}>NO</option>
+                                    <option value="FI" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'FI' %} selected {% endif %}>FI</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col">
+                    <section class="jumbotron h-100 bg-gray">
+                        <div class="container text-center">
+                            <h3>Merchant Settings</h3>
+                            <hr>
+                        </div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Business Name</span>
+                                </div>
+                                <input type="text" aria-label="Business Name" class="form-control text-right" name="settings-merchant-name" value="{{ app.session.get('settings')['settings-merchant-name'] | default('PlayGround Shop' )}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Email</span>
+                                </div>
+                                <input type="email" aria-label="Email" class="form-control text-right" name="settings-merchant-email" value="{{ app.session.get('settings')['settings-merchant-email']}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Street</span>
+                                </div>
+                                <input type="text" aria-label="Street" class="form-control text-right" name="settings-merchant-street" value="{{ app.session.get('settings')['settings-merchant-street'] | default('Calle Valencia 34' )}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">City</span>
+                                </div>
+                                <input type="text" aria-label="City" class="form-control text-right" name="settings-merchant-city" value="{{ app.session.get('settings')['settings-merchant-city']}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Province</span>
+                                </div>
+                                <input type="text" aria-label="Province" class="form-control text-right" name="settings-merchant-province" value="{{ app.session.get('settings')['settings-merchant-province']}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">ZipCode</span>
+                                </div>
+                                <input type="text" aria-label="ZipCode" class="form-control text-right" name="settings-merchant-zip-code" value="{{ app.session.get('settings')['settings-merchant-zip-code']}}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Country</label>
+                                </div>
+                                <select class="custom-select" name="settings-merchant-country">
+                                    <option value="FR" {% if app.session.get('settings')['settings-merchant-country'] ?? false == 'FR' %} selected {% endif %}>FR</option>
+                                    <option value="ES" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'ES' %} selected {% endif %}>ES</option>
+                                    <option value="DE" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'DE' %} selected {% endif %}>DE</option>
+                                    <option value="NL" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'NL' %} selected {% endif %}>NL</option>
+                                    <option value="IT" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'IT' %} selected {% endif %}>IT</option>
+                                    <option value="GB" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'GB' %} selected {% endif %}>GB</option>
+                                    <option value="US" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'US' %} selected {% endif %}>US</option>
+                                    <option value="NO" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'NO' %} selected {% endif %}>NO</option>
+                                    <option value="FI" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'FI' %} selected {% endif %}>FI</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="container text-center">
+                            <h3>Default Items</h3>
+                            <hr>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Name</span>
+                            </div>
+                            <input type="text" aria-label="Name" class="form-control text-right" name="settings-item-name" value="{{ app.session.get('settings')['settings-item-name'] | default('Make me proud! TEE (XXL)' )}}">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Price</span>
+                            </div>
+                            <input type="number" aria-label="Price" class="form-control text-right" name="settings-item-price" value="{{ app.session.get('settings')['settings-item-price']}}">
+                            <div class="input-group-append">
+                                <span class="input-group-text">.00 €</span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Shipping</span>
+                            </div>
+                            <input type="number" aria-label="Price" class="form-control text-right" name="settings-item-shipping" value="{{ app.session.get('settings')['settings-item-shipping']}}">
+                            <div class="input-group-append">
+                                <span class="input-group-text">.00 €</span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">SKU</span>
+                            </div>
+                            <input type="text" aria-label="SKU" class="form-control text-right" name="settings-item-sku" value="{{ app.session.get('settings')['settings-item-sku'] | default('TEE-MMP-XXL' )}}">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Description</span>
+                            </div>
+                            <input type="text" aria-label="Description" class="form-control text-right" name="settings-item-description"
+                                   value="{{ app.session.get('settings')['settings-item-description'] | default('A tee that will make you proud and good looking, in an XXL size' )}}">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Purchase</span>
+                            </div>
+                            <input type="text" aria-label="Purchase" class="form-control text-right" name="settings-item-purchase-description"
+                                   value="{{ app.session.get('settings')['settings-item-purchase-description'] | default('Tee sale: Make me proud! (XXL) SPECIAL OFFER' )}}">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Tax Name</span>
+                            </div>
+                            <input type="text" aria-label="note" class="form-control text-right" name="settings-item-tax-name" value="{{ app.session.get('settings')['settings-item-tax-name']}}">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Tax %</span>
+                            </div>
+                            <input type="text" aria-label="note" class="form-control text-right" name="settings-item-tax-value" value="{{ app.session.get('settings')['settings-item-tax-value']}}">
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('settings') }}
+{% endblock %}

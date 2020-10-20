@@ -2,7 +2,6 @@
 
 namespace App\Service\Paypal;
 
-use App\Service\SessionService;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 use Psr\Log\LoggerInterface;
@@ -32,6 +31,11 @@ abstract class AbstractPaypalService
      * @var LoggerInterface
      */
     protected $logger;
+
+    /**
+     * @var SessionService
+     */
+    protected $sessionService;
 
     /**
      * PaypalService constructor.

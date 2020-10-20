@@ -5,32 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}PlayGround{% endblock %}</title>
     {% block stylesheets %}
-        <style type="text/css">
-            @font-face {
-                font-family: 'paypal-font';
-                src:    url({{asset('build/fonts/paypal.woff')}}) format('woff');
-            }
-            @font-face {
-                font-family: 'braintree-font';
-                src:    url({{asset('build/fonts/braintree.woff')}}) format('woff');
-            }
-            @font-face {
-                font-family: 'hyperwallet-font';
-                src:    url({{asset('build/fonts/hyperwallet.woff')}}) format('woff');
-            }
-            @font-face {
-                font-family: 'hyperwallet-font';
-                font-weight: bold;
-                src:    url({{asset('build/fonts/hyperwallet-bold.woff')}}) format('woff');
-            }
-        </style>
+        {% include "default/fonts.html.twig" %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
 <body>
-{% block body %}{% endblock %}
-{% block javascripts %}
-{{ encore_entry_script_tags('app') }}
-{% endblock %}
+{% block navbar %}{% embed "navbar/navbar.html.twig" %}{% endembed %}{% endblock navbar %}
+{% block body %}{% endblock body %}
+{% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock javascripts %}
 </body>
 </html>

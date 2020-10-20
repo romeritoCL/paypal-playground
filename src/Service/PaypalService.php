@@ -7,6 +7,7 @@ use App\Service\Paypal\InvoiceService;
 use App\Service\Paypal\PaymentService;
 use App\Service\Paypal\PayoutService;
 use App\Service\Paypal\ReportingService;
+use App\Service\Paypal\SessionService;
 
 /**
  * Class PaypalService
@@ -40,25 +41,33 @@ class PaypalService
     protected $invoiceService;
 
     /**
+     * @var SessionService
+     */
+    protected $sessionService;
+
+    /**
      * PaypalService constructor.
      * @param IdentityService $identityService
      * @param PaymentService $paymentService
      * @param PayoutService $payoutService
      * @param ReportingService $reportingService
      * @param InvoiceService $invoiceService
+     * @param SessionService $sessionService
      */
     public function __construct(
         IdentityService $identityService,
         PaymentService $paymentService,
         PayoutService $payoutService,
         ReportingService $reportingService,
-        InvoiceService $invoiceService
+        InvoiceService $invoiceService,
+        SessionService $sessionService
     ) {
         $this->identityService = $identityService;
         $this->paymentService = $paymentService;
         $this->payoutService = $payoutService;
         $this->reportingService = $reportingService;
         $this->invoiceService = $invoiceService;
+        $this->sessionService = $sessionService;
     }
 
     /**
@@ -99,5 +108,13 @@ class PaypalService
     public function getInvoiceService(): InvoiceService
     {
         return $this->invoiceService;
+    }
+
+    /**
+     * @return SessionService
+     */
+    public function getSessionService(): SessionService
+    {
+        return $this->sessionService;
     }
 }

@@ -2,10 +2,9 @@
 
 namespace App\Controller\Paypal;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Class SessionController
@@ -16,27 +15,30 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class SessionController extends AbstractController
 {
     /**
-     * @Route("/logout", name="logout")
-     */
-    public function logout()
-    {
-        $this->sessionService->session->clear();
-        return $this->redirectToRoute('paypal-index');
-    }
-
-    /**
-     * @Route("/sandbox-credentials", name="sandbox-credentials")
+     * @Route("/sandbox-credentials", name="sandbox-credentials-create", methods={"POST"})
      *
-     * @return Response | RedirectResponse
+     * @return RedirectResponse
      */
-    public function sandboxCredentials()
+    public function sandboxCredentialsCreate()
     {
         $request = Request::createFromGlobals();
         $clientId = $request->request->get('client_id', null);
         $clientSecret = $request->request->get('client_secret', null);
         if ($clientId && $clientSecret) {
-            $this->sessionService->updateCredentials($clientId, $clientSecret);
+            $this->paypalService->getSessionService()->updateCredentials($clientId, $clientSecret);
         }
+        return $this->redirectToRoute('paypal-index');
+    }
+
+    /**
+     * @Route("/sandbox-credentials/delete", name="sandbox-credentials-delete", methods={"GET"})
+     *
+     * @return RedirectResponse
+     */
+    public function sandboxCredentialsDelete()
+    {
+        $this->paypalService->getSessionService()->removeCredentials();
+
         return $this->redirectToRoute('paypal-index');
     }
 }
