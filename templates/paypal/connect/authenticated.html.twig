@@ -20,7 +20,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <button class="w-100 btn btn-dark" href="{{ path('paypal-connect-logout') }}">Logout</button>
+                <button class="w-100 btn btn-dark" onclick="location.href = '{{ path('paypal-connect-logout') }}';">Logout</button>
             </div>
             <div class="col">
                 <button class="w-100 btn btn-primary" id="get-transactions">Get Transactions</button>

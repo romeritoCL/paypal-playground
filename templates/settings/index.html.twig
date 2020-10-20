@@ -106,8 +106,10 @@
                                     <option value="DE" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'DE' %} selected {% endif %}>DE</option>
                                     <option value="NL" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'NL' %} selected {% endif %}>NL</option>
                                     <option value="IT" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'IT' %} selected {% endif %}>IT</option>
-                                    <option value="UK" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'UK' %} selected {% endif %}>UK</option>
+                                    <option value="GB" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'GB' %} selected {% endif %}>GB</option>
                                     <option value="US" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'US' %} selected {% endif %}>US</option>
+                                    <option value="NO" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'NO' %} selected {% endif %}>NO</option>
+                                    <option value="FI" {% if app.session.get('settings')['settings-customer-country'] ?? false  == 'FI' %} selected {% endif %}>FI</option>
                                 </select>
                             </div>
                         </div>
@@ -161,13 +163,15 @@
                                     <label class="input-group-text" for="inputGroupSelect01">Country</label>
                                 </div>
                                 <select class="custom-select" name="settings-merchant-country">
-                                    <option value="FR" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'FR' %} selected {% endif %}>FR</option>
+                                    <option value="FR" {% if app.session.get('settings')['settings-merchant-country'] ?? false == 'FR' %} selected {% endif %}>FR</option>
                                     <option value="ES" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'ES' %} selected {% endif %}>ES</option>
                                     <option value="DE" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'DE' %} selected {% endif %}>DE</option>
                                     <option value="NL" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'NL' %} selected {% endif %}>NL</option>
                                     <option value="IT" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'IT' %} selected {% endif %}>IT</option>
-                                    <option value="UK" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'UK' %} selected {% endif %}>UK</option>
+                                    <option value="GB" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'GB' %} selected {% endif %}>GB</option>
                                     <option value="US" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'US' %} selected {% endif %}>US</option>
+                                    <option value="NO" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'NO' %} selected {% endif %}>NO</option>
+                                    <option value="FI" {% if app.session.get('settings')['settings-merchant-country'] ?? false  == 'FI' %} selected {% endif %}>FI</option>
                                 </select>
                             </div>
                         </div>

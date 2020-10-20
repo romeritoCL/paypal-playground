@@ -1,4 +1,8 @@
 {% extends 'paypal/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('pay-ins') }}
+{% endblock %}
 {% block content %}
     <div class="col text-center pb-4 paypal-font">
         <h4>Let's try and pay something</h4>
@@ -11,57 +15,15 @@
             <p><strong>
                 So, what are we buying today
             </strong></p>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="name-text">Name</span>
-                </div>
-                <input type="text" aria-label="Name" class="form-control text-right" id="name" value="Make me proud! TEE (XXL)">
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="pricing-text">Price</span>
-                </div>
-                <input type="number" aria-label="Price" class="form-control text-right" id="price" value="18">
-                <div class="input-group-append">
-                    <span class="input-group-text">.00 {{app.session.get('settings')['settings-customer-currency']}}</span>
-                </div>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="shipping-text">Shipping</span>
-                </div>
-                <input type="number" aria-label="Price" class="form-control text-right" id="shipping" value="5">
-                <div class="input-group-append">
-                    <span class="input-group-text">.00 {{app.session.get('settings')['settings-customer-currency']}}</span>
-                </div>
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">SKU</span>
-                </div>
-                <input type="text" aria-label="Name" class="form-control text-right" id="sku" value="TEE-MMP-XXL">
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Description</span>
-                </div>
-                <input type="text" aria-label="Name" class="form-control text-right" id="item_description"
-                       value="A tee that will make you proud and good looking, in an XXL size">
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Purchase</span>
-                </div>
-                <input type="text" aria-label="Name" class="form-control text-right" id="purchase_description"
-                       value="Tee sale: Make me proud! (XXL) SPECIAL OFFER">
-            </div>
-            <p id="current-payment-sentence"></p>
-            <button type="button" class="btn btn-success" id="reload-payment-buttons">Reload Payment Buttons</button>
+            <div class="mt-3" id="paypal-buttons-editor" style="height: 200px;"></div>
+            <div class="mt-3" id="create-order-editor" style="height: 800px;"></div>
         </div>
         <div class="col">
-            <div id="paypal-button-container"></div>
-            <script>
-            </script>
+            <div class="mb-1" id="paypal-button-container"></div>
+            <div class="mt-3">
+                <p>Find more information on the <a target="_blank" href="https://www.paypal.com/buttons/smart">Smart Payment buttons Factory</a></p>
+                <p>Find more information on the <a target="_blank" href="https://developer.paypal.com/docs/checkout/integration-features/customize-button/">Payment buttons customization guide</a></p>
+            </div>
             <div id="result-col"></div>
         </div>
     </div>

@@ -10,9 +10,17 @@
                 <a class="nav-link text-light" href="{{ path('paypal-payments-pay-outs') }}">PayOuts</a>
                 <a class="nav-link text-light" href="{{ path('paypal-payments-invoices') }}">Invoices</a>
                 <a class="nav-link text-light" href="{{ path('paypal-payments-subscriptions') }}">Subscriptions</a>
-                <a class="nav-link text-light" href="#">QR Codes</a>
-                <a class="nav-link text-light" href="#">BOPIS</a>
-                <a class="nav-link text-light" href="#">PayLater</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Others Features
+                    </a>
+                    <div class="dropdown-menu bg-paypal p-3" aria-labelledby="navbarDropdown">
+                        <a class="nav-link text-light" href="#">QR Codes</a>
+                        <a class="nav-link text-light" href="#">BOPIS</a>
+                        <a class="nav-link text-light" href="#">ReferenceTransactions</a>
+                        <a class="nav-link text-light" href="#">PayLater</a>
+                    </div>
+                </li>
                 {% include "paypal/modals/sandbox-credentials.html.twig" %}
             </div>
         {% endblock nav_items %}
