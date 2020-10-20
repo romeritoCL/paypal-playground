@@ -28,10 +28,12 @@ class DefaultControllerTest extends WebTestCase
         $client->loginUser(new User('john@paypal.com'));
         $container = self::$container;
         $indexRoute = $container->get('router')->generate('paypal-index');
-        $anonymousIndexRoute = $container->get('router')->generate('paypal-anonymous-index');
         $client->request('GET', $indexRoute);
-        $this->assertEquals(302, $client->getResponse()->getStatusCode());
-        $this->assertResponseRedirects($anonymousIndexRoute);
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertStringContainsString(
+            "Let's Play",
+            $client->getResponse()->getContent()
+        );
     }
 
     /**
@@ -46,9 +48,6 @@ class DefaultControllerTest extends WebTestCase
         $defaultController = $container->get(DefaultController::class);
         $this->assertInstanceOf(AbstractController::class, $defaultController);
         $this->assertInstanceOf(DefaultController::class, $defaultController);
-
-        $privateProperty = $this->getInvisibleProperty('sessionService', $defaultController);
-        $this->assertInstanceOf(AbstractSessionService::class, $privateProperty);
         $privateProperty = $this->getInvisibleProperty('paypalService', $defaultController);
         $this->assertInstanceOf(PaypalService::class, $privateProperty);
     }
