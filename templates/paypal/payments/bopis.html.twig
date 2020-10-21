@@ -1,7 +1,7 @@
 {% extends 'paypal/base.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('pay-ins') }}
+    {{ encore_entry_link_tags('bopis') }}
 {% endblock %}
 {% block content %}
     {% embed "paypal/payments/payments.html.twig" %}
@@ -10,5 +10,5 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&buyer-country={{app.session.get('settings')['settings-customer-country']}}&locale={{app.session.get('settings')['settings-customer-locale']}}"></script>
-    {{ encore_entry_script_tags('pay-ins') }}
+    {{ encore_entry_script_tags('bopis') }}
 {% endblock %}

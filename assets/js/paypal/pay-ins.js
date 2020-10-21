@@ -1,12 +1,9 @@
 import JSONEditor from 'jsoneditor';
 import 'jsoneditor/dist/jsoneditor.css';
+import paypalPayments from './payments';
+window.JSONEditor = JSONEditor;
 
-let buttonContainer = document.getElementById('paypal-button-container');
 let settings = JSON.parse(document.getElementById('customer-settings').dataset.settings);
-let captureUrl = document.getElementById('capture-url').dataset.captureUrl;
-let orderCreateEditorContainer = document.getElementById('create-order-editor');
-let paypalButtonsEditorContainer = document.getElementById('paypal-buttons-editor');
-
 let orderCreateJson = {
     intent: 'capture',
     payer: {
@@ -65,64 +62,4 @@ let paypalButtonsStyle = {
     label: 'pay'
 };
 
-let paypalButtonsEditor = new JSONEditor(
-    paypalButtonsEditorContainer,
-    {
-        limitDragging: true,
-        name: 'ButtonSettings',
-        modes: ['form','code'],
-        mainMenuBar: true,
-        navigationBar: false,
-        statusBar: false,
-        search: false,
-        history: false,
-        onChange: function () {
-            reloadPayPalButtons();
-        }
-    },
-    paypalButtonsStyle
-);
-paypalButtonsEditor.expandAll();
-
-
-let orderCreateEditor = new JSONEditor(
-    orderCreateEditorContainer,
-    {
-        limitDragging: true,
-        name: 'ButtonSettings',
-        modes: ['code','form'],
-        mainMenuBar: true,
-        navigationBar: false,
-        statusBar: false,
-        search: false,
-        history: false,
-        onChange: function () {
-            reloadPayPalButtons();
-        }
-    },
-    orderCreateJson
-);
-
-function reloadPayPalButtons()
-{
-    $('#paypal-button-container').empty();
-    let paypalButtonsStyleObject = paypalButtonsEditor.get();
-    paypal.Buttons({
-        createOrder: function (data, actions) {
-            return actions.order.create(orderCreateEditor.get());
-        },
-        style: paypalButtonsStyleObject,
-        onApprove: function (data) {
-            captureUrl = captureUrl.replace("payment_id_status", data.orderID);
-            jQuery.post(
-                captureUrl,
-                null,
-                function (data) {
-                    document.getElementById('result-col').innerHTML = data
-                }
-            );
-        }
-    }).render('#paypal-button-container');
-}
-
-reloadPayPalButtons();
+paypalPayments.startPayments(orderCreateJson, paypalButtonsStyle);

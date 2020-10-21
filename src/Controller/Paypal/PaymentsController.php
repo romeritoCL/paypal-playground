@@ -18,13 +18,19 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class PaymentsController extends AbstractController
 {
     /**
-     * @Route("/pay-ins", name="pay-ins", methods={"GET"})
+     * @Route("/pay-ins", name="pay-ins", methods={"GET"}, defaults={"action" = "pay-ins"})
+     * @Route("/pay-outs", name="pay-outs", methods={"GET"}, defaults={"action" = "pay-outs"})
+     * @Route("/bopis", name="bopis", methods={"GET"}, defaults={"action" = "bopis"})
+     * @Route("/subscriptions", name="subscriptions", methods={"GET"}, defaults={"action" = "subscriptions"})
+     * @Route("/invoices", name="invoices", methods={"GET"}, defaults={"action" = "invoices"})
+     *
+     * @param string $action
      *
      * @return Response | RedirectResponse
      */
-    public function payIns()
+    public function payments(string $action)
     {
-        return $this->render('paypal/payments/pay-ins.html.twig');
+        return $this->render('paypal/payments/'. $action .'.html.twig');
     }
 
     /**
@@ -40,16 +46,6 @@ class PaymentsController extends AbstractController
             'result' => $capture,
             'result_id' => 'payment-id'
         ]);
-    }
-
-    /**
-     * @Route("/pay-outs", name="pay-outs", methods={"GET"})
-     *
-     * @return Response | RedirectResponse
-     */
-    public function payOuts()
-    {
-        return $this->render('paypal/payments/pay-outs.html.twig');
     }
 
     /**
@@ -93,16 +89,6 @@ class PaymentsController extends AbstractController
     }
 
     /**
-     * @Route("/invoices", name="invoices", methods={"GET"})
-     *
-     * @return Response | RedirectResponse
-     */
-    public function invoices()
-    {
-        return $this->render('paypal/payments/invoices.html.twig');
-    }
-
-    /**
      * @Route("/invoices", name="invoices-create", methods={"POST"})
      *
      * @return Response | RedirectResponse
@@ -139,15 +125,5 @@ class PaymentsController extends AbstractController
             'result' => $invoice,
             'result_id' => $invoice->getId()
         ]);
-    }
-
-    /**
-     * @Route("/subscriptions", name="subscriptions", methods={"GET"})
-     *
-     * @return Response | RedirectResponse
-     */
-    public function subscriptions()
-    {
-        return $this->render('paypal/payments/subscriptions.html.twig');
     }
 }
