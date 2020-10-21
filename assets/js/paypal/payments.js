@@ -50,6 +50,8 @@ function startPayments(orderCreateJson, PayPalButtonsJson)
                 return actions.order.create(orderCreateEditor.get());
             },
             style: paypalButtonsStyleObject,
+            onShippingChange: function () {
+            },
             onApprove: function (data) {
                 captureUrl = captureUrl.replace("payment_id_status", data.orderID);
                 jQuery.post(

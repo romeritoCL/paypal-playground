@@ -48,9 +48,9 @@ let orderCreateJson = {
 
 let paypalButtonsStyle = {
     layout: 'vertical',
-    color: 'gold',
-    shape: 'pill',
-    label: 'pay'
+    color: 'blue',
+    shape: 'rect',
+    label: 'checkout'
 };
 
 paypalPayments.startPayments(orderCreateJson, paypalButtonsStyle);

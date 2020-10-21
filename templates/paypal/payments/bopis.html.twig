@@ -5,10 +5,17 @@
 {% endblock %}
 {% block content %}
     {% embed "paypal/payments/payments.html.twig" %}
+        {% block payments_json_editors %}
+            <div class="mt-3" id="create-order-editor" style="height: 800px;"></div>
+            <div class="mt-3" id="paypal-buttons-editor" style="height: 200px;"></div>
+        {% endblock %}
+        {% block payments_base_more_info %}
+            <p>Find more information on the <a target="_blank" href="https://developer.paypal.com/docs/limited-release/shipping-options/"> BOPIS API (Limited Release)</a></p>
+        {% endblock %}
     {% endembed %}
 {% endblock content %}
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&buyer-country={{app.session.get('settings')['settings-customer-country']}}&locale={{app.session.get('settings')['settings-customer-locale']}}"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&buyer-country={{app.session.get('settings')['settings-customer-country']}}&locale={{app.session.get('settings')['settings-customer-locale']}}&disable-funding=card"></script>
     {{ encore_entry_script_tags('bopis') }}
 {% endblock %}
