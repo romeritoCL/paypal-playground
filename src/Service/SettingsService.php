@@ -15,7 +15,7 @@ class SettingsService
     /**
      * @var string[] Default Settings
      */
-    private $defaultSettings = [
+    protected $defaultSettings = [
         'settings-customer-currency' => 'EUR',
         'settings-customer-locale' => 'en_GB',
         'settings-customer-id' => 'CS12.000.AAE',
@@ -93,5 +93,20 @@ class SettingsService
         }
 
         return false;
+    }
+
+    /**
+     * @param string $settingKey
+     *
+     * @return string
+     */
+    public function getSetting(string $settingKey): ?string
+    {
+        $settings = $this->session->get('settings');
+        if (array_key_exists($settingKey, $settings)) {
+            return $settings[$settingKey];
+        }
+
+        return null;
     }
 }

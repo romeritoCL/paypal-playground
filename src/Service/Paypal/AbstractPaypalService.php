@@ -2,6 +2,7 @@
 
 namespace App\Service\Paypal;
 
+use App\Service\SettingsService;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 use Psr\Log\LoggerInterface;
@@ -38,17 +39,24 @@ abstract class AbstractPaypalService
     protected $sessionService;
 
     /**
+     * @var SettingsService
+     */
+    protected $settingsService;
+
+    /**
      * PaypalService constructor.
      * @param string $clientId
      * @param string $clientSecret
      * @param LoggerInterface $logger
      * @param SessionService $sessionService
+     * @param SettingsService $settingsService
      */
     public function __construct(
         string $clientId,
         string $clientSecret,
         LoggerInterface $logger,
-        SessionService $sessionService
+        SessionService $sessionService,
+        SettingsService $settingsService
     ) {
         $sessionClientId = $sessionService->session->get('PAYPAL_SDK_CLIENT_ID');
         $sessionClientSecret = $sessionService->session->get('PAYPAL_SDK_CLIENT_SECRET');
@@ -58,5 +66,6 @@ abstract class AbstractPaypalService
         $apiContext = new ApiContext(new OAuthTokenCredential($this->clientId, $this->clientSecret));
         $apiContext->setConfig(['mode' => 'sandbox']);
         $this->apiContext = $apiContext;
+        $this->settingsService = $settingsService;
     }
 }
