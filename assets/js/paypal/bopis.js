@@ -33,10 +33,30 @@ let orderCreateJson = {
                 }
             },
             {
-                id: 3,
+                id: 4,
                 type: "PICKUP",
-                label: "Pick in the city center",
+                label: "Madrid City Shop",
                 selected: false,
+            },
+            {
+                id: 5,
+                type: "PICKUP",
+                label: "Paris Rue Rouge Shop",
+                selected: false,
+                amount: {
+                    currency_code: settings['settings-customer-currency'],
+                    value: 3
+                }
+            },
+            {
+                id: 6,
+                type: "PICKUP",
+                label: "Barcelona Les Corts Shop",
+                selected: false,
+                amount: {
+                    currency_code: settings['settings-customer-currency'],
+                    value: 3
+                }
             }]
         }
     }],
