@@ -46,8 +46,8 @@ class InvoiceService extends AbstractPaypalService
             ->setCountryCode($invoiceForm['merchant_country_code']);
 
         $billing = $invoice->getBillingInfo();
-        $billing[0]->setLanguage('en_US')
-            ->setEmail(null);
+        $billing[0]->setLanguage($this->settingsService->getSetting('settings-customer-locale'))
+            ->setEmail($this->settingsService->getSetting('settings-customer-email'));
         $items = [];
         $items[0] = new InvoiceItem();
         $items[0]
@@ -56,7 +56,7 @@ class InvoiceService extends AbstractPaypalService
             ->setQuantity(1)
             ->setUnitPrice(new Currency());
         $items[0]->getUnitPrice()
-            ->setCurrency('EUR')
+            ->setCurrency($this->settingsService->getSetting('settings-customer-currency'))
             ->setValue($invoiceForm['item_amount']);
 
         $tax = new Tax();

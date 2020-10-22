@@ -4,32 +4,9 @@
     {{ encore_entry_link_tags('pay-ins') }}
 {% endblock %}
 {% block content %}
-    <div class="col text-center pb-4 paypal-font">
-        <h4>Let's try and pay something</h4>
-        <p>
-            On the left side, create your dream product, then update the payment buttons
-        </p>
-    </div>
-    <div class="row">
-        <div class="col">
-            <p><strong>
-                So, what are we buying today
-            </strong></p>
-            <div class="mt-3" id="paypal-buttons-editor" style="height: 200px;"></div>
-            <div class="mt-3" id="create-order-editor" style="height: 800px;"></div>
-        </div>
-        <div class="col">
-            <div class="mb-1" id="paypal-button-container"></div>
-            <div class="mt-3">
-                <p>Find more information on the <a target="_blank" href="https://www.paypal.com/buttons/smart">Smart Payment buttons Factory</a></p>
-                <p>Find more information on the <a target="_blank" href="https://developer.paypal.com/docs/checkout/integration-features/customize-button/">Payment buttons customization guide</a></p>
-            </div>
-            <div id="result-col"></div>
-        </div>
-    </div>
-    <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
-    <div id="capture-url" data-capture-url="{{ path("paypal-payments-capture", {'paymentId': 'payment_id_status'}) }}"></div>
-{% endblock %}
+    {% embed "paypal/payments/payments.html.twig" %}
+    {% endembed %}
+{% endblock content %}
 {% block javascripts %}
     {{ parent() }}
     <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&buyer-country={{app.session.get('settings')['settings-customer-country']}}&locale={{app.session.get('settings')['settings-customer-locale']}}"></script>

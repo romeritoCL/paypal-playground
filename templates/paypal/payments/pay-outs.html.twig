@@ -39,7 +39,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Currency</span>
             </div>
-            <input type="text" aria-label="Name" class="form-control text-right" name="currency" value="EUR">
+            <input type="text" aria-label="Name" class="form-control text-right" name="currency" value="{{app.session.get('settings')['settings-customer-currency']}}">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
