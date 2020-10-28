@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="alert alert-secondary text-center paypal-font">
             <span class="badge badge-pill badge-success">{{ random(['Yeah!', 'C\'mon!', 'Booom!', 'Awesome!', 'Massive!','Bombastic!']) }}</span>
-            <h6 class="d-inline"><strong>Billing Agreements</strong> create, payments and cancel example</h6>
+            <p class="d-inline"><strong>More Info </strong><a target="_blank" href="https://developer.paypal.com/docs/limited-release/reference-transactions/">Reference Transactions (BEAM 1.0)</a></p>
         </div>
         <div id="accordion">
             <div class="card">
                 <div class="card-header" id="headingOne">
-                    <h5 class="mb-0 d-inline">1. Create Billing Agreement Token</h5>
+                    <h5 class="mb-0 d-inline">1. Billing Agreement Token</h5>
                     <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="step-1-submit">Next Step</button>
                 </div>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
@@ -23,23 +23,23 @@
             </div>
             <div class="card">
                 <div class="card-header" id="headingTwo">
-                    <h5 class="mb-0 d-inline">2. Initialize Create Billing Agreement</h5>
+                    <h5 class="mb-0 d-inline">2. Create Billing Agreement</h5>
                     <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" id="step-2-submit">Next Step</button>
                 </div>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div class="card-body">
-                        {% block billingAgreementsStepTwo %}{% endblock %}
+                        {% include "paypal/billingAgreements/stepTwo.html.twig" %}
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header" id="headingThree">
-                    <h5 class="mb-0 d-inline">3. Create Reference Transactions</h5>
+                    <h5 class="mb-0 d-inline">3. Reference Transactions</h5>
                     <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree" id="step-3-submit">Next Step</button>
                 </div>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                     <div class="card-body">
-                        {% block billingAgreementsStepThree %}{% endblock %}
+                        {% include "paypal/billingAgreements/stepThree.html.twig" %}
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
                     <div class="card-body">
-                        {% block billingAgreementsStepFour%}{% endblock %}
+                        {% include "paypal/billingAgreements/stepFour.html.twig" %}
                     </div>
                 </div>
             </div>

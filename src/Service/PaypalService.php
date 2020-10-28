@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Service\Paypal\BillingAgreementService;
 use App\Service\Paypal\IdentityService;
 use App\Service\Paypal\InvoiceService;
 use App\Service\Paypal\PaymentService;
@@ -46,6 +47,11 @@ class PaypalService
     protected $sessionService;
 
     /**
+     * @var BillingAgreementService
+     */
+    protected $billingAgreementService;
+
+    /**
      * PaypalService constructor.
      * @param IdentityService $identityService
      * @param PaymentService $paymentService
@@ -53,6 +59,7 @@ class PaypalService
      * @param ReportingService $reportingService
      * @param InvoiceService $invoiceService
      * @param SessionService $sessionService
+     * @param BillingAgreementService $billingAgreementService
      */
     public function __construct(
         IdentityService $identityService,
@@ -60,7 +67,8 @@ class PaypalService
         PayoutService $payoutService,
         ReportingService $reportingService,
         InvoiceService $invoiceService,
-        SessionService $sessionService
+        SessionService $sessionService,
+        BillingAgreementService $billingAgreementService
     ) {
         $this->identityService = $identityService;
         $this->paymentService = $paymentService;
@@ -68,6 +76,7 @@ class PaypalService
         $this->reportingService = $reportingService;
         $this->invoiceService = $invoiceService;
         $this->sessionService = $sessionService;
+        $this->billingAgreementService = $billingAgreementService;
     }
 
     /**
@@ -116,5 +125,13 @@ class PaypalService
     public function getSessionService(): SessionService
     {
         return $this->sessionService;
+    }
+
+    /**
+     * @return BillingAgreementService
+     */
+    public function getBillingAgreementService(): BillingAgreementService
+    {
+        return $this->billingAgreementService;
     }
 }

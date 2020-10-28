@@ -1,7 +1,16 @@
 import JSONEditor from 'jsoneditor';
 import 'jsoneditor/dist/jsoneditor.css';
-import createToken from './billing-agreements/create-token';
+import token from './billing-agreements/token';
+import createBillingAgreement from './billing-agreements/create-billing-agreement';
 window.JSONEditor = JSONEditor;
 
-$("#collapseOne").addClass('show');
-createToken.startEditor();
+let urlParams = new URLSearchParams(window.location.search);
+let billingAgreementToken = urlParams.get('ba_token');
+
+if (billingAgreementToken) {
+    $("#collapseTwo").addClass('show');
+    createBillingAgreement.startEditor(billingAgreementToken);
+} else {
+    $("#collapseOne").addClass('show');
+    token.startEditor();
+}

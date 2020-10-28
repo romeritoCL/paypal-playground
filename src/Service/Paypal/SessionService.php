@@ -2,7 +2,6 @@
 
 namespace App\Service\Paypal;
 
-use App\Service\SettingsService;
 use PayPal\Api\OpenIdUserinfo;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Session\Session;

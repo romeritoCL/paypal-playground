@@ -5,6 +5,8 @@ namespace App\Service\Paypal;
 use Exception;
 use PayPal\Api\OpenIdTokeninfo;
 use PayPal\Api\OpenIdUserinfo;
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Core\PayPalConfigManager;
 
 /**
  * Class IdentityService
@@ -12,6 +14,16 @@ use PayPal\Api\OpenIdUserinfo;
  */
 class IdentityService extends AbstractPaypalService
 {
+    /**
+     * @return string|null
+     */
+    public function getAccessToken(): ?string
+    {
+        $credential = new OAuthTokenCredential($this->clientId, $this->clientSecret);
+        $config = PayPalConfigManager::getInstance()->getConfigHashmap();
+        return $credential->getAccessToken($config);
+    }
+
     /**
      * getAccessTokenFromAuthToken
      *
