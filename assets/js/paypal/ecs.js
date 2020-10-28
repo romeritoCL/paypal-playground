@@ -1,5 +1,5 @@
 let settings = JSON.parse(document.getElementById('customer-settings').dataset.settings);
-let z = document.getElementById('ecs-result-url').dataset.ecsResultUrl;
+let ecsResultUrl = document.getElementById('ecs-result-url').dataset.ecsResultUrl;
 
 let orderCreateJson = {
     intent: 'capture',
