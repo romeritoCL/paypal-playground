@@ -1,0 +1,14 @@
+<div id="item-article-body">
+    <p class="ecs-product-price">{{ app.session.get('settings')['settings-item-price'] }} {{ app.session.get('settings')['settings-customer-currency'] }}</p>
+    <div class="mt-5 font-weight-bold">
+        <h3>Yeah, PayPal has authorized your payment</h3>
+        <hr>
+        <div class="paypal-font">
+            <p class="list-item">We will send the order to:</p>
+            <p class="list-item">{{ dump(capture) }}</p>
+        </div>
+        <hr>
+        <button class="btn p-3 btn-success d-inline" onclick="location.reload();">Confirm Purchase</button>
+        <button class="btn p-3 btn-warning d-inline" onclick="location.reload();">Decline Purchase</button>
+    </div>
+</div>

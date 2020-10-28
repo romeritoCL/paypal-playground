@@ -1,0 +1,13 @@
+<h6>To create a billing agreement token, pass the agreement details including the description, payer, and billing plan in the JSON request body.</h6>
+<div class="m-3 text-center">
+    <button class="btn btn-success" id="create-token-submit">Create Token</button>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div id="create-token-editor" style="height: 500px;"></div>
+    </div>
+    <div class="col-6">
+        <div id="create-token-result" style="height: 500px;"></div>
+    </div>
+</div>
+<div id="token-create-url" data-token-create-url="{{ path("paypal-billing-agreements-token-create") }}"></div>

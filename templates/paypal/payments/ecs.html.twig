@@ -1,0 +1,40 @@
+{% extends 'paypal/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('ecs') }}
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <img class="ecs-product-image" src="https://cdn.qwertee.com/images/designs/product-thumbs/1601978611-163138-mens-500x600.jpg">
+        </div>
+        <div class="col pb-4 paypal-font">
+            <h4>{{ app.session.get('settings')['settings-item-name'] }}</h4>
+            <div id="item-article-body">
+                <p class="ecs-product-price">{{ app.session.get('settings')['settings-item-price'] }} {{ app.session.get('settings')['settings-customer-currency'] }}</p>
+                <div class="mt-5 font-weight-bold">
+                    <p>{{ app.session.get('settings')['settings-item-description'] }}</p>
+                    <hr>
+                    <div class="paypal-font">
+                        <p class="list-item">What is ECS? <a target="_blank" href="https://developer.paypal.com/docs/archive/express-checkout/integration-guide/ECUIRequirements/#paypal-checkout-buttons">Express Checkout Shortcut</a></p>
+                        <p class="list-item">Size: <span class="text-primary">XXL</span></p>
+                        <p class="list-item">Shipping From: <span class="text-primary">{{ app.session.get('settings')['settings-item-shipping'] }} {{ app.session.get('settings')['settings-customer-currency'] }}</span></p>
+                    </div>
+                    <hr>
+                </div>
+                <div class="d-inline-block">
+                    <a href="#" class="d-inline-block align-middle btn bg-paypal text-light btn-lg"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</a>
+                    <h5 class="d-inline-block align-middle m-3"> OR </h5>
+                    <div class="d-inline-block align-middle" id="paypal-button-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
+    <div id="ecs-result-url" data-ecs-result-url="{{ path("paypal-payments-ecs-result", {'paymentId': 'payment_id_status'}) }}"></div>
+{% endblock content %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&buyer-country={{app.session.get('settings')['settings-customer-country']}}&locale={{app.session.get('settings')['settings-customer-locale']}}"></script>
+    {{ encore_entry_script_tags('ecs') }}
+{% endblock %}

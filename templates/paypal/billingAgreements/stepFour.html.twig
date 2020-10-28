@@ -1,0 +1,8 @@
+<div class="text-center">
+    <h6>Now, that you know how it works, lets remove the BA</h6>
+    <button class="btn btn-success" id="delete-billing-agreement-submit">Delete Billing Agreement</button>
+</div>
+<div id="delete-billing-agreement-url" data-delete-billing-agreement-url="{{ path("paypal-billing-agreements-delete", {'billingAgreementId': 'billing_agreement_id'}) }}"></div>
+<div class="text-center mt-3">
+    <div id='delete-billing-agreement-success'></div>
+</div>

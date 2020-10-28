@@ -23,6 +23,7 @@ class PaymentsController extends AbstractController
      * @Route("/bopis", name="bopis", methods={"GET"}, defaults={"action" = "bopis"})
      * @Route("/subscriptions", name="subscriptions", methods={"GET"}, defaults={"action" = "subscriptions"})
      * @Route("/invoices", name="invoices", methods={"GET"}, defaults={"action" = "invoices"})
+     * @Route("/ecs", name="ecs", methods={"GET"}, defaults={"action" = "ecs"})
      *
      * @param string $action
      *
@@ -124,6 +125,19 @@ class PaymentsController extends AbstractController
             'raw_result' => false,
             'result' => $invoice,
             'result_id' => $invoice->getId()
+        ]);
+    }
+
+    /**
+     * @Route("/{paymentId}/ecs-result", name="ecs-result", methods={"POST"})
+     * @param string $paymentId
+     * @return Response | RedirectResponse
+     */
+    public function ecsResult(string $paymentId)
+    {
+        $capture = $this->paypalService->getPaymentService()->capturePayment($paymentId);
+        return $this->render('paypal/payments/ecs-results.twig', [
+            'capture' => $capture->result->purchase_units[0]->shipping,
         ]);
     }
 }

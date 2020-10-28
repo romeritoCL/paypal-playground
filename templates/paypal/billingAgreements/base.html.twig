@@ -1,0 +1,66 @@
+{% extends 'paypal/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('billing-agreements') }}
+{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="alert alert-secondary text-center paypal-font">
+            <span class="badge badge-pill badge-success">{{ random(['Yeah!', 'C\'mon!', 'Booom!', 'Awesome!', 'Massive!','Bombastic!']) }}</span>
+            <p class="d-inline"><strong>More Info </strong><a target="_blank" href="https://developer.paypal.com/docs/limited-release/reference-transactions/">Reference Transactions (BEAM 1.0)</a></p>
+        </div>
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0 d-inline">1. Billing Agreement Token</h5>
+                    <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="step-1-submit">Next Step</button>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                            {% include "paypal/billingAgreements/stepOne.html.twig" %}
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0 d-inline">2. Create Billing Agreement</h5>
+                    <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" id="step-2-submit">Next Step</button>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        {% include "paypal/billingAgreements/stepTwo.html.twig" %}
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0 d-inline">3. Reference Transactions</h5>
+                    <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree" id="step-3-submit">Next Step</button>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        {% include "paypal/billingAgreements/stepThree.html.twig" %}
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0 d-inline">4. Cancel Billing Agreement</h5>
+                    <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour" id="step-4-submit">Try Again</button>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
+                        {% include "paypal/billingAgreements/stepFour.html.twig" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
+    <div id="return-url" data-return-url="{{ absolute_url(path("paypal-connect-index")) }}"></div>
+    <div id="paypal-client-id" data-paypal-client-id="{{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}"></div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('billing-agreements') }}
+{% endblock %}
