@@ -93,3 +93,13 @@
     line-height: 20px;
     margin-top: 15px;
 }
+
+.apple-pay-button {
+    border-radius: 4pt;
+    -apple-pay-button-type: plain;
+    -apple-pay-button-style: black;
+    display: inline-block;
+    -webkit-appearance: -apple-pay-button;
+    width: 100%;
+    height: 55px;
+}
