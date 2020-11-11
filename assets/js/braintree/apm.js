@@ -6,7 +6,9 @@ let clientToken = jsClientToken.dataset.clientToken;
 let jsPaypalClientId = document.querySelector('.js-paypal-client-id');
 let paypalClientId = jsPaypalClientId.dataset.paypalClientId;
 let submitButtonOne = document.querySelector('#submit-button-one');
+let applePayButton = document.querySelector('#apple-pay-button');
 let apmAmount = document.getElementById('apm-amount');
+let settings = JSON.parse(document.getElementById('customer-settings').dataset.settings);
 let deviceData;
 
 braintreePayments.animatePaymentForm();
@@ -28,6 +30,58 @@ submitButtonOne.addEventListener('click', function () {
         }, function (err, dataCollectorInstance) {
             deviceData = dataCollectorInstance.deviceData;
         });
+        if (window.ApplePaySession && ApplePaySession.supportsVersion(3) && ApplePaySession.canMakePayments()) {
+            braintree.applePay.create({
+                client: clientInstance
+            }, function (applePayErr, applePayInstance) {
+                if (applePayErr) {
+                    console.log('Error creating applePayInstance:', applePayErr);
+                    return;
+                }
+                applePayButton.addEventListener('click', function () {
+                    let paymentRequest = applePayInstance.createPaymentRequest({
+                        total: {
+                            label: settings['settings-merchant-name'],
+                            amount: apmAmount
+                        },
+                        currencyCode: settings['settings-customer-currency'],
+                        requiredBillingContactFields: ["postalAddress"]
+                    });
+                    paymentRequest.countryCode = settings['settings-customer-country']
+                    paymentRequest.currencyCode = settings['settings-customer-currency'];
+                    let session = new ApplePaySession(3, paymentRequest);
+                    session.onvalidatemerchant = function (event) {
+                        applePayInstance.performValidation({
+                            validationURL: event.validationURL,
+                            displayName: settings['settings-merchant-name']
+                        }, function (err, merchantSession) {
+                            if (err) {
+                                alert('Apple Pay failed to load.');
+                                return;
+                            }
+                            session.completeMerchantValidation(merchantSession);
+                        });
+                    };
+                    session.onpaymentauthorized = function (event) {
+                        applePayInstance.tokenize({
+                            token: event.payment.token
+                        }, function (tokenizeErr, payload) {
+                            if (tokenizeErr) {
+                                console.log('Error tokenizing Apple Pay:', tokenizeErr);
+                                session.completePayment(ApplePaySession.STATUS_FAILURE);
+                                return;
+                            }
+                            braintreePayments.sendServerPayLoad(payload,deviceData);
+                            session.completePayment(ApplePaySession.STATUS_SUCCESS);
+                            let destroy = document.getElementById('apm-buttons-destroyable');
+                            destroy.parentNode.removeChild(destroy);
+                        });
+                    };
+                    session.begin();
+                });
+                $('#apple-pay-button').removeClass('d-none');
+            });
+        }
         braintree.paypalCheckout.create({
             client: clientInstance
         }, function (paypalCheckoutErr, paypalCheckoutInstance) {
@@ -54,6 +108,8 @@ submitButtonOne.addEventListener('click', function () {
 
                     onApprove: function (data) {
                         return paypalCheckoutInstance.tokenizePayment(data, function (err, payload) {
+                            let destroy = document.getElementById('apm-buttons-destroyable');
+                            destroy.parentNode.removeChild(destroy);
                             braintreePayments.sendServerPayLoad(payload,deviceData);
                         });
                     },
