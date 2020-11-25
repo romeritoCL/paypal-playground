@@ -1,0 +1,54 @@
+{% extends 'paypal/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('paylater') }}
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <img class="ecs-product-image" src="https://cdn.qwertee.com/images/designs/product-thumbs/1601978611-163138-mens-500x600.jpg">
+        </div>
+        <div class="col pb-4 paypal-font">
+            <h4>{{ app.session.get('settings')['settings-item-name'] }}</h4>
+            <div id="item-article-body">
+                <p class="ecs-product-price">{{ app.session.get('settings')['settings-item-price'] }} {{ app.session.get('settings')['settings-customer-currency'] }}</p>
+                <div class="mt-5 font-weight-bold">
+                    <p>{{ app.session.get('settings')['settings-item-description'] }}</p>
+                    <hr>
+                    <div class="paypal-font">
+                        <p class="list-item">What is PayLater? <a target="_blank" href="https://developer.paypal.com/docs/business/payment-methods/pay-later/">PayLater / PayIn4</a></p>
+                        <p class="list-item">Marketing? <a target="_blank" href="https://developer.paypal.com/docs/business/payment-methods/pay-later/#messaging">PayLater Banners</a></p>
+                        <p class="list-item">Customize Message <a target="_blank" href="https://developer.paypal.com/docs/business/checkout/pay-later-messaging/customize/customize-the-messaging/">Banners Customization</a></p>
+                        <p class="list-item">Shipping From: <span class="text-primary">{{ app.session.get('settings')['settings-item-shipping'] }} {{ app.session.get('settings')['settings-customer-currency'] }}</span></p>
+                    </div>
+                    <hr>
+                    <div
+                            data-pp-message
+                            data-pp-placement="product"
+                            data-pp-style-layout="flex"
+                            data-pp-style-ratio="8x1"
+                            data-pp-style-color="white-no-border"
+                            data-pp-amount="{{ app.session.get('settings')['settings-item-price'] }}"
+                    ></div>
+                    <hr>
+                    <div
+                            data-pp-message
+                            data-pp-placement="product"
+                            data-pp-style-layout="text"
+                            data-pp-amount="{{ app.session.get('settings')['settings-item-price'] }}"
+                    ></div>
+                    <hr>
+                </div>
+                <div id="paypal-button-container"></div>
+                <div id="result-col"></div>
+            </div>
+        </div>
+    </div>
+    <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
+    <div id="capture-url" data-capture-url="{{ path("paypal-payments-capture", {'paymentId': 'payment_id_status'}) }}"></div>
+{% endblock content %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&buyer-country={{app.session.get('settings')['settings-customer-country']}}&locale={{app.session.get('settings')['settings-customer-locale']}}&components=buttons,messages"></script>
+    {{ encore_entry_script_tags('paylater') }}
+{% endblock %}

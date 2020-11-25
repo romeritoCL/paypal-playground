@@ -24,6 +24,7 @@ class PaymentsController extends AbstractController
      * @Route("/subscriptions", name="subscriptions", methods={"GET"}, defaults={"action" = "subscriptions"})
      * @Route("/invoices", name="invoices", methods={"GET"}, defaults={"action" = "invoices"})
      * @Route("/ecs", name="ecs", methods={"GET"}, defaults={"action" = "ecs"})
+     * @Route("/paylater", name="paylater", methods={"GET"}, defaults={"action" = "paylater"})
      *
      * @param string $action
      *
