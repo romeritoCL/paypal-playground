@@ -8,10 +8,12 @@
         <div class="input-group-append">
             <span class="input-group-text">.00 €</span>
         </div>
-        <button type="button" class="ml-1 btn btn-success"  id="submit-button-one">Create PayPal Button</button>
+        <button type="button" class="ml-1 btn btn-success"  id="submit-button-one">Load APM Buttons</button>
     </div>
-    <div class="js-paypal-client-id" data-paypal-client-id="{{ PAYPAL_SDK_CLIENT_ID }}"></div>
-    <div id="apm-container"></div>
+    <div id="apm-buttons-destroyable">
+        <div id="apm-container"></div>
+        <button id="apple-pay-button" class="apple-pay-button d-none"></button>
+    </div>
 {% endblock %}
 {% block card_details_help %}
     <p>think that you are seeing the Smart Payment Buttons rendered via BrainTree SDK. Also the payment is going
@@ -32,8 +34,12 @@
             <p class="badge-pill badge badge-warning d-inline">password</p>
         </div>
     </div>
+    <p class="mt-5 braintree-font">REMEMBER: ApplePay only works on Safari. You have to be logged in to a tester account to process sandbox tests. you need an Apple developer account to register test accounts</p>
+    <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
+    <div class="js-paypal-client-id" data-paypal-client-id="{{ PAYPAL_SDK_CLIENT_ID }}"></div>
 {%  endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script src="https://js.braintreegateway.com/web/3.68.0/js/apple-pay.min.js"></script>
     {{ encore_entry_script_tags('apm') }}
 {% endblock %}
