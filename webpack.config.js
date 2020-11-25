@@ -41,6 +41,7 @@ Encore
     .addEntry('ecs', './assets/js/paypal/ecs.js')
     .addEntry('billing-agreements', './assets/js/paypal/billing-agreements.js')
     .addEntry('bopis', './assets/js/paypal/bopis.js')
+    .addEntry('paylater', './assets/js/paypal/paylater.js')
     .addEntry('pay-outs', './assets/js/paypal/pay-outs.js')
     .addEntry('invoices', './assets/js/paypal/invoices.js')
     .addEntry('subscriptions', './assets/js/paypal/subscriptions.js')
