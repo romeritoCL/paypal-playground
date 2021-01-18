@@ -44,3 +44,11 @@ services:
             string $merchantId: '%env(BRAINTREE_MERCHANT_ID)%'
             string $publicKey: '%env(BRAINTREE_PUBLIC_KEY)%'
             string $privateKey: '%env(BRAINTREE_PRIVATE_KEY)%'
+
+    App\Service\Hyperwallet\:
+        resource: '../src/Service/Hyperwallet'
+        bind:
+            string $user: '%env(HYPERWALLET_USER)%'
+            string $password: '%env(HYPERWALLET_PASSWORD)%'
+            string $token: '%env(HYPERWALLET_TOKEN)%'
+            string $url: '%env(HYPERWALLET_URL)%'

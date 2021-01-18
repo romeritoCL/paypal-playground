@@ -17,6 +17,7 @@
         "ext-xmlwriter": "*",
         "braintree/braintree_php": "^5.3",
         "composer/package-versions-deprecated": "1.10.99.1",
+        "hyperwallet/sdk": "^2.1",
         "paypal/paypal-checkout-sdk": "1.0.1",
         "paypal/rest-api-sdk-php": "^1.14",
         "phpdocumentor/reflection-docblock": "^5.2",
