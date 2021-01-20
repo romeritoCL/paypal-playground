@@ -47,6 +47,7 @@ Encore
     .addEntry('subscriptions', './assets/js/paypal/subscriptions.js')
     .addEntry('connect', './assets/js/paypal/connect.js')
     .addEntry('authenticated', './assets/js/paypal/authenticated.js')
+    .addEntry('users', './assets/js/hyperwallet/users.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

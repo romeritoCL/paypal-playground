@@ -4,6 +4,9 @@
     {% embed "navbar/navbar.html.twig" %}
         {% block nav_class %}navbar-light bg-hyperwallet{% endblock nav_class %}
         {% block nav_items %}
+            <div class="navbar-nav col justify-content-center">
+                <a class="nav-link text-light" href="{{ path('hyperwallet-users-index') }}">Users</a>
+            </div>
             <span class="m-3 badge badge-pill badge-success">{{ random([
                     'Yeah!', 'C\'mon!', 'Booom!', 'Awesome!', 'Massive!','Bombastic!','Payouts Rocks',
                     'PayPal Powah!', 'HyperWallet you say?', 'What about some PayPal Magic?', 'The limit is the Sky'

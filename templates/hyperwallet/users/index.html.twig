@@ -1,0 +1,28 @@
+{% extends 'hyperwallet/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('users') }}
+{% endblock %}
+{% block content %}
+    <div class="hyperwallet-font">
+        <div class="row hyperwallet-font-header">
+            <h3>Users API</h3>
+        </div>
+        <div class="row">
+            <p>You can <strong>Get</strong>, <strong>Create</strong>, <strong>Update</strong>, <strong>Delete</strong> and <strong>List</strong> customers via API</p>
+            <p>A user represents an individual or a business that can receive payments, such as employees, survey participants, contractors, or distributors. Users can withdraw funds using any of Hyperwallet's supported payout options, including but not limited to bank accounts, debit card, PayPal account, prepaid cards, or paper checks. All payout options for a user are attached to their user resource, so you will always need to create users.</p>
+        </div>
+    </div>
+    <div class="row mt-2 d-inline-block">
+        <a class="m-2 d-inline btn bg-hyperwallet text-light btn-block col-2" id="usersCreate" href="{{ path('hyperwallet-users-create') }}">Create</a>
+        <a class="m-2 d-inline btn bg-hyperwallet text-light btn-block col-2" id="usersRead">Read</a>
+        <a class="m-2 d-inline btn bg-hyperwallet text-light btn-block col-2" id="usersUpdate">Update</a>
+        <a class="m-2 d-inline btn bg-hyperwallet text-light btn-block col-2" id="usersDelete">Delete</a>
+        <a class="m-2 d-inline btn bg-hyperwallet text-light btn-block col-2" id="usersList">List</a>
+    </div>
+    <div class="row mt-5 hyperwallet-font" id="hw-api-action"></div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('users') }}
+{% endblock %}
