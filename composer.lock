@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1d7bbfad5e5a3193cba2613cf2f2b778",
+    "content-hash": "c9c27b9971a936f5f0ab57a7e0be0b97",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -613,16 +613,16 @@
         },
         {
             "name": "hyperwallet/sdk",
-            "version": "2.1.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hyperwallet/php-sdk.git",
-                "reference": "cbdf6fb9c9063b06dd339ce58b10b17878adc310"
+                "reference": "8a474216e86b27936006a55affcf1b5741539dd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hyperwallet/php-sdk/zipball/cbdf6fb9c9063b06dd339ce58b10b17878adc310",
-                "reference": "cbdf6fb9c9063b06dd339ce58b10b17878adc310",
+                "url": "https://api.github.com/repos/hyperwallet/php-sdk/zipball/8a474216e86b27936006a55affcf1b5741539dd0",
+                "reference": "8a474216e86b27936006a55affcf1b5741539dd0",
                 "shasum": ""
             },
             "require": {
@@ -666,9 +666,9 @@
             ],
             "support": {
                 "issues": "https://github.com/hyperwallet/php-sdk/issues",
-                "source": "https://github.com/hyperwallet/php-sdk/tree/2.1.0"
+                "source": "https://github.com/hyperwallet/php-sdk/tree/1.6.1"
             },
-            "time": "2020-11-14T03:03:26+00:00"
+            "time": "2020-11-21T05:12:24+00:00"
         },
         {
             "name": "monolog/monolog",

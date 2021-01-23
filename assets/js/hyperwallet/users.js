@@ -1,6 +1,7 @@
 import JSONEditor from 'jsoneditor';
 import 'jsoneditor/dist/jsoneditor.css';
 import usersCreate from './users/create.js';
+import usersSearch from './users/search.js';
 
 function addApiButtonEvent(action, starter)
 {
@@ -20,3 +21,4 @@ function addApiButtonEvent(action, starter)
 }
 
 addApiButtonEvent('usersCreate', usersCreate);
+addApiButtonEvent('usersSearch', usersSearch);

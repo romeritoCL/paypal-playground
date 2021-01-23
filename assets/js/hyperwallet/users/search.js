@@ -1,47 +1,31 @@
-function start(JSONEditor)
+function editUser(userToken)
 {
-    let userCreateJsonEditor = new JSONEditor(
-        document.getElementById('user_create_json_editor'),
-        {
-            limitDragging: true,
-            name: 'User Create',
-            modes: ['form','code'],
-            mainMenuBar: true,
-            navigationBar: false,
-            statusBar: false,
-            search: false,
-            history: false
-        },
-        {
-            clientUserId: "default",
-            profileType: "INDIVIDUAL",
-            firstName: "John",
-            lastName: "Smith",
-            dateOfBirth: "1980-01-01",
-            email: "john@company.com",
-            addressLine1: "123 Main Street",
-            city: "New York",
-            stateProvince: "NY",
-            country: "US",
-            postalCode: "10016",
+    $(this).disabled = true;
+    let readUrl = $('.js-user-read-url').data('userReadUrl');
+    readUrl = readUrl.replace("user_token_replace", userToken);
+    $.get(
+        readUrl,
+        function (data) {
+            document.getElementById('searchContainer').innerHTML = data;
         }
     );
+}
 
-    let createUserUrl = document.getElementById('usersCreate').getAttribute('href');
-    let createUserButton = document.getElementById('usersCreateEditor');
-    let createUserResultDiv = document.getElementById('user_create_result');
-    createUserButton.addEventListener('click', function () {
-        createUserButton.disabled = true;
-        $.post(
-            createUserUrl,
-            userCreateJsonEditor.get(),
-            function (data) {
-                createUserResultDiv.innerHTML = data;
-            }
-        );
+function goToTransferMethods(userToken)
+{
+    alert('Will happen in the future, give me time');
+}
+
+function start(JSONEditor)
+{
+    $('.btn-user-edit').click(function () {
+        editUser($(this).data('user-token'))
+    });
+    $('.btn-user-goto-transfer').click(function () {
+        goToTransferMethods($(this).data('user-token'))
     });
 }
 
 module.exports = {
-    start
+    start,
 };
