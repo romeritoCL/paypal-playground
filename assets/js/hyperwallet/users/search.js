@@ -6,7 +6,7 @@ function editUser(userToken)
     $.get(
         readUrl,
         function (data) {
-            document.getElementById('searchContainer').innerHTML = data;
+            document.getElementById('searchContainer').innerHTML = JSON.stringify(data);
         }
     );
 }

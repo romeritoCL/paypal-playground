@@ -14,6 +14,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@adyen/adyen-web": "^3.22.0",
         "bootstrap": "^4.5.2",
         "braintree-web": "^3.65.0",
         "braintree-web-drop-in": "^1.23.0",

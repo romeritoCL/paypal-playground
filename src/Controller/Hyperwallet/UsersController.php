@@ -3,6 +3,7 @@
 namespace App\Controller\Hyperwallet;
 
 use Hyperwallet\Exception\HyperwalletApiException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,14 +71,11 @@ class UsersController extends AbstractController
      *
      * @param string $userToken
      *
-     * @return Response
+     * @return JsonResponse
      */
-    public function readUser(string $userToken): Response
+    public function readUser(string $userToken): JsonResponse
     {
-        $deleteResult = $this->hyperwalletService->getUserService()->get($userToken);
-        return $this->render('default/dump.html.twig', [
-            'raw_result' => false,
-            'result' => $deleteResult,
-        ]);
+        $user = $this->hyperwalletService->getUserService()->get($userToken);
+        return new JsonResponse($user->getProperties());
     }
 }

@@ -1,4 +1,7 @@
 {
+    "adyen/php-api-library": {
+        "version": "9.0.0"
+    },
     "braintree/braintree_php": {
         "version": "5.3.0"
     },

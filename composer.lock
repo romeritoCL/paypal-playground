@@ -4,8 +4,59 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c9c27b9971a936f5f0ab57a7e0be0b97",
+    "content-hash": "513e7c7ca8f6693cd6e539c8e8a212b1",
     "packages": [
+        {
+            "name": "adyen/php-api-library",
+            "version": "9.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Adyen/adyen-php-api-library.git",
+                "reference": "8698184c33fb914b9b381cfcd3c704c40ab6b583"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Adyen/adyen-php-api-library/zipball/8698184c33fb914b9b381cfcd3c704c40ab6b583",
+                "reference": "8698184c33fb914b9b381cfcd3c704c40ab6b583",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "monolog/monolog": ">=1.16",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dms/phpunit-arraysubset-asserts": "0.2.1",
+                "friendsofphp/php-cs-fixer": "*",
+                "php-coveralls/php-coveralls": "2.4.2",
+                "phpunit/phpunit": "9.5.1",
+                "squizlabs/php_codesniffer": "3.5.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Adyen\\": "src/Adyen/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "A PHP client library for accessing Adyen APIs",
+            "homepage": "https://github.com/Adyen/adyen-php-api-library",
+            "keywords": [
+                "adyen"
+            ],
+            "support": {
+                "issues": "https://github.com/Adyen/adyen-php-api-library/issues",
+                "source": "https://github.com/Adyen/adyen-php-api-library/tree/9.0.0"
+            },
+            "time": "2021-01-26T10:15:55+00:00"
+        },
         {
             "name": "braintree/braintree_php",
             "version": "5.4.0",

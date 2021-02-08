@@ -15,6 +15,7 @@
         "ext-iconv": "*",
         "ext-json": "*",
         "ext-xmlwriter": "*",
+        "adyen/php-api-library": "^9.0",
         "braintree/braintree_php": "^5.3",
         "composer/package-versions-deprecated": "1.10.99.1",
         "hyperwallet/sdk": "^1",

@@ -1,0 +1,39 @@
+{% extends 'paypal/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('adyen') }}
+{% endblock %}
+{% block content %}
+    <div id="demo-selector" class="jumbotron">
+        <div class="row mt-2">
+            <div class="col-3">
+                <button class="btn bg-paypal text-light btn-block" id="paypal-start-components">Adyen Components PayPal</button>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Have a look at the latest Adyen components SDK PayPal demo</h6>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-3">
+                <button class="btn bg-paypal text-light btn-block" id="paypal-start-dropin">Adyen DropIn PayPal</button>
+            </div>
+            <div class="col justify-content-start">
+                <h6 class="ml-5 d-inline">Have a look at the allInOne DropIN PayPal demo</h6>
+            </div>
+        </div>
+    </div>
+    <div id="paypal-container"></div>
+    <div id="payment-details"></div>
+    <div id="paypal-dropin-container"></div>
+    <div id="dropin-details"></div>
+    <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
+    <div id="payment-methods" data-payment-methods="{{ paymentMethods | json_encode }}"></div>
+    <div id="client-key" data-client-key="{{ clientKey | json_encode }}"></div>
+    <div id="payment-url" data-payment-url="{{ path("paypal-adyen-make-payment") }}"></div>
+    <div id="payment-details-url" data-payment-details-url="{{ path("paypal-adyen-payment-details") }}"></div>
+    <div id="paypal-id" data-paypal-id="{{ paypalId | json_encode }}"></div>
+{% endblock content %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('adyen') }}
+{% endblock %}
