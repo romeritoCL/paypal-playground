@@ -89,7 +89,7 @@ function startComponents()
             shape: "pill",
             label: "checkout"
         },
-        intent: "capture",
+        intent: "authorize",
         merchantId: paypalId,
         onSubmit: (state, component) => {
             // Your function calling your server to make the /payments request.
@@ -130,7 +130,7 @@ function startDropin()
                     currency: settings['settings-customer-currency'],
                     value: 100 * settings['settings-item-price']
                 },
-                intent: "capture",
+                intent: "authorize",
                 onCancel: (data, dropin) => {
                     dropin.setStatus('ready');
                 }
