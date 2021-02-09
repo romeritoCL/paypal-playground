@@ -42,18 +42,42 @@ function makePayment(data)
 function submitDetails(data, containerId)
 {
     let paymentDetailsUrl = document.getElementById('payment-details-url').dataset.paymentDetailsUrl;
-    return $.post(
+    $.post(
         paymentDetailsUrl,
         data,
-        function (data) {
-            document.getElementById(containerId).innerHTML = data
+        function (result) {
+            document.getElementById(containerId).innerHTML = result;
+            setTimeout(function () {
+                captureDetails()},3000);
+        }
+    );
+}
+
+function captureDetails()
+{
+    let pspReference = document.getElementById('template-result-id').value;
+    let payload = {
+        originalReference: pspReference,
+        modificationAmount: {
+            currency: settings['settings-customer-currency'],
+            value: 100 * settings['settings-item-price']
+        },
+        merchantAccount: null
+    };
+
+    let captureUrl = document.getElementById('payment-capture-url').dataset.paymentCaptureUrl;
+    $.post(
+        captureUrl,
+        payload,
+        function (result) {
+            document.getElementById('capture-details').innerHTML = result;
         }
     );
 }
 
 function startComponents()
 {
-    window.component = checkout.create("paypal", {
+    checkout.create("paypal", {
         environment: "test",
         countryCode: settings['settings-customer-country'],
         amount: {
@@ -61,7 +85,7 @@ function startComponents()
             value: 100 * settings['settings-item-price']
         },
         style: {
-            color: "gold",
+            color: "blue",
             shape: "pill",
             label: "checkout"
         },
@@ -87,7 +111,7 @@ function startComponents()
         onError: (error, component) => {
             component.setStatus('ready');
         },
-        onAdditionalDetails: (state, component) => {
+        onAdditionalDetails: (state) => {
             submitDetails(state.data, 'payment-details')
         }
     }).mount("#paypal-container");
@@ -95,7 +119,7 @@ function startComponents()
 
 function startDropin()
 {
-    window.dropin = checkout.create('dropin', {
+    checkout.create('dropin', {
         openFirstPaymentMethod: false,
         paymentMethodsConfiguration: {
             paypal: {
@@ -125,14 +149,13 @@ function startDropin()
                     throw Error(error);
                 });
         },
-        onAdditionalDetails: (state, dropin) => {
-            submitDetails(state.data, 'dropin-details')
+        onAdditionalDetails: (state) => {
+            submitDetails(state.data, 'payment-details')
         },
         onError: (state, dropin) => {
-            // Sets your prefered status of Drop-in when an error occurs. In this example, return to the initial state.
             dropin.setStatus('ready');
         },
-    }).mount('#paypal-dropin-container');
+    }).mount('#paypal-container');
 }
 
 $('#paypal-start-dropin').click(function () {

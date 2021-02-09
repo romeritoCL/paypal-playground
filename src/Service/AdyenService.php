@@ -6,6 +6,7 @@ use Adyen\AdyenException;
 use Adyen\Client;
 use Adyen\Environment;
 use Adyen\Service\Checkout;
+use Adyen\Service\Modification;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -134,5 +135,17 @@ class AdyenService
     public function paymentDetails($data)
     {
         return $this->checkout->paymentsDetails($data);
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     * @throws AdyenException
+     */
+    public function paymentCapture($data)
+    {
+        $data['merchantAccount'] = $this->merchantAccount;
+        $modification = new Modification($this->checkout->getClient());
+        return $modification->capture($data);
     }
 }

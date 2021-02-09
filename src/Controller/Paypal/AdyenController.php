@@ -57,7 +57,7 @@ class AdyenController extends AbstractController
      * @return JsonResponse
      * @throws AdyenException
      */
-    public function makePayment()
+    public function paymentMake()
     {
         $request = Request::createFromGlobals();
         $paymentData = $request->request->all();
@@ -77,8 +77,26 @@ class AdyenController extends AbstractController
         $paymentData = $request->request->all();
         $paymentDetails = $this->adyenService->paymentDetails($paymentData);
 
-        return $this->render('default/dump.html.twig', [
+        return $this->render('default/dump-input-id.html.twig', [
             'result' => $paymentDetails,
+            'raw_result' => false,
+            'result_id' => $paymentDetails['pspReference'],
+        ]);
+    }
+
+    /**
+     * @Route("/payment-capture", name="payment-capture", methods={"POST"})
+     * @return Response
+     * @throws AdyenException
+     */
+    public function paymentCapture()
+    {
+        $request = Request::createFromGlobals();
+        $paymentData = $request->request->all();
+        $captureDetails = $this->adyenService->paymentCapture($paymentData);
+
+        return $this->render('default/dump.html.twig', [
+            'result' => $captureDetails,
             'raw_result' => false,
         ]);
     }
