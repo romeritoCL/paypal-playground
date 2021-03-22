@@ -36,7 +36,6 @@ services:
             string $clientId: '%env(PAYPAL_SDK_CLIENT_ID)%'
             string $clientSecret: '%env(PAYPAL_SDK_CLIENT_SECRET)%'
 
-    # PayPal's specific services definition with client and secret tokens
     App\Service\Braintree\:
         resource: '../src/Service/Braintree'
         bind:
@@ -44,3 +43,18 @@ services:
             string $merchantId: '%env(BRAINTREE_MERCHANT_ID)%'
             string $publicKey: '%env(BRAINTREE_PUBLIC_KEY)%'
             string $privateKey: '%env(BRAINTREE_PRIVATE_KEY)%'
+
+    App\Service\Hyperwallet\:
+        resource: '../src/Service/Hyperwallet'
+        bind:
+            string $user: '%env(HYPERWALLET_USER)%'
+            string $password: '%env(HYPERWALLET_PASSWORD)%'
+            string $token: '%env(HYPERWALLET_TOKEN)%'
+            string $url: '%env(HYPERWALLET_URL)%'
+
+    App\Service\AdyenService:
+        arguments:
+            $apiKey: '%env(ADYEN_SECRET_KEY)%'
+            $merchantAccount: '%env(ADYEN_MERCHANT_ACCOUNT)%'
+            $clientKey: '%env(ADYEN_CLIENT_KEY)%'
+            $paypalId: '%env(ADYEN_PAYPAL_ACCOUNT_ID)%'

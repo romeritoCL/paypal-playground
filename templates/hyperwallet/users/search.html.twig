@@ -1,0 +1,30 @@
+<div class="js-user-read-url" data-user-read-url="{{ path("hyperwallet-users-read", {'userToken': 'user_token_replace'}) }}"></div>
+<div class="container" id="searchContainer">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Email</th>
+                <th scope="col" style="width: 30%">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users.data %}
+            <tr>
+                <th scope="row">{{ user.clientUserId }}</th>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <button class="btn btn-secondary btn-user-edit" data-user-token="{{ user.token }}">Edit</button>
+                    <button class="btn btn-info btn-user-goto-transfer" data-user-token="{{ user.token }}">Transfer Methods</button>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

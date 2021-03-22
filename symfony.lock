@@ -1,4 +1,7 @@
 {
+    "adyen/php-api-library": {
+        "version": "9.0.0"
+    },
     "braintree/braintree_php": {
         "version": "5.3.0"
     },
@@ -25,6 +28,21 @@
     },
     "egulias/email-validator": {
         "version": "2.1.19"
+    },
+    "gree/jose": {
+        "version": "2.2.1"
+    },
+    "guzzlehttp/guzzle": {
+        "version": "6.5.5"
+    },
+    "guzzlehttp/promises": {
+        "version": "1.4.0"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.7.0"
+    },
+    "hyperwallet/sdk": {
+        "version": "2.1.0"
     },
     "monolog/monolog": {
         "version": "2.1.1"
@@ -53,6 +71,9 @@
     "phpdocumentor/type-resolver": {
         "version": "1.3.0"
     },
+    "phpseclib/phpseclib": {
+        "version": "2.0.30"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -62,11 +83,17 @@
     "psr/event-dispatcher": {
         "version": "1.0.0"
     },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/link": {
         "version": "1.0.0"
     },
     "psr/log": {
         "version": "1.1.3"
+    },
+    "ralouphie/getallheaders": {
+        "version": "3.0.3"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
