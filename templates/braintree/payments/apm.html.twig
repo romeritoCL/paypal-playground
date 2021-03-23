@@ -1,14 +1,21 @@
 {% extends 'braintree/payments/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('3ds') }}
+{% endblock %}
 {% block card_template %}
-    <div class="input-group mb-3" id="apm-creation-destroyable">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="amount-text">Amount</span>
+    <div id="apm-creation-destroyable">
+        <div id="paypal-order-json-editor" style="height: 300px;"></div>
+        <div class="input-group mb-3 mt-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="amount-text">Amount</span>
+            </div>
+            <input type="number" aria-label="Price" class="form-control text-right" id="apm-amount" value="180">
+            <div class="input-group-append">
+                <span class="input-group-text">.00 €</span>
+            </div>
+            <button type="button" class="ml-1 btn btn-success"  id="submit-button-one">Load APM Buttons</button>
         </div>
-        <input type="number" aria-label="Price" class="form-control text-right" id="apm-amount" value="180">
-        <div class="input-group-append">
-            <span class="input-group-text">.00 €</span>
-        </div>
-        <button type="button" class="ml-1 btn btn-success"  id="submit-button-one">Load APM Buttons</button>
     </div>
     <div id="apm-buttons-destroyable">
         <div id="apm-container"></div>
