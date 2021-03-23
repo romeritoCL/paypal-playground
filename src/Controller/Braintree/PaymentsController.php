@@ -70,7 +70,13 @@ class PaymentsController extends AbstractController
         $paymentNonce = $request->request->get('payment_nonce');
         $amount = $request->request->get('amount');
         $deviceData = $request->request->get('device_data');
-        $sale = $this->braintreeService->getPaymentService()->createSale($amount, $paymentNonce, $deviceData);
+        $serverOptions = $request->request->get('server_options');
+        $sale = $this->braintreeService->getPaymentService()->createSale(
+            $amount,
+            $paymentNonce,
+            $deviceData,
+            $serverOptions
+        );
         /** @var Transaction $transaction */
         $transaction = $sale->transaction;
         return $this->render('default/dump-input-id.html.twig', [

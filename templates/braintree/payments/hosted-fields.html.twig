@@ -1,4 +1,8 @@
 {% extends 'braintree/payments/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('hosted-fields') }}
+{% endblock %}
 {% block card_template %}
  <form id="hosted-fields-form">
     <div class="input-group mb-3">

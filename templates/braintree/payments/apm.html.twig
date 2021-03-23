@@ -1,7 +1,7 @@
 {% extends 'braintree/payments/base.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('3ds') }}
+    {{ encore_entry_link_tags('apm') }}
 {% endblock %}
 {% block card_template %}
     <div id="apm-creation-destroyable">

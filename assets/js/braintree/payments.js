@@ -1,3 +1,6 @@
+import JSONEditor from 'jsoneditor';
+import 'jsoneditor/dist/jsoneditor.css';
+
 function animatePaymentForm()
 {
     let submitButtonTwo = document.querySelector('#submit-button-two');
@@ -12,6 +15,29 @@ function animatePaymentForm()
     let captureUrl = jsCaptureUrl.dataset.captureUrl;
     let jsGetSaleUrl = document.querySelector('.js-get-sale-url');
     let getSaleUrl = jsGetSaleUrl.dataset.getSaleUrl;
+    let serverOptionsEditor = document.getElementById('server-options-json-editor');
+    let serverOptionsObject = {
+        customer: {
+            firstName: "Drew",
+            lastName: "McAllen",
+            company: "DevOrAlive",
+        },
+    };
+
+    let serverOptionsJsonEditor = new JSONEditor(
+        serverOptionsEditor,
+        {
+            limitDragging: true,
+            name: 'Server Options',
+            modes: ['code'],
+            mainMenuBar: true,
+            navigationBar: false,
+            statusBar: false,
+            search: false,
+            history: false
+        },
+        serverOptionsObject
+    );
 
     submitButtonTwo.addEventListener('click', function () {
         submitButtonTwo.disabled = true;
@@ -19,7 +45,8 @@ function animatePaymentForm()
             'payment_nonce'         : $('#payment-nonce').val(),
             'correlation_id'        : $('#device-info').val(),
             'amount'                : $('#amount').val(),
-            'device_data'           : $('#deviceInformation').val()
+            'device_data'           : $('#deviceInformation').val(),
+            'server_options'         : JSON.stringify(serverOptionsJsonEditor.get())
         };
 
         $.post(
@@ -108,7 +135,7 @@ function sendServerPayLoad(payload, deviceData)
     stepOneSubmitButton.disabled = false;
 }
 
-module.exports = {
+export default {
     sendServerPayLoad,
     animatePaymentForm
 };
