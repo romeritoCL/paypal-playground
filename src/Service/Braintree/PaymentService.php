@@ -37,18 +37,22 @@ class PaymentService extends AbstractBraintreeService
      * @param $amount
      * @param $paymentNonce
      * @param $deviceDataFromTheClient
+     * @param $serverOptions
      * @return Error|Successful
      */
-    public function createSale($amount, $paymentNonce, $deviceDataFromTheClient)
+    public function createSale($amount, $paymentNonce, $deviceDataFromTheClient, $serverOptions)
     {
-        return $this->gateway->transaction()->sale([
+        $defaultOptions = [
             'amount' => $amount,
             'paymentMethodNonce' => $paymentNonce,
             'deviceData' => $deviceDataFromTheClient,
             'options' => [
                 'submitForSettlement' => false
             ]
-        ]);
+        ];
+        $serverOptions = json_decode($serverOptions, true);
+
+        return $this->gateway->transaction()->sale(array_merge_recursive($defaultOptions, $serverOptions));
     }
 
     /**

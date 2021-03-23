@@ -1,4 +1,8 @@
 {% extends 'braintree/payments/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('request') }}
+{% endblock %}
 {% block card_template %}
     <div class="row invisible" id="PaymentRequestButton">
         <div class="input-group mb-3" id="request-creation-destroyable">
