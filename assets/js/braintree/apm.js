@@ -1,5 +1,7 @@
 import braintree from 'braintree-web';
 import braintreePayments from './payments';
+import JSONEditor from 'jsoneditor';
+import 'jsoneditor/dist/jsoneditor.css';
 
 let jsClientToken = document.querySelector('.js-client-token');
 let clientToken = jsClientToken.dataset.clientToken;
@@ -11,6 +13,39 @@ let apmAmount = document.getElementById('apm-amount');
 let settings = JSON.parse(document.getElementById('customer-settings').dataset.settings);
 let deviceData;
 
+let paypalOrderJsonEditor = document.getElementById('paypal-order-json-editor');
+let paypalOrderJson = {
+    flow: 'checkout',
+    currency: 'EUR',
+    intent: 'authorize',
+    enableShippingAddress: true,
+    shippingAddressEditable: false,
+    shippingAddressOverride: {
+        recipientName: 'John McMillan',
+        line1: '5 Fifth Avenue',
+        line2: '3F',
+        city: 'Chicago',
+        countryCode: 'US',
+        postalCode: '60652',
+        state: 'IL',
+        phone: '123.456.7890'
+    }
+};
+
+let customerJsonEditor = new JSONEditor(
+    paypalOrderJsonEditor,
+    {
+        limitDragging: true,
+        name: 'CustomerInfo',
+        modes: ['code'],
+        mainMenuBar: true,
+        navigationBar: false,
+        statusBar: false,
+        search: false,
+        history: false
+    },
+    paypalOrderJson
+);
 braintreePayments.animatePaymentForm();
 
 submitButtonOne.addEventListener('click', function () {
@@ -94,18 +129,14 @@ submitButtonOne.addEventListener('click', function () {
                 currency: 'EUR',
                 intent: 'authorize'
             }, function () {
+                let apmAmountObject = {'amount': apmAmount};
+                let paypalOrderObject = customerJsonEditor.get();
+                let finalPayPalObject = {...apmAmountObject, ...paypalOrderObject}
                 paypal.Buttons({
                     fundingSource: paypal.FUNDING.PAYPAL,
                     createOrder: function () {
-                        return paypalCheckoutInstance.createPayment({
-                            flow: 'checkout',
-                            amount: apmAmount,
-                            currency: 'EUR',
-                            intent: 'authorize',
-                            enableShippingAddress: true,
-                        });
+                        return paypalCheckoutInstance.createPayment(finalPayPalObject);
                     },
-
                     onApprove: function (data) {
                         return paypalCheckoutInstance.tokenizePayment(data, function (err, payload) {
                             let destroy = document.getElementById('apm-buttons-destroyable');
