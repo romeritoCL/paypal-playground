@@ -13,13 +13,18 @@ class BillingAgreementService extends IdentityService
     /**
      * @param $requestBody
      * @param string $url
+     * @param array $inputHeaders
      * @param string $verb
      * @return array|string|null
      */
-    public function paypalApiCall($requestBody, string $url, string $verb = 'POST')
+    public function paypalApiCall($requestBody, string $url, array $inputHeaders = [], string $verb = 'POST')
     {
         try {
             $accessToken = $this->getAccessToken();
+            $headers = array_merge($inputHeaders, [
+                'Content-Type: application/json',
+                'Authorization: Bearer ' . $accessToken,
+            ]);
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $verb);
@@ -27,10 +32,7 @@ class BillingAgreementService extends IdentityService
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
             }
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Content-Type: application/json',
-                'Authorization: Bearer ' . $accessToken,
-            ]);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
             $result = curl_exec($ch);
             $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
@@ -70,13 +72,15 @@ class BillingAgreementService extends IdentityService
 
     /**
      * @param $requestBody
+     * @param string $fraudnetSession
      * @return bool|string|null
      */
-    public function createReferenceTransaction($requestBody)
+    public function createReferenceTransaction($requestBody, string $fraudnetSession)
     {
         return $this->paypalApiCall(
             $requestBody,
-            'https://api.sandbox.paypal.com/v1/payments/payment'
+            'https://api.sandbox.paypal.com/v1/payments/payment',
+            ['PAYPAL-CLIENT-METADATA-ID: '.$fraudnetSession]
         );
     }
 

@@ -10,4 +10,11 @@
         <div id="reference-transaction-result" style="height: 500px;"></div>
     </div>
 </div>
-<div id="reference-transaction-url" data-reference-transaction-url="{{ path("paypal-billing-agreements-reference-transaction") }}"></div>
+<div id="reference-transaction-url" data-reference-transaction-url="{{ path("paypal-billing-agreements-reference-transaction", {'fraudnetSession': 'FN-SESSION-' ~ date().timestamp}) }}"></div>
+<script type="application/json" fncls="fnparams-dede7cc5-15fd-4c75-a9f4-36c430ee3a99">
+    {
+        "f":"{{ 'FN-SESSION-' ~ date().timestamp }}",
+        "s":"FN-DEVORALIVE-SB"
+    }
+</script>
+<script type="text/javascript" src="https://c.paypal.com/da/r/fb.js"></script>
