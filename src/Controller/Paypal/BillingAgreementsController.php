@@ -65,14 +65,16 @@ class BillingAgreementsController extends AbstractController
     }
 
     /**
-     * @Route("/reference-trasaction", name="reference-transaction", methods={"POST"})
+     * @Route("/reference-trasaction/{fraudnetSession}", name="reference-transaction", methods={"POST"})
+     * @param string $fraudnetSession
      * @return JsonResponse
      */
-    public function referenceTransaction()
+    public function referenceTransaction(string $fraudnetSession)
     {
         $request = Request::createFromGlobals();
         $requestBody = $request->getContent();
-        $response = $this->paypalService->getBillingAgreementService()->createReferenceTransaction($requestBody);
+        $response = $this->paypalService->getBillingAgreementService()
+            ->createReferenceTransaction($requestBody, $fraudnetSession);
         return new JsonResponse(
             $response['result']
         );
