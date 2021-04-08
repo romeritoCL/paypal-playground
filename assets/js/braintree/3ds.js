@@ -9,34 +9,35 @@ let jsClientToken = document.querySelector('.js-client-token');
 let clientToken = jsClientToken.dataset.clientToken;
 let customerJsonContainer = document.getElementById('customer-json-editor');
 let customerJson = {
-    amount: '180',
-    email: 'johndoe@paypal.com',
+    amount: '180.00',
+    email: 'cmoreno@paypal.com',
     billingAddress: {
-        givenName: 'John',
-        surname: 'Doe',
-        phoneNumber: '600123123',
-        streetAddress: 'Pablo Ruiz Picaso, 1',
-        extendedAddress: '11 floor',
-        locality: 'Madrid',
-        region: 'ES',
-        postalCode: '28031',
-        countryCodeAlpha2: 'ES'
+        givenName: 'Carlos', // ASCII-printable characters required, else will throw a validation error
+        surname: 'Moreno', // ASCII-printable characters required, else will throw a validation error
+        phoneNumber: '8101234567',
+        streetAddress: '555 Smith St.',
+        extendedAddress: '#5',
+        locality: 'Oakland',
+        region: 'CA',
+        postalCode: '12345',
+        countryCodeAlpha2: 'US'
     },
     additionalInformation: {
         workPhoneNumber: '8101234567',
-        shippingGivenName: 'John',
+        shippingGivenName: 'Jill',
         shippingSurname: 'Doe',
         shippingPhone: '8101234567',
         shippingAddress: {
-            streetAddress: 'Pablo Ruiz Picaso, 1',
-            extendedAddress: '11 floor',
-            locality: 'Madrid',
-            region: 'ES',
-            postalCode: '28031',
-            countryCodeAlpha2: 'ES'
+            streetAddress: '555 Smith St.',
+            extendedAddress: '#5',
+            locality: 'Oakland',
+            region: 'CA',
+            postalCode: '12345',
+            countryCodeAlpha2: 'US'
         }
     },
 };
+
 let customerJsonEditor = new JSONEditor(
     customerJsonContainer,
     {
@@ -67,9 +68,7 @@ dropin.create({
         event.stopPropagation();
         submitButtonOne.disabled = true;
         instance.requestPaymentMethod(
-            {
-                threeDSecure: customerJsonEditor.get()
-            },
+            { threeDSecure: customerJsonEditor.get() },
             function (err, payload) {
                 if (err) {
                     submitButtonOne.disabled = false
