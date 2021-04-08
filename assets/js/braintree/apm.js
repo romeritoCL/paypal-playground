@@ -61,9 +61,10 @@ submitButtonOne.addEventListener('click', function () {
         }
         braintree.dataCollector.create({
             client: clientInstance,
+            kount: true,
             paypal: true
         }, function (err, dataCollectorInstance) {
-            deviceData = dataCollectorInstance.deviceData;
+            deviceData = JSON.parse(dataCollectorInstance.deviceData);
         });
         if (window.ApplePaySession && ApplePaySession.supportsVersion(3) && ApplePaySession.canMakePayments()) {
             braintree.applePay.create({

@@ -16,8 +16,8 @@
     "dependencies": {
         "@adyen/adyen-web": "^3.22.0",
         "bootstrap": "^4.5.2",
-        "braintree-web": "^3.65.0",
-        "braintree-web-drop-in": "^1.23.0",
+        "braintree-web": "^3.76.2",
+        "braintree-web-drop-in": "^1.27.0",
         "jquery": "^3.5.1",
         "jqueryui": "^1.11.1",
         "jsoneditor": "^9.1.1",

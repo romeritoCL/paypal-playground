@@ -108,6 +108,7 @@ function animatePaymentForm()
 
 function sendServerPayLoad(payload, deviceData)
 {
+    let serverData = {...payload, ...deviceData };
     let jsPayLoadUrl = document.querySelector('.js-payload-url');
     let payloadUrl = jsPayLoadUrl.dataset.payloadUrl;
     let stepOneSubmitButton = document.querySelector('#step-1-submit');
@@ -118,14 +119,14 @@ function sendServerPayLoad(payload, deviceData)
 
     $.post(
         payloadUrl,
-        payload,
+        serverData,
         function (data) {
             document.getElementById('step-one-result-row').innerHTML = data
         }
     );
     document.querySelector('#payment-nonce').value = payload.nonce;
     document.querySelector('#device-info').value = deviceData.correlation_id;
-    document.querySelector('#deviceInformation').value = payload.deviceData;
+    document.querySelector('#deviceInformation').value = JSON.stringify(deviceData);
     window.payload_export=payload;
     if (submitButtonOne) {
         setTimeout(function () {
