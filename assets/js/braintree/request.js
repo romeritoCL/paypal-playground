@@ -21,9 +21,10 @@ if (window.PaymentRequest) {
         }
         braintree.dataCollector.create({
             client: clientInstance,
+            kount: true,
             paypal: true
         }, function (err, dataCollectorInstance) {
-            deviceData = dataCollectorInstance.deviceData;
+            deviceData = JSON.parse(dataCollectorInstance.deviceData);
         });
         braintree.paymentRequest.create({
             client: clientInstance,

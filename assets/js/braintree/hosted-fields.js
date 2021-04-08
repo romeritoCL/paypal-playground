@@ -17,9 +17,10 @@ braintree.client.create({
     }
     braintree.dataCollector.create({
         client: clientInstance,
+        kount: true,
         paypal: true
     }, function (err, dataCollectorInstance) {
-        deviceData = dataCollectorInstance.deviceData;
+        deviceData = JSON.parse(dataCollectorInstance.deviceData);
     });
     braintree.hostedFields.create({
         client: clientInstance,
@@ -67,7 +68,7 @@ braintree.client.create({
                     console.error(tokenizeErr);
                     return;
                 }
-                braintreePayments.sendServerPayLoad(payload, deviceData);
+                braintreePayments.sendServerPayLoad(payload,deviceData);
             });
         }, false);
     });
