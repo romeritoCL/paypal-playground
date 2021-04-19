@@ -50,6 +50,7 @@ function startPayments(orderCreateJson, PayPalButtonsJson)
                 return actions.order.create(orderCreateEditor.get());
             },
             style: paypalButtonsStyleObject,
+            fundingSource: 'paypal',
             onShippingChange: function () {
             },
             onApprove: function (data) {
