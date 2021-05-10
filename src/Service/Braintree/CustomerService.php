@@ -2,6 +2,8 @@
 
 namespace App\Service\Braintree;
 
+use Braintree\Customer;
+use Braintree\Exception\NotFound;
 use Braintree\Result\Error;
 use Braintree\Result\Successful;
 use Exception;
@@ -15,7 +17,7 @@ class CustomerService extends AbstractBraintreeService
     /**
      * @return array
      */
-    public function listCustomers()
+    public function listCustomers(): array
     {
         $customers = [];
         $customersList = $this->gateway->customer()->search([
@@ -34,6 +36,16 @@ class CustomerService extends AbstractBraintreeService
             }
         }
         return $customers;
+    }
+
+    /**
+     * @param string $customerId
+     * @return Customer
+     * @throws NotFound
+     */
+    public function getCustomer(string $customerId): Customer
+    {
+        return $this->gateway->customer()->find($customerId);
     }
 
     /**
