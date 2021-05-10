@@ -85,10 +85,17 @@ class SessionService
      * @param string $clientId
      * @param string $clientSecret
      */
-    public function updateCredentials(string $clientId, string $clientSecret): void
+    public function updateCredentials(?string $clientId, ?string $clientSecret, ?string $extra): void
     {
-        $this->session->set('PAYPAL_SDK_CLIENT_ID', $clientId);
-        $this->session->set('PAYPAL_SDK_CLIENT_SECRET', $clientSecret);
+        if ($clientId) {
+            $this->session->set('PAYPAL_SDK_CLIENT_ID', $clientId);
+        }
+        if ($clientSecret) {
+            $this->session->set('PAYPAL_SDK_CLIENT_SECRET', $clientSecret);
+        }
+        if ($extra) {
+            $this->session->set('PAYPAL_SDK_EXTRA', $extra);
+        }
     }
 
     /**
@@ -98,5 +105,6 @@ class SessionService
     {
         $this->session->remove('PAYPAL_SDK_CLIENT_ID');
         $this->session->remove('PAYPAL_SDK_CLIENT_SECRET');
+        $this->session->remove('PAYPAL_SDK_EXTRA');
     }
 }

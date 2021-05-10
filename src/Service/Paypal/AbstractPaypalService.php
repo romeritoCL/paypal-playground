@@ -60,6 +60,7 @@ abstract class AbstractPaypalService
     ) {
         $sessionClientId = $sessionService->session->get('PAYPAL_SDK_CLIENT_ID');
         $sessionClientSecret = $sessionService->session->get('PAYPAL_SDK_CLIENT_SECRET');
+        $sessionSDKExtra = $sessionService->session->get('PAYPAL_SDK_EXTRA');
         $this->clientId = $sessionClientId ?? $clientId;
         $this->clientSecret = $sessionClientSecret ?? $clientSecret;
         $this->logger = $logger;

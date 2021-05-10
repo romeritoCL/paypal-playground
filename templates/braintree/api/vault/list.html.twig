@@ -1,0 +1,28 @@
+<div class="container" id="searchContainer">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Available PaymentMethods</th>
+                <th scope="col" style="width: 30%">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for customer in customers %}
+            <tr>
+                <th scope="row">{{ customer.id }}</th>
+                <td>{{ customer.full_name }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.available_payment_methods }}</td>
+                <td>
+                    <a class="btn btn-secondary btn-customer-get" href="{{ path('braintree-vault-customer-get', {'customerId': customer.id}) }}">View Details</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -24,8 +24,9 @@ class SessionController extends AbstractController
         $request = Request::createFromGlobals();
         $clientId = $request->request->get('client_id', null);
         $clientSecret = $request->request->get('client_secret', null);
-        if ($clientId && $clientSecret) {
-            $this->paypalService->getSessionService()->updateCredentials($clientId, $clientSecret);
+        $extra = $request->request->get('extra', null);
+        if (($clientId && $clientSecret) || $extra) {
+            $this->paypalService->getSessionService()->updateCredentials($clientId, $clientSecret, $extra);
         }
         return $this->redirectToRoute('paypal-index');
     }
