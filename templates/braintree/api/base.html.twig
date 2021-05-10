@@ -1,0 +1,29 @@
+{% extends 'braintree/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('braintree-api') }}
+{% endblock %}
+{% block content %}
+    <div class="hyperwallet-font">
+        <div class="row braintree-font-header">
+            <h3>API Examples</h3>
+        </div>
+        <hr>
+        <div class="row">
+            <h5>Vault API</h5>
+        </div>
+        <div>
+            <p>You can store, list and get information from your customers on BrainTree. Also check their available payment methods</p>
+        </div>
+    </div>
+    <div class="row mt-2 d-inline-block">
+        <a class="m-2 d-inline btn bg-braintree text-light btn-block col-2" id="listCustomer" href="{{ path('braintree-vault-customer-list') }}">List Customers</a>
+    </div>
+    <hr>
+    <div class="row mt-5 braintree-font" id="bt-api-action-list"></div>
+    <div class="row mt-5 braintree-font" id="bt-api-action-get"></div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('braintree-api') }}
+{% endblock %}

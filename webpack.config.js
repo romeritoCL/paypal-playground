@@ -29,6 +29,7 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('braintree-api', './assets/js/braintree/api/api.js')
     .addEntry('dropui', './assets/js/braintree/dropui.js')
     .addEntry('apm', './assets/js/braintree/apm.js')
     .addEntry('3ds', './assets/js/braintree/3ds.js')

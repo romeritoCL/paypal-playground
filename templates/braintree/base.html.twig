@@ -10,7 +10,15 @@
                 <a class="nav-link text-light" href="{{ path('braintree-payments-apm') }}">APM</a>
                 <a class="nav-link text-light" href="{{ path('braintree-payments-three-ds') }}">3DSecure</a>
                 <a class="nav-link text-light" href="{{ path('braintree-payments-vault') }}">Vault</a>
-                <a class="nav-link text-light" href="{{ path('braintree-payments-request') }}">RequestAPI</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Others Features
+                    </a>
+                    <div class="dropdown-menu bg-braintree p-3" aria-labelledby="navbarDropdown">
+                        <a class="nav-link text-light" href="{{ path('braintree-payments-request') }}">RequestAPI</a>
+                        <a class="nav-link text-light" href="{{ path('braintree-api-index') }}">API Examples</a>
+                    </div>
+                </li>
             </div>
         {% endblock nav_items %}
     {% endembed %}
