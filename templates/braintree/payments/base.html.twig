@@ -22,6 +22,7 @@
                 <div id="collapseOne" class="collapse {% block element_one_class %}show{% endblock %}" aria-labelledby="headingOne" data-parent="#accordion">
                     <div class="card-body">
                         <div class="row mt-1">
+                            {% block step1_content %}
                             <div class="col">
                                 {% block card_template %}{% endblock %}
                                 <div class="mt-3" id="step-one-result-row"></div>
@@ -62,6 +63,7 @@
                                 </div>
                                 {% endblock %}
                             </div>
+                            {% endblock %}
                         </div>
                     </div>
                 </div>
