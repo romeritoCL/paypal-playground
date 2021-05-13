@@ -15,7 +15,7 @@ let deviceData;
 let paypalOrderJsonEditor = document.getElementById('paypal-order-json-editor');
 let paypalOrderJson = {
     flow: 'checkout',
-    currency: 'EUR',
+    currency: 'GBP',
     amount: '123,45',
     intent: 'authorize'
 };
@@ -62,9 +62,9 @@ submitButtonOne.addEventListener('click', function () {
                 return;
             }
             paypalCheckoutInstance.loadPayPalSDK({
-                'buyer-country': 'FR',
+                'buyer-country': 'GB',
                 components: 'buttons,messages',
-                currency: 'EUR',
+                currency: 'GBP',
                 intent: 'authorize',
                 dataAttributes: {
                     amount: apmAmount
