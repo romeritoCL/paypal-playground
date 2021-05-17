@@ -3,10 +3,10 @@
 namespace App\Service\Hyperwallet;
 
 use Exception;
+use DateTime;
 use Hyperwallet\Exception\HyperwalletApiException;
 use Hyperwallet\Model\User;
 use Hyperwallet\Response\ListResponse;
-use Hyperwallet\Model\UserStatusTransition;
 
 /**
  * Class UserService
@@ -41,6 +41,28 @@ class UserService extends AbstractHyperwalletService
     }
 
     /**
+     * @param array $userParameters
+     * @return User | Exception
+     */
+    public function update(array $userParameters)
+    {
+        try {
+            $user = new User($userParameters);
+            $user
+                ->setFirstName($userParameters['firstName'])
+                ->setLastName($userParameters['lastName'])
+                ->setEmail($userParameters['email'])
+                ->setDateOfBirth(new Datetime($userParameters['dateOfBirth']))
+                ->setClientUserId($userParameters['clientUserId'])
+                ->setLanguage($userParameters['language'])
+            ;
+            return $this->client->updateUser($user);
+        } catch (Exception $exception) {
+            return $exception;
+        }
+    }
+
+    /**
      * @param string $userToken
      * @return Exception|User
      */
@@ -48,6 +70,19 @@ class UserService extends AbstractHyperwalletService
     {
         try {
             return $this->client->getUser($userToken);
+        } catch (Exception $exception) {
+            return $exception;
+        }
+    }
+
+    /**
+     * @param string $userToken
+     * @return Exception|ListResponse
+     */
+    public function listTransferMethods(string $userToken)
+    {
+        try {
+            return $this->client->listTransferMethods($userToken);
         } catch (Exception $exception) {
             return $exception;
         }

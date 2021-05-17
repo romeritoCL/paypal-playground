@@ -12,6 +12,9 @@
 <body>
 {% block navbar %}{% embed "navbar/navbar.html.twig" %}{% endembed %}{% endblock navbar %}
 {% block body %}{% endblock body %}
-{% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock javascripts %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    <script src="https://kit.fontawesome.com/02e32bed4e.js" crossorigin="anonymous"></script>
+{% endblock javascripts %}
 </body>
 </html>

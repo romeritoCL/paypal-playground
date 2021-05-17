@@ -31,7 +31,6 @@ function start(JSONEditor)
     let createUserButton = document.getElementById('usersCreateEditor');
     let createUserResultDiv = document.getElementById('user_create_result');
     createUserButton.addEventListener('click', function () {
-        createUserButton.disabled = true;
         $.post(
             createUserUrl,
             userCreateJsonEditor.get(),

@@ -1,0 +1,15 @@
+{% extends 'hyperwallet/users/index.html.twig' %}
+{% block  content %}
+    <div class="hyperwallet-font">
+        <div class="row hyperwallet-font-header">
+            <h3>Transfer Methods Drop-In</h3>
+        </div>
+        <div class="row">
+            <p>Let the customer create his own transfer methods and send them to HW.</p>
+        </div>
+    </div>
+    <p>here you should see the DropIn for User Verification</p>
+{% endblock content %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('hyperwallet-users-edit') }}
+{% endblock javascripts %}

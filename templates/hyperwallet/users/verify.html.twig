@@ -1,7 +1,15 @@
 {% extends 'hyperwallet/users/index.html.twig' %}
-{% block  apiView %}
-    <p>here you should see the DropIn for Transfer Methods</p>
-{% endblock apiView %}
+{% block  content %}
+    <div class="hyperwallet-font">
+        <div class="row hyperwallet-font-header">
+            <h3>User Verification Drop-In</h3>
+        </div>
+        <div class="row">
+            <p>When HW request a user to get verified, you can take advantage of the DropIn and let the user communicate with HW from your own website</p>
+        </div>
+    </div>
+    <p>here you should see the DropIn for User Verification</p>
+{% endblock content %}
 {% block javascripts %}
     {{ encore_entry_script_tags('hyperwallet-users-edit') }}
 {% endblock javascripts %}
