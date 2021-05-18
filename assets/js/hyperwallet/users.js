@@ -37,6 +37,18 @@ searchButton.addEventListener('click', function (event) {
                     );
                 });
             });
+            $('.user-balance-button').each(function () {
+                $(this).click(function (event) {
+                    event.preventDefault();
+                    let getBalancesUrl = $(this).attr('href');
+                    $.get(
+                        getBalancesUrl,
+                        function (data) {
+                            document.getElementById('transfer-methods-result').innerHTML = data;
+                        }
+                    );
+                });
+            });
         }
     );
 });

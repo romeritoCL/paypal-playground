@@ -1,0 +1,35 @@
+<div class="container" id="searchContainer">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Status</th>
+                <th scope="col">Created On</th>
+                <th scope="col">Dest.Amount</th>
+                <th scope="col">Dest.Currency</th>
+                <th scope="col">notes</th>
+                <th scope="col" style="width: 30%">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for transfer in transfers.data %}
+                <tr>
+                    <th scope="row">{{ transfer.clientTransferId }}</th>
+                    <td>{{ transfer.status }}</td>
+                    <td>{{ transfer.createdOn }}</td>
+                    <td>{{ transfer.destinationAmount }}</td>
+                    <td>{{ transfer.destinationCurrency }}</td>
+                    <td>{{ transfer.notes }}</td>
+                    <td>
+                        <a title="Get transfer details" class="btn btn-info transfer-details-button" href="{{ path("hyperwallet-transfers-get", {'transferToken': transfer.token}) }}"><span class="fas fa-landmark"></span> Details</a>
+                        <a title="Get transfer details" class="btn btn-info transfer-details-button" href="{{ path("hyperwallet-transfers-commit", {'transferToken': transfer.token}) }}"><span class="fas fa-hand-holding-usd"></span> Commit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a class="transfer-details-button" href="https://transfer.details.com"></a>
+</div>
+<div class="mt-1" id="transfer-details-result"></div>

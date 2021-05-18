@@ -111,7 +111,7 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("{userToken}/transfer-methods", name="transfer-methods-list", methods={"GET"})
+     * @Route("/{userToken}/transfer-methods", name="transfer-methods-list", methods={"GET"})
      *
      * @param string $userToken
      *
@@ -127,7 +127,23 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("{userToken}/transfer-methods/add", name="transfer-methods-add", methods={"GET"})
+     * @Route("/{userToken}/balance", name="balance", methods={"GET"})
+     *
+     * @param string $userToken
+     *
+     * @return Response
+     */
+    public function balanceList(string $userToken): Response
+    {
+        $balance = $this->hyperwalletService->getUserService()->listBalances($userToken);
+        return $this->render('default/dump.html.twig', [
+            'raw_result' => false,
+            'result' => $balance,
+        ]);
+    }
+
+    /**
+     * @Route("/{userToken}/transfer-methods/add", name="transfer-methods-add", methods={"GET"})
      *
      * @param string $userToken
      *
@@ -137,12 +153,12 @@ class UsersController extends AbstractController
     {
         $userJson = $this->hyperwalletService->getUserService()->get($userToken)->getProperties();
         return $this->render('hyperwallet/users/transferMethods/create.html.twig', [
-            'userJson' => json_encode($userJson)
+            'userJson' => $userJson
         ]);
     }
 
     /**
-     * @Route("{userToken}/verify", name="verify", methods={"GET"})
+     * @Route("/{userToken}/verify", name="verify", methods={"GET"})
      *
      * @param string $userToken
      *
@@ -152,7 +168,38 @@ class UsersController extends AbstractController
     {
         $userJson = $this->hyperwalletService->getUserService()->get($userToken)->getProperties();
         return $this->render('hyperwallet/users/verify.html.twig', [
-            'userJson' => json_encode($userJson)
+            'userJson' => $userJson
+        ]);
+    }
+
+    /**
+     * @Route("/{userToken}/authentication-token", name="auth-token", methods={"GET"})
+     *
+     * @param string $userToken
+     *
+     * @return JsonResponse
+     */
+    public function getAuthenticationToken(string $userToken): JsonResponse
+    {
+        $authenticationToken = $this->hyperwalletService->getUserService()->getAuthenticationToken($userToken);
+        return new JsonResponse($authenticationToken->getValue());
+    }
+
+    /**
+     * @Route("/{userToken}/transfer-create", name="transfer-create", methods={"GET"})
+     *
+     * @param string $userToken
+     *
+     * @return Response
+     */
+    public function transferCreate(string $userToken): Response
+    {
+        $balance = $this->hyperwalletService->getUserService()->listBalances($userToken);
+        $transferMethods = $this->hyperwalletService->getUserService()->listTransferMethods($userToken);
+        return $this->render('hyperwallet/users/transfer.html.twig', [
+            'balance' => $balance,
+            'transferMethods' => $transferMethods,
+            'userToken' => $userToken,
         ]);
     }
 }

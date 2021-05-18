@@ -1,0 +1,44 @@
+{% extends 'hyperwallet/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('hyperwallet-user-transfer') }}
+{% endblock %}
+{% block content %}
+    <div class="js-user-token" data-user-token="{{ userToken }}"></div>
+    <div class="hyperwallet-font">
+        <div class="row hyperwallet-font-header">
+            <h3>Create a Transfer</h3>
+        </div>
+        <div class="row">
+            <p>This is an action typically initiated by the customer. It will send funds from the customer balance to one of his transfer methods</p>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Balance</label>
+            </div>
+            <select class="custom-select" id="balance">
+                {% for balance in balance.data %}
+                <option value="{{ balance.currency }}">{{ balance.amount }} {{ balance.currency }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">Transfer Method</label>
+            </div>
+            <select class="custom-select" id="transferMethod">
+                {% for transferMethod in transferMethods.data %}
+                    <option value="{{ transferMethod.token }}">{{ transferMethod.type }} | {{ transferMethod.transferMethodCurrency }} | {{ transferMethod.bankAccountId }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div id="transfer_create_json_editor"></div>
+        <button class="mt-2 btn btn btn-primary bg-hyperwallet align-content-center" id="transferCreate" href="{{ path('hyperwallet-transfers-create-post') }}">Create Transfer</button>
+        <button disabled class="mt-2 btn btn-secondary align-content-center" id="transferCommit" href="{{ path('hyperwallet-transfers-commit',{'transferToken': 'replaceTransferToken'}) }}">Commit Transfer</button>
+        <div class="mt-3" id="transfer_create_result"></div>
+    </div>
+{% endblock content %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('hyperwallet-user-transfer') }}
+{% endblock %}
