@@ -1,0 +1,29 @@
+{% extends 'hyperwallet/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('hyperwallet-transfer-method-create') }}
+{% endblock %}
+{% block  content %}
+    <div class="js-user-auth-token-url" data-user-auth-token-url="{{ path("hyperwallet-users-auth-token", {'userToken': 'user_token_replace'}) }}"></div>
+    <div class="js-user-token" data-user-token="{{ userJson.token }}"></div>
+    <div class="js-user-language" data-user-language="{{ userJson.language }}"></div>
+    <div class="hyperwallet-font">
+        <div class="row hyperwallet-font-header">
+            <h3>Transfer Methods Drop-In</h3>
+        </div>
+        <div class="row">
+            <p>Let the customer create his own transfer methods and send them to HW.</p>
+        </div>
+    </div>
+    <div class="row paypal-font">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="p-3 border" style="background: #dedede; border-radius: 20px" id="TransferMethodUI"></div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+{% endblock content %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('hyperwallet-transfer-method-create') }}
+{% endblock javascripts %}

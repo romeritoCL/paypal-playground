@@ -1,0 +1,34 @@
+<div class="container" id="searchContainer">
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Status</th>
+                <th scope="col">Created On</th>
+                <th scope="col">amount</th>
+                <th scope="col">currency</th>
+                <th scope="col">purpose</th>
+                <th scope="col" style="width: 30%">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for payment in payments.data %}
+                <tr>
+                    <th scope="row">{{ payment.clientPaymentId }}</th>
+                    <td>{{ payment.status }}</td>
+                    <td>{{ payment.createdOn }}</td>
+                    <td>{{ payment.amount }}</td>
+                    <td>{{ payment.currency }}</td>
+                    <td>{{ payment.purpose }}</td>
+                    <td>
+                        <a title="Get payment details" class="btn btn-info payment-details-button" href="{{ path("hyperwallet-payments-get", {'paymentToken': payment.token}) }}"><span class="fas fa-landmark"></span> Details</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a class="payment-details-button" href="https://payment.details.com"></a>
+</div>
+<div class="mt-1" id="payment-details-result"></div>

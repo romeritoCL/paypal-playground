@@ -1,4 +1,4 @@
-<div class="js-user-read-url" data-user-read-url="{{ path("hyperwallet-users-read", {'userToken': 'user_token_replace'}) }}"></div>
+<div class="js-user-edit-url" data-user-edit-url="{{ path("hyperwallet-users-edit-get", {'userToken': 'user_token_replace'}) }}"></div>
 <div class="container" id="searchContainer">
     <div class="table-responsive">
         <table class="table table-hover table-striped table-bordered">
@@ -19,8 +19,12 @@
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.email }}</td>
                 <td>
-                    <button class="btn btn-secondary btn-user-edit" data-user-token="{{ user.token }}">Edit</button>
-                    <button class="btn btn-info btn-user-goto-transfer" data-user-token="{{ user.token }}">Transfer Methods</button>
+                    <a title="Edit User" class="btn btn-secondary" href="{{ path("hyperwallet-users-edit-get", {'userToken': user.token}) }}"><span class="fas fa-edit" aria-hidden="true"></span></a>
+                    <a title="List Transfer Methods" class="btn btn-info user-transfer-methods-button" href="{{ path("hyperwallet-users-transfer-methods-list", {'userToken': user.token}) }}"><span class="fas fa-landmark"></span></a>
+                    <a title="Check Balance" class="btn btn-info user-balance-button" href="{{ path("hyperwallet-users-balance", {'userToken': user.token}) }}"><span class="fas fa-balance-scale-left"></span></a>
+                    <a title="Add Transfer Method" class="btn btn-primary" href="{{ path("hyperwallet-users-transfer-methods-add", {'userToken': user.token}) }}"><span class="fa fa-plus-square"></span></a>
+                    <a title="Verify User" class="btn btn-warning" href="{{ path("hyperwallet-users-verify", {'userToken': user.token}) }}"><span class="fas fa-id-card"></span></a>
+                    <a title="Transfer Balance" class="btn btn-danger" href="{{ path("hyperwallet-users-transfer-create", {'userToken': user.token}) }}"><span class="fas fa-piggy-bank"></span></a>
                 </td>
             </tr>
             {% endfor %}
@@ -28,3 +32,4 @@
         </table>
     </div>
 </div>
+<div class="mt-1" id="transfer-methods-result"></div>

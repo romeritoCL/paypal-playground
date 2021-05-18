@@ -13,12 +13,14 @@
             <p>A user represents an individual or a business that can receive payments, such as employees, survey participants, contractors, or distributors. Users can withdraw funds using any of Hyperwallet's supported payout options, including but not limited to bank accounts, debit card, PayPal account, prepaid cards, or paper checks. All payout options for a user are attached to their user resource, so you will always need to create users.</p>
         </div>
     </div>
+    {% block apiView %}
     <div class="row mt-2 d-inline-block">
         <a class="m-2 d-inline btn bg-hyperwallet text-light btn-block col-2" id="usersCreate" href="{{ path('hyperwallet-users-create-get') }}">Create</a>
         <a class="m-2 d-inline btn bg-hyperwallet text-light btn-block col-2" id="usersSearch" href="{{ path('hyperwallet-users-search') }}">Search</a>
     </div>
     <div class="row mt-5 hyperwallet-font" id="hw-api-action"></div>
-{% endblock %}
+    {% endblock apiView %}
+{% endblock content %}
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('users') }}

@@ -1,0 +1,26 @@
+{% extends 'hyperwallet/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('hyperwallet-transfers') }}
+{% endblock %}
+{% block content %}
+    <div class="hyperwallet-font">
+        <div class="row hyperwallet-font-header">
+            <h3>Transfers API</h3>
+        </div>
+        <div class="row">
+            <p>You can <strong>Get</strong>, <strong>Create</strong> and <strong>List</strong> transfers via API</p>
+        </div>
+    </div>
+    {% block apiView %}
+    <div class="row mt-2 d-inline-block">
+        <a class="m-2 d-inline btn bg-hyperwallet text-light btn-block col-2" id="transfersCreate" href="{{ path('hyperwallet-transfers-create-get') }}">Create</a>
+        <a class="m-2 d-inline btn bg-hyperwallet text-light btn-block col-2" id="transfersList" href="{{ path('hyperwallet-transfers-search') }}">List</a>
+    </div>
+    <div class="row mt-5 hyperwallet-font" id="hw-api-action"></div>
+    {% endblock apiView %}
+{% endblock content %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('hyperwallet-transfers') }}
+{% endblock %}

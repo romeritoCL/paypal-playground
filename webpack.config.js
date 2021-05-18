@@ -51,6 +51,12 @@ Encore
     .addEntry('connect', './assets/js/paypal/connect.js')
     .addEntry('authenticated', './assets/js/paypal/authenticated.js')
     .addEntry('users', './assets/js/hyperwallet/users.js')
+    .addEntry('hyperwallet-payments', './assets/js/hyperwallet/payments.js')
+    .addEntry('hyperwallet-transfers', './assets/js/hyperwallet/transfers.js')
+    .addEntry('hyperwallet-users-edit', './assets/js/hyperwallet/users/edit.js')
+    .addEntry('hyperwallet-user-transfer', './assets/js/hyperwallet/users/transfer.js')
+    .addEntry('hyperwallet-transfer-method-create', './assets/js/hyperwallet/users/transferMethods/create.js')
+    .addEntry('hyperwallet-user-verify', './assets/js/hyperwallet/users/verify.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

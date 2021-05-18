@@ -1,24 +1,54 @@
 import JSONEditor from 'jsoneditor';
 import 'jsoneditor/dist/jsoneditor.css';
 import usersCreate from './users/create.js';
-import usersSearch from './users/search.js';
 
-function addApiButtonEvent(action, starter)
-{
-    let button = document.getElementById(action);
-    button.addEventListener('click', function (event) {
-        event.preventDefault();
-        let apiFormDiv = document.getElementById('hw-api-action');
-        let url = button.getAttribute('href');
-        $.get(
-            url,
-            function (data) {
-                apiFormDiv.innerHTML = data;
-                starter.start(JSONEditor);
-            }
-        );
-    });
-}
+let createUserbutton = document.getElementById('usersCreate');
+createUserbutton.addEventListener('click', function (event) {
+    event.preventDefault();
+    let apiFormDiv = document.getElementById('hw-api-action');
+    let url = createUserbutton.getAttribute('href');
+    $.get(
+        url,
+        function (data) {
+            apiFormDiv.innerHTML = data;
+            usersCreate.start(JSONEditor);
+        }
+    );
+});
 
-addApiButtonEvent('usersCreate', usersCreate);
-addApiButtonEvent('usersSearch', usersSearch);
+let searchButton = document.getElementById('usersSearch');
+searchButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    let apiFormDiv = document.getElementById('hw-api-action');
+    let url = searchButton.getAttribute('href');
+    $.get(
+        url,
+        function (data) {
+            apiFormDiv.innerHTML = data;
+            $('.user-transfer-methods-button').each(function () {
+                $(this).click(function (event) {
+                    event.preventDefault();
+                    let getTransferMethodsUrl = $(this).attr('href');
+                    $.get(
+                        getTransferMethodsUrl,
+                        function (data) {
+                            document.getElementById('transfer-methods-result').innerHTML = data;
+                        }
+                    );
+                });
+            });
+            $('.user-balance-button').each(function () {
+                $(this).click(function (event) {
+                    event.preventDefault();
+                    let getBalancesUrl = $(this).attr('href');
+                    $.get(
+                        getBalancesUrl,
+                        function (data) {
+                            document.getElementById('transfer-methods-result').innerHTML = data;
+                        }
+                    );
+                });
+            });
+        }
+    );
+});

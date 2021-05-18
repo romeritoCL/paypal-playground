@@ -1,0 +1,20 @@
+{% extends 'hyperwallet/users/index.html.twig' %}
+{% block  apiView %}
+<div id="user-json" data-user-json="{{ userJson }}"></div>
+<div class="js-user-edit-url" data-user-edit-url="{{ path("hyperwallet-users-edit-post", {'userToken': 'user_token_replace'}) }}"></div>
+<div class="container">
+    <hr>
+    <div class="alert alert-secondary text-center braintree-font">
+        <span class="badge badge-pill badge-success">{{ random(['Watch this', 'Beware!', 'Careful', 'Look!', 'ReadMe!','FYI!']) }}</span>
+        <p class="d-inline"><strong>Only the fields:</strong> firstName, lastName, email, dateOfBirth, clientUserId and language are updated</p>
+    </div>
+    <div class="row">
+        <div class="col"><div id="user_edit_json_editor"></div></div>
+        <div class="col">
+            <button class="btn btn-outline-light bg-hyperwallet align-content-center mb-1" id="usersEditButton">Edit User</button>
+            <div id="user_edit_result"></div>
+        </div>
+    </div>
+</div>
+{% endblock apiView %}
+{% block javascripts %}{{ encore_entry_script_tags('hyperwallet-users-edit') }}{% endblock javascripts %}
