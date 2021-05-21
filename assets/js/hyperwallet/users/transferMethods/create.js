@@ -1,6 +1,6 @@
 let userToken = $('.js-user-token').data('userToken');
 let userLanguage = $('.js-user-language').data('userLanguage');
-let url = 'https://api.sandbox.hyperwallet.com/rest/widgets/users/'+ userToken +'/'+ userLanguage +'.min.js';
+let url = 'https://api.sandbox.hyperwallet.com/rest/widgets/transfer-methods/'+ userToken +'/'+ userLanguage +'.min.js';
 let authUrl = $('.js-user-auth-token-url').data('userAuthTokenUrl');
 authUrl = authUrl.replace("user_token_replace", userToken);
 
