@@ -30,7 +30,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="amount-text">Amount</span>
                             </div>
-                            <input type="number" aria-label="Price" class="form-control text-right" id="apm-amount" value="23.00">
+                            <input type="number" aria-label="Price" class="form-control text-right" id="apm-amount" value="180.00">
                             <div class="input-group-append">
                                 <span class="input-group-text">.00 €</span>
                             </div>
@@ -48,7 +48,20 @@
     <div id="paypal-button-container"></div>
 {% endblock %}
 {% block card_details_help %}
-    <p></p>
+    <div
+            data-pp-message
+            data-pp-layout="text"
+            data-pp-text-color="black"
+            data-pp-logo-type="inline"
+            data-pp-amount="180">
+    </div>
+    <div
+            data-pp-message
+            data-pp-placement="home"
+            data-pp-amount="180"
+            data-pp-style-layout="flex"
+            data-pp-style-ratio="8x1">
+    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

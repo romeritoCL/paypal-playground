@@ -42,18 +42,19 @@ stepZeroSubmitButton.addEventListener('click', function () {
                             return;
                         }
                         paypalCheckoutInstance.loadPayPalSDK({
+                            components: 'buttons,messages',
                             vault: true,
-                            currency: 'EUR',
-                            intent: 'capture',
                             dataAttributes: {
                                 amount: apmAmount
-                            }
+                            },
+                            intent: 'authorize',
+                            currency: 'GBP',
                         }, function () {
                             let apmAmountObject = {'amount': apmAmount};
                             let paypalOrderObject = {
-                                flow: 'vault',
-                                currency: 'EUR',
-                                intent: 'capture'
+                                flow: 'checkout',
+                                currency: 'GBP',
+                                intent: 'authorize',
                             };
                             let finalPayPalObject = {...apmAmountObject, ...paypalOrderObject}
                             paypal.Buttons({
