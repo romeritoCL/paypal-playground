@@ -3,47 +3,66 @@
     {{ parent() }}
     {{ encore_entry_link_tags('braintree-paylater') }}
 {% endblock %}
-{% block step1_content %}
-    <div class="w-100 text-center">
-        <div class="w-100 text-center" id="apm-creation-destroyable">
-            <div id="paypal-order-json-editor" style="height: 300px;"></div>
-            <div class="input-group mb-3 mt-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="amount-text">Amount</span>
-                </div>
-                <input type="number" aria-label="Price" class="form-control text-right" id="apm-amount" value="123.45">
-                <div class="input-group-append">
-                    <span class="input-group-text">.00 €</span>
-                </div>
-                <button type="button" class="ml-1 btn btn-success"  id="submit-button-one">Load APM Buttons</button>
-            </div>
+{% block step_zero %}
+    <div class="js-get-customer-url" data-get-customer-url="{{ path('braintree-customers-list') }}"></div>
+    <div class="js-get-customer-token-url" data-get-customer-token-url="{{ path('braintree-customers-get-cutomer-token', {'customerId': 'customer_id_replace'}) }}"></div>
+    <div class="js-create-customer-url" data-create-customer-url="{{ path('braintree-customers-create') }}"></div>
+    <div class="card">
+        <div class="card-header" id="headingZero">
+            <h5 class="mb-0 d-inline">0.Customer Database</h5>
+            <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseZero" aria-expanded="true" aria-controls="collapseZero" id="step-0-submit">Next Step</button>
         </div>
-        <div id="apm-buttons-destroyable">
-            <div id="apm-container"></div>
-        </div>
-        <div class="w-100 text-center">
-            <div class="w-100 text-center"
-                 style="margin-left: 20% !important"
-                 data-pp-message
-                 data-pp-layout="text"
-                 data-pp-buyer-country="FR"
-                 data-pp-amount="123.45">
-            </div>
-            <br>
-            <div class="w-100 text-center"
-                 style="text-align: -webkit-center !important"
-                 data-pp-message
-                 data-pp-placement="home"
-                 data-pp-amount="123.45"
-                 data-pp-style-layout="flex"
-                 data-pp-buyer-country="FR"
-                 data-pp-style-ratio="8x1">
+        <div id="collapseZero" class="collapse show" aria-labelledby="headingZero" data-parent="#accordion">
+            <div class="card-body">
+                <div class="row ml-1">
+                    <p class="d-inline">
+                        <span class="badge badge-pill badge-info">BrainTree</span>
+                        Gives you the option to create or select
+                        <span class="badge badge-pill badge-secondary">Customers</span>
+                        from the
+                        <span class="badge badge-pill badge-warning">Vault</span>.
+                        <span class="text-secondary">And many other options.</span>
+                    </p>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-lg-6 mt-3">
+                        <div class="input-group mb-3 mt-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="amount-text">Amount</span>
+                            </div>
+                            <input type="number" aria-label="Price" class="form-control text-right" id="apm-amount" value="180.00">
+                            <div class="input-group-append">
+                                <span class="input-group-text">.00 €</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-3" id="search-customer-form">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
-    <div class="js-paypal-client-id" data-paypal-client-id="{{ PAYPAL_SDK_CLIENT_ID }}"></div>
-{%  endblock %}
+{% endblock %}
+{% block element_one_class %}{% endblock %}
+{% block card_template %}
+    <div id="paypal-button-container"></div>
+{% endblock %}
+{% block card_details_help %}
+    <div
+            data-pp-message
+            data-pp-layout="text"
+            data-pp-text-color="black"
+            data-pp-logo-type="inline"
+            data-pp-amount="180">
+    </div>
+    <div
+            data-pp-message
+            data-pp-placement="home"
+            data-pp-amount="180"
+            data-pp-style-layout="flex"
+            data-pp-style-ratio="8x1">
+    </div>
+{% endblock %}
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('braintree-paylater') }}

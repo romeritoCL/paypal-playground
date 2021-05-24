@@ -11,8 +11,12 @@ let submitButtonOne = document.querySelector('#submit-button-one');
 let applePayButton = document.querySelector('#apple-pay-button');
 let apmAmount = document.getElementById('apm-amount');
 let settings = JSON.parse(document.getElementById('customer-settings').dataset.settings);
-let deviceData;
-
+let deviceData, localPaymentInstance;
+let serverOptionsObject = {
+    options: {
+        submitForSettlement: true
+    }
+};
 let paypalOrderJsonEditor = document.getElementById('paypal-order-json-editor');
 let paypalOrderJson = {
     flow: 'checkout',
@@ -46,7 +50,57 @@ let customerJsonEditor = new JSONEditor(
     },
     paypalOrderJson
 );
-braintreePayments.animatePaymentForm();
+braintreePayments.animatePaymentForm(serverOptionsObject);
+
+function merchantAccountId()
+{
+    return("devoralive");
+}
+function createLocalPaymentClickListener(type)
+{
+    return function (event) {
+        event.preventDefault();
+        localPaymentInstance.startPayment({
+            paymentType: type,
+            amount: apmAmount,
+            fallback: {
+                url: 'https://google.es',
+                buttonText: 'Complete Payment'
+            },
+            currencyCode: 'EUR',
+            shippingAddressRequired: true,
+            email: 'joe@getbraintree.com',
+            phone: '5101231234',
+            givenName: 'Joe',
+            surname: 'Doe',
+            address: {
+                streetAddress: 'Oosterdoksstraat 110',
+                extendedAddress: 'Apt. B',
+                locality: 'DK Amsterdam',
+                postalCode: '1011',
+                region: 'NH',
+                countryCode: 'NL'
+            },
+            onPaymentStart: function (data, start) {
+                start();
+            }
+        }, function (startPaymentError, payload) {
+            if (startPaymentError) {
+                if (startPaymentError.code === 'LOCAL_PAYMENT_POPUP_CLOSED') {
+                    console.error('Customer closed Local Payment popup.');
+                } else {
+                    console.error('Error!', startPaymentError);
+                }
+            } else {
+                braintreePayments.sendServerPayLoad(payload,deviceData);
+            }
+        });
+    };
+}
+$('#ideal-button').on('click', createLocalPaymentClickListener('ideal'));
+$('#sofort').on('click', createLocalPaymentClickListener('sofort'));
+$('#bancontact-button').on('click', createLocalPaymentClickListener('bancontact'));
+$('#trustly-button').on('click', createLocalPaymentClickListener('trustly'));
 
 submitButtonOne.addEventListener('click', function () {
     apmAmount = apmAmount.value;
@@ -65,6 +119,16 @@ submitButtonOne.addEventListener('click', function () {
             paypal: true
         }, function (err, dataCollectorInstance) {
             deviceData = JSON.parse(dataCollectorInstance.deviceData);
+        });
+        braintree.localPayment.create({
+            client: clientInstance,
+            merchantAccountId: merchantAccountId()
+        }, function (localPaymentErr, paymentInstance) {
+            if (localPaymentErr) {
+                console.error('Error creating local payment:', localPaymentErr);
+                return;
+            }
+            localPaymentInstance = paymentInstance;
         });
         if (window.ApplePaySession && ApplePaySession.supportsVersion(3) && ApplePaySession.canMakePayments()) {
             braintree.applePay.create({
@@ -156,5 +220,9 @@ submitButtonOne.addEventListener('click', function () {
                 }).render('#apm-container');
             });
         });
+        $('#ideal-button').removeClass('d-none');
+        $('#sofort-button').removeClass('d-none');
+        $('#trustly-button').removeClass('d-none');
+        $('#bancontact-button').removeClass('d-none');
     });
 });

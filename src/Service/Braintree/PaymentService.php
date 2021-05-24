@@ -52,7 +52,7 @@ class PaymentService extends AbstractBraintreeService
         ];
         $serverOptions = json_decode($serverOptions, true);
 
-        return $this->gateway->transaction()->sale(array_merge_recursive($defaultOptions, $serverOptions));
+        return $this->gateway->transaction()->sale(array_merge($defaultOptions, $serverOptions));
     }
 
     /**

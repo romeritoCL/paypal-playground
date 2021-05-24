@@ -1,111 +1,96 @@
-import braintree from 'braintree-web';
 import braintreePayments from './payments';
-import JSONEditor from 'jsoneditor';
-import 'jsoneditor/dist/jsoneditor.css';
+import braintree from 'braintree-web';
 
-let jsClientToken = document.querySelector('.js-client-token');
-let clientToken = jsClientToken.dataset.clientToken;
-let submitButtonOne = document.querySelector('#submit-button-one');
-let apmAmount = document.getElementById('apm-amount');
-let jsPaypalClientId = document.querySelector('.js-paypal-client-id');
-let paypalClientId = jsPaypalClientId.dataset.paypalClientId;
-let settings = JSON.parse(document.getElementById('customer-settings').dataset.settings);
-let deviceData;
+let stepZeroSubmitButton = document.querySelector('#step-0-submit');
+let jsGetCustomerUrl = document.querySelector('.js-get-customer-url');
+let getCustomerUrl = jsGetCustomerUrl.dataset.getCustomerUrl;
+let jsGetCustomerTokenUrl = document.querySelector('.js-get-customer-token-url');
+let getCustomerTokenUrl = jsGetCustomerTokenUrl.dataset.getCustomerTokenUrl;
+let clientToken, customerId, deviceData;
 
-let paypalOrderJsonEditor = document.getElementById('paypal-order-json-editor');
-let paypalOrderJson = {
-    flow: 'checkout',
-    currency: 'GBP',
-    amount: '123,45',
-    intent: 'authorize'
-};
-
-let customerJsonEditor = new JSONEditor(
-    paypalOrderJsonEditor,
-    {
-        limitDragging: true,
-        name: 'CustomerInfo',
-        modes: ['code'],
-        mainMenuBar: true,
-        navigationBar: false,
-        statusBar: false,
-        search: false,
-        history: false
-    },
-    paypalOrderJson
-);
 braintreePayments.animatePaymentForm();
 
-submitButtonOne.addEventListener('click', function () {
-    apmAmount = apmAmount.value;
-    let destroy = document.getElementById('apm-creation-destroyable');
-    destroy.parentNode.removeChild(destroy);
-    braintree.client.create({
-        authorization: clientToken
-    }, function (clientErr, clientInstance) {
-        if (clientErr) {
-            console.error('Error creating client:', clientErr);
-            return;
-        }
-        braintree.dataCollector.create({
-            client: clientInstance,
-            kount: true,
-            paypal: true
-        }, function (err, dataCollectorInstance) {
-            deviceData = JSON.parse(dataCollectorInstance.deviceData);
-        });
-        braintree.paypalCheckout.create({
-            client: clientInstance
-        }, function (paypalCheckoutErr, paypalCheckoutInstance) {
-            if (paypalCheckoutErr) {
-                console.error('Error creating PayPal Checkout:', paypalCheckoutErr);
-                return;
-            }
-            paypalCheckoutInstance.loadPayPalSDK({
-                'buyer-country': 'GB',
-                components: 'buttons,messages',
-                currency: 'GBP',
-                intent: 'authorize',
-                dataAttributes: {
-                    amount: apmAmount
-                }
-            }, function () {
-                let apmAmountObject = {'amount': apmAmount};
-                let paypalOrderObject = customerJsonEditor.get();
-                let finalPayPalObject = {...apmAmountObject, ...paypalOrderObject}
-                let button = paypal.Buttons({
-                    style: {
-                        "layout": "vertical",
-                        "color": "gold",
-                        "shape": "pill",
-                        "label": "pay"
-                    },
-                    fundingSource: paypal.FUNDING.PAYPAL,
-                    createOrder: function () {
-                        return paypalCheckoutInstance.createPayment(finalPayPalObject);
-                    },
-                    onApprove: function (data) {
-                        return paypalCheckoutInstance.tokenizePayment(data, function (err, payload) {
-                            let destroy = document.getElementById('apm-buttons-destroyable');
-                            destroy.parentNode.removeChild(destroy);
-                            braintreePayments.sendServerPayLoad(payload,deviceData);
-                        });
-                    },
-
-                    onCancel: function (data) {
-                        console.log('PayPal payment cancelled', JSON.stringify(data, 0, 2));
-                    },
-
-                    onError: function (err) {
-                        console.error('PayPal error', err);
+stepZeroSubmitButton.addEventListener('click', function () {
+    getCustomerTokenUrl = getCustomerTokenUrl.replace("customer_id_replace", customerId);
+    $.get(
+        getCustomerTokenUrl,
+        function (data) {
+            clientToken = data;
+            $('#collapseOne').collapse(true);
+            stepZeroSubmitButton.disabled = true;
+            let apmAmount = $('#apm-amount').val();
+            if (clientToken) {
+                braintree.client.create({
+                    authorization: clientToken
+                }, function (clientErr, clientInstance) {
+                    if (clientErr) {
+                        console.error('Error creating client:', clientErr);
+                        return;
                     }
+                    braintree.dataCollector.create({
+                        client: clientInstance,
+                        kount: true,
+                    }, function (err, dataCollectorInstance) {
+                        deviceData = JSON.parse(dataCollectorInstance.deviceData);
+                    });
+                    braintree.paypalCheckout.create({
+                        autoSetDataUserIdToken: true,
+                        client: clientInstance
+                    }, function (paypalCheckoutErr, paypalCheckoutInstance) {
+                        if (paypalCheckoutErr) {
+                            console.error('Error creating PayPal Checkout:', paypalCheckoutErr);
+                            return;
+                        }
+                        paypalCheckoutInstance.loadPayPalSDK({
+                            components: 'buttons,messages',
+                            vault: true,
+                            dataAttributes: {
+                                amount: apmAmount
+                            },
+                            intent: 'authorize',
+                            currency: 'GBP',
+                        }, function () {
+                            let apmAmountObject = {'amount': apmAmount};
+                            let paypalOrderObject = {
+                                flow: 'checkout',
+                                currency: 'GBP',
+                                intent: 'authorize',
+                            };
+                            let finalPayPalObject = {...apmAmountObject, ...paypalOrderObject}
+                            paypal.Buttons({
+                                fundingSource: paypal.FUNDING.PAYPAL,
+                                createOrder: function () {
+                                    return paypalCheckoutInstance.createPayment(finalPayPalObject);
+                                },
+                                onApprove: function (data) {
+                                    return paypalCheckoutInstance.tokenizePayment(data, function (err, payload) {
+                                        braintreePayments.sendServerPayLoad(payload,deviceData);
+                                    });
+                                },
 
+                                onCancel: function (data) {
+                                    console.log('PayPal payment cancelled', JSON.stringify(data, 0, 2));
+                                },
+
+                                onError: function (err) {
+                                    console.error('PayPal error', err);
+                                }
+                            }).render('#paypal-button-container');
+                        });
+                    });
                 });
-                if (!button.isEligible()) {
-                    console.log('Not eligible');
-                }
-                button.render('#apm-container');
-            });
-        });
-    });
+            }
+        }
+    );
 });
+
+$.get(
+    getCustomerUrl,
+    function (data) {
+        document.getElementById('search-customer-form').innerHTML = data;
+        $('#customer-list-group a').on('click', function () {
+            customerId = this.id;
+        });
+        stepZeroSubmitButton.disabled = false;
+    }
+);

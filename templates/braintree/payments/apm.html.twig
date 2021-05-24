@@ -20,6 +20,18 @@
     <div id="apm-buttons-destroyable">
         <div id="apm-container"></div>
         <button id="apple-pay-button" class="apple-pay-button d-none"></button>
+        <button id="ideal-button" class="mt-1 apple-pay-button payment-button d-none">
+            <img class="h-100" src="{{ asset('build/images/ideal_logo.svg') }}"/>
+        </button>
+        <button id="bancontact-button" class="mt-1 apple-pay-button payment-button d-none">
+            <img class="h-100" src="{{ asset('build/images/bancontact_logo.svg') }}"/>
+        </button>
+        <button id="sofort-button" class="mt-1 apple-pay-button payment-button d-none">
+            <img class="h-100" src="{{ asset('build/images/sofort_logo.svg') }}"/>
+        </button>
+        <button id="trustly-button" class="mt-1 apple-pay-button payment-button d-none">
+            <img class="h-100" src="{{ asset('build/images/trustly_logo.png') }}"/>
+        </button>
     </div>
 {% endblock %}
 {% block card_details_help %}

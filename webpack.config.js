@@ -19,6 +19,11 @@ Encore
         to: 'fonts/[path][name].[ext]',
     })
 
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[ext]',
+    })
+
     /*
      * ENTRY CONFIG
      *

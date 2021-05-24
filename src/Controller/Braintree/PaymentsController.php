@@ -84,7 +84,7 @@ class PaymentsController extends AbstractController
         return $this->render('default/dump-input-id.html.twig', [
             'result' => $sale,
             'raw_result' => false,
-            'result_id' => $transaction->id
+            'result_id' => $transaction->id ?? null
         ]);
     }
 
