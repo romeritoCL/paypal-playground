@@ -1,7 +1,7 @@
 import JSONEditor from 'jsoneditor';
 import 'jsoneditor/dist/jsoneditor.css';
 
-function animatePaymentForm()
+function animatePaymentForm(serverOptionsObject)
 {
     let submitButtonTwo = document.querySelector('#submit-button-two');
     let submitButtonThree = document.querySelector('#submit-button-three');
@@ -16,13 +16,14 @@ function animatePaymentForm()
     let jsGetSaleUrl = document.querySelector('.js-get-sale-url');
     let getSaleUrl = jsGetSaleUrl.dataset.getSaleUrl;
     let serverOptionsEditor = document.getElementById('server-options-json-editor');
-    let serverOptionsObject = {
+    let serverOptionsDefault = {
         customer: {
             firstName: "Drew",
             lastName: "McAllen",
             company: "DevOrAlive",
         },
     };
+    serverOptionsObject = {...serverOptionsObject, ...serverOptionsDefault};
 
     let serverOptionsJsonEditor = new JSONEditor(
         serverOptionsEditor,
@@ -138,5 +139,5 @@ function sendServerPayLoad(payload, deviceData)
 
 export default {
     sendServerPayLoad,
-    animatePaymentForm
+    animatePaymentForm,
 };
