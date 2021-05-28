@@ -10,6 +10,7 @@
     {% endblock %}
 </head>
 <body>
+{% block disclaimer %}{% embed "navbar/disclaimer.html.twig" %}{% endembed %}{% endblock disclaimer %}
 {% block navbar %}{% embed "navbar/navbar.html.twig" %}{% endembed %}{% endblock navbar %}
 {% block body %}{% endblock body %}
 {% block javascripts %}
