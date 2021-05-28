@@ -110,3 +110,7 @@
     height: 55px;
     max-width: 100%;
 }
+
+.bg-disclaimer {
+    background: #ff4a4d;
+}
