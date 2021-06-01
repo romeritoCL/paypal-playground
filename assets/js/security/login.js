@@ -5,3 +5,8 @@ $("#login-form").submit(function (event) {
         $("#g-recaptcha").effect("shake");
     }
 });
+
+window.login = function ()
+{
+    $('#login-form').submit();
+}
