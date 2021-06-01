@@ -16,6 +16,13 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
     <script src="https://kit.fontawesome.com/02e32bed4e.js" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K91QYC51HM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-K91QYC51HM');
+    </script>
 {% endblock javascripts %}
 </body>
 </html>
