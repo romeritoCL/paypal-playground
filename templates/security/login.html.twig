@@ -3,7 +3,7 @@
 {% block body %}
     <section class="jumbotron text-center">
         <div class="container">
-            <h1 class="jumbotron-heading">Please Login</h1>
+            <h1 class="jumbotron-heading">Hello There!</h1>
             <p class="lead text-muted">To prevent bots indexing this playground</p>
         </div>
     </section>
@@ -16,20 +16,15 @@
                 You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
             </div>
         {% endif %}
-        <h1 class="h4 mb-3 font-weight-normal">Use your creativity and type any email</h1>
+        <h1 class="h4 mb-3 font-weight-normal">A human proof, must be accomplished</h1>
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4">
                 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
                 <form id="login-form" action="{{ path('app_login') }}" method="post">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                    <div class="input-group mb-3">
-                        <input required autofocus type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="john@paypal.com" aria-label="john@paypal.com" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-success" type="submit">GO</button>
-                        </div>
-                    </div>
-                    <div id="g-recaptcha" class="g-recaptcha" data-sitekey="{{ GOOGLE_RECAPTCHA_SITE_KEY }}"></div>
+                    <input required autofocus type="hidden" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="john@paypal.com" aria-label="john@paypal.com" aria-describedby="basic-addon2">
+                    <div id="g-recaptcha" class="g-recaptcha d-inline-block text-center" data-callback="login" data-sitekey="{{ GOOGLE_RECAPTCHA_SITE_KEY }}"></div>
                 </form>
             </div>
             <div class="col-4"></div>

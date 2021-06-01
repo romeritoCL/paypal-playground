@@ -31,5 +31,5 @@ security:
     access_control:
         - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /favicon, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY } #change to ROLE_USER to authenticate the website
+        - { path: ^/, roles: ROLE_USER } #change to IS_AUTHENTICATED_ANONYMOUSLY or ROLE_USER to authenticate the website
     enable_authenticator_manager: true
