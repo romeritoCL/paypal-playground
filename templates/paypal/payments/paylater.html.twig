@@ -27,8 +27,7 @@
                             data-pp-placement="product"
                             data-pp-style-layout="flex"
                             data-pp-style-ratio="8x1"
-                            data-pp-buyerCountry="GB"
-                            data-pp-style-color="white-no-border"
+                            data-pp-buyerCountry="{{app.session.get('settings')['settings-customer-country']}}"
                             data-pp-amount="{{ app.session.get('settings')['settings-item-price'] }}"
                     ></div>
                     <hr>
@@ -36,7 +35,7 @@
                             data-pp-message
                             data-pp-placement="product"
                             data-pp-style-layout="text"
-                            data-pp-buyerCountry="GB"
+                            data-pp-buyerCountry="{{app.session.get('settings')['settings-customer-country']}}"
                             data-pp-amount="{{ app.session.get('settings')['settings-item-price'] }}"
                     ></div>
                     <hr>
@@ -51,6 +50,6 @@
 {% endblock content %}
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&buyer-country={{app.session.get('settings')['settings-customer-country']}}&locale={{app.session.get('settings')['settings-customer-locale']}}&components=buttons,messages{{ app.session.get('PAYPAL_SDK_EXTRA') }}"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&buyer-country={{app.session.get('settings')['settings-customer-country']}}&locale={{app.session.get('settings')['settings-customer-locale']}}&components=buttons,messages{{ app.session.get('PAYPAL_SDK_EXTRA') }}&enable-funding=paylater&disable-funding=card,credit,bancontact,blik,eps,giropay,ideal,mercadopago,mybank,p24,sepa,sofort,venmo"></script>
     {{ encore_entry_script_tags('paylater') }}
 {% endblock %}

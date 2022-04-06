@@ -19,13 +19,6 @@ paypal.Buttons({
             }
         })
     },
-    style: {
-        shape: 'rect',
-        color: 'gold',
-        layout: 'vertical',
-        label: 'paypal',
-    },
-    fundingSource: paypal.FUNDING.PAYPAL,
     onApprove: function (data) {
         captureUrl = captureUrl.replace("payment_id_status", data.orderID);
         jQuery.post(
