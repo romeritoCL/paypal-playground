@@ -68,7 +68,7 @@
         },
         "sort-packages": true,
         "allow-plugins": {
-            "symfony/flex": false
+            "symfony/flex": true
         }
     },
     "autoload": {
