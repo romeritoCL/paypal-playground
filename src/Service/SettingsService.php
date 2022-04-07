@@ -35,7 +35,7 @@ class SettingsService
         'settings-merchant-zip-code' => 'SW1P3AD',
         'settings-merchant-country' => 'GB',
         'settings-item-name' => 'Make me proud! TEE (XXL)',
-        'settings-item-price' => '18',
+        'settings-item-price' => '31',
         'settings-item-shipping' => '5',
         'settings-item-sku' => 'TEE-MMP-XXL',
         'settings-item-description' => 'A tee that will make you proud and good looking, in an XXL size',
