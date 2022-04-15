@@ -20,18 +20,19 @@ let serverOptionsObject = {
 let paypalOrderJsonEditor = document.getElementById('paypal-order-json-editor');
 let paypalOrderJson = {
     flow: 'checkout',
+    amount: apmAmount,
     currency: 'EUR',
-    intent: 'authorize',
+    intent: 'capture',
     enableShippingAddress: true,
     shippingAddressEditable: false,
     shippingAddressOverride: {
         recipientName: 'John McMillan',
         line1: '5 Fifth Avenue',
         line2: '3F',
-        city: 'Chicago',
-        countryCode: 'US',
+        city: 'Paris',
+        countryCode: 'FR',
         postalCode: '60652',
-        state: 'IL',
+        state: 'PR',
         phone: '123.456.7890'
     }
 };
@@ -192,7 +193,7 @@ submitButtonOne.addEventListener('click', function () {
             paypalCheckoutInstance.loadPayPalSDK({
                 'client-id': paypalClientId,
                 currency: 'EUR',
-                intent: 'authorize'
+                intent: 'capture'
             }, function () {
                 let apmAmountObject = {'amount': apmAmount};
                 let paypalOrderObject = customerJsonEditor.get();
