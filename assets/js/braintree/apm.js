@@ -22,7 +22,7 @@ let paypalOrderJson = {
     flow: 'checkout',
     amount: apmAmount,
     currency: 'EUR',
-    intent: 'capture',
+    intent: 'authorize',
     enableShippingAddress: true,
     shippingAddressEditable: false,
     shippingAddressOverride: {
@@ -193,7 +193,7 @@ submitButtonOne.addEventListener('click', function () {
             paypalCheckoutInstance.loadPayPalSDK({
                 'client-id': paypalClientId,
                 currency: 'EUR',
-                intent: 'capture'
+                intent: 'authorize'
             }, function () {
                 let apmAmountObject = {'amount': apmAmount};
                 let paypalOrderObject = customerJsonEditor.get();
