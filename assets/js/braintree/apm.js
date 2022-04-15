@@ -20,7 +20,6 @@ let serverOptionsObject = {
 let paypalOrderJsonEditor = document.getElementById('paypal-order-json-editor');
 let paypalOrderJson = {
     flow: 'checkout',
-    amount: apmAmount,
     currency: 'EUR',
     intent: 'authorize',
     enableShippingAddress: true,
@@ -29,10 +28,10 @@ let paypalOrderJson = {
         recipientName: 'John McMillan',
         line1: '5 Fifth Avenue',
         line2: '3F',
-        city: 'Paris',
-        countryCode: 'FR',
+        city: 'London',
+        countryCode: 'GB',
         postalCode: '60652',
-        state: 'PR',
+        state: 'LO',
         phone: '123.456.7890'
     }
 };
@@ -83,6 +82,7 @@ function createLocalPaymentClickListener(type)
                 countryCode: 'NL'
             },
             onPaymentStart: function (data, start) {
+                console.log(data.paymentId);
                 start();
             }
         }, function (startPaymentError, payload) {
