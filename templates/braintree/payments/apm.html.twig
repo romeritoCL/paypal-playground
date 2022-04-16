@@ -56,6 +56,7 @@
     <p class="mt-5 braintree-font">REMEMBER: ApplePay only works on Safari. You have to be logged in to a tester account to process sandbox tests. you need an Apple developer account to register test accounts</p>
     <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
     <div class="js-paypal-client-id" data-paypal-client-id="{{ PAYPAL_SDK_CLIENT_ID }}"></div>
+    <div class="js-braintree-close-url" data-braintree-close-url="{{ absolute_url(path('braintree-close')) }}"></div>
 {%  endblock %}
 {% block javascripts %}
     {{ parent() }}

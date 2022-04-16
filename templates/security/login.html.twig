@@ -25,6 +25,7 @@
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                     <input required autofocus type="hidden" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="john@paypal.com" aria-label="john@paypal.com" aria-describedby="basic-addon2">
                     <div id="g-recaptcha" class="g-recaptcha d-inline-block text-center" data-callback="login" data-sitekey="{{ GOOGLE_RECAPTCHA_SITE_KEY }}"></div>
+                    <h1><button type="submit" class="green-dot btn"></button></h1>
                 </form>
             </div>
             <div class="col-4"></div>

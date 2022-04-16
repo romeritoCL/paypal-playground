@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="EN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}PlayGround{% endblock %}</title>
+        {% block stylesheets %}
+            {% include "default/fonts.html.twig" %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <script>
+            if (window.popupBridge) {
+                popupBridge.close();
+            }
+        </script>
+        <div class="container-fluid text-center">
+            <h1 class="braintree-font-header mt-5">You can close this window</h1>
+        </div>
+    </body>
+</html>
+

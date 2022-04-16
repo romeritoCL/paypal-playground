@@ -114,6 +114,14 @@
 .bg-disclaimer {
     background: #ff4a4d;
 }
+
+.green-dot {
+    height: 25px;
+    width: 25px;
+    background-color: green;
+    border-radius: 50%;
+}
+
 /*
 
 [data-braintree-id="choose-a-way-to-pay"] {

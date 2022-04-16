@@ -5,6 +5,8 @@ import 'jsoneditor/dist/jsoneditor.css';
 
 let jsClientToken = document.querySelector('.js-client-token');
 let clientToken = jsClientToken.dataset.clientToken;
+let jsCloseUrl = document.querySelector('.js-braintree-close-url');
+let closeUrl = jsCloseUrl.dataset.braintreeCloseUrl;
 let jsPaypalClientId = document.querySelector('.js-paypal-client-id');
 let paypalClientId = jsPaypalClientId.dataset.paypalClientId;
 let submitButtonOne = document.querySelector('#submit-button-one');
@@ -64,8 +66,8 @@ function createLocalPaymentClickListener(type)
             paymentType: type,
             amount: apmAmount,
             fallback: {
-                url: 'https://google.es',
-                buttonText: 'Complete Payment'
+                url: closeUrl,
+                buttonText: 'Continue',
             },
             currencyCode: 'EUR',
             shippingAddressRequired: true,

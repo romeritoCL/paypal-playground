@@ -22,4 +22,15 @@ class DefaultController extends AbstractController
     {
         return $this->render('braintree/index.html.twig');
     }
+
+
+    /**
+     * @Route("/close", name="close", methods={"GET"})
+     *
+     * @return Response
+     */
+    public function close(): Response
+    {
+        return $this->render('braintree/close.html.twig');
+    }
 }
