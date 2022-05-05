@@ -3,6 +3,16 @@ import braintreePayments from './payments';
 import JSONEditor from 'jsoneditor';
 import 'jsoneditor/dist/jsoneditor.css';
 
+function popupbridge() {
+    let userAgent = window.navigator.userAgent.toLowerCase();
+    let safari = /safari/.test(userAgent);
+    let ios = /iphone|ipod|ipad/.test(userAgent);
+    if ( ios && !safari) {
+        return true;
+    }
+    return false;
+}
+
 let jsClientToken = document.querySelector('.js-client-token');
 let clientToken = jsClientToken.dataset.clientToken;
 let jsCloseUrl = document.querySelector('.js-braintree-close-url');
@@ -66,7 +76,7 @@ function createLocalPaymentClickListener(type)
             paymentType: type,
             amount: apmAmount,
             fallback: {
-                url: closeUrl,
+                url: popupbridge() ? "com.braintreepayments.popupbridgeexample://popupbridgev1" : closeUrl,
                 buttonText: 'Continue',
             },
             currencyCode: 'EUR',
