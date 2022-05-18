@@ -1,7 +1,7 @@
 {% extends 'braintree/payments/base.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('vault') }}
+    {{ encore_entry_link_tags('bt-vault') }}
 {% endblock %}
 {% block step_zero %}
 <div class="js-get-customer-url" data-get-customer-url="{{ path('braintree-customers-list') }}"></div>
@@ -54,5 +54,5 @@
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('vault') }}
+    {{ encore_entry_script_tags('bt-vault') }}
 {% endblock %}

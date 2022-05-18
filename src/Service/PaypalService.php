@@ -9,6 +9,7 @@ use App\Service\Paypal\PaymentService;
 use App\Service\Paypal\PayoutService;
 use App\Service\Paypal\ReportingService;
 use App\Service\Paypal\SessionService;
+use App\Service\Paypal\VaultService;
 
 /**
  * Class PaypalService
@@ -52,6 +53,11 @@ class PaypalService
     protected $billingAgreementService;
 
     /**
+     * @var VaultService
+     */
+    protected $vaultService;
+
+    /**
      * PaypalService constructor.
      * @param IdentityService $identityService
      * @param PaymentService $paymentService
@@ -68,7 +74,8 @@ class PaypalService
         ReportingService $reportingService,
         InvoiceService $invoiceService,
         SessionService $sessionService,
-        BillingAgreementService $billingAgreementService
+        BillingAgreementService $billingAgreementService,
+        VaultService $vaultService
     ) {
         $this->identityService = $identityService;
         $this->paymentService = $paymentService;
@@ -77,6 +84,7 @@ class PaypalService
         $this->invoiceService = $invoiceService;
         $this->sessionService = $sessionService;
         $this->billingAgreementService = $billingAgreementService;
+        $this->vaultService = $vaultService;
     }
 
     /**
@@ -133,5 +141,13 @@ class PaypalService
     public function getBillingAgreementService(): BillingAgreementService
     {
         return $this->billingAgreementService;
+    }
+
+    /**
+     * @return VaultService
+     */
+    public function getVaultService(): VaultService
+    {
+        return $this->vaultService;
     }
 }
