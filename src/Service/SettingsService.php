@@ -18,7 +18,7 @@ class SettingsService
     protected $defaultSettings = [
         'settings-customer-currency' => 'GBP',
         'settings-customer-locale' => 'en_GB',
-        'settings-customer-id' => 'CS12.000.AAE',
+        'settings-customer-id' => 'customer_id_1',
         'settings-customer-name' => 'John',
         'settings-customer-family-name' => 'Doe',
         'settings-customer-email' => 'john.doe@paypal.com',

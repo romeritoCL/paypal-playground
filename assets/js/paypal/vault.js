@@ -1,6 +1,5 @@
 import JSONEditor from 'jsoneditor';
 import 'jsoneditor/dist/jsoneditor.css';
-import paypalPayments from './payments';
 window.JSONEditor = JSONEditor;
 
 let settings = JSON.parse(document.getElementById('customer-settings').dataset.settings);
@@ -37,11 +36,39 @@ let orderCreateJson = {
     }],
 };
 
-let paypalButtonsStyle = {
-    "layout": "vertical",
-    "color": "gold",
-    "shape": "pill",
-    "label": "pay"
-};
+let captureUrl = document.getElementById('capture-url').dataset.captureUrl;
+let orderCreateEditorContainer = document.getElementById('create-order-editor');
 
-paypalPayments.startPayments(orderCreateJson, paypalButtonsStyle);
+let orderCreateEditor = new JSONEditor(
+    orderCreateEditorContainer,
+    {
+        limitDragging: true,
+        name: 'ButtonSettings',
+        modes: ['code','form'],
+        mainMenuBar: true,
+        navigationBar: false,
+        statusBar: false,
+        search: false,
+        history: false,
+        onChange: function () {
+            reloadPayPalButtons();
+        }
+    },
+    orderCreateJson
+);
+
+paypal.Buttons({
+    createOrder: function (data, actions) {
+        return actions.order.create(orderCreateEditor.get());
+    },
+    onApprove: function (data) {
+        captureUrl = captureUrl.replace("payment_id_status", data.orderID);
+        jQuery.post(
+            captureUrl,
+            null,
+            function (data) {
+                document.getElementById('result-col').innerHTML = data
+            }
+        );
+    }
+}).render('#paypal-button-container');

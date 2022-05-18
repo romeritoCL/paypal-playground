@@ -15,7 +15,7 @@ class VaultService extends IdentityService
      * @param string $clientId
      * @return string | null
      */
-    public function getDataClientToken(string $clientId = 'default_customer')
+    public function getDataClientToken(string $clientId)
     {
         try {
             $accessToken = $this->getAccessToken();

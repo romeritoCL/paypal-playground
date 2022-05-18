@@ -34,7 +34,6 @@
             </div>
             <div class="text-left" id="result-col"></div>
             {% block payments_json_editors %}
-                <div class="mt-3" id="paypal-buttons-editor" style="height: 200px;"></div>
                 <div class="mt-3" id="create-order-editor" style="height: 800px;"></div>
             {% endblock %}
         </div>
@@ -44,6 +43,6 @@
 {% endblock content %}
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&locale={{app.session.get('settings')['settings-customer-locale']}}&components=buttons,funding-eligibility&disable-funding=card&vault=true&commit=true&intent=capture" data-client-token="{{ dataClientToken }}"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&locale={{app.session.get('settings')['settings-customer-locale']}}&components=buttons&disable-funding=card&vault=true&commit=true&intent=capture" data-client-token="{{ dataClientToken }}"></script>
     {{ encore_entry_script_tags('pp-vault') }}
 {% endblock %}
