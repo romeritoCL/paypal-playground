@@ -6,6 +6,7 @@ use App\Service\SettingsService;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
 use Psr\Log\LoggerInterface;
+use Exception;
 
 /**
  * Class AbstractPaypalService
@@ -68,5 +69,46 @@ abstract class AbstractPaypalService
         $apiContext->setConfig(['mode' => 'sandbox']);
         $this->apiContext = $apiContext;
         $this->settingsService = $settingsService;
+    }
+
+    /**
+     * @param $requestBody
+     * @param string $accessToken
+     * @param string $url
+     * @param array $inputHeaders
+     * @param string $verb
+     * @return array|string|null
+     */
+    public function paypalApiCall(
+        string $accessToken,
+        $requestBody,
+        string $url,
+        array $inputHeaders = [],
+        string $verb = 'POST'
+    ) {
+        try {
+            $headers = array_merge($inputHeaders, [
+                'Content-Type: application/json',
+                'Authorization: Bearer ' . $accessToken,
+            ]);
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $verb);
+            if ($requestBody !== null) {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $requestBody);
+            }
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            $result = curl_exec($ch);
+            $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+        } catch (Exception $e) {
+            $this->logger->error('Error on PayPal::'.$url.' = ' . $e->getMessage());
+            return null;
+        }
+        return ([
+            'result' => $result,
+            'statusCode' => $statusCode
+        ]);
     }
 }
