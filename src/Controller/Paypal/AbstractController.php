@@ -3,6 +3,7 @@
 namespace App\Controller\Paypal;
 
 use App\Service\PaypalService;
+use App\Service\SettingsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController as SymfonyAbstractController;
 
 /**
@@ -17,11 +18,18 @@ class AbstractController extends SymfonyAbstractController
     protected $paypalService;
 
     /**
+     * @var SettingsService
+     */
+    protected $settingsService;
+
+    /**
      * DefaultController constructor.
      * @param PaypalService $paypalService
+     * @param SettingsService $settingsService
      */
-    public function __construct(PaypalService $paypalService)
+    public function __construct(PaypalService $paypalService, SettingsService $settingsService)
     {
         $this->paypalService = $paypalService;
+        $this->settingsService = $settingsService;
     }
 }

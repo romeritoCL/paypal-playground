@@ -2,6 +2,7 @@
 
 namespace App\Controller\Paypal;
 
+use App\Service\SettingsService;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,7 +23,8 @@ class VaultController extends AbstractController
      */
     public function vaultPayment(string $action)
     {
-        $dataClientToken = $this->paypalService->getVaultService()->getDataClientToken();
+        $customerId = $this->settingsService->getSetting('settings-customer-id');
+        $dataClientToken = $this->paypalService->getVaultService()->getDataClientToken($customerId);
         return $this->render('paypal/vault/'. $action .'.html.twig', [
             'dataClientToken' => $dataClientToken,
         ]);
