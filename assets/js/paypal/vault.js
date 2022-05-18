@@ -4,6 +4,9 @@ window.JSONEditor = JSONEditor;
 
 let settings = JSON.parse(document.getElementById('customer-settings').dataset.settings);
 let orderCreateJson = {
+    application_context: {
+        shipping_preference: "NO_SHIPPING"
+    },
     intent: 'capture',
     purchase_units: [{
         reference_id: settings['settings-item-sku'],
