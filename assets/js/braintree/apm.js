@@ -70,6 +70,18 @@ function merchantAccountId()
 }
 function createLocalPaymentClickListener(type)
 {
+    let countryCode;
+    switch (type) {
+        case 'ideal':
+            countryCode = "NL";
+            break;
+        case 'multibanco':
+            countryCode = "PT";
+            break;
+        default:
+            countryCode = settings['settings-customer-country']
+            break;
+    }
     return function (event) {
         event.preventDefault();
         localPaymentInstance.startPayment({
@@ -91,7 +103,7 @@ function createLocalPaymentClickListener(type)
                 locality: 'DK Amsterdam',
                 postalCode: '1011',
                 region: 'NH',
-                countryCode: 'NL'
+                countryCode: countryCode
             },
             onPaymentStart: function (data, start) {
                 console.log(data.paymentId);
@@ -114,6 +126,7 @@ $('#ideal-button').on('click', createLocalPaymentClickListener('ideal'));
 $('#sofort').on('click', createLocalPaymentClickListener('sofort'));
 $('#bancontact-button').on('click', createLocalPaymentClickListener('bancontact'));
 $('#trustly-button').on('click', createLocalPaymentClickListener('trustly'));
+$('#multibanco-button').on('click', createLocalPaymentClickListener('multibanco'));
 
 submitButtonOne.addEventListener('click', function () {
     apmAmount = apmAmount.value;
@@ -237,5 +250,6 @@ submitButtonOne.addEventListener('click', function () {
         $('#sofort-button').removeClass('d-none');
         $('#trustly-button').removeClass('d-none');
         $('#bancontact-button').removeClass('d-none');
+        $('#multibanco-button').removeClass('d-none');
     });
 });
