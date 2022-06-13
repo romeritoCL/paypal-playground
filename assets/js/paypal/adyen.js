@@ -15,8 +15,6 @@ const configuration = {
     onAdditionalDetails: handleOnAdditionalDetails // Your function for handling onAdditionalDetails event
 };
 
-const checkout = new AdyenCheckout(configuration);
-
 function handleOnChange(state, component)
 {}
 
@@ -75,8 +73,8 @@ function captureDetails()
     );
 }
 
-function startComponents()
-{
+async function startComponents() {
+    let checkout = await AdyenCheckout(configuration);
     checkout.create("paypal", {
         environment: "test",
         countryCode: settings['settings-customer-country'],
@@ -117,8 +115,8 @@ function startComponents()
     }).mount("#paypal-container");
 }
 
-function startDropin()
-{
+async function startDropin() {
+    let checkout = await AdyenCheckout(configuration);
     checkout.create('dropin', {
         openFirstPaymentMethod: false,
         paymentMethodsConfiguration: {

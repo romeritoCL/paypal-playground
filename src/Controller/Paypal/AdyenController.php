@@ -5,6 +5,7 @@ namespace App\Controller\Paypal;
 use Adyen\AdyenException;
 use App\Service\AdyenService;
 use App\Service\PaypalService;
+use App\Service\SettingsService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,15 +26,19 @@ class AdyenController extends AbstractController
     protected $adyenService;
 
     /**
-     * AdyenController constructor.
-     * @param PaypalService $paypalService
      * @param AdyenService $adyenService
+     * @param PaypalService $paypalService
+     * @param SettingsService $settingsService
      */
-    public function __construct(PaypalService $paypalService, AdyenService $adyenService)
-    {
+    public function __construct(
+        PaypalService $paypalService,
+        SettingsService $settingsService,
+        AdyenService $adyenService
+    ) {
         $this->adyenService = $adyenService;
-        parent::__construct($paypalService);
+        return parent::__construct($paypalService, $settingsService);
     }
+
 
     /**
      * @Route("/", name="index", methods={"GET"})
