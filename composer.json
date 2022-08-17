@@ -9,9 +9,9 @@
         }
     ],
     "require": {
-        "php": "^7.2.5",
+        "php": "^8",
         "ext-ctype": "*",
-        "ext-curl": "^7.3",
+        "ext-curl": "^8",
         "ext-iconv": "*",
         "ext-json": "*",
         "ext-xmlwriter": "*",

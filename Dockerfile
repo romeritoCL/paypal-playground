@@ -1,19 +1,21 @@
-FROM alpine:3.12
+FROM alpine:3.16
 LABEL Maintainer="Tim de Pater <code@trafex.nl>" \
-      Description="Lightweight container with Nginx 1.18 & PHP-FPM 7.3 based on Alpine Linux."
+      Description="Lightweight container with Nginx 1.18 & PHP-FPM 8 based on Alpine Linux."
 
 # Install packages and remove default server definition
-RUN apk --no-cache add php7 php7-fpm php7-opcache php7-mysqli php7-json php7-openssl php7-curl \
-    php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-xmlwriter php7-ctype php7-session php7-tokenizer \
-    php7-mbstring php7-gd php7-iconv nginx supervisor curl && \
-    rm /etc/nginx/conf.d/default.conf
+RUN apk --no-cache add php php8-fpm php8-opcache php8-mysqli php8-json php8-openssl php8-curl \
+    php8-zlib php8-xml php8-phar php8-intl php8-dom php8-simplexml php8-xmlreader php8-xmlwriter php8-ctype php8-session php8-tokenizer \
+    php8-mbstring php8-gd php8-iconv nginx supervisor curl nodejs npm composer && \
+    rm /etc/nginx/http.d/default.conf
+
+RUN npm install -g yarn
 
 # Configure nginx
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 
 # Configure PHP-FPM
-COPY docker/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
-COPY docker/php.ini /etc/php7/conf.d/custom.ini
+COPY docker/fpm-pool.conf /etc/php8/php-fpm.d/www.conf
+COPY docker/php.ini /etc/php8/conf.d/custom.ini
 
 # Configure supervisord
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
