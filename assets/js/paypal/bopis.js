@@ -21,6 +21,10 @@ let orderCreateJson = {
                 type: "SHIPPING",
                 label: "Free Shipping",
                 selected: true,
+                amount: {
+                    currency_code: settings['settings-customer-currency'],
+                    value: 0
+                }
             },
             {
                 id: 2,
@@ -37,6 +41,10 @@ let orderCreateJson = {
                 type: "PICKUP",
                 label: "Madrid City Shop",
                 selected: false,
+                amount: {
+                    currency_code: settings['settings-customer-currency'],
+                    value: 0
+                }
             },
             {
                 id: 5,
