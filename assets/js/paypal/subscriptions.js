@@ -7,7 +7,7 @@ paypal.Buttons({
     },
     createSubscription: function (data, actions) {
         return actions.subscription.create({
-            'plan_id': 'P-0D4765787C8312900L5ITVFA'
+            'plan_id': 'P-78J08349NW6750428MORAHLA'
         });
     },
     onApprove: function (data) {
