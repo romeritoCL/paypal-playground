@@ -7,7 +7,7 @@ function popupbridge() {
     let userAgent = window.navigator.userAgent.toLowerCase();
     let safari = /safari/.test(userAgent);
     let ios = /iphone|ipod|ipad/.test(userAgent);
-    if ( ios && !safari) {
+    if (ios && !safari) {
         return true;
     }
     return false;
@@ -35,17 +35,7 @@ let paypalOrderJson = {
     currency: 'EUR',
     intent: 'authorize',
     enableShippingAddress: true,
-    shippingAddressEditable: false,
-    shippingAddressOverride: {
-        recipientName: 'John McMillan',
-        line1: '5 Fifth Avenue',
-        line2: '3F',
-        city: 'London',
-        countryCode: 'GB',
-        postalCode: '60652',
-        state: 'LO',
-        phone: '123.456.7890'
-    }
+    shippingAddressEditable: true
 };
 
 let customerJsonEditor = new JSONEditor(
@@ -64,12 +54,11 @@ let customerJsonEditor = new JSONEditor(
 );
 braintreePayments.animatePaymentForm(serverOptionsObject);
 
-function merchantAccountId()
-{
-    return("devoralive");
+function merchantAccountId() {
+    return ("devoralive");
 }
-function createLocalPaymentClickListener(type)
-{
+
+function createLocalPaymentClickListener(type) {
     let countryCode;
     switch (type) {
         case 'ideal':
@@ -117,11 +106,12 @@ function createLocalPaymentClickListener(type)
                     console.error('Error!', startPaymentError);
                 }
             } else {
-                braintreePayments.sendServerPayLoad(payload,deviceData);
+                braintreePayments.sendServerPayLoad(payload, deviceData);
             }
         });
     };
 }
+
 $('#ideal-button').on('click', createLocalPaymentClickListener('ideal'));
 $('#sofort').on('click', createLocalPaymentClickListener('sofort'));
 $('#bancontact-button').on('click', createLocalPaymentClickListener('bancontact'));
@@ -197,7 +187,7 @@ submitButtonOne.addEventListener('click', function () {
                                 session.completePayment(ApplePaySession.STATUS_FAILURE);
                                 return;
                             }
-                            braintreePayments.sendServerPayLoad(payload,deviceData);
+                            braintreePayments.sendServerPayLoad(payload, deviceData);
                             session.completePayment(ApplePaySession.STATUS_SUCCESS);
                             let destroy = document.getElementById('apm-buttons-destroyable');
                             destroy.parentNode.removeChild(destroy);
@@ -232,14 +222,19 @@ submitButtonOne.addEventListener('click', function () {
                         return paypalCheckoutInstance.tokenizePayment(data, function (err, payload) {
                             let destroy = document.getElementById('apm-buttons-destroyable');
                             destroy.parentNode.removeChild(destroy);
-                            braintreePayments.sendServerPayLoad(payload,deviceData);
+                            braintreePayments.sendServerPayLoad(payload, deviceData);
                         });
                     },
-
+                    onShippingChange: function (data) {
+                        return paypalCheckoutInstance.updatePayment({
+                            paymentId: data.paymentId,
+                            amount: '269.00',
+                            currency: 'EUR',
+                        });
+                    },
                     onCancel: function (data) {
                         console.log('PayPal payment cancelled', JSON.stringify(data, 0, 2));
                     },
-
                     onError: function (err) {
                         console.error('PayPal error', err);
                     }
