@@ -1,9 +1,9 @@
 {
     "devDependencies": {
         "@symfony/webpack-encore": "^0.30.0",
-        "core-js": "^3.0.0",
-        "regenerator-runtime": "^0.13.2",
-        "webpack-notifier": "^1.6.0"
+        "core-js": "^3.27.2",
+        "regenerator-runtime": "^0.13.11",
+        "webpack-notifier": "^1.15.0"
     },
     "license": "UNLICENSED",
     "private": true,
@@ -14,13 +14,13 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "@adyen/adyen-web": "^5.13.1",
-        "bootstrap": "^4.5.2",
-        "braintree-web": "^3.85.3",
-        "braintree-web-drop-in": "^1.33.1",
-        "jquery": "^3.5.1",
+        "@adyen/adyen-web": "^5.31.2",
+        "bootstrap": "^4.6.2",
+        "braintree-web": "^3.90.0",
+        "braintree-web-drop-in": "^1.33.7",
+        "jquery": "^3.6.3",
         "jqueryui": "^1.11.1",
-        "jsoneditor": "^9.1.1",
+        "jsoneditor": "^9.9.2",
         "popper.js": "^1.16.1"
     }
 }

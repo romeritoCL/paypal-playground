@@ -2,18 +2,18 @@
 # yarn lockfile v1
 
 
-"@adyen/adyen-web@^5.13.1":
-  version "5.13.1"
-  resolved "https://registry.yarnpkg.com/@adyen/adyen-web/-/adyen-web-5.13.1.tgz#b55e7680b06af3bb16e7fa41eb253fc631e4a533"
-  integrity sha512-fR+kdhiF1xI3rvOe0niV27YGISYdXuyVqGSba1nELY71JclPCecVDZyuCChCMyML7skz/T7QB0HU0GBwvc8wvg==
+"@adyen/adyen-web@^5.31.2":
+  version "5.31.2"
+  resolved "https://registry.yarnpkg.com/@adyen/adyen-web/-/adyen-web-5.31.2.tgz#fc3d22c8ceff8033932ce094a85d85a5deee4055"
+  integrity sha512-jkVesf8tgPFo9fQE9fK3Y8kr3+RI+LmrI/AqYhOWASLodUI+1aFTfMDKQs+/DxW3vx/7uaeLnBhvid7Fw0ty5A==
   dependencies:
     "@babel/runtime" "^7.15.4"
-    "@babel/runtime-corejs3" "^7.16.3"
+    "@babel/runtime-corejs3" "^7.20.1"
     "@types/applepayjs" "^3.0.4"
     "@types/googlepay" "^0.6.2"
     classnames "^2.3.1"
-    core-js-pure "^3.18.1"
-    preact "^10.5.13"
+    core-js-pure "^3.25.3"
+    preact "10.11.3"
 
 "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.11":
   version "7.12.11"
@@ -787,13 +787,13 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/runtime-corejs3@^7.16.3":
-  version "7.17.9"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.17.9.tgz#3d02d0161f0fbf3ada8e88159375af97690f4055"
-  integrity sha512-WxYHHUWF2uZ7Hp1K+D1xQgbgkGUfA+5UPOegEXGt2Y5SMog/rYCVaifLZDbw8UkNXozEqqrZTy6bglL7xTaCOw==
+"@babel/runtime-corejs3@^7.20.1":
+  version "7.20.7"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.20.7.tgz#a1e5ea3d758ba6beb715210142912e3f29981d84"
+  integrity sha512-jr9lCZ4RbRQmCR28Q8U8Fu49zvFqLxTY9AMOUz+iyMohMoAgpEcVxY+wJNay99oXOpOcCTODkk70NDN2aaJEeg==
   dependencies:
-    core-js-pure "^3.20.2"
-    regenerator-runtime "^0.13.4"
+    core-js-pure "^3.25.1"
+    regenerator-runtime "^0.13.11"
 
 "@babel/runtime@^7.15.4":
   version "7.17.9"
@@ -849,7 +849,12 @@
   dependencies:
     promise-polyfill "^8.1.3"
 
-"@braintree/browser-detection@1.12.1", "@braintree/browser-detection@^1.12.1":
+"@braintree/browser-detection@1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@braintree/browser-detection/-/browser-detection-1.14.0.tgz#d1b397b00ccbc7cac12f6cec27c0a413d740332a"
+  integrity sha512-OsqU+28RhNvSw8Y5JEiUHUrAyn4OpYazFkjSJe8ZVZfkAaRXQc6hsV38MMEpIlkPMig+A68buk/diY+0O8/dMQ==
+
+"@braintree/browser-detection@^1.12.1":
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/@braintree/browser-detection/-/browser-detection-1.12.1.tgz#917af7834ea37615957f0e1eef67def9d0b142db"
   integrity sha512-i/54qrax5o/WbJJhsE/7qqKE594/kGhR+xSu/w13rT7Mlr/uITkWDXzxffcKQ6l6FQxK0IG0EfgT6TJpWgZcUQ==
@@ -1171,10 +1176,10 @@ accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
     mime-types "~2.1.24"
     negotiator "0.6.2"
 
-ace-builds@^1.4.12:
-  version "1.4.12"
-  resolved "https://registry.yarnpkg.com/ace-builds/-/ace-builds-1.4.12.tgz#888efa386e36f4345f40b5233fcc4fe4c588fae7"
-  integrity sha512-G+chJctFPiiLGvs3+/Mly3apXTcfgE45dT5yp12BcWZ1kUs+gm0qd3/fv4gsz6fVag4mM0moHVpjHDIgph6Psg==
+ace-builds@^1.10.1:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/ace-builds/-/ace-builds-1.14.0.tgz#85a6733b4fa17b0abc3dbfe38cd8d823cad79716"
+  integrity sha512-3q8LvawomApRCt4cC0OzxVjDsZ609lDbm8l0Xl9uqG06dKEq4RT0YXLUyk7J2SxmqIp5YXzZNw767Dr8GKUruw==
 
 acorn@^6.4.1:
   version "6.4.2"
@@ -1503,10 +1508,10 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap@^4.5.2:
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.5.3.tgz#c6a72b355aaf323920be800246a6e4ef30997fe6"
-  integrity sha512-o9ppKQioXGqhw8Z7mah6KdTYpNQY//tipnkxppWhPbiSWdD+1raYsnhwEZjkTHYbGee4cVQ0Rx65EhOY/HNLcQ==
+bootstrap@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.2.tgz#8e0cd61611728a5bf65a3a2b8d6ff6c77d5d7479"
+  integrity sha512-51Bbp/Uxr9aTuy6ca/8FbFloBUJZLHwnhTcnjIeRn2suQWsWzcuJhGjKDB5eppVte/8oCdOL3VuwxvZDUggwGQ==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -1539,27 +1544,27 @@ braces@~3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
-braintree-web-drop-in@^1.33.1:
-  version "1.33.1"
-  resolved "https://registry.yarnpkg.com/braintree-web-drop-in/-/braintree-web-drop-in-1.33.1.tgz#e09208558f52455625078d9902603bf24597548d"
-  integrity sha512-/gVWpFIGATxVBqBCp7ZTg2vPsH5aZXAASiBVWZ8Tqebntmj0F0KlCtxfvq8k2qMSwKBzhDEgmMp2o0hAcsfM6g==
+braintree-web-drop-in@^1.33.7:
+  version "1.33.7"
+  resolved "https://registry.yarnpkg.com/braintree-web-drop-in/-/braintree-web-drop-in-1.33.7.tgz#16cd3b00ab768437e2de91f2f9f307214f83891b"
+  integrity sha512-69wtLGbFh1jbgkUCyES598OwSsTljwLn33f9bsl2JRLlbvcW6emMazdyG95k3Am5kyh04Aa1Qx0RO3Yx81U/Jg==
   dependencies:
     "@braintree/asset-loader" "0.4.4"
-    "@braintree/browser-detection" "1.12.1"
+    "@braintree/browser-detection" "1.14.0"
     "@braintree/class-list" "0.2.0"
     "@braintree/event-emitter" "0.4.1"
     "@braintree/uuid" "0.1.0"
     "@braintree/wrap-promise" "2.1.0"
-    braintree-web "3.85.3"
+    braintree-web "3.88.3"
     promise-polyfill "8.2.3"
 
-braintree-web@3.85.3, braintree-web@^3.85.3:
-  version "3.85.3"
-  resolved "https://registry.yarnpkg.com/braintree-web/-/braintree-web-3.85.3.tgz#cf2025dcdcfab5a950f59dbf8910e266f096057b"
-  integrity sha512-slCnjD/YLFDmiOU0vxL7i4uifjRQV5Cw7dSkhRdXiIT+a8iQ7NxtL5FSomv45wuHqgdilZeQ8iB8guIrn6QgwA==
+braintree-web@3.88.3:
+  version "3.88.3"
+  resolved "https://registry.yarnpkg.com/braintree-web/-/braintree-web-3.88.3.tgz#17e19b7b77b18de659f18f41b7842f880bdde265"
+  integrity sha512-+RM22/OeErWGJWoB3CYW8Od3QDaLLc3ZBEktKL3byqMabaHgzgJqHGrHVmqKNAy+ML+TCY15IQGM71U0N4pvqw==
   dependencies:
     "@braintree/asset-loader" "0.4.4"
-    "@braintree/browser-detection" "1.12.1"
+    "@braintree/browser-detection" "1.14.0"
     "@braintree/class-list" "0.2.0"
     "@braintree/event-emitter" "0.4.1"
     "@braintree/extended-promise" "0.4.1"
@@ -1569,7 +1574,28 @@ braintree-web@3.85.3, braintree-web@^3.85.3:
     "@braintree/wrap-promise" "2.1.0"
     card-validator "8.1.1"
     credit-card-type "9.1.0"
-    framebus "5.1.2"
+    framebus "5.2.0"
+    inject-stylesheet "5.0.0"
+    promise-polyfill "8.2.3"
+    restricted-input "3.0.5"
+
+braintree-web@^3.90.0:
+  version "3.90.0"
+  resolved "https://registry.yarnpkg.com/braintree-web/-/braintree-web-3.90.0.tgz#429a4d0c2c51dda1f1cb91ab94a4b837942d0864"
+  integrity sha512-jMz0EirJLme+OP0TjYk3/esbkPfpei3tc/pC/7a6WIXFyNcjp0y5k+yw9jQKQW0pGpt3goypPqkO4jRAv2b86g==
+  dependencies:
+    "@braintree/asset-loader" "0.4.4"
+    "@braintree/browser-detection" "1.14.0"
+    "@braintree/class-list" "0.2.0"
+    "@braintree/event-emitter" "0.4.1"
+    "@braintree/extended-promise" "0.4.1"
+    "@braintree/iframer" "1.1.0"
+    "@braintree/sanitize-url" "6.0.0"
+    "@braintree/uuid" "0.1.0"
+    "@braintree/wrap-promise" "2.1.0"
+    card-validator "8.1.1"
+    credit-card-type "9.1.0"
+    framebus "5.2.0"
     inject-stylesheet "5.0.0"
     promise-polyfill "8.2.3"
     restricted-input "3.0.5"
@@ -2081,15 +2107,15 @@ core-js-compat@^3.8.0:
     browserslist "^4.16.0"
     semver "7.0.0"
 
-core-js-pure@^3.18.1, core-js-pure@^3.20.2:
-  version "3.22.0"
-  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.22.0.tgz#0eaa54b6d1f4ebb4d19976bb4916dfad149a3747"
-  integrity sha512-ylOC9nVy0ak1N+fPIZj00umoZHgUVqmucklP5RT5N+vJof38klKn8Ze6KGyvchdClvEBr6LcQqJpI216LUMqYA==
+core-js-pure@^3.25.1, core-js-pure@^3.25.3:
+  version "3.27.2"
+  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.27.2.tgz#47e9cc96c639eefc910da03c3ece26c5067c7553"
+  integrity sha512-Cf2jqAbXgWH3VVzjyaaFkY1EBazxugUepGymDoeteyYr9ByX51kD2jdHZlsEF/xnJMyN3Prua7mQuzwMg6Zc9A==
 
-core-js@^3.0.0:
-  version "3.8.2"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.8.2.tgz#0a1fd6709246da9ca8eff5bb0cbd15fba9ac7044"
-  integrity sha512-FfApuSRgrR6G5s58casCBd9M2k+4ikuu4wbW6pJyYU7bd9zvFc9qf7vr5xmrZOhT9nn+8uwlH1oRR9jTnFoA3A==
+core-js@^3.27.2:
+  version "3.27.2"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.27.2.tgz#85b35453a424abdcacb97474797815f4d62ebbf7"
+  integrity sha512-9ashVQskuh5AZEZ1JdQWp1GqSoC1e1G87MzRqg2gIfVAQ7Qn9K+uFj8EcniUFA4P2NLZfV+TOlX1SzoKfo+s7w==
 
 core-util-is@~1.0.0:
   version "1.0.2"
@@ -3048,10 +3074,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framebus@5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/framebus/-/framebus-5.1.2.tgz#cb38cf6a282d405411227cfaab4a1095ca9e8e15"
-  integrity sha512-Z/y6/0gHVx4Td4c0jkDiASBo0pXlJ2fKOP6CynSFnxTzqojG9xOKOFOqoYkcBHlz1vP4t4yHHR6Esp+GsYIh/Q==
+framebus@5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/framebus/-/framebus-5.2.0.tgz#a1689e8bbd5abf3ae7af8b1139658bb66d808e62"
+  integrity sha512-hIKt71vBVd/g0emUbuVg8HAeHEjxBwhAE87CKXvxPIy0sCoGWqBulB1k9lWBWUU6ZHXPs0xjXWMwUldWMiqD6A==
   dependencies:
     "@braintree/uuid" "^0.1.0"
 
@@ -3843,15 +3869,15 @@ javascript-natural-sort@^0.7.1:
   resolved "https://registry.yarnpkg.com/javascript-natural-sort/-/javascript-natural-sort-0.7.1.tgz#f9e2303d4507f6d74355a73664d1440fb5a0ef59"
   integrity sha1-+eIwPUUH9tdDVac2ZNFED7Wg71k=
 
-jmespath@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.15.0.tgz#a3f222a9aae9f966f5d27c796510e28091764217"
-  integrity sha1-o/Iiqarp+Wb10nx5ZRDigJF2Qhc=
+jmespath@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/jmespath/-/jmespath-0.16.0.tgz#b15b0a85dfd4d930d43e69ed605943c802785076"
+  integrity sha512-9FzQjJ7MATs1tSpnco1K6ayiYE3figslrXA72G2HQ/n76RzvYlofyi5QM+iX4YRs/pu3yzxlVQSST23+dMDknw==
 
-jquery@^3.5.1:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
-  integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
+jquery@^3.6.3:
+  version "3.6.3"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.3.tgz#23ed2ffed8a19e048814f13391a19afcdba160e6"
+  integrity sha512-bZ5Sy3YzKo9Fyc8wH2iIQK4JImJ6R0GWI9kL1/k7Z91ZBNgkRXE6U0JfHIizZbort8ZunhSI3jw9I6253ahKfg==
 
 jqueryui@^1.11.1:
   version "1.11.1"
@@ -3915,20 +3941,20 @@ json5@^2.1.2:
   dependencies:
     minimist "^1.2.5"
 
-jsoneditor@^9.1.1:
-  version "9.1.8"
-  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-9.1.8.tgz#f5ebdd586ece1210352fa26da8eedca2a5312bc8"
-  integrity sha512-T7iZjrYdtFqVuUFelwni9UKp6jXklYa0O0VmohMhYjBBx356h9S7qHZnxoVenXBSmLrYA4SthIt8cY+4zKvFRQ==
+jsoneditor@^9.9.2:
+  version "9.9.2"
+  resolved "https://registry.yarnpkg.com/jsoneditor/-/jsoneditor-9.9.2.tgz#176112f71acbf37e977aae8656a17bc33a7a4269"
+  integrity sha512-hdM6bgGh3fqnbAEgO1zXM3bNdYfFH/9nPWWJYdNP/wyRU9H+t3Wvb+VtBBE8XjkBYv0rIYjeaYgrwDRaXC3zig==
   dependencies:
-    ace-builds "^1.4.12"
+    ace-builds "^1.10.1"
     ajv "^6.12.6"
     javascript-natural-sort "^0.7.1"
-    jmespath "^0.15.0"
+    jmespath "^0.16.0"
     json-source-map "^0.6.1"
-    jsonrepair "^2.0.0"
+    jsonrepair "^2.2.1"
     mobius1-selectr "^2.4.13"
     picomodal "^3.0.0"
-    vanilla-picker "^2.11.0"
+    vanilla-picker "^2.12.1"
 
 jsonfile@^4.0.0:
   version "4.0.0"
@@ -3937,10 +3963,10 @@ jsonfile@^4.0.0:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
-jsonrepair@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/jsonrepair/-/jsonrepair-2.0.0.tgz#816ab546b0e0864ea3faa4d456e61ff0d23814d0"
-  integrity sha512-beGD14VPmrQNt/Sspi12sCGT+N3w7FWM1T2UJx7biEMfGIUUpqBBPjHq8ETKA992+JS+fSnrSHxKHq7AIgdgcA==
+jsonrepair@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/jsonrepair/-/jsonrepair-2.2.1.tgz#7c6257c36550a310150c41ab7d5d4cab71828456"
+  integrity sha512-o9Je8TceILo872uQC9fIBJm957j1Io7z8Ca1iWIqY6S5S65HGE9XN7XEEw7+tUviB9Vq4sygV89MVTxl+rhZyg==
 
 killable@^1.0.1:
   version "1.0.1"
@@ -4384,10 +4410,10 @@ node-libs-browser@^2.2.1:
     util "^0.11.0"
     vm-browserify "^1.0.1"
 
-node-notifier@^8.0.0:
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/node-notifier/-/node-notifier-8.0.1.tgz#f86e89bbc925f2b068784b31f382afdc6ca56be1"
-  integrity sha512-BvEXF+UmsnAfYfoapKM9nGxnP+Wn7P91YfXmrKnfcYCx6VBeoN5Ez5Ogck6I8Bi5k4RlpqRYaw75pAwzX9OphA==
+node-notifier@^9.0.0:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/node-notifier/-/node-notifier-9.0.1.tgz#cea837f4c5e733936c7b9005e6545cea825d1af4"
+  integrity sha512-fPNFIp2hF/Dq7qLDzSg4vZ0J4e9v60gJR+Qx7RbjbWqzPDdEqeVpEx5CFeDAELIl+A/woaaNn1fQ5nEVerMxJg==
   dependencies:
     growly "^1.3.0"
     is-wsl "^2.2.0"
@@ -5109,10 +5135,10 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.27, postcss@^7.0.3
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-preact@^10.5.13:
-  version "10.7.1"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.7.1.tgz#bdd2b2dce91a5842c3b9b34dfe050e5401068c9e"
-  integrity sha512-MufnRFz39aIhs9AMFisonjzTud1PK1bY+jcJLo6m2T9Uh8AqjD77w11eAAawmjUogoGOnipECq7e/1RClIKsxg==
+preact@10.11.3:
+  version "10.11.3"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.11.3.tgz#8a7e4ba19d3992c488b0785afcc0f8aa13c78d19"
+  integrity sha512-eY93IVpod/zG3uMF22Unl8h9KkrcKIRs2EGar8hwLZZDU1lkjph303V9HZBwufh2s736U6VXuhD109LYqPoffg==
 
 pretty-error@^2.1.1:
   version "2.1.2"
@@ -5317,7 +5343,12 @@ regenerate@^1.4.0:
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.2.tgz#b9346d8827e8f5a32f7ba29637d398b69014848a"
   integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
 
-regenerator-runtime@^0.13.2, regenerator-runtime@^0.13.4:
+regenerator-runtime@^0.13.11:
+  version "0.13.11"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
+  integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
+
+regenerator-runtime@^0.13.4:
   version "0.13.7"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
   integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
@@ -6371,10 +6402,10 @@ v8-compile-cache@^2.1.1:
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.2.0.tgz#9471efa3ef9128d2f7c6a7ca39c4dd6b5055b132"
   integrity sha512-gTpR5XQNKFwOd4clxfnhaqvfqMpqEwr4tOtCyz4MtYZX2JYhfr1JvBFKdS+7K/9rfpZR3VLX+YWBbKoxCgS43Q==
 
-vanilla-picker@^2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/vanilla-picker/-/vanilla-picker-2.11.0.tgz#a30d7174402d846b97c74f81e00be7837a140d64"
-  integrity sha512-MsTAyROQRN3yoUdToiQtfnW752wC9DpnXbOhAMGJgBi+TMDZ0IUfbmIVB5u3P1ltBDlqy8TjY59a4lOioSlgZw==
+vanilla-picker@^2.12.1:
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/vanilla-picker/-/vanilla-picker-2.12.1.tgz#6e619eecf553891b8d2d042b745a23c91f19f34c"
+  integrity sha512-2qrEP9VYylKXbyzXKsbu2dferBTvqnlsr29XjHwFE+/MEp0VNj6oEUESLDtKZ7DWzGdSv1x/+ujqFZF+KsO3cg==
   dependencies:
     "@sphinxxxx/color-conversion" "^2.2.2"
 
@@ -6503,12 +6534,12 @@ webpack-manifest-plugin@^2.0.2:
     object.entries "^1.1.0"
     tapable "^1.0.0"
 
-webpack-notifier@^1.6.0:
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/webpack-notifier/-/webpack-notifier-1.12.0.tgz#e2e0739b70d2cd751bb81469be0a1a8816798da7"
-  integrity sha512-urRnbKupMQHUplsiwsOajp1F1DCJgJ+yyT4HIxAP+TfMF+ZtsKW+kVt2UcDm1E88xutOst+VChJZMDAD3aec5w==
+webpack-notifier@^1.15.0:
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/webpack-notifier/-/webpack-notifier-1.15.0.tgz#72644a1a4ec96b3528704d28f79da5e70048e8ee"
+  integrity sha512-N2V8UMgRB5komdXQRavBsRpw0hPhJq2/SWNOGuhrXpIgRhcMexzkGQysUyGStHLV5hkUlgpRiF7IUXoBqyMmzQ==
   dependencies:
-    node-notifier "^8.0.0"
+    node-notifier "^9.0.0"
     strip-ansi "^6.0.0"
 
 webpack-sources@^1.1.0, webpack-sources@^1.3.0, webpack-sources@^1.4.0, webpack-sources@^1.4.1:
