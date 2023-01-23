@@ -30,12 +30,23 @@ let serverOptionsObject = {
     }
 };
 let paypalOrderJsonEditor = document.getElementById('paypal-order-json-editor');
+let paypalShippingAmount = 5;
 let paypalOrderJson = {
     flow: 'checkout',
     currency: 'EUR',
     intent: 'authorize',
     enableShippingAddress: true,
-    shippingAddressEditable: true
+    shippingAddressEditable: true,
+    shippingOptions: [{
+        id: 'shipping',
+        type: 'SHIPPING',
+        label: 'Seur - 24h',
+        selected: true,
+        amount: {
+            value: paypalShippingAmount,
+            currency: 'EUR'
+        }
+    }]
 };
 
 let customerJsonEditor = new JSONEditor(
@@ -226,10 +237,26 @@ submitButtonOne.addEventListener('click', function () {
                         });
                     },
                     onShippingChange: function (data) {
+                        if (data.shipping_address.country_code !== 'ES') {
+                            let newShippingAmount = 25.00;
+                            paypalShippingAmount = newShippingAmount - paypalShippingAmount;
+                            apmAmount = parseFloat(apmAmount) + parseFloat(paypalShippingAmount);
+                        }
                         return paypalCheckoutInstance.updatePayment({
-                            paymentId: data.paymentId,
-                            amount: '269.00',
                             currency: 'EUR',
+                            amount: apmAmount,
+                            lineItems: [],           // Required
+                            paymentId: data.paymentId,  // Required
+                            shippingOptions: [{
+                                id: 'shipping',
+                                type: 'SHIPPING',
+                                label: 'Seur - 24h',
+                                selected: true,
+                                amount: {
+                                    value: paypalShippingAmount,
+                                    currency: 'EUR'
+                                }
+                            }]
                         });
                     },
                     onCancel: function (data) {
