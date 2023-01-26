@@ -9,7 +9,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="amount-text">Amount</span>
             </div>
-            <input type="number" aria-label="Price" class="form-control text-right" id="request-amount" value="180">
+            <input type="number" aria-label="Price" class="form-control text-right" id="request-amount" value="{{ app.session.get('settings')['settings-item-price']}}">
             <div class="input-group-append">
                 <span class="input-group-text">.00 €</span>
             </div>
