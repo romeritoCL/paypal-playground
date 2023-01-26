@@ -32,5 +32,6 @@ security:
         - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /favicon, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /braintree/close, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /braintree/webhooks, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_USER } #change to IS_AUTHENTICATED_ANONYMOUSLY or ROLE_USER to authenticate the website
     enable_authenticator_manager: true
