@@ -18,7 +18,7 @@ stepZeroSubmitButton.addEventListener('click', function () {
             clientToken = data;
             $('#collapseOne').collapse(true);
             stepZeroSubmitButton.disabled = true;
-            let apmAmount = $('#apm-amount').val();
+            let apmAmount = parseInt($('#apm-amount').val())+'.00';
             if (clientToken) {
                 braintree.client.create({
                     authorization: clientToken

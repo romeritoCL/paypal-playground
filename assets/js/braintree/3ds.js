@@ -6,10 +6,12 @@ import 'jsoneditor/dist/jsoneditor.css';
 let stepZeroSubmitButton = document.querySelector('#step-0-submit');
 stepZeroSubmitButton.disabled = false;
 let jsClientToken = document.querySelector('.js-client-token');
+let jsAmount = document.querySelector('.js-amount');
 let clientToken = jsClientToken.dataset.clientToken;
+let amount = jsAmount.dataset.amount;
 let customerJsonContainer = document.getElementById('customer-json-editor');
 let customerJson = {
-    amount: '180.00',
+    amount: amount,
     email: 'cmoreno@paypal.com',
     billingAddress: {
         givenName: 'Carlos', // ASCII-printable characters required, else will throw a validation error
