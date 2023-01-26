@@ -3,16 +3,6 @@ import braintreePayments from './payments';
 import JSONEditor from 'jsoneditor';
 import 'jsoneditor/dist/jsoneditor.css';
 
-function popupbridge() {
-    let userAgent = window.navigator.userAgent.toLowerCase();
-    let safari = /safari/.test(userAgent);
-    let ios = /iphone|ipod|ipad/.test(userAgent);
-    if (ios && !safari) {
-        return true;
-    }
-    return false;
-}
-
 let jsClientToken = document.querySelector('.js-client-token');
 let clientToken = jsClientToken.dataset.clientToken;
 let jsCloseUrl = document.querySelector('.js-braintree-close-url');
@@ -26,7 +16,11 @@ let settings = JSON.parse(document.getElementById('customer-settings').dataset.s
 let deviceData, localPaymentInstance;
 let serverOptionsObject = {
     options: {
-        submitForSettlement: true
+        submitForSettlement: true,
+        paypal: {
+            customField: 'SubSeller ID',
+            description: 'PayPal purchase description'
+        }
     }
 };
 let paypalOrderJsonEditor = document.getElementById('paypal-order-json-editor');
@@ -63,13 +57,23 @@ let customerJsonEditor = new JSONEditor(
     },
     paypalOrderJson
 );
+
+const popupBridge = () => {
+    let userAgent = window.navigator.userAgent.toLowerCase();
+    let safari = /safari/.test(userAgent);
+    let ios = /iphone|ipod|ipad/.test(userAgent);
+    return ios && !safari;
+};
+
 braintreePayments.animatePaymentForm(serverOptionsObject);
 
-function merchantAccountId() {
+function merchantAccountId()
+{
     return ("devoralive");
 }
 
-function createLocalPaymentClickListener(type) {
+function createLocalPaymentClickListener(type)
+{
     let countryCode;
     switch (type) {
         case 'ideal':
@@ -88,7 +92,7 @@ function createLocalPaymentClickListener(type) {
             paymentType: type,
             amount: apmAmount,
             fallback: {
-                url: popupbridge() ? "com.braintreepayments.popupbridgeexample://popupbridgev1" : closeUrl,
+                url: popupBridge() ? "com.braintreepayments.popupbridgeexample://popupbridgev1" : closeUrl,
                 buttonText: 'Continue',
             },
             currencyCode: 'EUR',

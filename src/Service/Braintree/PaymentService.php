@@ -6,6 +6,7 @@ use Braintree\Result\Error;
 use Braintree\Result\Successful;
 use Braintree\Transaction;
 use Braintree\Exception\NotFound;
+use Braintree\TransactionLineItem;
 use Exception;
 
 /**
@@ -42,17 +43,27 @@ class PaymentService extends AbstractBraintreeService
      */
     public function createSale($amount, $paymentNonce, $deviceDataFromTheClient, $serverOptions)
     {
+        $lineItem = [
+            'kind' => TransactionLineItem::DEBIT,
+            'name' => $this->settingsService->getSetting('settings-item-name'),
+            'description' => $this->settingsService->getSetting('settings-item-description'),
+            'productCode' => $this->settingsService->getSetting('settings-item-sku'),
+            'totalAmount' => $this->settingsService->getSetting('settings-item-price'),
+            'unitAmount' => $this->settingsService->getSetting('settings-item-price'),
+            'quantity' => 1
+        ];
+
         $defaultOptions = [
+            'lineItems' => [$lineItem],
             'amount' => $amount,
             'paymentMethodNonce' => $paymentNonce,
             'deviceData' => $deviceDataFromTheClient,
             'options' => [
-                'submitForSettlement' => false
+                'submitForSettlement' => false,
             ]
         ];
         $serverOptions = json_decode($serverOptions, true);
-
-        return $this->gateway->transaction()->sale(array_merge($defaultOptions, $serverOptions));
+        return $this->gateway->transaction()->sale(array_replace_recursive($defaultOptions, $serverOptions));
     }
 
     /**

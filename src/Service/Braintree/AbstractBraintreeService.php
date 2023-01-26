@@ -2,6 +2,7 @@
 
 namespace App\Service\Braintree;
 
+use App\Service\SettingsService;
 use Braintree\Gateway;
 use Psr\Log\LoggerInterface;
 
@@ -22,6 +23,11 @@ abstract class AbstractBraintreeService
     protected $gateway;
 
     /**
+     * @var SettingsService
+     */
+    protected $settingsService;
+
+    /**
      * AbstractBraintreeService constructor.
      * @param string $environment
      * @param string $merchantId
@@ -34,7 +40,8 @@ abstract class AbstractBraintreeService
         string $merchantId,
         string $publicKey,
         string $privateKey,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        SettingsService $settingsService
     ) {
         $this->logger = $logger;
         $this->gateway = new Gateway([
@@ -43,5 +50,6 @@ abstract class AbstractBraintreeService
             'publicKey' => $publicKey,
             'privateKey' => $privateKey
         ]);
+        $this->settingsService = $settingsService;
     }
 }
