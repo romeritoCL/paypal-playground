@@ -36,6 +36,7 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('braintree-api', './assets/js/braintree/api/api.js')
     .addEntry('braintree-paylater', './assets/js/braintree/paylater.js')
+    .addEntry('forward', './assets/js/braintree/forward.js')
     .addEntry('dropui', './assets/js/braintree/dropui.js')
     .addEntry('apm', './assets/js/braintree/apm.js')
     .addEntry('3ds', './assets/js/braintree/3ds.js')
