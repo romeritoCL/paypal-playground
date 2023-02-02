@@ -36,6 +36,8 @@ class PaymentsController extends AbstractController
      *     defaults={"description" = "PaymentRequestAPI", "action" = "request"})
      * @Route("/paylater", name="paylater", methods={"GET"},
      *     defaults={"description" = "PayPal Paylater", "action" = "paylater"})
+     * @Route("/forward", name="forward", methods={"GET"},
+     *     defaults={"description" = "Forward API", "action" = "forward"})
      */
     public function payments(string $action, string $description)
     {

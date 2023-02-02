@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "86c0cf9d05389c0c28f1f3e589c7f0ee",
+    "content-hash": "dca1f67efa6dcfe0e2b2df6cae6ae2f2",
     "packages": [
         {
             "name": "adyen/php-api-library",
@@ -59,16 +59,16 @@
         },
         {
             "name": "braintree/braintree_php",
-            "version": "5.5.0",
+            "version": "6.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/braintree/braintree_php.git",
-                "reference": "8902a072ac04c9eea2996f2683cb56259cbe46fa"
+                "reference": "2cd8fe23b4e3bc96f84ec6b95d95330aec5757ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/braintree/braintree_php/zipball/8902a072ac04c9eea2996f2683cb56259cbe46fa",
-                "reference": "8902a072ac04c9eea2996f2683cb56259cbe46fa",
+                "url": "https://api.github.com/repos/braintree/braintree_php/zipball/2cd8fe23b4e3bc96f84ec6b95d95330aec5757ec",
+                "reference": "2cd8fe23b4e3bc96f84ec6b95d95330aec5757ec",
                 "shasum": ""
             },
             "require": {
@@ -77,10 +77,11 @@
                 "ext-hash": "*",
                 "ext-openssl": "*",
                 "ext-xmlwriter": "*",
-                "php": ">=7.2.0"
+                "php": ">=7.3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.5"
+                "phpunit/phpunit": "^9.0",
+                "squizlabs/php_codesniffer": "^3.0"
             },
             "type": "library",
             "autoload": {
@@ -101,9 +102,9 @@
             "description": "Braintree PHP Client Library",
             "support": {
                 "issues": "https://github.com/braintree/braintree_php/issues",
-                "source": "https://github.com/braintree/braintree_php/tree/5.5.0"
+                "source": "https://github.com/braintree/braintree_php/tree/6.11.1"
             },
-            "time": "2021-01-25T21:53:32+00:00"
+            "time": "2023-01-18T16:12:07+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",

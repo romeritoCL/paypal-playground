@@ -17,7 +17,7 @@
             {% block step_zero %}{% endblock %}
             <div class="card">
                 <div class="card-header" id="headingOne">
-                    <h5 class="mb-0 d-inline">1. Identify card</h5>
+                    <h5 class="mb-0 d-inline">{% block step_one_title %}1. Identify card{% endblock %}</h5>
                     <button class="btn btn-success d-inline float-right" disabled data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id="step-1-submit">Next Step</button>
                 </div>
                 <div id="collapseOne" class="collapse {% block element_one_class %}show{% endblock %}" aria-labelledby="headingOne" data-parent="#accordion">
@@ -69,6 +69,7 @@
                     </div>
                 </div>
             </div>
+            {% block step2_payment %}
             <div class="card">
                 <div class="card-header" id="headingTwo">
                     <h5 class="mb-0 d-inline">2. Send Payment</h5>
@@ -106,6 +107,8 @@
                     </div>
                 </div>
             </div>
+            {% endblock %}
+            {% block step3_capture %}
             <div class="card">
                 <div class="card-header" id="headingThree">
                     <h5 class="mb-0 d-inline">3. Capture Payment</h5>
@@ -136,6 +139,7 @@
                     </div>
                 </div>
             </div>
+            {% endblock %}
         </div>
     </div>
     <div class="modal fade" id="serverOptionsModal" tabindex="-1" role="dialog" aria-labelledby="serverOptionsModalLabel" aria-hidden="true">
