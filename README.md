@@ -34,5 +34,6 @@ docker-compose exec paypal-playgroun yarn encore dev
 4. Go to site:
 [http://localhost:8086](http://localhost:8086)
 
+
 ## :gear: Continuous Deployment
 This project is configured with continuous deployment. Any PR merged to master branch will generate a build on [Travis CI PayPal-Playground](https://travis-ci.org/github/romeritoCL/paypal-playground). The CI software will run the tests and push the docker build to [DockerHub romeritocl/paypal-playground](https://hub.docker.com/repository/docker/romeritocl/paypal-playground). Once the tag latest is updated, the server will detect a new image and will download it and recreate the container.
