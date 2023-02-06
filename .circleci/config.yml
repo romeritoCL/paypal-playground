@@ -57,7 +57,7 @@ jobs:
       #- run: ./vendor/bin/phpunit
       - run: bin/phpunit
       - run: composer install --no-dev --prefer-source --no-interaction
-      - run: docker build . -t $DOCKER_USERNAME/paypal-playground:$BUILD
-      - run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - run: docker tag paypal-playground_paypal-playground $DOCKER_USERNAME/paypal-playground:latest
-      - run: docker push $DOCKER_USERNAME/paypal-playground
+      - run: docker build . -t ${DOCKER_USERNAME}/paypal-playground:latest
+      - run: echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
+      - run: docker tag paypal-playground_paypal-playground ${DOCKER_USERNAME}/paypal-playground:latest
+      - run: docker push ${DOCKER_USERNAME}/paypal-playground
