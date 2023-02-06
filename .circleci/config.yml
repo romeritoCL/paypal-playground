@@ -11,7 +11,10 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:8.0-node-browsers
-
+      - image: cimg/go:1.17
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -25,7 +28,9 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
       - run: sudo docker-php-ext-install zip
 
       # Download and cache dependencies
@@ -57,7 +62,7 @@ jobs:
       #- run: ./vendor/bin/phpunit
       - run: bin/phpunit
       - run: composer install --no-dev --prefer-source --no-interaction
-      - run: docker build . -t ${DOCKER_USERNAME}/paypal-playground:latest
-      - run: echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin
-      - run: docker tag paypal-playground_paypal-playground ${DOCKER_USERNAME}/paypal-playground:latest
-      - run: docker push ${DOCKER_USERNAME}/paypal-playground
+      - run: docker build . -t $DOCKER_USERNAME/paypal-playground:latest
+      - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+      - run: docker tag paypal-playground_paypal-playground $DOCKER_USERNAME/paypal-playground:latest
+      - run: docker push $DOCKER_USERNAME/paypal-playground
