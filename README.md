@@ -1,6 +1,6 @@
 # PayPal PlayGround <img src="https://developer.paypal.com/components/dx/img/logo-PayPal-Developer.svg" width="100" align="right">
 
-[![Build Status](https://travis-ci.com/romeritoCL/paypal-playground.svg?branch=master)](https://travis-ci.com/romeritoCL/paypal-playground)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/romeritoCL/paypal-playground/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/romeritoCL/paypal-playground/tree/master)
 [![Latest Stable Version](https://poser.pugx.org/romeritoCL/paypal-playground/v/stable)](https://packagist.org/packages/romeritoCL/paypal-playground)
 [![composer.lock](https://poser.pugx.org/romeritoCL/paypal-playground/composerlock)](https://packagist.org/packages/romeritoCL/paypal-playground)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/romeritoCL/paypal-playground/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/romeritoCL/paypal-playground/?branch=master)
