@@ -62,6 +62,39 @@ jobs:
       #- run: ./vendor/bin/phpunit
       - run: bin/phpunit
       - run: composer install --no-dev --prefer-source --no-interaction
-      - run: docker build . -t $DOCKER_USERNAME/paypal-playground:latest
-      - run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-      - run: docker push $DOCKER_USERNAME/paypal-playground:latest
+      - restore_cache:
+          keys:
+            - docker-v2-{{ .Branch }}
+          paths:
+            - /caches/app.tar
+      - run:
+          name: Load Docker image layer cache
+          command: |
+            set +o pipefail
+            docker load -i /caches/app.tar | true
+      - run:
+          name: Build application Docker image
+          command: |
+            docker build --cache-from=app -t app .
+      - run:
+          name: Save Docker image layer cache
+          command: |
+            mkdir -p /caches
+            docker save -o /caches/app.tar app
+      - save_cache:
+          key: docker-v2-{{ .Branch }}-{{ epoch }}
+          paths:
+            - /caches/app.tar
+      - deploy:
+          name: Push application Docker image
+          command: |
+            if [ "$ {CIRCLE_BRANCH}" == "master" ]; then
+              echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+              docker tag app "$DOCKER_USERNAME/paypal-playground:latest"
+              docker push $DOCKER_USERNAME/paypal-playground:latest
+            fi
+            if [ "$ {CIRCLE_BRANCH}" != "master" ]; then
+              echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+              docker tag app "$DOCKER_USERNAME/paypal-playground:dev"
+              docker push $DOCKER_USERNAME/paypal-playground:dev
+            fi
