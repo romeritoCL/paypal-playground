@@ -69,12 +69,12 @@ jobs:
       - deploy:
           name: Push application Docker image
           command: |
-            if [ "$ {CIRCLE_BRANCH}" == "master" ]; then
+            if [ $CIRCLE_BRANCH == "master" ]; then
               echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
               docker tag app "$DOCKER_USERNAME/paypal-playground:latest"
               docker push $DOCKER_USERNAME/paypal-playground:latest
             fi
-            if [ "$ {CIRCLE_BRANCH}" != "master" ]; then
+            if [ $CIRCLE_BRANCH != "master" ]; then
               echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
               docker tag app "$DOCKER_USERNAME/paypal-playground:dev"
               docker push $DOCKER_USERNAME/paypal-playground:dev
