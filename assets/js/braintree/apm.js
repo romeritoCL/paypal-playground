@@ -213,6 +213,67 @@ submitButtonOne.addEventListener('click', function () {
                 $('#apple-pay-button').removeClass('d-none');
             });
         }
+        let googleButton = document.querySelector('#google-pay-button');
+        let paymentsClient = new google.payments.api.PaymentsClient({
+            environment: 'TEST'
+        });
+        let button = paymentsClient.createButton({
+            buttonType: 'plain',
+            buttonLocale: 'en',
+            buttonSizeMode: 'fill',
+            onClick: () => {},
+        });
+        googleButton.appendChild(button);
+        braintree.googlePayment.create({
+            client: clientInstance,
+            googlePayVersion: 2,
+            googleMerchantId: 'merchant-id-from-google'
+        }, function (googlePaymentErr, googlePaymentInstance) {
+            paymentsClient.isReadyToPay({
+                // see https://developers.google.com/pay/api/web/reference/object#IsReadyToPayRequest
+                apiVersion: 2,
+                apiVersionMinor: 0,
+                allowedPaymentMethods: googlePaymentInstance.createPaymentDataRequest().allowedPaymentMethods,
+                existingPaymentMethodRequired: true // Optional
+            }).then(function (response) {
+                if (response.result) {
+                    googleButton.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        let paymentDataRequest = googlePaymentInstance.createPaymentDataRequest({
+                            transactionInfo: {
+                                currencyCode: 'EUR',
+                                totalPriceStatus: 'FINAL',
+                                totalPrice: apmAmount // Your amount
+                            }
+                        });
+
+                        let cardPaymentMethod = paymentDataRequest.allowedPaymentMethods[0];
+                        cardPaymentMethod.parameters.billingAddressRequired = true;
+                        cardPaymentMethod.parameters.billingAddressParameters = {
+                            format: 'FULL',
+                            phoneNumberRequired: true
+                        };
+
+                        paymentsClient.loadPaymentData(paymentDataRequest).then(paymentData => {
+                            googlePaymentInstance.parseResponse(paymentData, function (err, result) {
+                                if (err) {
+                                    console.log(err);
+                                }
+
+                                braintreePayments.sendServerPayLoad(paymentData, deviceData);
+                                let destroy = document.getElementById('apm-buttons-destroyable');
+                                destroy.parentNode.removeChild(destroy);
+                            });
+                        }).catch(function (err) {
+                            console.log(err);
+                        });
+                    });
+                    $('#google-pay-button').removeClass('d-none');
+                }
+            }).catch(function (err) {
+                console.log(err);
+            });
+        });
         braintree.paypalCheckout.create({
             client: clientInstance
         }, function (paypalCheckoutErr, paypalCheckoutInstance) {
@@ -229,6 +290,10 @@ submitButtonOne.addEventListener('click', function () {
                 let paypalOrderObject = customerJsonEditor.get();
                 let finalPayPalObject = {...apmAmountObject, ...paypalOrderObject}
                 paypal.Buttons({
+                    style: {
+                        shape:  'pill',
+                        label:  'paypal'
+                    },
                     fundingSource: paypal.FUNDING.PAYPAL,
                     createOrder: function () {
                         return paypalCheckoutInstance.createPayment(finalPayPalObject);
