@@ -17,13 +17,20 @@ class PaymentService extends AbstractBraintreeService
 {
     /**
      * @param string|null $customerId
+     * @param string|null $merchantAccountId
      * @return string|null
      */
-    public function getClientToken(string $customerId = null): ?string
+    public function getClientToken(string $customerId = null, string $merchantAccountId = null): ?string
     {
         try {
             if ($customerId !== null) {
-                return $this->gateway->clientToken()->generate(['customerId' => $customerId]);
+                return $this->gateway->clientToken()->generate(
+                    [
+                        'customerId' => $customerId,
+                        'merchantAccountId' => $merchantAccountId ??
+                            $this->settingsService->getSetting('settings-merchant-maid'),
+                    ]
+                );
             }
             return $this->gateway->clientToken()->generate();
         } catch (Exception $exception) {
@@ -54,6 +61,8 @@ class PaymentService extends AbstractBraintreeService
         ];
 
         $defaultOptions = [
+            'merchantAccountId' => $merchantAccountId ??
+                $this->settingsService->getSetting('settings-merchant-maid'),
             'lineItems' => [$lineItem],
             'amount' => $amount,
             'paymentMethodNonce' => $paymentNonce,

@@ -27,6 +27,7 @@ class SettingsService
         'settings-customer-province' => 'London',
         'settings-customer-zip-code' => 'SW1A0AA',
         'settings-customer-country' => 'GB',
+        'settings-merchant-maid' => 'devoralive',
         'settings-merchant-name' => 'PlayGround Shop',
         'settings-merchant-email' => 'sb-47jgfk3834748@business.example.com',
         'settings-merchant-street' => '2 Great George St, Westminster, London SW1P 3AD, Reino Unido',
