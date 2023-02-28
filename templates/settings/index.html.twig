@@ -113,6 +113,16 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="container text-center">
+                            <h3>Braintree Settings</h3>
+                            <hr>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">MerchantAccount</span>
+                            </div>
+                            <input type="text" aria-label="Merchant Account" class="form-control text-right" name="settings-merchant-maid" value="{{ app.session.get('settings')['settings-merchant-maid'] | default('devoralive' )}}">
+                        </div>
                     </section>
                 </div>
                 <div class="col">
