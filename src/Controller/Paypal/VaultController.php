@@ -24,9 +24,10 @@ class VaultController extends AbstractController
     public function vaultPayment(string $action)
     {
         $customerId = $this->settingsService->getSetting('settings-customer-id');
-        $dataClientToken = $this->paypalService->getVaultService()->getDataClientToken($customerId);
+        $dataUserIdToken = $this->paypalService->getVaultService()->getDataUserIdToken($customerId);
         return $this->render('paypal/vault/'. $action .'.html.twig', [
-            'dataClientToken' => $dataClientToken,
+            'dataUserIdToken' => $dataUserIdToken,
+
         ]);
     }
 }

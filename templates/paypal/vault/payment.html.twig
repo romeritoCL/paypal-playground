@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="col text-right align-middle">
-                            <p>Check the <a target="_blank" href="https://developer.paypal.com/limited-release/vault-payment-methods/vault-sdk#link-vaultwiththejavascriptsdk"> Vaulting with JS SDK</a> documentation</p>
+                            <p>Check the <a target="_blank" href="https://developer.paypal.com/docs/checkout/save-payment-methods"> V3 Vaulting with JS SDK</a> documentation</p>
                         </div>
                     </div>
                 {% endblock payments_base_more_info %}
@@ -40,9 +40,11 @@
     </div>
     <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
     <div id="capture-url" data-capture-url="{{ path("paypal-payments-capture", {'paymentId': 'payment_id_status'}) }}"></div>
+    <div id="create-url" data-create-url="{{ path("paypal-payments-create") }}"></div>
+    <div id="self-url" data-self-url="{{ absolute_url(path("paypal-vault-payment")) }}"></div>
 {% endblock content %}
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&locale={{app.session.get('settings')['settings-customer-locale']}}&components=buttons&disable-funding=card&vault=true&commit=true&intent=capture" data-client-token="{{ dataClientToken }}"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&locale={{app.session.get('settings')['settings-customer-locale']}}&components=buttons&disable-funding=card&enable-funding=paypal&intent=capture" data-user-id-token="{{ dataUserIdToken }}"></script>
     {{ encore_entry_script_tags('pp-vault') }}
 {% endblock %}
