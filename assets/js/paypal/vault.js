@@ -2,12 +2,16 @@ import JSONEditor from 'jsoneditor';
 import 'jsoneditor/dist/jsoneditor.css';
 window.JSONEditor = JSONEditor;
 
+let captureUrl = document.getElementById('capture-url').dataset.captureUrl;
+let createUrl = document.getElementById('create-url').dataset.createUrl;
+let selfUrl = document.getElementById('self-url').dataset.selfUrl;
+
 let settings = JSON.parse(document.getElementById('customer-settings').dataset.settings);
 let orderCreateJson = {
     application_context: {
         shipping_preference: "NO_SHIPPING"
     },
-    intent: 'capture',
+    intent: 'CAPTURE',
     purchase_units: [{
         reference_id: settings['settings-item-sku'],
         amount: {
@@ -37,9 +41,24 @@ let orderCreateJson = {
             description: settings['settings-item-description']
         }],
     }],
+    payment_source: {
+        paypal: {
+            attributes: {
+                vault: {
+                    store_in_vault: "ON_SUCCESS",
+                    usage_type: "MERCHANT",
+                    customer_type: "CONSUMER"
+                }
+            },
+            experience_context: {
+                return_url: selfUrl,
+                cancel_url: selfUrl
+            }
+        }
+    }
 };
 
-let captureUrl = document.getElementById('capture-url').dataset.captureUrl;
+
 let orderCreateEditorContainer = document.getElementById('create-order-editor');
 
 let orderCreateEditor = new JSONEditor(
@@ -61,8 +80,16 @@ let orderCreateEditor = new JSONEditor(
 );
 
 paypal.Buttons({
-    createOrder: function (data, actions) {
-        return actions.order.create(orderCreateEditor.get());
+    createOrder: function () {
+        let body = orderCreateEditor.get();
+        return fetch(createUrl, {
+            method: 'post',
+            body: JSON.stringify(body),
+        }).then(function (response) {
+            return response.json();
+        }).then(function (orderData) {
+            return orderData.id;
+        });
     },
     onApprove: function (data) {
         captureUrl = captureUrl.replace("payment_id_status", data.orderID);

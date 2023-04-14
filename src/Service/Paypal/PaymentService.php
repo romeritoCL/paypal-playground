@@ -6,6 +6,7 @@ use PayPal\Api\Payment;
 use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\SandboxEnvironment;
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
+use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 use PayPalHttp\HttpResponse;
 use Exception;
 
@@ -41,5 +42,26 @@ class PaymentService extends AbstractPaypalService
         }
 
         return $response;
+    }
+
+    /**
+     * @param string $body
+     * @param array $headers
+     * @return array|string
+     */
+    public function createOrder(string $body, array $headers = []): object|null
+    {
+        try {
+            $request = new OrdersCreateRequest();
+            $request->body = $body;
+            $request->headers = array_merge($request->headers, $headers);
+            $client = $this->getHttpClient();
+            $response = $client->execute($request);
+        } catch (Exception $e) {
+            $this->logger->error('Error on PayPal::createOrder = ' . $e->getMessage());
+            return null;
+        }
+
+        return $response->result;
     }
 }

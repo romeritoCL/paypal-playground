@@ -145,4 +145,17 @@ class PaymentsController extends AbstractController
             ],
         ]);
     }
+
+    /**
+     * @Route("/create", name="create", methods={"POST"})
+     * @return JsonResponse
+     */
+    public function create(): JsonResponse
+    {
+        $request = Request::createFromGlobals();
+        $requestBody = $request->getContent();
+        $headers = ['PayPal-Request-Id' => time()];
+        $order = $this->paypalService->getPaymentService()->createOrder($requestBody, $headers);
+        return new JsonResponse($order);
+    }
 }
