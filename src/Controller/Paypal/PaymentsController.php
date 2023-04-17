@@ -140,8 +140,8 @@ class PaymentsController extends AbstractController
         $capture = $this->paypalService->getPaymentService()->capturePayment($paymentId);
         return $this->render('paypal/payments/ecs-results.twig', [
             'capture' => [
-                'payer' => $capture->result->payer,
-                'shipping' => $capture->result->purchase_units[0]->shipping,
+                'payer' => $capture->payer,
+                'shipping' => $capture->purchase_units[0]->shipping,
             ],
         ]);
     }

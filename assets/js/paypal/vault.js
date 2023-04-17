@@ -9,7 +9,7 @@ let selfUrl = document.getElementById('self-url').dataset.selfUrl;
 let settings = JSON.parse(document.getElementById('customer-settings').dataset.settings);
 let orderCreateJson = {
     application_context: {
-        shipping_preference: "NO_SHIPPING"
+        shipping_preference: "SET_PROVIDED_ADDRESS"
     },
     intent: 'CAPTURE',
     purchase_units: [{
@@ -40,6 +40,15 @@ let orderCreateJson = {
             sku: settings['settings-item-sku'],
             description: settings['settings-item-description']
         }],
+        shipping: {
+            address: {
+                address_line_1: 'Gran Via 32, 2º',
+                admin_area_2: 'Madrid',
+                admin_area_1: 'Madrid',
+                postal_code: 28008,
+                country_code: 'ES'
+            }
+        }
     }],
     payment_source: {
         paypal: {

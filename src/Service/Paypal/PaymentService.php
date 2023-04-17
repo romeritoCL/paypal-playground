@@ -7,6 +7,7 @@ use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\SandboxEnvironment;
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
+use PayPalHttp\HttpException;
 use PayPalHttp\HttpResponse;
 use Exception;
 
@@ -27,29 +28,33 @@ class PaymentService extends AbstractPaypalService
 
     /**
      * @param string $orderId
-     * @return Payment|null
+     * @return object|array
      */
-    public function capturePayment(string $orderId): ?HttpResponse
+    public function capturePayment(string $orderId):  object|array
     {
         try {
             $request = new OrdersCaptureRequest($orderId);
             $request->headers["prefer"] = "return=representation";
             $client = $this->getHttpClient();
             $response = $client->execute($request);
-        } catch (Exception $e) {
+        } catch (HttpException $e) {
             $this->logger->error('Error on PayPal::capturePayment = ' . $e->getMessage());
-            return null;
+            return [
+                'code' => $e->statusCode,
+                'message' => json_decode($e->getMessage()),
+                'headers' => $e->headers
+            ];
         }
 
-        return $response;
+        return $response->result;
     }
 
     /**
      * @param string $body
      * @param array $headers
-     * @return array|string
+     * @return object|array
      */
-    public function createOrder(string $body, array $headers = []): object|null
+    public function createOrder(string $body, array $headers = []): object|array
     {
         try {
             $request = new OrdersCreateRequest();
@@ -57,9 +62,13 @@ class PaymentService extends AbstractPaypalService
             $request->headers = array_merge($request->headers, $headers);
             $client = $this->getHttpClient();
             $response = $client->execute($request);
-        } catch (Exception $e) {
+        } catch (HttpException $e) {
             $this->logger->error('Error on PayPal::createOrder = ' . $e->getMessage());
-            return null;
+            return [
+                'code' => $e->statusCode,
+                'message' => json_decode($e->getMessage()),
+                'headers' => $e->headers
+            ];
         }
 
         return $response->result;
