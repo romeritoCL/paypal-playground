@@ -89,6 +89,24 @@ let orderCreateEditor = new JSONEditor(
 );
 
 paypal.Buttons({
+    onInit(data, actions)  {
+        actions.disable();
+        let checkbox = document.getElementById('flexCheckDefault');
+        checkbox.addEventListener('change', function (event) {
+            // Enable or disable the button when it is checked or unchecked
+            if (event.target.checked) {
+                actions.enable();
+            } else {
+                actions.disable();
+            }
+        });
+    },
+    onClick()  {
+        let checkbox = document.getElementById('flexCheckDefault');
+        if (!checkbox.checked) {
+            alert('Please accept the Terms & Conditions');
+        }
+    },
     createOrder: function () {
         let body = orderCreateEditor.get();
         return fetch(createUrl, {

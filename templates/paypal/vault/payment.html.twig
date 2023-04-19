@@ -10,11 +10,17 @@
     </div>
     <div class="row">
         <div class="col text-center">
+            <div class="col align-middle mb-1 font-weight-bold">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                <label class="form-check-label" for="flexCheckDefault">
+                    I Accept the Terms & Conditions
+                </label>
+            </div>
             <div class="mb-1" id="paypal-button-container"></div>
             <div class="mt-3 font-weight-bold">
                 {% block payments_base_more_info %}
                     <div class="row">
-                        <div class="col">
+                        <div class="col-4">
                             <div class="">
                                 <span class="mr-1">User:</span>
                                 <input disabled type="text" aria-label="UserId" class="text-right" name="settings-customer-id" value="{{ app.session.get('settings')['settings-customer-id']}}">
@@ -25,7 +31,6 @@
                                 </a>
                             </div>
                         </div>
-
                         <div class="col text-right align-middle">
                             <p>Check the <a target="_blank" href="https://developer.paypal.com/docs/checkout/save-payment-methods/during-purchase/js-sdk/paypal/"> V3 Vaulting with JS SDK</a> documentation</p>
                         </div>
