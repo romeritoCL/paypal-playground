@@ -45,7 +45,7 @@ class ForwardApiService extends AbstractBraintreeService
                 'url' => 'https://test.com',
                 'config' => [
                     'name' => 'default',
-                    'url' => 'https://test.com',
+                    'url' => '^https://test.com',
                     'methods' => ['POST'],
                     'types' => ['NetworkTokenizedCard'],
                     'request_format' => [
