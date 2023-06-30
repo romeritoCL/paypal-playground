@@ -27,7 +27,7 @@ class SettingsService
         'settings-customer-province' => 'London',
         'settings-customer-zip-code' => 'SW1A0AA',
         'settings-customer-country' => 'GB',
-        'settings-merchant-maid' => 'devoralive',
+        'settings-merchant-maid' => null,
         'settings-merchant-name' => 'PlayGround Shop',
         'settings-merchant-email' => 'sb-47jgfk3834748@business.example.com',
         'settings-merchant-street' => '2 Great George St, Westminster, London SW1P 3AD, Reino Unido',
@@ -59,11 +59,13 @@ class SettingsService
      * SettingsService constructor.
      * @param SessionInterface $session
      * @param LoggerInterface $logger
+     * @param string $maid
      */
-    public function __construct(SessionInterface  $session, LoggerInterface $logger)
+    public function __construct(SessionInterface  $session, LoggerInterface $logger, string $maid)
     {
         $this->session = $session;
         $this->logger = $logger;
+        $this->defaultSettings['settings-merchant-maid'] = $maid;
     }
 
     /**

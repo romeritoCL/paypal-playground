@@ -58,3 +58,7 @@ services:
             $merchantAccount: '%env(ADYEN_MERCHANT_ACCOUNT)%'
             $clientKey: '%env(ADYEN_CLIENT_KEY)%'
             $paypalId: '%env(ADYEN_PAYPAL_ACCOUNT_ID)%'
+
+    App\Service\SettingsService:
+        arguments:
+            $maid: '%env(BRAINTREE_MAID)%'
