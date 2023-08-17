@@ -23,16 +23,7 @@ class ForwardApiService extends AbstractBraintreeService
     public function directTokenization(string $paymentNonce, string $deviceData): ?array
     {
         try {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $this->ENDPOINT);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type:application/json']);
-            curl_setopt(
-                $ch,
-                CURLOPT_USERPWD,
-                $this->gateway->config->getPublicKey() . ':' . $this->gateway->config->getPrivateKey()
-            );
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+            $body = [
                 'debug_transformations' => true,
                 'name' => 'default',
                 'merchant_id' => $this->gateway->config->getMerchantId(),
@@ -80,8 +71,17 @@ class ForwardApiService extends AbstractBraintreeService
                     ]
 
                 ]
-            ], true));
-
+            ];
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->ENDPOINT);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type:application/json']);
+            curl_setopt(
+                $ch,
+                CURLOPT_USERPWD,
+                $this->gateway->config->getPublicKey() . ':' . $this->gateway->config->getPrivateKey()
+            );
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body, true));
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_HEADERFUNCTION, function ($curl, $header) use (&$headers) {
                 $len = strlen($header);
@@ -101,9 +101,12 @@ class ForwardApiService extends AbstractBraintreeService
             return null;
         }
         return ([
-            'headers' => (object) $headers,
-            'body' => (object) json_decode($result),
-            'statusCode' => $statusCode
+            'request' => $body,
+            'response' => [
+                'headers' => (object) $headers,
+                'body' => (object) json_decode($result),
+                'statusCode' => $statusCode
+            ]
         ]);
     }
 }
