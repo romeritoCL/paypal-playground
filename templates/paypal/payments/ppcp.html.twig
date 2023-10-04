@@ -1,0 +1,62 @@
+{% extends 'paypal/base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('ppcp') }}
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://www.paypalobjects.com/webstatic/en_US/developer/docs/css/cardfields.css"
+    />
+{% endblock %}
+{% block content %}
+    <div class="col text-center pb-4 paypal-font">
+        <h4>{% block payments_base_title %}The great: PayPal Complete Payments{% endblock payments_base_title %}</h4>
+        <p>
+            On the left side, create your dream product, then update the payment buttons
+        </p>
+    </div>
+    <div class="row">
+        <div class="col">
+            {% block payments_json_editors %}
+                <div class="mt-3" id="paypal-buttons-editor" style="height: 200px;"></div>
+                <div class="mt-3" id="create-order-editor" style="height: 800px;"></div>
+            {% endblock %}
+        </div>
+        <div class="col">
+            <h5 class="text-center p-2">Standard PayPal buttons</h5>
+            <div class="mb-1" id="paypal-button-container"></div>
+            <h5 class="text-center p-2">Advanced Card Form</h5>
+            <div class="mb-1" id="paypal-hosted-fields">
+                <div class="card_container">
+                    <form id="card-form">
+                        <label for="card-number">Card Number</label>
+                        <div id="card-number" class="card_field"></div>
+                        <div style="display: flex; flex-direction: row;">
+                            <div>
+                                <label for="expiration-date">Expiration Date</label>
+                                <div id="expiration-date" class="card_field"></div>
+                            </div>
+                            <div style="margin-left: 10px;">
+                                <label for="cvv">CVV</label>
+                                <div id="cvv" class="card_field"></div>
+                            </div>
+                        </div>
+                        <label for="card-holder-name">Name on Card</label>
+                        <input type="text" id="card-holder-name" name="card-holder-name" autocomplete="off" placeholder="card holder name" />
+                        <div class="mt-2 text-center">
+                            <button class="text-center btn btn-dark" value="submit" id="submit" class="btn">Pay</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="result-col"></div>
+        </div>
+    </div>
+    <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
+    <div id="capture-url" data-capture-url="{{ path("paypal-payments-capture", {'paymentId': 'payment_id_status'}) }}"></div>
+{% endblock content %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&buyer-country={{app.session.get('settings')['settings-customer-country']}}&locale={{app.session.get('settings')['settings-customer-locale']}}&components=hosted-fields,buttons,payment-fields,marks,funding-eligibility&enable-funding=ideal{{ app.session.get('PAYPAL_SDK_EXTRA') }}" data-client-token="{{ clientToken }}"></script>
+    {{ encore_entry_script_tags('ppcp') }}
+{% endblock %}
