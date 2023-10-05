@@ -11,20 +11,21 @@
 {% block content %}
     <div class="col text-center pb-4 paypal-font">
         <h4>{% block payments_base_title %}The great: PayPal Complete Payments{% endblock payments_base_title %}</h4>
-        <p>
-            On the left side, create your dream product, then update the payment buttons
-        </p>
     </div>
     <div class="row">
         <div class="col">
-            {% block payments_json_editors %}
-                <div class="mt-3" id="paypal-buttons-editor" style="height: 200px;"></div>
-                <div class="mt-3" id="create-order-editor" style="height: 800px;"></div>
-            {% endblock %}
         </div>
         <div class="col">
-            <h5 class="text-center p-2">Standard PayPal buttons</h5>
-            <div class="mb-1" id="paypal-button-container"></div>
+            <p>
+                Card: 4137352579178412
+                Expire: 09/28
+                CVV: 674
+                Owner: Carlos Ramirez
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <h5 class="text-center p-2">Advanced Card Form</h5>
             <div class="mb-1" id="paypal-hosted-fields">
                 <div class="card_container">
@@ -53,7 +54,8 @@
         </div>
     </div>
     <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
-    <div id="capture-url" data-capture-url="{{ path("paypal-payments-capture", {'paymentId': 'payment_id_status'}) }}"></div>
+    <div id="order-capture-url" data-order-capture-url="{{ path("paypal-payments-capture", {'paymentId': 'payment_id_status'}) }}"></div>
+    <div id="order-create-url" data-order-create-url="{{ path("paypal-payments-create") }}"></div>
 {% endblock content %}
 {% block javascripts %}
     {{ parent() }}
