@@ -1,6 +1,11 @@
+import JSONEditor from 'jsoneditor';
+import 'jsoneditor/dist/jsoneditor.css';
+import paypalPayments from './payments';
+window.JSONEditor = JSONEditor;
+
+let settings = JSON.parse(document.getElementById('customer-settings').dataset.settings);
 let orderCaptureUrl = document.getElementById('order-capture-url').dataset.orderCaptureUrl;
 let orderCreateUrl = document.getElementById('order-create-url').dataset.orderCreateUrl;
-let settings = JSON.parse(document.getElementById('customer-settings').dataset.settings);
 let orderCreateJson = {
     "intent": "CAPTURE",
     "purchase_units": [
@@ -12,6 +17,15 @@ let orderCreateJson = {
         }
     ]
 };
+
+let paypalButtonsStyle = {
+    layout: 'vertical',
+    color: 'blue',
+    shape: 'rect',
+    label: 'pay'
+};
+
+paypalPayments.startPayments(orderCreateJson, paypalButtonsStyle);
 
 if (paypal.HostedFields.isEligible()) {
     let orderId
