@@ -46,6 +46,7 @@ Encore
     .addEntry('login', './assets/js/security/login.js')
     .addEntry('settings', './assets/js/settings/settings.js')
     .addEntry('pay-ins', './assets/js/paypal/pay-ins.js')
+    .addEntry('ppcp', './assets/js/paypal/ppcp.js')
     .addEntry('pp-vault', './assets/js/paypal/vault.js')
     .addEntry('ecs', './assets/js/paypal/ecs.js')
     .addEntry('msp', './assets/js/paypal/msp.js')

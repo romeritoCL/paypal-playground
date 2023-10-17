@@ -2,6 +2,7 @@
 
 namespace App\Controller\Paypal;
 
+use Exception;
 use PayPal\Api\Invoice;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +19,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class PaymentsController extends AbstractController
 {
     /**
+     * @Route("/ppcp", name="ppcp", methods={"GET"}, defaults={"action" = "ppcp"})
      * @Route("/pay-ins", name="pay-ins", methods={"GET"}, defaults={"action" = "pay-ins"})
      * @Route("/pay-outs", name="pay-outs", methods={"GET"}, defaults={"action" = "pay-outs"})
      * @Route("/bopis", name="bopis", methods={"GET"}, defaults={"action" = "bopis"})
@@ -113,6 +115,24 @@ class PaymentsController extends AbstractController
             ]);
         }
         return new JsonResponse('Error creating the Invoice, please check the logs');
+    }
+
+    /**
+     * @Route("/ppcp", name="ppcp", methods={"GET"}, defaults={"action" = "ppcp"})
+     *
+     * @param string $action
+     * @return Response
+     * @throws Exception
+     */
+    public function ppcp(string $action): Response
+    {
+        $clientToken = $this->paypalService->getIdentityService()->getClientToken();
+        return $this->render(
+            'paypal/payments/'. $action .'.html.twig',
+            [
+                'clientToken' => $clientToken,
+            ]
+        );
     }
 
     /**

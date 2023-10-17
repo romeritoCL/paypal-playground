@@ -7,6 +7,7 @@ use PayPal\Api\OpenIdTokeninfo;
 use PayPal\Api\OpenIdUserinfo;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Core\PayPalConfigManager;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class IdentityService
@@ -96,5 +97,29 @@ class IdentityService extends AbstractPaypalService
             return null;
         }
         return $userInfo ?? null;
+    }
+
+    /**
+     *
+     * Get Client Token
+     *
+     * @return string|null
+     * @throws Exception
+     *
+     */
+    public function getClientToken(): ?string
+    {
+        $accessToken = $this->getAccessToken();
+        $response = $this->paypalApiCall($accessToken,
+            [],
+            'https://api.sandbox.paypal.com/v1/identity/generate-token'
+        );
+        if (array_key_exists('statusCode',$response) && $response['statusCode'] == Response::HTTP_OK) {
+            $result = (object) json_decode($response['result'],true);
+            return  $result->client_token;
+        } else {
+            $this->logger->error('Error on PayPal::getClientToken');
+            throw new \Exception('Error on PayPal::getClientToken');
+        }
     }
 }

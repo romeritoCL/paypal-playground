@@ -29,7 +29,7 @@ class SettingsService
         'settings-customer-country' => 'GB',
         'settings-merchant-maid' => null,
         'settings-merchant-name' => 'PlayGround Shop',
-        'settings-merchant-email' => 'sb-47jgfk3834748@business.example.com',
+        'settings-merchant-email' => 'sb-meho36207476@business.example.com',
         'settings-merchant-street' => '2 Great George St, Westminster, London SW1P 3AD, Reino Unido',
         'settings-merchant-city' => 'London',
         'settings-merchant-province' => 'London',
