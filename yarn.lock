@@ -2,18 +2,18 @@
 # yarn lockfile v1
 
 
-"@adyen/adyen-web@^5.31.2":
-  version "5.31.2"
-  resolved "https://registry.yarnpkg.com/@adyen/adyen-web/-/adyen-web-5.31.2.tgz#fc3d22c8ceff8033932ce094a85d85a5deee4055"
-  integrity sha512-jkVesf8tgPFo9fQE9fK3Y8kr3+RI+LmrI/AqYhOWASLodUI+1aFTfMDKQs+/DxW3vx/7uaeLnBhvid7Fw0ty5A==
+"@adyen/adyen-web@^5.52.0":
+  version "5.52.0"
+  resolved "https://registry.yarnpkg.com/@adyen/adyen-web/-/adyen-web-5.52.0.tgz#91b73fc6ebb98047713aab9112a6f543986d1f89"
+  integrity sha512-x83JgvR28BQ18EIR003uATZ5U4SIFKkgP+28I/RToImpsrtkjWDJP3GHVKKGk2DA+5GGnvPwmNJzCLqV2skCvw==
   dependencies:
     "@babel/runtime" "^7.15.4"
     "@babel/runtime-corejs3" "^7.20.1"
     "@types/applepayjs" "^3.0.4"
-    "@types/googlepay" "^0.6.2"
+    "@types/googlepay" "^0.7.0"
     classnames "^2.3.1"
     core-js-pure "^3.25.3"
-    preact "10.11.3"
+    preact "10.13.2"
 
 "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.11":
   version "7.12.11"
@@ -950,10 +950,10 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/googlepay@^0.6.2":
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/@types/googlepay/-/googlepay-0.6.4.tgz#e0b06ae1f12496c4fa43e52d35e76411dbbee135"
-  integrity sha512-PTt/UCllzl8z5HmhymPpSj6uENZvVKZvCBYdDVmbBVJnLStitxtWrterAOQZkKGlqVdzxNXYeif5hOAMNMS5mw==
+"@types/googlepay@^0.7.0":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@types/googlepay/-/googlepay-0.7.2.tgz#1ba7633caa27340b101952dc92e1afb3a8be529d"
+  integrity sha512-ZYFviDehf53an2ezqiEwQ3dL3TcQM7OeBhKwzX9NYt61y6BqVc/74a/f8cJ3dsEVlAlcctC4NfeB+Z8JxbiYKw==
 
 "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.6":
   version "7.0.6"
@@ -5135,10 +5135,10 @@ postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.27, postcss@^7.0.3
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-preact@10.11.3:
-  version "10.11.3"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.11.3.tgz#8a7e4ba19d3992c488b0785afcc0f8aa13c78d19"
-  integrity sha512-eY93IVpod/zG3uMF22Unl8h9KkrcKIRs2EGar8hwLZZDU1lkjph303V9HZBwufh2s736U6VXuhD109LYqPoffg==
+preact@10.13.2:
+  version "10.13.2"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.13.2.tgz#2c40c73d57248b57234c4ae6cd9ab9d8186ebc0a"
+  integrity sha512-q44QFLhOhty2Bd0Y46fnYW0gD/cbVM9dUVtNTDKPcdXSMA7jfY+Jpd6rk3GB0lcQss0z5s/6CmVP0Z/hV+g6pw==
 
 pretty-error@^2.1.1:
   version "2.1.2"
