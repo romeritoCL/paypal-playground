@@ -10,23 +10,48 @@
 {% endblock %}
 {% block content %}
     <div class="col text-center pb-4 paypal-font">
-        <h4>{% block payments_base_title %}The great: PayPal Complete Payments{% endblock payments_base_title %}</h4>
+        <h4>{% block payments_base_title %}Explore <div class="d-inline" style="color: #0070ba">PayPal Complete Payments</div> capabilities{% endblock payments_base_title %}</h4>
     </div>
     <div class="row">
         <div class="col">
+            {% block payments_json_editors %}
+                <div class="mt-3 d-none" id="paypal-buttons-editor" style="height: 200px;"></div>
+                <div class="mt-3" id="create-order-editor" style="height: 300px;"></div>
+                <table class="mt-3 table table-bordered table-striped text-left">
+                    <thead>
+                    <tr>
+                        <th style="width: 150px;">Card Details</th>
+                        <th>Example</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Number</td>
+                        <td>4137352579178412</td>
+                    </tr>
+                    <tr>
+                        <td>Expiration</td>
+                        <td>09/28</td>
+                    </tr>
+                    <tr>
+                        <td>CVV</td>
+                        <td>674</td>
+                    </tr>
+                    <tr>
+                        <td>Card Holder</td>
+                        <td>Carlos Gutierrez Sanchez</td>
+                    </tr>
+                    </tbody>
+                </table>
+            {% endblock %}
         </div>
         <div class="col">
-            <p>
-                Card: 4137352579178412
-                Expire: 09/28
-                CVV: 674
-                Owner: Carlos Ramirez
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <h5 class="text-center p-2">Advanced Card Form</h5>
+            <div class="mb-1" id="paypal-button-container"></div>
+            <div class="mt-5 font-weight-bold">
+                {% block payments_base_more_info %}
+                {% endblock payments_base_more_info %}
+            </div>
+            <h5 class="text-center p-2">Advanced CreditCard Component</h5>
             <div class="mb-1" id="paypal-hosted-fields">
                 <div class="card_container">
                     <form id="card-form">
@@ -44,21 +69,27 @@
                         </div>
                         <label for="card-holder-name">Name on Card</label>
                         <input type="text" id="card-holder-name" name="card-holder-name" autocomplete="off" placeholder="card holder name" />
-                        <div class="mt-2 text-center">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">Save my card in the secured vault</label>
+                        </div>
+                        <div class="mt-3 text-center">
                             <button class="text-center btn btn-dark" value="submit" id="submit" class="btn">Pay</button>
                         </div>
                     </form>
                 </div>
             </div>
-            <div id="result-col"></div>
+            <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
+            <div id="capture-url" data-capture-url="{{ path("paypal-payments-capture", {'paymentId': 'payment_id_status'}) }}"></div>
+            <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
+            <div id="order-capture-url" data-order-capture-url="{{ path("paypal-payments-capture", {'paymentId': 'payment_id_status'}) }}"></div>
+            <div id="order-create-url" data-order-create-url="{{ path("paypal-payments-create") }}"></div>
         </div>
     </div>
-    <div id="customer-settings" data-settings="{{ app.session.get('settings') | json_encode }}"></div>
-    <div id="order-capture-url" data-order-capture-url="{{ path("paypal-payments-capture", {'paymentId': 'payment_id_status'}) }}"></div>
-    <div id="order-create-url" data-order-create-url="{{ path("paypal-payments-create") }}"></div>
+    <div class="col" id="result-col"></div>
 {% endblock content %}
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&buyer-country={{app.session.get('settings')['settings-customer-country']}}&locale={{app.session.get('settings')['settings-customer-locale']}}&components=hosted-fields,buttons,payment-fields,marks,funding-eligibility&enable-funding=ideal{{ app.session.get('PAYPAL_SDK_EXTRA') }}" data-client-token="{{ clientToken }}"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{ app.session.get('PAYPAL_SDK_CLIENT_ID') ?? PAYPAL_SDK_CLIENT_ID }}&currency={{app.session.get('settings')['settings-customer-currency']}}&buyer-country={{app.session.get('settings')['settings-customer-country']}}&locale={{app.session.get('settings')['settings-customer-locale']}}&components=hosted-fields,buttons,payment-fields,marks,funding-eligibility&enable-funding=paylater,ideal{{ app.session.get('PAYPAL_SDK_EXTRA') }}" data-client-token="{{ clientToken }}"></script>
     {{ encore_entry_script_tags('ppcp') }}
 {% endblock %}
