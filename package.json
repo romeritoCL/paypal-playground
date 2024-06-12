@@ -14,13 +14,14 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "@adyen/adyen-web": "^5.31.2",
+        "@adyen/adyen-web": "^5.66.1",
         "bootstrap": "^4.6.2",
-        "braintree-web": "^3.90.0",
-        "braintree-web-drop-in": "^1.33.7",
+        "braintree-web": "3.102.0",
+        "braintree-web-drop-in": "1.42.0",
         "jquery": "^3.6.3",
         "jqueryui": "^1.11.1",
         "jsoneditor": "^9.9.2",
-        "popper.js": "^1.16.1"
+        "popper.js": "^1.16.1",
+        "yarn": "^1.22.22"
     }
 }

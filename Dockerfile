@@ -1,21 +1,22 @@
-FROM alpine:3.16
-LABEL Maintainer="Tim de Pater <code@trafex.nl>" \
-      Description="Lightweight container with Nginx 1.18 & PHP-FPM 8 based on Alpine Linux."
+FROM alpine:3.20
 
 # Install packages and remove default server definition
-RUN apk --no-cache add php php8-fpm php8-opcache php8-mysqli php8-json php8-openssl php8-curl \
-    php8-zlib php8-xml php8-phar php8-intl php8-dom php8-simplexml php8-xmlreader php8-xmlwriter php8-ctype php8-session php8-tokenizer \
-    php8-mbstring php8-gd php8-iconv nginx supervisor curl nodejs npm composer && \
+RUN apk --no-cache --no-check-certificate add php php83-fpm php83-opcache php83-mysqli php83-json php83-openssl php83-curl \
+    php83-zlib php83-xml php83-phar php83-intl php83-dom php83-simplexml php83-xmlreader php83-xmlwriter php83-ctype php83-session php83-tokenizer \
+    php83-mbstring php83-gd php83-iconv nginx supervisor curl composer openssl nodejs npm && \
     rm /etc/nginx/http.d/default.conf
 
+# Self Signed Certificate ?? Uncomment this lines
+#COPY docker/cert/cert.crt /usr/local/share/ca-certificates/cert.crt
+# NPM registry issues? use local yarn, please comment this lines if you have issues with npm registry.
 RUN npm install -g yarn
 
 # Configure nginx
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 
 # Configure PHP-FPM
-COPY docker/fpm-pool.conf /etc/php8/php-fpm.d/www.conf
-COPY docker/php.ini /etc/php8/conf.d/custom.ini
+COPY docker/fpm-pool.conf /etc/php83/php-fpm.d/www.conf
+COPY docker/php.ini /etc/php83/conf.d/custom.ini
 
 # Configure supervisord
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf

@@ -16,7 +16,7 @@
         "ext-json": "*",
         "ext-xmlwriter": "*",
         "adyen/php-api-library": "^9.0",
-        "braintree/braintree_php": "^6.11.1",
+        "braintree/braintree_php": "^6.18.0",
         "composer/package-versions-deprecated": "1.10.99.1",
         "hyperwallet/sdk": "^1",
         "paypal/paypal-checkout-sdk": "1.0.1",
