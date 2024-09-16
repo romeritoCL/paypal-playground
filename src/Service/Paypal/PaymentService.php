@@ -35,6 +35,7 @@ class PaymentService extends AbstractPaypalService
         try {
             $request = new OrdersCaptureRequest($orderId);
             $request->headers["prefer"] = "return=representation";
+            $this->addNegativeTestingSetting($request);
             $client = $this->getHttpClient();
             $response = $client->execute($request);
         } catch (HttpException $e) {
@@ -60,6 +61,7 @@ class PaymentService extends AbstractPaypalService
             $request = new OrdersCreateRequest();
             $request->body = $body;
             $request->headers = array_merge($request->headers, $headers);
+            $this->addNegativeTestingSetting($request);
             $client = $this->getHttpClient();
             $response = $client->execute($request);
         } catch (HttpException $e) {

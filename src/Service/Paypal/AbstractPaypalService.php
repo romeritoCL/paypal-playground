@@ -5,6 +5,7 @@ namespace App\Service\Paypal;
 use App\Service\SettingsService;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
+use PayPalHttp\HttpRequest;
 use Psr\Log\LoggerInterface;
 use Exception;
 
@@ -110,5 +111,20 @@ abstract class AbstractPaypalService
             'result' => $result,
             'statusCode' => $statusCode
         ]);
+    }
+
+    /**
+     * Add Negative testing Settings header to the given request
+     * @param HttpRequest $request
+     * @return void
+     */
+    public function addNegativeTestingSetting(HttpRequest $request)
+    {
+        $negativeTesting = $this->settingsService->getSetting('settings-merchant-negative-testing');
+        if ($negativeTesting !== null) {
+            $request->headers['PayPal-Mock-Response'] = json_encode(
+                ['mock_application_codes' => $negativeTesting]
+            );
+        }
     }
 }

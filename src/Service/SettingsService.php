@@ -35,6 +35,7 @@ class SettingsService
         'settings-merchant-province' => 'London',
         'settings-merchant-zip-code' => 'SW1P3AD',
         'settings-merchant-country' => 'GB',
+        'settings-merchant-negative-testing' => null,
         'settings-item-name' => 'Make me proud! TEE (XXL)',
         'settings-item-price' => '31',
         'settings-item-shipping' => '5',
