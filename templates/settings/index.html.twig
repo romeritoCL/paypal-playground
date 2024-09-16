@@ -123,6 +123,18 @@
                             </div>
                             <input type="text" aria-label="Merchant Account" class="form-control text-right" name="settings-merchant-maid" value="{{ app.session.get('settings')['settings-merchant-maid'] | default('devoralive' )}}">
                         </div>
+                        <div class="container text-center">
+                            <h3>Negative testing</h3>
+                            <hr>
+                        </div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">PayPal-Mock-Response</span>
+                                </div>
+                                <input type="text" aria-label="PayPal-Mock-Response" class="form-control text-right" name="settings-merchant-negative-testing" value="{{ app.session.get('settings')['settings-merchant-negative-testing'] | default('IE: DUPLICATE_INVOICE_ID' )}}">
+                            </div>
+                        </div>
                     </section>
                 </div>
                 <div class="col">
