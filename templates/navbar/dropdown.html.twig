@@ -1,16 +1,14 @@
 <ul class="navbar-nav mr-auto">
     <li class="p-2 nav-item dropdown">
         <a class="nav-link dropdown-toggle d-inline" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img class="logo-paypal" src="https://upload.wikimedia.org/wikipedia/donate/thumb/0/02/Paypal-logo-white.svg/1200px-Paypal-logo-white.svg.png" />
-            <span class="paypal-font-header">PlayGround</span>
+            <img class="logo-paypal-small" src="{{ asset('build/images/paypal_logo_whilte.webp') }}" />
+            <span class="text-white navbar-toggler-icon"></span>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item bullet" href="{{ path('index') }}">PlayGround Home</a>
-            <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header d-inline">PayPal Commerce Platform <strong class="red-text">Business</strong></h6>
+            <a href="{{ path('index') }}">
+                <h5 class="dropdown-header d-inline">PayPal Platform</h5>
+            </a>
             <a class="dropdown-item bullet" href="{{ path('paypal-index') }}">PayPal</a>
-            <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header d-inline">PayPal Commerce Platform <strong class="red-text">Enterprise</strong></h6>
             <a class="dropdown-item bullet" href="{{ path('braintree-index') }}">BrainTree</a>
             <a class="dropdown-item bullet" href="{{ path('hyperwallet-index') }}">HyperWallet</a>
             {% if app.user %}
