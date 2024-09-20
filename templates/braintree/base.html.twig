@@ -5,23 +5,25 @@
         {% block nav_class %}navbar-dark bg-braintree braintree-font{% endblock nav_class %}
         {% block nav_items %}
             <div class="navbar-nav col justify-content-center">
-                <a class="nav-link text-light" href="{{ path('braintree-payments-dropui') }}">DropUi</a>
-                <a class="nav-link text-light" href="{{ path('braintree-payments-hosted-fields') }}">HostedFields</a>
-                <a class="nav-link text-light" href="{{ path('braintree-payments-apm') }}">APM</a>
-                <a class="nav-link text-light" href="{{ path('braintree-payments-three-ds') }}">3DSecure</a>
-                <a class="nav-link text-light" href="{{ path('braintree-payments-vault') }}">Vault</a>
+                <a class="nav-link text-light" href="{{ path('paypal-index') }}">All Features</a>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Others Features
+                        Quick Access
                     </a>
                     <div class="dropdown-menu bg-braintree p-3" aria-labelledby="navbarDropdown">
-                        <a class="nav-link text-light" href="{{ path('braintree-payments-request') }}">RequestAPI</a>
-                        <a class="nav-link text-light" href="{{ path('braintree-api-index') }}">API Examples</a>
-                        <a class="nav-link text-light" href="{{ path('braintree-payments-paylater') }}">PayPal Paylater</a>
-                        <a class="nav-link text-light" href="{{ path('braintree-payments-forward') }}">Forward API</a>
+                        <a class="nav-link text-light" href="{{ path('braintree-payments-dropui') }}">DropUi</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="nav-link text-light" href="{{ path('braintree-payments-apm') }}">APM</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="nav-link text-light" href="{{ path('braintree-payments-vault') }}">Vault</a>
                     </div>
                 </li>
             </div>
+            <span class="m-3 badge badge-pill badge-success">{{ random([
+                    'Yeah!', 'C\'mon!', 'Booom!', 'Awesome!', 'Massive!','Bombastic!','Payouts Rocks',
+                    'PayPal Powah!', 'Braintree you say?', 'What about some PayPal Magic?', 'The limit is the Sky'
+                ]) }}</span>
         {% endblock nav_items %}
     {% endembed %}
 {% endblock navbar %}

@@ -5,7 +5,8 @@
             <div class="container container-fluid">
                 <div class="row justify-content-center">
                     <button class="btn d-inline align-middle">
-                        <img alt="Logo PayPal" class="logo-paypal" src="https://upload.wikimedia.org/wikipedia/commons/3/39/PayPal_logo.svg" />
+                        <img alt="Logo PayPal" class="logo-paypal"
+                             src="{{ asset('build/images/paypal_logo.svg') }}"/>
                     </button>
                     <div class="jumbotron-heading d-inline align-middle">
                         <h1 class="ml-3 align-middle">Let's Play</h1>
@@ -13,112 +14,125 @@
                 </div>
             </div>
         </section>
-        <div class="row">
-            <div class="col">
-                <ul class="list">
-                    <li>Receive payments with PayPal</li>
-                    <li>Connect with PayPal and verify your account</li>
-                    <li>Send payments with Paypal</li>
-                    <li>Invoices, Subscriptions, BOPIS</li>
-                    <li>QRC new features</li>
-                    <li>Check for <strong class="red-text">Other Features</strong> under the top bar menu.</li>
-                </ul>
+        <div class="row pt-1">
+            <div class="col-lg-4">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-index') }}">FastLane</a>
+            </div>
+            <div class="col-lg-8">
+                <p class="pl-3">Try out Log in with PayPal, Users can create an account for your website using their PayPal credentials or link their account to their PayPal account.</p>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-3">
-                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-connect-index') }}">Connect</a>
+        <div class="row pt-1">
+            <div class="col-lg-4">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-index') }}">PackageTracking</a>
             </div>
-            <div class="col justify-content-start">
-                <h6 class="ml-5 d-inline">Try out PayPal Connect, get user info, authenticate email</h6>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-3">
-                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-pay-ins') }}">PayIns</a>
-            </div>
-            <div class="col justify-content-start">
-                <h6 class="ml-5 d-inline">Try out PayIns with PayPal Smart Buttons + APMs</h6>
+            <div class="col-lg-8">
+                <p class="pl-3">Try out Log in with PayPal, Users can create an account for your website using their PayPal credentials or link their account to their PayPal account.</p>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-3">
-                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-pay-outs') }}">PayOuts</a>
+        <div class="row pt-1">
+            <div class="col-lg-4">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-pay-ins') }}">Wallet Payments</a>
             </div>
-            <div class="col justify-content-start">
-                <h6 class="ml-5 d-inline">Want to send money, use paypal payouts APIs</h6>
+            <div class="col-lg-8">
+                <p class="pl-3">Build an online and mobile payments solution using the PayPal JavaScript SDK and REST APIs.</p>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-3">
+        <div class="row pt-1">
+            <div class="col-lg-4">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-pay-outs') }}">Wallet Payouts</a>
+            </div>
+            <div class="col-lg-8">
+                <p class="pl-3">Send money immediately to multiple recipients with their emails, phone numbers, or PayPal IDs.</p>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-lg-4">
                 <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-invoices') }}">Invoices</a>
             </div>
-            <div class="col justify-content-start">
-                <h6 class="ml-5 d-inline">You can use the pay by link with invoices, and QR them</h6>
+            <div class="col-lg-8">
+                <p class="pl-3">In addition to sending and receiving invoices, the Invoicing API supports requests such as refunds, reminders, QR codes, and templates.</p>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-3">
+        <div class="row pt-1">
+            <div class="col-lg-4">
                 <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-subscriptions') }}">Subscriptions</a>
             </div>
-            <div class="col justify-content-start">
-                <h6 class="ml-5 d-inline">Subscribe with PayPal to any monthly or weekly or whatever</h6>
+            <div class="col-lg-8">
+                <p class="pl-3">Create subscriptions to bill customers at regular intervals. You can customize a subscriptions integration. Fixed plans, discount trials, payment recovery, tier based, etc...</p>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-3">
-                <a class="btn bg-paypal text-light btn-block" href="#">QR Codes</a>
+        <div class="row pt-1">
+            <div class="col-lg-4">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-ecs') }}">Express Checkout Shortcut</a>
             </div>
-            <div class="col justify-content-start">
-                <h6 class="ml-5 d-inline">MoonShot!! Awesome, QRC payments</h6>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-3">
-                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-ecs') }}">ECS</a>
-            </div>
-            <div class="col justify-content-start">
-                <h6 class="ml-5 d-inline">Express Checkout Shortcut, improve conversion with less pain for customers</h6>
+            <div class="col-lg-8">
+                <p class="pl-3">Express Checkout Shortcut, improve conversion with faster checkout</p>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-3">
-                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-billing-agreements-index') }}">Billing Agreements</a>
+        <div class="row pt-1">
+            <div class="col-lg-4">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-billing-agreements-index') }}">Billing
+                    Agreements</a>
             </div>
-            <div class="col justify-content-start">
-                <h6 class="ml-5 d-inline">Billing Agreements, create, payments, and cancel example</h6>
+            <div class="col-lg-8">
+                <p class="pl-3">Deprecated: Use the PayPal Reference Transactions API to create and manage billing agreement tokens and billing agreements. You can use a reference transaction to make a payment.</p>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-3">
+        <div class="row pt-1">
+            <div class="col-lg-4">
                 <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-bopis') }}">BOPIS</a>
             </div>
-            <div class="col justify-content-start">
-                <h6 class="ml-5 d-inline">Maybe you want to Buy online pick up in store?</h6>
+            <div class="col-lg-8">
+                <p class="pl-3">Maybe you want to BOPIS (Buy online pick up in store)</p>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-3">
+        <div class="row pt-1">
+            <div class="col-lg-4">
                 <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-vault-payment') }}">Vault</a>
             </div>
-            <div class="col justify-content-start">
-                <h6 class="ml-5 d-inline">Dont forget to vault your PayPal account for returning customers</h6>
+            <div class="col-lg-8">
+                <p class="pl-3">Save payment methods so payers don't have to enter details for future transactions. Payers can check out faster or pay without being present after they agree to save a payment method.</p>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-3">
-                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-msp') }}">MSP</a>
+        <div class="row pt-1">
+            <div class="col-lg-4">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-msp') }}">MultiSeller Purchase</a>
             </div>
-            <div class="col justify-content-start">
-                <h6 class="ml-5 d-inline">Multi Sellert Purchase, How about it?</h6>
+            <div class="col-lg-8">
+                <p class="pl-3">Multi Seller Purchase, How about it?</p>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-3">
-                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-ppcp') }}">PPCP</a>
+        <div class="row pt-1">
+            <div class="col-lg-4">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-ppcp') }}">ACDC</a>
             </div>
-            <div class="col justify-content-start">
-                <h6 class="ml-5 d-inline">Advanced card payments with PPCP</h6>
+            <div class="col-lg-8">
+                <p class="pl-3">Set up advanced Checkout payments to present custom credit and debit card fields to your payers so they can pay with credit and debit cards using your site's branding.</p>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-lg-4">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-payments-paylater') }}">PayLater Offers</a>
+            </div>
+            <div class="col-lg-8">
+                <p class="pl-3">Add Pay Later messaging to your checkout integration. Specific Pay Later offers differ by country. Click on your country for details.</p>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-lg-4">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-adyen-index') }}">Adyen Example</a>
+            </div>
+            <div class="col-lg-8">
+                <p class="pl-3">Set up PayPal via Adyen. Either using DropIn or Components</p>
+            </div>
+        </div>
+        <div class="row pt-1">
+            <div class="col-lg-4">
+                <a class="btn bg-paypal text-light btn-block" href="{{ path('paypal-connect-index') }}">Identity API</a>
+            </div>
+            <div class="col-lg-8">
+                <p class="pl-3">Try out Log in with PayPal, Users can create an account for your website using their PayPal credentials or link their account to their PayPal account.</p>
             </div>
         </div>
     </div>

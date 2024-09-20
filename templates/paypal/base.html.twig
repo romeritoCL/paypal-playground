@@ -5,29 +5,27 @@
         {% block nav_class %}navbar-light bg-paypal paypal-font{% endblock nav_class %}
         {% block nav_items %}
             <div class="navbar-nav col justify-content-center">
-                <a class="nav-link text-light" href="{{ path('paypal-connect-index') }}">Connect</a>
-                <a class="nav-link text-light" href="{{ path('paypal-payments-pay-ins') }}">PayIns</a>
-                <a class="nav-link text-light" href="{{ path('paypal-payments-pay-outs') }}">PayOuts</a>
-                <a class="nav-link text-light" href="{{ path('paypal-payments-invoices') }}">Invoices</a>
-                <a class="nav-link text-light" href="{{ path('paypal-payments-subscriptions') }}">Subscriptions</a>
+                <a class="nav-link text-light" href="{{ path('paypal-index') }}">All Features</a>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Others Features
+                        Quick Access
                     </a>
-                    <div class="dropdown-menu bg-paypal p-3" aria-labelledby="navbarDropdown">
-                        <a class="nav-link text-light" href="#">QR Codes</a>
-                        <a class="nav-link text-light" href="{{ path('paypal-payments-ecs') }}">ECS</a>
-                        <a class="nav-link text-light" href="{{ path('paypal-payments-bopis') }}">BOPIS</a>
-                        <a class="nav-link text-light" href="{{ path('paypal-billing-agreements-index') }}">Billing Agreements</a>
-                        <a class="nav-link text-light" href="{{ path('paypal-payments-paylater') }}">PayLater PI4</a>
-                        <a class="nav-link text-light" href="{{ path('paypal-adyen-index') }}">Adyen Ex</a>
-                        <a class="nav-link text-light" href="{{ path('paypal-vault-payment') }}">Vault</a>
-                        <a class="nav-link text-light" href="{{ path('paypal-payments-msp') }}">MSP</a>
-                        <a class="nav-link text-light" href="{{ path('paypal-payments-ppcp') }}">PPCP</a>
+                    <div class="dropdown-menu bg-paypal mw-100" aria-labelledby="navbarDropdown">
+                        <a class="nav-link text-light" href="{{ path('paypal-payments-pay-ins') }}">Wallet Payments</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="nav-link text-light" href="{{ path('paypal-payments-ppcp') }}">ACDC</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="nav-link text-light" href="{{ path('paypal-payments-ecs') }}">Express Checkout Shortcut</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="nav-link text-light" href="{{ path('paypal-vault-payment') }}">Vault Wallet</a>
                     </div>
                 </li>
                 {% include "paypal/modals/sandbox-credentials.html.twig" %}
             </div>
+            <span class="m-3 badge badge-pill badge-success">{{ random([
+                    'Yeah!', 'C\'mon!', 'Booom!', 'Awesome!', 'Massive!','Bombastic!','Payouts Rocks',
+                    'PayPal Powah!', 'love PayPal you say?', 'What about some PayPal Magic?', 'The limit is the Sky'
+                ]) }}</span>
         {% endblock nav_items %}
     {% endembed %}
 {% endblock navbar %}
