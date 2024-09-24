@@ -46,5 +46,9 @@ clearButton.addEventListener('click', function () {
 
 backButton.addEventListener('click', function (event) {
     event.preventDefault();
-    window.history.back();
+    if ('referrer' in document) {
+        window.location = document.referrer;
+    } else {
+        window.history.back();
+    }
 });
