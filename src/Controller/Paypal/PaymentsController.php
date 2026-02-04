@@ -21,6 +21,7 @@ class PaymentsController extends AbstractController
     /**
      * @Route("/ppcp", name="ppcp", methods={"GET"}, defaults={"action" = "ppcp"})
      * @Route("/pay-ins", name="pay-ins", methods={"GET"}, defaults={"action" = "pay-ins"})
+     * @Route("/app-switch", name="app-switch", methods={"GET"}, defaults={"action" = "app-switch"})
      * @Route("/pay-outs", name="pay-outs", methods={"GET"}, defaults={"action" = "pay-outs"})
      * @Route("/bopis", name="bopis", methods={"GET"}, defaults={"action" = "bopis"})
      * @Route("/subscriptions", name="subscriptions", methods={"GET"}, defaults={"action" = "subscriptions"})

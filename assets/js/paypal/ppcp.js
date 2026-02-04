@@ -18,14 +18,16 @@ let orderCreateJson = {
     ]
 };
 
-let paypalButtonsStyle = {
-    layout: 'vertical',
-    color: 'blue',
-    shape: 'rect',
-    label: 'pay'
+let PayPalButtons = {
+    style: {
+        layout: 'vertical',
+        color: 'blue',
+        shape: 'rect',
+        label: 'pay'
+    }
 };
 
-paypalPayments.startPayments(orderCreateJson, paypalButtonsStyle);
+paypalPayments.startPayments(orderCreateJson, PayPalButtons);
 
 if (paypal.HostedFields.isEligible()) {
     let orderId

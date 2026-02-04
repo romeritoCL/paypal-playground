@@ -74,11 +74,13 @@ let orderCreateJson = {
     }
 };
 
-let paypalButtonsStyle = {
-    layout: 'vertical',
-    color: 'blue',
-    shape: 'rect',
-    label: 'checkout'
+let PayPalButtons = {
+    style: {
+        layout: 'vertical',
+        color: 'blue',
+        shape: 'rect',
+        label: 'checkout'
+    }
 };
 
-paypalPayments.startPayments(orderCreateJson, paypalButtonsStyle);
+paypalPayments.startPayments(orderCreateJson, PayPalButtons);

@@ -45,6 +45,7 @@ Encore
     .addEntry('request', './assets/js/braintree/request.js')
     .addEntry('login', './assets/js/security/login.js')
     .addEntry('settings', './assets/js/settings/settings.js')
+    .addEntry('app-switch', './assets/js/paypal/app-switch.js')
     .addEntry('pay-ins', './assets/js/paypal/pay-ins.js')
     .addEntry('ppcp', './assets/js/paypal/ppcp.js')
     .addEntry('pp-vault', './assets/js/paypal/vault.js')

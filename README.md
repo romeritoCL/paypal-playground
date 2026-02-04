@@ -28,7 +28,7 @@ docker-compose up -d
 ```bash
 docker-compose exec paypal-playground composer install
 docker-compose exec paypal-playground yarn install
-docker-compose exec paypal-playgroun yarn encore dev
+docker-compose exec paypal-playground yarn encore dev
 ```
 
 4. Go to site:

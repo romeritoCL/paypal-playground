@@ -44,12 +44,12 @@ function startPayments(orderCreateJson, PayPalButtonsJson)
     function reloadPayPalButtons()
     {
         $('#paypal-button-container').empty();
-        let paypalButtonsStyleObject = paypalButtonsEditor.get();
+        let PayPalButtonsObject = paypalButtonsEditor.get();
         paypal.Buttons({
             createOrder: function (data, actions) {
                 return actions.order.create(orderCreateEditor.get());
             },
-            style: paypalButtonsStyleObject,
+            PayPalButtonsObject,
             onShippingChange: function () {
             },
             onApprove: function (data) {
