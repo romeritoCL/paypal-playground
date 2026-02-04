@@ -17,11 +17,13 @@ let orderCreateJson = {
     }
 };
 
-let paypalButtonsStyle = {
-    layout: 'vertical',
-    color: 'gold',
-    shape: 'pill',
-    label: 'buynow'
+let PayPalButtons = {
+    style: {
+        layout: 'vertical',
+        color: 'gold',
+        shape: 'pill',
+        label: 'buynow'
+    }
 };
 
 paypal.Buttons({
@@ -29,7 +31,7 @@ paypal.Buttons({
     createOrder: function (data, actions) {
         return actions.order.create(orderCreateJson);
     },
-    style: paypalButtonsStyle,
+    style: PayPalButtons,
     onShippingChange: function () {
     },
     onApprove: function (data) {

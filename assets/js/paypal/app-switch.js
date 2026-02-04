@@ -2,7 +2,7 @@ import JSONEditor from 'jsoneditor';
 import 'jsoneditor/dist/jsoneditor.css';
 import paypalPayments from './payments';
 window.JSONEditor = JSONEditor;
-
+let returnUrl = document.getElementById('return-url').dataset.returnUrl;
 let settings = JSON.parse(document.getElementById('customer-settings').dataset.settings);
 let orderCreateJson = {
     intent: 'capture',
@@ -11,7 +11,6 @@ let orderCreateJson = {
             given_name: settings['settings-customer-name'],
             surname: settings['settings-customer-family-name'],
         },
-        email_address: settings['settings-customer-email'],
         address: {
             address_line_1: settings['settings-customer-street'],
             country_code: settings['settings-customer-country'],
@@ -49,10 +48,16 @@ let orderCreateJson = {
             description: settings['settings-item-description']
         }],
     }],
-    application_context: {
-        brand_name: settings['settings-merchant-name'],
-        user_action: "PAY_NOW"
+    payment_source: {
+        paypal: {
+            email_address: settings['settings-customer-email'],                            
+        experience_context: {
+          user_action: "PAY_NOW",
+          return_url: returnUrl,
+          cancel_url: returnUrl
+        }
     }
+  }
 };
 
 let PayPalButtons = {
@@ -61,7 +66,8 @@ let PayPalButtons = {
         color: 'gold',
         shape: 'pill',
         label: 'pay'
-    }
+    },
+    appSwitchWhenAvailable: true,
 };
 
 paypalPayments.startPayments(orderCreateJson, PayPalButtons);
